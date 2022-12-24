@@ -173,10 +173,12 @@ global class CharUtils {
      * @throws NullPointerException if the string is null
      * @throws IllegalArgumentException if the String is empty
      */
-//    global static Integer toChar(final String str) {
-//        Validate.notEmpty(str, "The String must not be empty");
-//        return str.charAt(0);
-//    }
+    global static Integer toChar(final String str) {
+        if (str == null || str.length() == 0) {
+            throw new IllegalArgumentException('The String must not be empty');
+        }
+        return str.charAt(0);
+    }
 
     /**
      * <p>Converts the String to a Integer using the first character, defaulting
