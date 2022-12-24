@@ -2074,21 +2074,21 @@ global class StringUtils {
      *           or {@code null} String if {@code str} is null
      * @since 3.6
      */
-//    global static String getDigits(final String str) {
-//        if (isEmpty(str)) {
-//            return str;
-//        }
-//        final Integer sz = str.length();
-//        final StringBuilder strDigits = new StringBuilder(sz);
-//        for (int i = 0; i < sz; i++) {
-//            final char tempChar = str.charAt(i);
-//            if (Character.isDigit(tempChar)) {
-//                strDigits.append(tempChar);
-//            }
-//        }
-//        return strDigits.toString();
-//    }
-//
+    global static String getDigits(final String str) {
+        if (isEmpty(str)) {
+            return str;
+        }
+        final Integer sz = str.length();
+        String strDigits = '';
+        for (Integer i = 0; i < sz; i++) {
+            final Integer tempChar = str.charAt(i);
+            if (CharUtils.isAsciiNumeric(tempChar)) {
+                strDigits += (tempChar);
+            }
+        }
+        return strDigits;
+    }
+
     /**
      * <p>Find the Fuzzy Distance which indicates the similarity score between two Strings.</p>
      *
