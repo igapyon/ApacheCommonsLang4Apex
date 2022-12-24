@@ -3565,8 +3565,7 @@ global class StringUtils {
             return true;
         }
         for (Integer i = 0; i < strLen; i++) {
-            String check = int2string(cs.charAt(i));
-            if (!check.isWhitespace()) {
+            if (!isWhitespace(cs.charAt(i))) {
                 return false;
             }
         }
@@ -3690,12 +3689,12 @@ global class StringUtils {
 //    global static Boolean isNoneEmpty(final CharSequence... css) {
 //      return !isAnyEmpty(css);
 //    }
-//
-//    /**
-//     * <p>Checks if a CharSequence is not empty (''), not null and not whitespace only.</p>
-//     *
-//     * <p>Whitespace is defined by {@link Character#isWhitespace(char)}.</p>
-//     *
+
+    /**
+     * <p>Checks if a CharSequence is not empty (''), not null and not whitespace only.</p>
+     *
+     * <p>Whitespace is defined by {@link Character#isWhitespace(char)}.</p>
+     *
 //     * <pre>
 //     * StringUtils.isNotBlank(null)      = false
 //     * StringUtils.isNotBlank('')        = false
@@ -3710,9 +3709,9 @@ global class StringUtils {
 //     * @since 2.0
 //     * @since 3.0 Changed signature from isNotBlank(String) to isNotBlank(CharSequence)
 //     */
-//    global static Boolean isNotBlank(final CharSequence cs) {
-//        return !isBlank(cs);
-//    }
+    global static Boolean isNotBlank(final String cs) {
+        return !isBlank(cs);
+    }
 
     /**
      * <p>Checks if a CharSequence is not empty ('') and not null.</p>
@@ -3839,19 +3838,19 @@ global class StringUtils {
 //     * @since 2.0
 //     * @since 3.0 Changed signature from isWhitespace(String) to isWhitespace(CharSequence)
 //     */
-//    global static Boolean isWhitespace(final CharSequence cs) {
-//        if (cs == null) {
-//            return false;
-//        }
-//        final Integer sz = cs.length();
-//        for (int i = 0; i < sz; i++) {
-//            if (!Character.isWhitespace(cs.charAt(i))) {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
-//
+    global static Boolean isWhitespace(final String cs) {
+        if (cs == null) {
+            return false;
+        }
+        final Integer sz = cs.length();
+        for (Integer i = 0; i < sz; i++) {
+            if (!isWhitespace(cs.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 //    /**
 //     * <p>
 //     * Joins the elements of the provided array into a single String containing the provided list of elements.
@@ -4900,13 +4899,13 @@ global class StringUtils {
 //     * @since 2.0
 //     * @since 3.0 Changed signature from lastIndexOf(String, String) to lastIndexOf(CharSequence, CharSequence)
 //     */
-//    global static Integer lastIndexOf(final CharSequence seq, final CharSequence searchSeq) {
-//        if (seq == null) {
-//            return INDEX_NOT_FOUND;
-//        }
-//        return CharSequenceUtils.lastIndexOf(seq, searchSeq, seq.length());
-//    }
-//
+    global static Integer lastIndexOf(final String seq, final String searchSeq) {
+        if (seq == null) {
+            return INDEX_NOT_FOUND;
+        }
+        return seq.lastIndexOf(searchSeq, seq.length());
+    }
+
 //    /**
 //     * <p>Finds the last index within a CharSequence, handling {@code null}.
 //     * This method uses {@link String#lastIndexOf(String, int)} if possible.</p>
@@ -4942,10 +4941,13 @@ global class StringUtils {
 //     * @since 2.0
 //     * @since 3.0 Changed signature from lastIndexOf(String, String, int) to lastIndexOf(CharSequence, CharSequence, int)
 //     */
-//    global static Integer lastIndexOf(final CharSequence seq, final CharSequence searchSeq, final Integer startPos) {
-//        return CharSequenceUtils.lastIndexOf(seq, searchSeq, startPos);
-//    }
-//
+    global static Integer lastIndexOf(final String seq, final String searchSeq, final Integer startPos) {
+        if (seq == null) {
+            return INDEX_NOT_FOUND;
+        }
+        return seq.lastIndexOf(searchSeq, startPos);
+    }
+
 //    /**
 //     * Returns the index within {@code seq} of the last occurrence of
 //     * the specified character. For values of {@code searchChar} in the
@@ -4980,13 +4982,13 @@ global class StringUtils {
 //     * @since 3.0 Changed signature from lastIndexOf(String, int) to lastIndexOf(CharSequence, int)
 //     * @since 3.6 Updated {@link CharSequenceUtils} call to behave more like {@code String}
 //     */
-//    global static Integer lastIndexOf(final CharSequence seq, final Integer searchChar) {
-//        if (isEmpty(seq)) {
-//            return INDEX_NOT_FOUND;
-//        }
-//        return CharSequenceUtils.lastIndexOf(seq, searchChar, seq.length());
-//    }
-//
+    global static Integer lastIndexOf(final String seq, final Integer searchChar) {
+        if (isEmpty(seq)) {
+            return INDEX_NOT_FOUND;
+        }
+        return seq.lastIndexOf(int2string(searchChar), seq.length());
+    }
+
 //    /**
 //     * Returns the index within {@code seq} of the last occurrence of
 //     * the specified character, searching backward starting at the
@@ -5226,19 +5228,19 @@ global class StringUtils {
 //     * @param len  the length of the required String
 //     * @return the leftmost characters, {@code null} if null String input
 //     */
-//    global static String left(final String str, final Integer len) {
-//        if (str == null) {
-//            return null;
-//        }
-//        if (len < 0) {
-//            return EMPTY;
-//        }
-//        if (str.length() <= len) {
-//            return str;
-//        }
-//        return str.substring(0, len);
-//    }
-//
+    global static String left(final String str, final Integer len) {
+        if (str == null) {
+            return null;
+        }
+        if (len < 0) {
+            return EMPTY;
+        }
+        if (str.length() <= len) {
+            return str;
+        }
+        return str.substring(0, len);
+    }
+
 //    /**
 //     * <p>Left pad a String with spaces (' ').</p>
 //     *
@@ -5258,45 +5260,45 @@ global class StringUtils {
 //     * @return left padded String or original String if no padding is necessary,
 //     *  {@code null} if null String input
 //     */
-//    global static String leftPad(final String str, final Integer size) {
-//        return leftPad(str, size, ' ');
-//    }
-//
-//    /**
-//     * <p>Left pad a String with a specified character.</p>
-//     *
-//     * <p>Pad to a size of {@code size}.</p>
-//     *
-//     * <pre>
-//     * StringUtils.leftPad(null, *, *)     = null
-//     * StringUtils.leftPad('', 3, 'z')     = 'zzz'
-//     * StringUtils.leftPad('bat', 3, 'z')  = 'bat'
-//     * StringUtils.leftPad('bat', 5, 'z')  = 'zzbat'
-//     * StringUtils.leftPad('bat', 1, 'z')  = 'bat'
-//     * StringUtils.leftPad('bat', -1, 'z') = 'bat'
-//     * </pre>
-//     *
-//     * @param str  the String to pad out, may be null
-//     * @param size  the size to pad to
-//     * @param padChar  the character to pad with
-//     * @return left padded String or original String if no padding is necessary,
-//     *  {@code null} if null String input
-//     * @since 2.0
-//     */
-//    global static String leftPad(final String str, final Integer size, final char padChar) {
-//        if (str == null) {
-//            return null;
-//        }
-//        final Integer pads = size - str.length();
-//        if (pads <= 0) {
-//            return str; // returns original String when possible
-//        }
-//        if (pads > PAD_LIMIT) {
-//            return leftPad(str, size, String.valueOf(padChar));
-//        }
-//        return repeat(padChar, pads).concat(str);
-//    }
-//
+    global static String leftPad(final String str, final Integer size) {
+        return leftPad(str, size, ' ');
+    }
+
+    /**
+     * <p>Left pad a String with a specified character.</p>
+     *
+     * <p>Pad to a size of {@code size}.</p>
+     *
+     * <pre>
+     * StringUtils.leftPad(null, *, *)     = null
+     * StringUtils.leftPad('', 3, 'z')     = 'zzz'
+     * StringUtils.leftPad('bat', 3, 'z')  = 'bat'
+     * StringUtils.leftPad('bat', 5, 'z')  = 'zzbat'
+     * StringUtils.leftPad('bat', 1, 'z')  = 'bat'
+     * StringUtils.leftPad('bat', -1, 'z') = 'bat'
+     * </pre>
+     *
+     * @param str  the String to pad out, may be null
+     * @param size  the size to pad to
+     * @param padChar  the character to pad with
+     * @return left padded String or original String if no padding is necessary,
+     *  {@code null} if null String input
+     * @since 2.0
+     */
+    global static String leftPad(final String str, final Integer size, final Integer/*char*/ padChar) {
+        if (str == null) {
+            return null;
+        }
+        final Integer pads = size - str.length();
+        if (pads <= 0) {
+            return str; // returns original String when possible
+        }
+        if (pads > PAD_LIMIT) {
+            return leftPad(str, size, String.valueOf(padChar));
+        }
+        return (repeatChar(padChar, pads) + (str));
+    }
+
 //    /**
 //     * <p>Left pad a String with a specified String.</p>
 //     *
@@ -5320,37 +5322,37 @@ global class StringUtils {
 //     * @return left padded String or original String if no padding is necessary,
 //     *  {@code null} if null String input
 //     */
-//    global static String leftPad(final String str, final Integer size, String padStr) {
-//        if (str == null) {
-//            return null;
-//        }
-//        if (isEmpty(padStr)) {
-//            padStr = SPACE;
-//        }
-//        final Integer padLen = padStr.length();
-//        final Integer strLen = str.length();
-//        final Integer pads = size - strLen;
-//        if (pads <= 0) {
-//            return str; // returns original String when possible
-//        }
-//        if (padLen == 1 && pads <= PAD_LIMIT) {
-//            return leftPad(str, size, padStr.charAt(0));
-//        }
-//
-//        if (pads == padLen) {
-//            return padStr.concat(str);
-//        } else if (pads < padLen) {
-//            return padStr.substring(0, pads).concat(str);
-//        } else {
-//            final char[] padding = new char[pads];
-//            final char[] padChars = padStr.toCharArray();
-//            for (int i = 0; i < pads; i++) {
-//                padding[i] = padChars[i % padLen];
-//            }
-//            return new String(padding).concat(str);
-//        }
-//    }
-//
+    global static String leftPad(final String str, final Integer size, String padStr) {
+        if (str == null) {
+            return null;
+        }
+        if (isEmpty(padStr)) {
+            padStr = SPACE;
+        }
+        final Integer padLen = padStr.length();
+        final Integer strLen = str.length();
+        final Integer pads = size - strLen;
+        if (pads <= 0) {
+            return str; // returns original String when possible
+        }
+        if (padLen == 1 && pads <= PAD_LIMIT) {
+            return leftPad(str, size, padStr.charAt(0));
+        }
+
+        if (pads == padLen) {
+            return padStr + (str);
+        } else if (pads < padLen) {
+            return padStr.substring(0, pads) + (str);
+        } else {
+            final Integer[] padding = new Integer[pads];
+            final List<Integer> padChars = padStr.getChars();
+            for (Integer i = 0; i < pads; i++) {
+                padding[i] = padChars[Math.mod(i, padLen)];
+            }
+            return String.fromCharArray(padding) + (str);
+        }
+    }
+
     /**
      * Gets a CharSequence length or {@code 0} if the CharSequence is
      * {@code null}.
@@ -6214,94 +6216,97 @@ global class StringUtils {
 //        }
 //        return str;
 //    }
-//
-//    /**
-//     * <p>Returns padding using the specified delimiter repeated
-//     * to a given length.</p>
-//     *
-//     * <pre>
-//     * StringUtils.repeat('e', 0)  = ''
-//     * StringUtils.repeat('e', 3)  = 'eee'
-//     * StringUtils.repeat('e', -2) = ''
-//     * </pre>
-//     *
-//     * <p>Note: this method does not support padding with
-//     * <a href='http://www.unicode.org/glossary/#supplementary_character'>Unicode Supplementary Characters</a>
-//     * as they require a pair of {@code char}s to be represented.
-//     * If you are needing to support full I18N of your applications
-//     * consider using {@link #repeat(String, int)} instead.
-//     * </p>
-//     *
-//     * @param ch  character to repeat
-//     * @param repeat  number of times to repeat char, negative treated as zero
-//     * @return String with repeated character
-//     * @see #repeat(String, int)
-//     */
-//    global static String repeat(final char ch, final Integer repeat) {
-//        if (repeat <= 0) {
-//            return EMPTY;
-//        }
-//        final char[] buf = new char[repeat];
-//        Arrays.fill(buf, ch);
-//        return new String(buf);
-//    }
-//
-//    /**
-//     * <p>Repeat a String {@code repeat} times to form a
-//     * new String.</p>
-//     *
-//     * <pre>
-//     * StringUtils.repeat(null, 2) = null
-//     * StringUtils.repeat('', 0)   = ''
-//     * StringUtils.repeat('', 2)   = ''
-//     * StringUtils.repeat('a', 3)  = 'aaa'
-//     * StringUtils.repeat('ab', 2) = 'abab'
-//     * StringUtils.repeat('a', -2) = ''
-//     * </pre>
-//     *
-//     * @param str  the String to repeat, may be null
-//     * @param repeat  number of times to repeat str, negative treated as zero
-//     * @return a new String consisting of the original String repeated,
-//     *  {@code null} if null String input
-//     */
-//    global static String repeat(final String str, final Integer repeat) {
-//        // Performance tuned for 2.0 (JDK1.4)
-//        if (str == null) {
-//            return null;
-//        }
-//        if (repeat <= 0) {
-//            return EMPTY;
-//        }
-//        final Integer inputLength = str.length();
-//        if (repeat == 1 || inputLength == 0) {
-//            return str;
-//        }
-//        if (inputLength == 1 && repeat <= PAD_LIMIT) {
-//            return repeat(str.charAt(0), repeat);
-//        }
-//
-//        final Integer outputLength = inputLength * repeat;
-//        switch (inputLength) {
-//            case 1 :
-//                return repeat(str.charAt(0), repeat);
-//            case 2 :
-//                final char ch0 = str.charAt(0);
-//                final char ch1 = str.charAt(1);
-//                final char[] output2 = new char[outputLength];
-//                for (int i = repeat * 2 - 2; i >= 0; i--, i--) {
-//                    output2[i] = ch0;
-//                    output2[i + 1] = ch1;
-//                }
-//                return new String(output2);
-//            default :
-//                final StringBuilder buf = new StringBuilder(outputLength);
-//                for (int i = 0; i < repeat; i++) {
-//                    buf.append(str);
-//                }
-//                return buf.toString();
-//        }
-//    }
-//
+
+    /**
+     * <p>Returns padding using the specified delimiter repeated
+     * to a given length.</p>
+     *
+     * <pre>
+     * StringUtils.repeat('e', 0)  = ''
+     * StringUtils.repeat('e', 3)  = 'eee'
+     * StringUtils.repeat('e', -2) = ''
+     * </pre>
+     *
+     * <p>Note: this method does not support padding with
+     * <a href='http://www.unicode.org/glossary/#supplementary_character'>Unicode Supplementary Characters</a>
+     * as they require a pair of {@code char}s to be represented.
+     * If you are needing to support full I18N of your applications
+     * consider using {@link #repeat(String, int)} instead.
+     * </p>
+     *
+     * @param ch  character to repeat
+     * @param repeat  number of times to repeat char, negative treated as zero
+     * @return String with repeated character
+     * @see #repeat(String, int)
+     * @memo 移植の都合メソッド名を変更。
+     */
+    global static String repeatChar(final Integer ch, final Integer repeat) {
+        if (repeat <= 0) {
+            return EMPTY;
+        }
+        return int2string(ch).repeat(repeat);
+    }
+
+    /**
+     * <p>Repeat a String {@code repeat} times to form a
+     * new String.</p>
+     *
+     * <pre>
+     * StringUtils.repeat(null, 2) = null
+     * StringUtils.repeat('', 0)   = ''
+     * StringUtils.repeat('', 2)   = ''
+     * StringUtils.repeat('a', 3)  = 'aaa'
+     * StringUtils.repeat('ab', 2) = 'abab'
+     * StringUtils.repeat('a', -2) = ''
+     * </pre>
+     *
+     * @param str  the String to repeat, may be null
+     * @param repeat  number of times to repeat str, negative treated as zero
+     * @return a new String consisting of the original String repeated,
+     *  {@code null} if null String input
+     */
+    global static String repeat(final String str, final Integer repeat) {
+        // Performance tuned for 2.0 (JDK1.4)
+        if (str == null) {
+            return null;
+        }
+        if (repeat <= 0) {
+            return EMPTY;
+        }
+        final Integer inputLength = str.length();
+        if (repeat == 1 || inputLength == 0) {
+            return str;
+        }
+        if (inputLength == 1 && repeat <= PAD_LIMIT) {
+            return repeatChar(str.charAt(0), repeat);
+        }
+
+        final Integer outputLength = inputLength * repeat;
+        switch on inputLength {
+            when 1 {
+                return repeatChar(str.charAt(0), repeat);
+            }
+            when 2 {
+                final Integer ch0 = str.charAt(0);
+                final Integer ch1 = str.charAt(1);
+                final List<Integer> output2 = new List<Integer>(outputLength);
+                for (Integer i = repeat * 2 - 2; i >= 0; ) {
+                    output2[i] = ch0;
+                    output2[i + 1] = ch1;
+                    i--; i--;
+                }
+                return String.fromCharArray(output2);
+            }
+            when else {
+                String buf = '';
+                for (Integer i = 0; i < repeat; i++) {
+                    buf += str;
+                }
+                return buf;
+            }
+        }
+    }
+
 //    /**
 //     * <p>Repeat a String {@code repeat} times to form a
 //     * new String, with a String separator injected each time. </p>
@@ -9650,5 +9655,13 @@ global class StringUtils {
         List<Integer> nextOne = new List<Integer>();
         nextOne.add(val);
         return String.fromCharArray(nextOne);
+    }
+
+    private static Boolean isWhitespace(Integer val) {
+        String check = int2string(val);
+        if (!check.isWhitespace()) {
+            return false;
+        }
+        return true;
     }
 }
