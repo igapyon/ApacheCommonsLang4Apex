@@ -65,6 +65,31 @@ private class StringUtilsTest {
         }
     }
 
+    @isTest(SeeAllData=false)
+    static void abbreviate3argsSSI() {
+        System.assertEquals(null, StringUtils.abbreviate(null, '...', 5));
+        System.assertEquals('abcdefg', StringUtils.abbreviate('abcdefg', (String)null, 4));
+        System.assertEquals('', StringUtils.abbreviate('', '...', 4));
+        System.assertEquals('abcd.', StringUtils.abbreviate('abcdefg', '.', 5));
+        System.assertEquals('abcdefg', StringUtils.abbreviate('abcdefg', '.', 7));
+        System.assertEquals('abcdefg', StringUtils.abbreviate('abcdefg', '.', 8));
+        System.assertEquals('ab..', StringUtils.abbreviate('abcdefg', '..', 4));
+        System.assertEquals('a..', StringUtils.abbreviate('abcdefg', '..', 3));
+        try {
+            StringUtils.abbreviate('abcdefg', '..', 2);
+            System.assert(false, 'ここに入ってはダメ');
+        } catch(IllegalArgumentException ex) {
+            System.assert(true);
+        }
+        try {
+            StringUtils.abbreviate('abcdefg', '...', 3);
+            System.assert(false, 'ここに入ってはダメ');
+        } catch(IllegalArgumentException ex) {
+            System.assert(true);
+        }
+    }
+    
+    // next target is `global static String abbreviate(final String str, final String abbrevMarker, Integer offset, final Integer maxWidth) {`
 
 
 
