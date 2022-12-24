@@ -127,13 +127,13 @@ global class StringUtils {
      *
      * @since 3.2
      */
-    public static final String SPACE = ' ';
+    global static final String SPACE = ' ';
 
     /**
      * The empty String {@code ''}.
      * @since 2.0
      */
-    public static final String EMPTY = '';
+    global static final String EMPTY = '';
 
     /**
      * A String for linefeed LF ('\n').
@@ -142,7 +142,7 @@ global class StringUtils {
      *      for Character and String Literals</a>
      * @since 3.2
      */
-    public static final String LF = '\n';
+    global static final String LF = '\n';
 
     /**
      * A String for carriage return CR ('\r').
@@ -151,13 +151,13 @@ global class StringUtils {
      *      for Character and String Literals</a>
      * @since 3.2
      */
-    public static final String CR = '\r';
+    global static final String CR = '\r';
 
     /**
      * Represents a failed index search.
      * @since 2.1
      */
-    public static final Integer INDEX_NOT_FOUND = -1;
+    global static final Integer INDEX_NOT_FOUND = -1;
 
     /**
      * <p>The maximum size to which the padding constant(s) can expand.</p>
@@ -200,7 +200,7 @@ global class StringUtils {
 //     * @throws IllegalArgumentException if the width is too small
 //     * @since 2.0
 //     */
-//    public static String abbreviate(final String str, final Integer maxWidth) {
+//    global static String abbreviate(final String str, final Integer maxWidth) {
 //        return abbreviate(str, '...', 0, maxWidth);
 //    }
 //
@@ -239,7 +239,7 @@ global class StringUtils {
 //     * @throws IllegalArgumentException if the width is too small
 //     * @since 2.0
 //     */
-//    public static String abbreviate(final String str, final Integer offset, final Integer maxWidth) {
+//    global static String abbreviate(final String str, final Integer offset, final Integer maxWidth) {
 //        return abbreviate(str, '...', offset, maxWidth);
 //    }
 //
@@ -279,7 +279,7 @@ global class StringUtils {
 //     * @throws IllegalArgumentException if the width is too small
 //     * @since 3.6
 //     */
-//    public static String abbreviate(final String str, final String abbrevMarker, final Integer maxWidth) {
+//    global static String abbreviate(final String str, final String abbrevMarker, final Integer maxWidth) {
 //        return abbreviate(str, abbrevMarker, 0, maxWidth);
 //    }
 //    /**
@@ -319,7 +319,7 @@ global class StringUtils {
 //     * @throws IllegalArgumentException if the width is too small
 //     * @since 3.6
 //     */
-//    public static String abbreviate(final String str, final String abbrevMarker, Integer offset, final Integer maxWidth) {
+//    global static String abbreviate(final String str, final String abbrevMarker, Integer offset, final Integer maxWidth) {
 //        if (isNotEmpty(str) && EMPTY.equals(abbrevMarker) && maxWidth > 0) {
 //            return substring(str, 0, maxWidth);
 //        } else if (isAnyEmpty(str, abbrevMarker)) {
@@ -383,7 +383,7 @@ global class StringUtils {
 //     * @return the abbreviated String if the above criteria is met, or the original String supplied for abbreviation.
 //     * @since 2.5
 //     */
-//    public static String abbreviateMiddle(final String str, final String middle, final Integer length) {
+//    global static String abbreviateMiddle(final String str, final String middle, final Integer length) {
 //        if (isAnyEmpty(str, middle) || length >= str.length() || length < middle.length()+2) {
 //            return str;
 //        }
@@ -456,7 +456,7 @@ global class StringUtils {
 //     *
 //     * @since 3.2
 //     */
-//    public static String appendIfMissing(final String str, final CharSequence suffix, final CharSequence... suffixes) {
+//    global static String appendIfMissing(final String str, final CharSequence suffix, final CharSequence... suffixes) {
 //        return appendIfMissing(str, suffix, false, suffixes);
 //    }
 //
@@ -494,7 +494,7 @@ global class StringUtils {
 //     *
 //     * @since 3.2
 //     */
-//    public static String appendIfMissingIgnoreCase(final String str, final CharSequence suffix, final CharSequence... suffixes) {
+//    global static String appendIfMissingIgnoreCase(final String str, final CharSequence suffix, final CharSequence... suffixes) {
 //        return appendIfMissing(str, suffix, true, suffixes);
 //    }
 //
@@ -519,7 +519,7 @@ global class StringUtils {
 //     * @see #uncapitalize(String)
 //     * @since 2.0
 //     */
-//    public static String capitalize(final String str) {
+//    global static String capitalize(final String str) {
 //        final Integer strLen = length(str);
 //        if (strLen == 0) {
 //            return str;
@@ -566,7 +566,7 @@ global class StringUtils {
 //     * @param size  the Integer size of new String, negative treated as zero
 //     * @return centered String, {@code null} if null String input
 //     */
-//    public static String center(final String str, final Integer size) {
+//    global static String center(final String str, final Integer size) {
 //        return center(str, size, ' ');
 //    }
 //
@@ -594,7 +594,7 @@ global class StringUtils {
 //     * @return centered String, {@code null} if null String input
 //     * @since 2.0
 //     */
-//    public static String center(String str, final Integer size, final char padChar) {
+//    global static String center(String str, final Integer size, final char padChar) {
 //        if (str == null || size <= 0) {
 //            return str;
 //        }
@@ -634,7 +634,7 @@ global class StringUtils {
 //     * @return centered String, {@code null} if null String input
 //     * @throws IllegalArgumentException if padStr is {@code null} or empty
 //     */
-//    public static String center(String str, final Integer size, String padStr) {
+//    global static String center(String str, final Integer size, String padStr) {
 //        if (str == null || size <= 0) {
 //            return str;
 //        }
@@ -676,7 +676,7 @@ global class StringUtils {
 //     * @param str  the String to chomp a newline from, may be null
 //     * @return String without newline, {@code null} if null String input
 //     */
-//    public static String chomp(final String str) {
+//    global static String chomp(final String str) {
 //        if (isEmpty(str)) {
 //            return str;
 //        }
@@ -730,7 +730,7 @@ global class StringUtils {
 //     * @deprecated This feature will be removed in Lang 4.0, use {@link StringUtils#removeEnd(String, String)} instead
 //     */
 //    @Deprecated
-//    public static String chomp(final String str, final String separator) {
+//    global static String chomp(final String str, final String separator) {
 //        return removeEnd(str, separator);
 //    }
 //
@@ -757,7 +757,7 @@ global class StringUtils {
 //     * @param str  the String to chop last character from, may be null
 //     * @return String without last character, {@code null} if null String input
 //     */
-//    public static String chop(final String str) {
+//    global static String chop(final String str) {
 //        if (str == null) {
 //            return null;
 //        }
@@ -806,7 +806,7 @@ global class StringUtils {
 //     * @return &lt; 0, 0, &gt; 0, if {@code str1} is respectively less, equal or greater than {@code str2}
 //     * @since 3.5
 //     */
-//    public static Integer compare(final String str1, final String str2) {
+//    global static Integer compare(final String str1, final String str2) {
 //        return compare(str1, str2, true);
 //    }
 //
@@ -844,7 +844,7 @@ global class StringUtils {
 //     * @return &lt; 0, 0, &gt; 0, if {@code str1} is respectively less, equal ou greater than {@code str2}
 //     * @since 3.5
 //     */
-//    public static Integer compare(final String str1, final String str2, final Boolean nullIsLess) {
+//    global static Integer compare(final String str1, final String str2, final Boolean nullIsLess) {
 //        if (str1 == str2) { // NOSONARLINT this intentionally uses == to allow for both null
 //            return 0;
 //        }
@@ -894,7 +894,7 @@ global class StringUtils {
 //     *          ignoring case differences.
 //     * @since 3.5
 //     */
-//    public static Integer compareIgnoreCase(final String str1, final String str2) {
+//    global static Integer compareIgnoreCase(final String str1, final String str2) {
 //        return compareIgnoreCase(str1, str2, true);
 //    }
 //
@@ -937,7 +937,7 @@ global class StringUtils {
 //     *          ignoring case differences.
 //     * @since 3.5
 //     */
-//    public static Integer compareIgnoreCase(final String str1, final String str2, final Boolean nullIsLess) {
+//    global static Integer compareIgnoreCase(final String str1, final String str2, final Boolean nullIsLess) {
 //        if (str1 == str2) { // NOSONARLINT this intentionally uses == to allow for both null
 //            return 0;
 //        }
@@ -972,7 +972,7 @@ global class StringUtils {
 //     * @since 2.0
 //     * @since 3.0 Changed signature from contains(String, String) to contains(CharSequence, CharSequence)
 //     */
-//    public static Boolean contains(final CharSequence seq, final CharSequence searchSeq) {
+//    global static Boolean contains(final CharSequence seq, final CharSequence searchSeq) {
 //        if (seq == null || searchSeq == null) {
 //            return false;
 //        }
@@ -999,7 +999,7 @@ global class StringUtils {
 //     * @since 2.0
 //     * @since 3.0 Changed signature from contains(String, int) to contains(CharSequence, int)
 //     */
-//    public static Boolean contains(final CharSequence seq, final Integer searchChar) {
+//    global static Boolean contains(final CharSequence seq, final Integer searchChar) {
 //        if (isEmpty(seq)) {
 //            return false;
 //        }
@@ -1031,7 +1031,7 @@ global class StringUtils {
 //     * @since 2.4
 //     * @since 3.0 Changed signature from containsAny(String, char[]) to containsAny(CharSequence, char...)
 //     */
-//    public static Boolean containsAny(final CharSequence cs, final char... searchChars) {
+//    global static Boolean containsAny(final CharSequence cs, final char... searchChars) {
 //        if (isEmpty(cs) || ArrayUtils.isEmpty(searchChars)) {
 //            return false;
 //        }
@@ -1092,7 +1092,7 @@ global class StringUtils {
 //     * @since 2.4
 //     * @since 3.0 Changed signature from containsAny(String, String) to containsAny(CharSequence, CharSequence)
 //     */
-//    public static Boolean containsAny(final CharSequence cs, final CharSequence searchChars) {
+//    global static Boolean containsAny(final CharSequence cs, final CharSequence searchChars) {
 //        if (searchChars == null) {
 //            return false;
 //        }
@@ -1126,7 +1126,7 @@ global class StringUtils {
 //     * @return {@code true} if any of the search CharSequences are found, {@code false} otherwise
 //     * @since 3.4
 //     */
-//    public static Boolean containsAny(final CharSequence cs, final CharSequence... searchCharSequences) {
+//    global static Boolean containsAny(final CharSequence cs, final CharSequence... searchCharSequences) {
 //        return containsAny(StringUtils::contains, cs, searchCharSequences);
 //    }
 //
@@ -1188,7 +1188,7 @@ global class StringUtils {
 //     * @return {@code true} if any of the search CharSequences are found, {@code false} otherwise
 //     * @since 3.12.0
 //     */
-//    public static Boolean containsAnyIgnoreCase(final CharSequence cs, final CharSequence... searchCharSequences) {
+//    global static Boolean containsAnyIgnoreCase(final CharSequence cs, final CharSequence... searchCharSequences) {
 //        return containsAny(StringUtils::containsIgnoreCase, cs, searchCharSequences);
 //    }
 //
@@ -1216,7 +1216,7 @@ global class StringUtils {
 //     * case or false if not or {@code null} string input
 //     * @since 3.0 Changed signature from containsIgnoreCase(String, String) to containsIgnoreCase(CharSequence, CharSequence)
 //     */
-//    public static Boolean containsIgnoreCase(final CharSequence str, final CharSequence searchStr) {
+//    global static Boolean containsIgnoreCase(final CharSequence str, final CharSequence searchStr) {
 //        if (str == null || searchStr == null) {
 //            return false;
 //        }
@@ -1253,7 +1253,7 @@ global class StringUtils {
 //     * @since 2.0
 //     * @since 3.0 Changed signature from containsNone(String, char[]) to containsNone(CharSequence, char...)
 //     */
-//    public static Boolean containsNone(final CharSequence cs, final char... searchChars) {
+//    global static Boolean containsNone(final CharSequence cs, final char... searchChars) {
 //        if (cs == null || searchChars == null) {
 //            return true;
 //        }
@@ -1306,7 +1306,7 @@ global class StringUtils {
 //     * @since 2.0
 //     * @since 3.0 Changed signature from containsNone(String, String) to containsNone(CharSequence, String)
 //     */
-//    public static Boolean containsNone(final CharSequence cs, final String invalidChars) {
+//    global static Boolean containsNone(final CharSequence cs, final String invalidChars) {
 //        if (invalidChars == null) {
 //            return true;
 //        }
@@ -1335,7 +1335,7 @@ global class StringUtils {
 //     * @return true if it only contains valid chars and is non-null
 //     * @since 3.0 Changed signature from containsOnly(String, char[]) to containsOnly(CharSequence, char...)
 //     */
-//    public static Boolean containsOnly(final CharSequence cs, final char... valid) {
+//    global static Boolean containsOnly(final CharSequence cs, final char... valid) {
 //        // All these pre-checks are to maintain API with an older version
 //        if (valid == null || cs == null) {
 //            return false;
@@ -1372,7 +1372,7 @@ global class StringUtils {
 //     * @since 2.0
 //     * @since 3.0 Changed signature from containsOnly(String, String) to containsOnly(CharSequence, String)
 //     */
-//    public static Boolean containsOnly(final CharSequence cs, final String validChars) {
+//    global static Boolean containsOnly(final CharSequence cs, final String validChars) {
 //        if (cs == null || validChars == null) {
 //            return false;
 //        }
@@ -1390,7 +1390,7 @@ global class StringUtils {
 //     * @since 3.0
 //     */
 //    // From org.springframework.util.StringUtils, under Apache License 2.0
-//    public static Boolean containsWhitespace(final CharSequence seq) {
+//    global static Boolean containsWhitespace(final CharSequence seq) {
 //        if (isEmpty(seq)) {
 //            return false;
 //        }
@@ -1432,7 +1432,7 @@ global class StringUtils {
 //     * @return the number of occurrences, 0 if the CharSequence is {@code null}
 //     * @since 3.4
 //     */
-//    public static Integer countMatches(final CharSequence str, final char ch) {
+//    global static Integer countMatches(final CharSequence str, final char ch) {
 //        if (isEmpty(str)) {
 //            return 0;
 //        }
@@ -1468,7 +1468,7 @@ global class StringUtils {
 //     * @return the number of occurrences, 0 if either CharSequence is {@code null}
 //     * @since 3.0 Changed signature from countMatches(String, String) to countMatches(CharSequence, CharSequence)
 //     */
-//    public static Integer countMatches(final CharSequence str, final CharSequence sub) {
+//    global static Integer countMatches(final CharSequence str, final CharSequence sub) {
 //        if (isEmpty(str) || isEmpty(sub)) {
 //            return 0;
 //        }
@@ -1501,7 +1501,7 @@ global class StringUtils {
 //     * @return the passed in CharSequence, or the default
 //     * @see StringUtils#defaultString(String, String)
 //     */
-//    public static <T extends CharSequence> T defaultIfBlank(final T str, final T defaultStr) {
+//    global static <T extends CharSequence> T defaultIfBlank(final T str, final T defaultStr) {
 //        return isBlank(str) ? defaultStr : str;
 //    }
 //
@@ -1523,7 +1523,7 @@ global class StringUtils {
 //     * @return the passed in CharSequence, or the default
 //     * @see StringUtils#defaultString(String, String)
 //     */
-//    public static <T extends CharSequence> T defaultIfEmpty(final T str, final T defaultStr) {
+//    global static <T extends CharSequence> T defaultIfEmpty(final T str, final T defaultStr) {
 //        return isEmpty(str) ? defaultStr : str;
 //    }
 //
@@ -1582,7 +1582,7 @@ global class StringUtils {
 //     * @param str  the String to delete whitespace from, may be null
 //     * @return the String without whitespaces, {@code null} if null String input
 //     */
-//    public static String deleteWhitespace(final String str) {
+//    global static String deleteWhitespace(final String str) {
 //        if (isEmpty(str)) {
 //            return str;
 //        }
@@ -1631,7 +1631,7 @@ global class StringUtils {
 //     * @see #indexOfDifference(CharSequence,CharSequence)
 //     * @since 2.0
 //     */
-//    public static String difference(final String str1, final String str2) {
+//    global static String difference(final String str1, final String str2) {
 //        if (str1 == null) {
 //            return str2;
 //        }
@@ -1669,7 +1669,7 @@ global class StringUtils {
 //     * @since 2.4
 //     * @since 3.0 Changed signature from endsWith(String, String) to endsWith(CharSequence, CharSequence)
 //     */
-//    public static Boolean endsWith(final CharSequence str, final CharSequence suffix) {
+//    global static Boolean endsWith(final CharSequence str, final CharSequence suffix) {
 //        return endsWith(str, suffix, false);
 //    }
 //
@@ -1716,7 +1716,7 @@ global class StringUtils {
 //     *   the input {@code sequence} ends in any of the provided case-sensitive {@code searchStrings}.
 //     * @since 3.0
 //     */
-//    public static Boolean endsWithAny(final CharSequence sequence, final CharSequence... searchStrings) {
+//    global static Boolean endsWithAny(final CharSequence sequence, final CharSequence... searchStrings) {
 //        if (isEmpty(sequence) || ArrayUtils.isEmpty(searchStrings)) {
 //            return false;
 //        }
@@ -1751,7 +1751,7 @@ global class StringUtils {
 //     * @since 2.4
 //     * @since 3.0 Changed signature from endsWithIgnoreCase(String, String) to endsWithIgnoreCase(CharSequence, CharSequence)
 //     */
-//    public static Boolean endsWithIgnoreCase(final CharSequence str, final CharSequence suffix) {
+//    global static Boolean endsWithIgnoreCase(final CharSequence str, final CharSequence suffix) {
 //        return endsWith(str, suffix, true);
 //    }
 //
@@ -1777,7 +1777,7 @@ global class StringUtils {
 //     * @see Object#equals(Object)
 //     * @see #equalsIgnoreCase(CharSequence, CharSequence)
 //     */
-//    public static Boolean equals(final CharSequence cs1, final CharSequence cs2) {
+//    global static Boolean equals(final CharSequence cs1, final CharSequence cs2) {
 //        if (cs1 == cs2) {
 //            return true;
 //        }
@@ -1819,7 +1819,7 @@ global class StringUtils {
 //     * {@code false} if {@code searchStrings} is null or contains no matches.
 //     * @since 3.5
 //     */
-//    public static Boolean equalsAny(final CharSequence string, final CharSequence... searchStrings) {
+//    global static Boolean equalsAny(final CharSequence string, final CharSequence... searchStrings) {
 //        if (ArrayUtils.isNotEmpty(searchStrings)) {
 //            for (final CharSequence next : searchStrings) {
 //                if (equals(string, next)) {
@@ -1849,7 +1849,7 @@ global class StringUtils {
 //     * {@code false} if {@code searchStrings} is null or contains no matches.
 //     * @since 3.5
 //     */
-//    public static Boolean equalsAnyIgnoreCase(final CharSequence string, final CharSequence...searchStrings) {
+//    global static Boolean equalsAnyIgnoreCase(final CharSequence string, final CharSequence...searchStrings) {
 //        if (ArrayUtils.isNotEmpty(searchStrings)) {
 //            for (final CharSequence next : searchStrings) {
 //                if (equalsIgnoreCase(string, next)) {
@@ -1881,7 +1881,7 @@ global class StringUtils {
 //     * @since 3.0 Changed signature from equalsIgnoreCase(String, String) to equalsIgnoreCase(CharSequence, CharSequence)
 //     * @see #equals(CharSequence, CharSequence)
 //     */
-//    public static Boolean equalsIgnoreCase(final CharSequence cs1, final CharSequence cs2) {
+//    global static Boolean equalsIgnoreCase(final CharSequence cs1, final CharSequence cs2) {
 //        if (cs1 == cs2) {
 //            return true;
 //        }
@@ -1920,7 +1920,7 @@ global class StringUtils {
 //     * @since 3.8
 //     */
 //    @SafeVarargs
-//    public static <T extends CharSequence> T firstNonBlank(final T... values) {
+//    global static <T extends CharSequence> T firstNonBlank(final T... values) {
 //        if (values != null) {
 //            for (final T val : values) {
 //                if (isNotBlank(val)) {
@@ -1955,7 +1955,7 @@ global class StringUtils {
 //     * @since 3.8
 //     */
 //    @SafeVarargs
-//    public static <T extends CharSequence> T firstNonEmpty(final T... values) {
+//    global static <T extends CharSequence> T firstNonEmpty(final T... values) {
 //        if (values != null) {
 //            for (final T val : values) {
 //                if (isNotEmpty(val)) {
@@ -1975,7 +1975,7 @@ global class StringUtils {
 //     * @see String#getBytes(Charset)
 //     * @since 3.10
 //     */
-//    public static byte[] getBytes(final String string, final Charset charset) {
+//    global static byte[] getBytes(final String string, final Charset charset) {
 //        return string == null ? ArrayUtils.EMPTY_BYTE_ARRAY : string.getBytes(Charsets.toCharset(charset));
 //    }
 //
@@ -1989,7 +1989,7 @@ global class StringUtils {
 //     * @see String#getBytes(String)
 //     * @since 3.10
 //     */
-//    public static byte[] getBytes(final String string, final String charset) throws UnsupportedEncodingException {
+//    global static byte[] getBytes(final String string, final String charset) throws UnsupportedEncodingException {
 //        return string == null ? ArrayUtils.EMPTY_BYTE_ARRAY : string.getBytes(Charsets.toCharsetName(charset));
 //    }
 //
@@ -2026,7 +2026,7 @@ global class StringUtils {
 //     * or if there is no common prefix.
 //     * @since 2.4
 //     */
-//    public static String getCommonPrefix(final String... strs) {
+//    global static String getCommonPrefix(final String... strs) {
 //        if (ArrayUtils.isEmpty(strs)) {
 //            return EMPTY;
 //        }
@@ -2068,7 +2068,7 @@ global class StringUtils {
 //     *           or {@code null} String if {@code str} is null
 //     * @since 3.6
 //     */
-//    public static String getDigits(final String str) {
+//    global static String getDigits(final String str) {
 //        if (isEmpty(str)) {
 //            return str;
 //        }
@@ -2113,7 +2113,7 @@ global class StringUtils {
 //     * FuzzyScore</a> instead
 //     */
 //    @Deprecated
-//    public static Integer getFuzzyDistance(final CharSequence term, final CharSequence query, final Locale locale) {
+//    global static Integer getFuzzyDistance(final CharSequence term, final CharSequence query, final Locale locale) {
 //        if (term == null || query == null) {
 //            throw new IllegalArgumentException('Strings must not be null');
 //        } else if (locale == null) {
@@ -2191,7 +2191,7 @@ global class StringUtils {
 //     * @see StringUtils#defaultString(String, String)
 //     * @since 3.10
 //     */
-//    public static <T extends CharSequence> T getIfBlank(final T str, final Supplier<T> defaultSupplier) {
+//    global static <T extends CharSequence> T getIfBlank(final T str, final Supplier<T> defaultSupplier) {
 //        return isBlank(str) ? defaultSupplier == null ? null : defaultSupplier.get() : str;
 //    }
 //
@@ -2219,7 +2219,7 @@ global class StringUtils {
 //     * @see StringUtils#defaultString(String, String)
 //     * @since 3.10
 //     */
-//    public static <T extends CharSequence> T getIfEmpty(final T str, final Supplier<T> defaultSupplier) {
+//    global static <T extends CharSequence> T getIfEmpty(final T str, final Supplier<T> defaultSupplier) {
 //        return isEmpty(str) ? defaultSupplier == null ? null : defaultSupplier.get() : str;
 //    }
 //
@@ -2259,7 +2259,7 @@ global class StringUtils {
 //     * JaroWinklerDistance</a> instead
 //     */
 //    @Deprecated
-//    public static double getJaroWinklerDistance(final CharSequence first, final CharSequence second) {
+//    global static double getJaroWinklerDistance(final CharSequence first, final CharSequence second) {
 //        final double DEFAULT_SCALING_FACTOR = 0.1;
 //
 //        if (first == null || second == null) {
@@ -2312,7 +2312,7 @@ global class StringUtils {
 //     * LevenshteinDistance</a> instead
 //     */
 //    @Deprecated
-//    public static Integer getLevenshteinDistance(CharSequence s, CharSequence t) {
+//    global static Integer getLevenshteinDistance(CharSequence s, CharSequence t) {
 //        if (s == null || t == null) {
 //            throw new IllegalArgumentException('Strings must not be null');
 //        }
@@ -2402,7 +2402,7 @@ global class StringUtils {
 //     * LevenshteinDistance</a> instead
 //     */
 //    @Deprecated
-//    public static Integer getLevenshteinDistance(CharSequence s, CharSequence t, final Integer threshold) {
+//    global static Integer getLevenshteinDistance(CharSequence s, CharSequence t, final Integer threshold) {
 //        if (s == null || t == null) {
 //            throw new IllegalArgumentException('Strings must not be null');
 //        }
@@ -2558,7 +2558,7 @@ global class StringUtils {
 //     * @since 2.0
 //     * @since 3.0 Changed signature from indexOf(String, String) to indexOf(CharSequence, CharSequence)
 //     */
-//    public static Integer indexOf(final CharSequence seq, final CharSequence searchSeq) {
+//    global static Integer indexOf(final CharSequence seq, final CharSequence searchSeq) {
 //        if (seq == null || searchSeq == null) {
 //            return INDEX_NOT_FOUND;
 //        }
@@ -2598,7 +2598,7 @@ global class StringUtils {
 //     * @since 2.0
 //     * @since 3.0 Changed signature from indexOf(String, String, int) to indexOf(CharSequence, CharSequence, int)
 //     */
-//    public static Integer indexOf(final CharSequence seq, final CharSequence searchSeq, final Integer startPos) {
+//    global static Integer indexOf(final CharSequence seq, final CharSequence searchSeq, final Integer startPos) {
 //        if (seq == null || searchSeq == null) {
 //            return INDEX_NOT_FOUND;
 //        }
@@ -2642,7 +2642,7 @@ global class StringUtils {
 //     * @since 3.0 Changed signature from indexOf(String, int) to indexOf(CharSequence, int)
 //     * @since 3.6 Updated {@link CharSequenceUtils} call to behave more like {@code String}
 //     */
-//    public static Integer indexOf(final CharSequence seq, final Integer searchChar) {
+//    global static Integer indexOf(final CharSequence seq, final Integer searchChar) {
 //        if (isEmpty(seq)) {
 //            return INDEX_NOT_FOUND;
 //        }
@@ -2702,7 +2702,7 @@ global class StringUtils {
 //     * @since 3.0 Changed signature from indexOf(String, int, int) to indexOf(CharSequence, int, int)
 //     * @since 3.6 Updated {@link CharSequenceUtils} call to behave more like {@code String}
 //     */
-//    public static Integer indexOf(final CharSequence seq, final Integer searchChar, final Integer startPos) {
+//    global static Integer indexOf(final CharSequence seq, final Integer searchChar, final Integer startPos) {
 //        if (isEmpty(seq)) {
 //            return INDEX_NOT_FOUND;
 //        }
@@ -2732,7 +2732,7 @@ global class StringUtils {
 //     * @since 2.0
 //     * @since 3.0 Changed signature from indexOfAny(String, char[]) to indexOfAny(CharSequence, char...)
 //     */
-//    public static Integer indexOfAny(final CharSequence cs, final char... searchChars) {
+//    global static Integer indexOfAny(final CharSequence cs, final char... searchChars) {
 //        if (isEmpty(cs) || ArrayUtils.isEmpty(searchChars)) {
 //            return INDEX_NOT_FOUND;
 //        }
@@ -2785,7 +2785,7 @@ global class StringUtils {
 //     * @return the first index of any of the searchStrs in str, -1 if no match
 //     * @since 3.0 Changed signature from indexOfAny(String, String[]) to indexOfAny(CharSequence, CharSequence...)
 //     */
-//    public static Integer indexOfAny(final CharSequence str, final CharSequence... searchStrs) {
+//    global static Integer indexOfAny(final CharSequence str, final CharSequence... searchStrs) {
 //        if (str == null || searchStrs == null) {
 //            return INDEX_NOT_FOUND;
 //        }
@@ -2834,7 +2834,7 @@ global class StringUtils {
 //     * @since 2.0
 //     * @since 3.0 Changed signature from indexOfAny(String, String) to indexOfAny(CharSequence, String)
 //     */
-//    public static Integer indexOfAny(final CharSequence cs, final String searchChars) {
+//    global static Integer indexOfAny(final CharSequence cs, final String searchChars) {
 //        if (isEmpty(cs) || isEmpty(searchChars)) {
 //            return INDEX_NOT_FOUND;
 //        }
@@ -2865,7 +2865,7 @@ global class StringUtils {
 //     * @since 2.0
 //     * @since 3.0 Changed signature from indexOfAnyBut(String, char[]) to indexOfAnyBut(CharSequence, char...)
 //     */
-//    public static Integer indexOfAnyBut(final CharSequence cs, final char... searchChars) {
+//    global static Integer indexOfAnyBut(final CharSequence cs, final char... searchChars) {
 //        if (isEmpty(cs) || ArrayUtils.isEmpty(searchChars)) {
 //            return INDEX_NOT_FOUND;
 //        }
@@ -2915,7 +2915,7 @@ global class StringUtils {
 //     * @since 2.0
 //     * @since 3.0 Changed signature from indexOfAnyBut(String, String) to indexOfAnyBut(CharSequence, CharSequence)
 //     */
-//    public static Integer indexOfAnyBut(final CharSequence seq, final CharSequence searchChars) {
+//    global static Integer indexOfAnyBut(final CharSequence seq, final CharSequence searchChars) {
 //        if (isEmpty(seq) || isEmpty(searchChars)) {
 //            return INDEX_NOT_FOUND;
 //        }
@@ -2967,7 +2967,7 @@ global class StringUtils {
 //     * @since 2.4
 //     * @since 3.0 Changed signature from indexOfDifference(String...) to indexOfDifference(CharSequence...)
 //     */
-//    public static Integer indexOfDifference(final CharSequence... css) {
+//    global static Integer indexOfDifference(final CharSequence... css) {
 //        if (ArrayUtils.getLength(css) <= 1) {
 //            return INDEX_NOT_FOUND;
 //        }
@@ -3050,7 +3050,7 @@ global class StringUtils {
 //     * @since 3.0 Changed signature from indexOfDifference(String, String) to
 //     * indexOfDifference(CharSequence, CharSequence)
 //     */
-//    public static Integer indexOfDifference(final CharSequence cs1, final CharSequence cs2) {
+//    global static Integer indexOfDifference(final CharSequence cs1, final CharSequence cs2) {
 //        if (cs1 == cs2) {
 //            return INDEX_NOT_FOUND;
 //        }
@@ -3094,7 +3094,7 @@ global class StringUtils {
 //     * @since 2.5
 //     * @since 3.0 Changed signature from indexOfIgnoreCase(String, String) to indexOfIgnoreCase(CharSequence, CharSequence)
 //     */
-//    public static Integer indexOfIgnoreCase(final CharSequence str, final CharSequence searchStr) {
+//    global static Integer indexOfIgnoreCase(final CharSequence str, final CharSequence searchStr) {
 //        return indexOfIgnoreCase(str, searchStr, 0);
 //    }
 //
@@ -3130,7 +3130,7 @@ global class StringUtils {
 //     * @since 2.5
 //     * @since 3.0 Changed signature from indexOfIgnoreCase(String, String, int) to indexOfIgnoreCase(CharSequence, CharSequence, int)
 //     */
-//    public static Integer indexOfIgnoreCase(final CharSequence str, final CharSequence searchStr, Integer startPos) {
+//    global static Integer indexOfIgnoreCase(final CharSequence str, final CharSequence searchStr, Integer startPos) {
 //        if (str == null || searchStr == null) {
 //            return INDEX_NOT_FOUND;
 //        }
@@ -3173,7 +3173,7 @@ global class StringUtils {
 //     * @return {@code true} if all of the CharSequences are empty or null or whitespace only
 //     * @since 3.6
 //     */
-//    public static Boolean isAllBlank(final CharSequence... css) {
+//    global static Boolean isAllBlank(final CharSequence... css) {
 //        if (ArrayUtils.isEmpty(css)) {
 //            return true;
 //        }
@@ -3204,7 +3204,7 @@ global class StringUtils {
 //     * @return {@code true} if all of the CharSequences are empty or null
 //     * @since 3.6
 //     */
-//    public static Boolean isAllEmpty(final CharSequence... css) {
+//    global static Boolean isAllEmpty(final CharSequence... css) {
 //        if (ArrayUtils.isEmpty(css)) {
 //            return true;
 //        }
@@ -3238,7 +3238,7 @@ global class StringUtils {
 //     * @since 2.5
 //     * @since 3.0 Changed signature from isAllLowerCase(String) to isAllLowerCase(CharSequence)
 //     */
-//    public static Boolean isAllLowerCase(final CharSequence cs) {
+//    global static Boolean isAllLowerCase(final CharSequence cs) {
 //        if (isEmpty(cs)) {
 //            return false;
 //        }
@@ -3273,7 +3273,7 @@ global class StringUtils {
 //     * @since 2.5
 //     * @since 3.0 Changed signature from isAllUpperCase(String) to isAllUpperCase(CharSequence)
 //     */
-//    public static Boolean isAllUpperCase(final CharSequence cs) {
+//    global static Boolean isAllUpperCase(final CharSequence cs) {
 //        if (isEmpty(cs)) {
 //            return false;
 //        }
@@ -3306,7 +3306,7 @@ global class StringUtils {
 //     * @since 3.0 Changed signature from isAlpha(String) to isAlpha(CharSequence)
 //     * @since 3.0 Changed '' to return false and not true
 //     */
-//    public static Boolean isAlpha(final CharSequence cs) {
+//    global static Boolean isAlpha(final CharSequence cs) {
 //        if (isEmpty(cs)) {
 //            return false;
 //        }
@@ -3341,7 +3341,7 @@ global class StringUtils {
 //     * @since 3.0 Changed signature from isAlphanumeric(String) to isAlphanumeric(CharSequence)
 //     * @since 3.0 Changed '' to return false and not true
 //     */
-//    public static Boolean isAlphanumeric(final CharSequence cs) {
+//    global static Boolean isAlphanumeric(final CharSequence cs) {
 //        if (isEmpty(cs)) {
 //            return false;
 //        }
@@ -3376,7 +3376,7 @@ global class StringUtils {
 //     *  and is non-null
 //     * @since 3.0 Changed signature from isAlphanumericSpace(String) to isAlphanumericSpace(CharSequence)
 //     */
-//    public static Boolean isAlphanumericSpace(final CharSequence cs) {
+//    global static Boolean isAlphanumericSpace(final CharSequence cs) {
 //        if (cs == null) {
 //            return false;
 //        }
@@ -3412,7 +3412,7 @@ global class StringUtils {
 //     *  and is non-null
 //     * @since 3.0 Changed signature from isAlphaSpace(String) to isAlphaSpace(CharSequence)
 //     */
-//    public static Boolean isAlphaSpace(final CharSequence cs) {
+//    global static Boolean isAlphaSpace(final CharSequence cs) {
 //        if (cs == null) {
 //            return false;
 //        }
@@ -3487,7 +3487,7 @@ global class StringUtils {
 //     * @return {@code true} if any of the CharSequences are empty or null
 //     * @since 3.2
 //     */
-//    public static Boolean isAnyEmpty(final CharSequence... css) {
+//    global static Boolean isAnyEmpty(final CharSequence... css) {
 //        if (ArrayUtils.isEmpty(css)) {
 //            return false;
 //        }
@@ -3525,7 +3525,7 @@ global class StringUtils {
 //     * @since 2.1
 //     * @since 3.0 Changed signature from isAsciiPrintable(String) to isAsciiPrintable(CharSequence)
 //     */
-//    public static Boolean isAsciiPrintable(final CharSequence cs) {
+//    global static Boolean isAsciiPrintable(final CharSequence cs) {
 //        if (cs == null) {
 //            return false;
 //        }
@@ -3615,7 +3615,7 @@ global class StringUtils {
 //     * @return {@code true} if the CharSequence contains both uppercase and lowercase characters
 //     * @since 3.5
 //     */
-//    public static Boolean isMixedCase(final CharSequence cs) {
+//    global static Boolean isMixedCase(final CharSequence cs) {
 //        if (isEmpty(cs) || cs.length() == 1) {
 //            return false;
 //        }
@@ -3684,7 +3684,7 @@ global class StringUtils {
 //     * @return {@code true} if none of the CharSequences are empty or null
 //     * @since 3.2
 //     */
-//    public static Boolean isNoneEmpty(final CharSequence... css) {
+//    global static Boolean isNoneEmpty(final CharSequence... css) {
 //      return !isAnyEmpty(css);
 //    }
 //
@@ -3707,7 +3707,7 @@ global class StringUtils {
 //     * @since 2.0
 //     * @since 3.0 Changed signature from isNotBlank(String) to isNotBlank(CharSequence)
 //     */
-//    public static Boolean isNotBlank(final CharSequence cs) {
+//    global static Boolean isNotBlank(final CharSequence cs) {
 //        return !isBlank(cs);
 //    }
 //
@@ -3726,7 +3726,7 @@ global class StringUtils {
 //     * @return {@code true} if the CharSequence is not empty and not null
 //     * @since 3.0 Changed signature from isNotEmpty(String) to isNotEmpty(CharSequence)
 //     */
-//    public static Boolean isNotEmpty(final CharSequence cs) {
+//    global static Boolean isNotEmpty(final CharSequence cs) {
 //        return !isEmpty(cs);
 //    }
 //
@@ -3761,7 +3761,7 @@ global class StringUtils {
 //     * @since 3.0 Changed signature from isNumeric(String) to isNumeric(CharSequence)
 //     * @since 3.0 Changed '' to return false and not true
 //     */
-//    public static Boolean isNumeric(final CharSequence cs) {
+//    global static Boolean isNumeric(final CharSequence cs) {
 //        if (isEmpty(cs)) {
 //            return false;
 //        }
@@ -3800,7 +3800,7 @@ global class StringUtils {
 //     *  and is non-null
 //     * @since 3.0 Changed signature from isNumericSpace(String) to isNumericSpace(CharSequence)
 //     */
-//    public static Boolean isNumericSpace(final CharSequence cs) {
+//    global static Boolean isNumericSpace(final CharSequence cs) {
 //        if (cs == null) {
 //            return false;
 //        }
@@ -3836,7 +3836,7 @@ global class StringUtils {
 //     * @since 2.0
 //     * @since 3.0 Changed signature from isWhitespace(String) to isWhitespace(CharSequence)
 //     */
-//    public static Boolean isWhitespace(final CharSequence cs) {
+//    global static Boolean isWhitespace(final CharSequence cs) {
 //        if (cs == null) {
 //            return false;
 //        }
@@ -3873,7 +3873,7 @@ global class StringUtils {
 //     * @return the joined String, {@code null} if null array input
 //     * @since 3.12.0
 //     */
-//    public static String join(final Boolean[] array, final char delimiter) {
+//    global static String join(final Boolean[] array, final char delimiter) {
 //        if (array == null) {
 //            return null;
 //        }
@@ -3910,7 +3910,7 @@ global class StringUtils {
 //     * @return the joined String, {@code null} if null array input
 //     * @since 3.12.0
 //     */
-//    public static String join(final Boolean[] array, final char delimiter, final Integer startIndex, final Integer endIndex) {
+//    global static String join(final Boolean[] array, final char delimiter, final Integer startIndex, final Integer endIndex) {
 //        if (array == null) {
 //            return null;
 //        }
@@ -3949,7 +3949,7 @@ global class StringUtils {
 //     * @return the joined String, {@code null} if null array input
 //     * @since 3.2
 //     */
-//    public static String join(final byte[] array, final char delimiter) {
+//    global static String join(final byte[] array, final char delimiter) {
 //        if (array == null) {
 //            return null;
 //        }
@@ -3987,7 +3987,7 @@ global class StringUtils {
 //     * @return the joined String, {@code null} if null array input
 //     * @since 3.2
 //     */
-//    public static String join(final byte[] array, final char delimiter, final Integer startIndex, final Integer endIndex) {
+//    global static String join(final byte[] array, final char delimiter, final Integer startIndex, final Integer endIndex) {
 //        if (array == null) {
 //            return null;
 //        }
@@ -4026,7 +4026,7 @@ global class StringUtils {
 //     * @return the joined String, {@code null} if null array input
 //     * @since 3.2
 //     */
-//    public static String join(final char[] array, final char delimiter) {
+//    global static String join(final char[] array, final char delimiter) {
 //        if (array == null) {
 //            return null;
 //        }
@@ -4064,7 +4064,7 @@ global class StringUtils {
 //     * @return the joined String, {@code null} if null array input
 //     * @since 3.2
 //     */
-//    public static String join(final char[] array, final char delimiter, final Integer startIndex, final Integer endIndex) {
+//    global static String join(final char[] array, final char delimiter, final Integer startIndex, final Integer endIndex) {
 //        if (array == null) {
 //            return null;
 //        }
@@ -4103,7 +4103,7 @@ global class StringUtils {
 //     * @return the joined String, {@code null} if null array input
 //     * @since 3.2
 //     */
-//    public static String join(final double[] array, final char delimiter) {
+//    global static String join(final double[] array, final char delimiter) {
 //        if (array == null) {
 //            return null;
 //        }
@@ -4141,7 +4141,7 @@ global class StringUtils {
 //     * @return the joined String, {@code null} if null array input
 //     * @since 3.2
 //     */
-//    public static String join(final double[] array, final char delimiter, final Integer startIndex, final Integer endIndex) {
+//    global static String join(final double[] array, final char delimiter, final Integer startIndex, final Integer endIndex) {
 //        if (array == null) {
 //            return null;
 //        }
@@ -4180,7 +4180,7 @@ global class StringUtils {
 //     * @return the joined String, {@code null} if null array input
 //     * @since 3.2
 //     */
-//    public static String join(final float[] array, final char delimiter) {
+//    global static String join(final float[] array, final char delimiter) {
 //        if (array == null) {
 //            return null;
 //        }
@@ -4218,7 +4218,7 @@ global class StringUtils {
 //     * @return the joined String, {@code null} if null array input
 //     * @since 3.2
 //     */
-//    public static String join(final float[] array, final char delimiter, final Integer startIndex, final Integer endIndex) {
+//    global static String join(final float[] array, final char delimiter, final Integer startIndex, final Integer endIndex) {
 //        if (array == null) {
 //            return null;
 //        }
@@ -4257,7 +4257,7 @@ global class StringUtils {
 //     * @return the joined String, {@code null} if null array input
 //     * @since 3.2
 //     */
-//    public static String join(final int[] array, final char separator) {
+//    global static String join(final int[] array, final char separator) {
 //        if (array == null) {
 //            return null;
 //        }
@@ -4295,7 +4295,7 @@ global class StringUtils {
 //     * @return the joined String, {@code null} if null array input
 //     * @since 3.2
 //     */
-//    public static String join(final int[] array, final char delimiter, final Integer startIndex, final Integer endIndex) {
+//    global static String join(final int[] array, final char delimiter, final Integer startIndex, final Integer endIndex) {
 //        if (array == null) {
 //            return null;
 //        }
@@ -4323,7 +4323,7 @@ global class StringUtils {
 //     * @return the joined String, {@code null} if null iterator input
 //     * @since 2.3
 //     */
-//    public static String join(final Iterable<?> iterable, final char separator) {
+//    global static String join(final Iterable<?> iterable, final char separator) {
 //        if (iterable == null) {
 //            return null;
 //        }
@@ -4344,7 +4344,7 @@ global class StringUtils {
 //     * @return the joined String, {@code null} if null iterator input
 //     * @since 2.3
 //     */
-//    public static String join(final Iterable<?> iterable, final String separator) {
+//    global static String join(final Iterable<?> iterable, final String separator) {
 //        if (iterable == null) {
 //            return null;
 //        }
@@ -4365,7 +4365,7 @@ global class StringUtils {
 //     * @return the joined String, {@code null} if null iterator input
 //     * @since 2.0
 //     */
-//    public static String join(final Iterator<?> iterator, final char separator) {
+//    global static String join(final Iterator<?> iterator, final char separator) {
 //
 //        // handle null, zero and one elements before building a buffer
 //        if (iterator == null) {
@@ -4409,7 +4409,7 @@ global class StringUtils {
 //     * @param separator  the separator character to use, null treated as ''
 //     * @return the joined String, {@code null} if null iterator input
 //     */
-//    public static String join(final Iterator<?> iterator, final String separator) {
+//    global static String join(final Iterator<?> iterator, final String separator) {
 //
 //        // handle null, zero and one elements before building a buffer
 //        if (iterator == null) {
@@ -4467,7 +4467,7 @@ global class StringUtils {
 //     * @return the joined String, {@code null} if null list input
 //     * @since 3.8
 //     */
-//    public static String join(final List<?> list, final char separator, final Integer startIndex, final Integer endIndex) {
+//    global static String join(final List<?> list, final char separator, final Integer startIndex, final Integer endIndex) {
 //        if (list == null) {
 //            return null;
 //        }
@@ -4505,7 +4505,7 @@ global class StringUtils {
 //     * @return the joined String, {@code null} if null list input
 //     * @since 3.8
 //     */
-//    public static String join(final List<?> list, final String separator, final Integer startIndex, final Integer endIndex) {
+//    global static String join(final List<?> list, final String separator, final Integer startIndex, final Integer endIndex) {
 //        if (list == null) {
 //            return null;
 //        }
@@ -4543,7 +4543,7 @@ global class StringUtils {
 //     * @return the joined String, {@code null} if null array input
 //     * @since 3.2
 //     */
-//    public static String join(final long[] array, final char separator) {
+//    global static String join(final long[] array, final char separator) {
 //        if (array == null) {
 //            return null;
 //        }
@@ -4581,7 +4581,7 @@ global class StringUtils {
 //     * @return the joined String, {@code null} if null array input
 //     * @since 3.2
 //     */
-//    public static String join(final long[] array, final char delimiter, final Integer startIndex, final Integer endIndex) {
+//    global static String join(final long[] array, final char delimiter, final Integer startIndex, final Integer endIndex) {
 //        if (array == null) {
 //            return null;
 //        }
@@ -4617,7 +4617,7 @@ global class StringUtils {
 //     * @return the joined String, {@code null} if null array input
 //     * @since 2.0
 //     */
-//    public static String join(final Object[] array, final char delimiter) {
+//    global static String join(final Object[] array, final char delimiter) {
 //        if (array == null) {
 //            return null;
 //        }
@@ -4650,7 +4650,7 @@ global class StringUtils {
 //     * @return the joined String, {@code null} if null array input
 //     * @since 2.0
 //     */
-//    public static String join(final Object[] array, final char delimiter, final Integer startIndex, final Integer endIndex) {
+//    global static String join(final Object[] array, final char delimiter, final Integer startIndex, final Integer endIndex) {
 //        if (array == null) {
 //            return null;
 //        }
@@ -4687,7 +4687,7 @@ global class StringUtils {
 //     * @param delimiter  the separator character to use, null treated as ''
 //     * @return the joined String, {@code null} if null array input
 //     */
-//    public static String join(final Object[] array, final String delimiter) {
+//    global static String join(final Object[] array, final String delimiter) {
 //        if (array == null) {
 //            return null;
 //        }
@@ -4729,7 +4729,7 @@ global class StringUtils {
 //     * {@code endIndex < 0} or <br>
 //     * {@code endIndex > array.length()}
 //     */
-//    public static String join(final Object[] array, final String delimiter, final Integer startIndex, final Integer endIndex) {
+//    global static String join(final Object[] array, final String delimiter, final Integer startIndex, final Integer endIndex) {
 //        if (array == null) {
 //            return null;
 //        }
@@ -4768,7 +4768,7 @@ global class StringUtils {
 //     * @return the joined String, {@code null} if null array input
 //     * @since 3.2
 //     */
-//    public static String join(final short[] array, final char delimiter) {
+//    global static String join(final short[] array, final char delimiter) {
 //        if (array == null) {
 //            return null;
 //        }
@@ -4806,7 +4806,7 @@ global class StringUtils {
 //     * @return the joined String, {@code null} if null array input
 //     * @since 3.2
 //     */
-//    public static String join(final short[] array, final char delimiter, final Integer startIndex, final Integer endIndex) {
+//    global static String join(final short[] array, final char delimiter, final Integer startIndex, final Integer endIndex) {
 //        if (array == null) {
 //            return null;
 //        }
@@ -4843,7 +4843,7 @@ global class StringUtils {
 //     * @since 3.0 Changed signature to use varargs
 //     */
 //    @SafeVarargs
-//    public static <T> String join(final T... elements) {
+//    global static <T> String join(final T... elements) {
 //        return join(elements, null);
 //    }
 //
@@ -4867,7 +4867,7 @@ global class StringUtils {
 //     * @throws java.lang.IllegalArgumentException if a null varargs is provided
 //     * @since 3.5
 //     */
-//    public static String joinWith(final String delimiter, final Object... array) {
+//    global static String joinWith(final String delimiter, final Object... array) {
 //        if (array == null) {
 //            throw new IllegalArgumentException('Object varargs must not be null');
 //        }
@@ -4897,7 +4897,7 @@ global class StringUtils {
 //     * @since 2.0
 //     * @since 3.0 Changed signature from lastIndexOf(String, String) to lastIndexOf(CharSequence, CharSequence)
 //     */
-//    public static Integer lastIndexOf(final CharSequence seq, final CharSequence searchSeq) {
+//    global static Integer lastIndexOf(final CharSequence seq, final CharSequence searchSeq) {
 //        if (seq == null) {
 //            return INDEX_NOT_FOUND;
 //        }
@@ -4939,7 +4939,7 @@ global class StringUtils {
 //     * @since 2.0
 //     * @since 3.0 Changed signature from lastIndexOf(String, String, int) to lastIndexOf(CharSequence, CharSequence, int)
 //     */
-//    public static Integer lastIndexOf(final CharSequence seq, final CharSequence searchSeq, final Integer startPos) {
+//    global static Integer lastIndexOf(final CharSequence seq, final CharSequence searchSeq, final Integer startPos) {
 //        return CharSequenceUtils.lastIndexOf(seq, searchSeq, startPos);
 //    }
 //
@@ -4977,7 +4977,7 @@ global class StringUtils {
 //     * @since 3.0 Changed signature from lastIndexOf(String, int) to lastIndexOf(CharSequence, int)
 //     * @since 3.6 Updated {@link CharSequenceUtils} call to behave more like {@code String}
 //     */
-//    public static Integer lastIndexOf(final CharSequence seq, final Integer searchChar) {
+//    global static Integer lastIndexOf(final CharSequence seq, final Integer searchChar) {
 //        if (isEmpty(seq)) {
 //            return INDEX_NOT_FOUND;
 //        }
@@ -5028,7 +5028,7 @@ global class StringUtils {
 //     * @since 2.0
 //     * @since 3.0 Changed signature from lastIndexOf(String, int, int) to lastIndexOf(CharSequence, int, int)
 //     */
-//    public static Integer lastIndexOf(final CharSequence seq, final Integer searchChar, final Integer startPos) {
+//    global static Integer lastIndexOf(final CharSequence seq, final Integer searchChar, final Integer startPos) {
 //        if (isEmpty(seq)) {
 //            return INDEX_NOT_FOUND;
 //        }
@@ -5061,7 +5061,7 @@ global class StringUtils {
 //     * @return the last index of any of the CharSequences, -1 if no match
 //     * @since 3.0 Changed signature from lastIndexOfAny(String, String[]) to lastIndexOfAny(CharSequence, CharSequence)
 //     */
-//    public static Integer lastIndexOfAny(final CharSequence str, final CharSequence... searchStrs) {
+//    global static Integer lastIndexOfAny(final CharSequence str, final CharSequence... searchStrs) {
 //        if (str == null || searchStrs == null) {
 //            return INDEX_NOT_FOUND;
 //        }
@@ -5102,7 +5102,7 @@ global class StringUtils {
 //     * @since 2.5
 //     * @since 3.0 Changed signature from lastIndexOfIgnoreCase(String, String) to lastIndexOfIgnoreCase(CharSequence, CharSequence)
 //     */
-//    public static Integer lastIndexOfIgnoreCase(final CharSequence str, final CharSequence searchStr) {
+//    global static Integer lastIndexOfIgnoreCase(final CharSequence str, final CharSequence searchStr) {
 //        if (str == null || searchStr == null) {
 //            return INDEX_NOT_FOUND;
 //        }
@@ -5141,7 +5141,7 @@ global class StringUtils {
 //     * @since 2.5
 //     * @since 3.0 Changed signature from lastIndexOfIgnoreCase(String, String, int) to lastIndexOfIgnoreCase(CharSequence, CharSequence, int)
 //     */
-//    public static Integer lastIndexOfIgnoreCase(final CharSequence str, final CharSequence searchStr, Integer startPos) {
+//    global static Integer lastIndexOfIgnoreCase(final CharSequence str, final CharSequence searchStr, Integer startPos) {
 //        if (str == null || searchStr == null) {
 //            return INDEX_NOT_FOUND;
 //        }
@@ -5199,7 +5199,7 @@ global class StringUtils {
 //     * @since 2.5
 //     * @since 3.0 Changed signature from lastOrdinalIndexOf(String, String, int) to lastOrdinalIndexOf(CharSequence, CharSequence, int)
 //     */
-//    public static Integer lastOrdinalIndexOf(final CharSequence str, final CharSequence searchStr, final Integer ordinal) {
+//    global static Integer lastOrdinalIndexOf(final CharSequence str, final CharSequence searchStr, final Integer ordinal) {
 //        return ordinalIndexOf(str, searchStr, ordinal, true);
 //    }
 //
@@ -5223,7 +5223,7 @@ global class StringUtils {
 //     * @param len  the length of the required String
 //     * @return the leftmost characters, {@code null} if null String input
 //     */
-//    public static String left(final String str, final Integer len) {
+//    global static String left(final String str, final Integer len) {
 //        if (str == null) {
 //            return null;
 //        }
@@ -5255,7 +5255,7 @@ global class StringUtils {
 //     * @return left padded String or original String if no padding is necessary,
 //     *  {@code null} if null String input
 //     */
-//    public static String leftPad(final String str, final Integer size) {
+//    global static String leftPad(final String str, final Integer size) {
 //        return leftPad(str, size, ' ');
 //    }
 //
@@ -5280,7 +5280,7 @@ global class StringUtils {
 //     *  {@code null} if null String input
 //     * @since 2.0
 //     */
-//    public static String leftPad(final String str, final Integer size, final char padChar) {
+//    global static String leftPad(final String str, final Integer size, final char padChar) {
 //        if (str == null) {
 //            return null;
 //        }
@@ -5317,7 +5317,7 @@ global class StringUtils {
 //     * @return left padded String or original String if no padding is necessary,
 //     *  {@code null} if null String input
 //     */
-//    public static String leftPad(final String str, final Integer size, String padStr) {
+//    global static String leftPad(final String str, final Integer size, String padStr) {
 //        if (str == null) {
 //            return null;
 //        }
@@ -5359,7 +5359,7 @@ global class StringUtils {
      * @since 2.4
      * @since 3.0 Changed signature from length(String) to length(CharSequence)
      */
-    public static Integer length(final String cs) {
+    global static Integer length(final String cs) {
         return cs == null ? 0 : cs.length();
     }
 
@@ -5382,7 +5382,7 @@ global class StringUtils {
 //     * @param str  the String to lower case, may be null
 //     * @return the lower cased String, {@code null} if null String input
 //     */
-//    public static String lowerCase(final String str) {
+//    global static String lowerCase(final String str) {
 //        if (str == null) {
 //            return null;
 //        }
@@ -5405,7 +5405,7 @@ global class StringUtils {
 //     * @return the lower cased String, {@code null} if null String input
 //     * @since 2.5
 //     */
-//    public static String lowerCase(final String str, final Locale locale) {
+//    global static String lowerCase(final String str, final Locale locale) {
 //        if (str == null) {
 //            return null;
 //        }
@@ -5494,7 +5494,7 @@ global class StringUtils {
 //     * @param len  the length of the required String
 //     * @return the middle characters, {@code null} if null String input
 //     */
-//    public static String mid(final String str, Integer pos, final Integer len) {
+//    global static String mid(final String str, Integer pos, final Integer len) {
 //        if (str == null) {
 //            return null;
 //        }
@@ -5555,7 +5555,7 @@ global class StringUtils {
 //     *
 //     * @since 3.0
 //     */
-//    public static String normalizeSpace(final String str) {
+//    global static String normalizeSpace(final String str) {
 //        // LANG-1020: Improved performance significantly by normalizing manually instead of using regex
 //        // See https://github.com/librucha/commons-lang-normalizespaces-benchmark for performance test
 //        if (isEmpty(str)) {
@@ -5636,7 +5636,7 @@ global class StringUtils {
 //     * @since 2.1
 //     * @since 3.0 Changed signature from ordinalIndexOf(String, String, int) to ordinalIndexOf(CharSequence, CharSequence, int)
 //     */
-//    public static Integer ordinalIndexOf(final CharSequence str, final CharSequence searchStr, final Integer ordinal) {
+//    global static Integer ordinalIndexOf(final CharSequence str, final CharSequence searchStr, final Integer ordinal) {
 //        return ordinalIndexOf(str, searchStr, ordinal, false);
 //    }
 //
@@ -5709,7 +5709,7 @@ global class StringUtils {
 //     * @return overlayed String, {@code null} if null String input
 //     * @since 2.0
 //     */
-//    public static String overlay(final String str, String overlay, Integer start, Integer end) {
+//    global static String overlay(final String str, String overlay, Integer start, Integer end) {
 //        if (str == null) {
 //            return null;
 //        }
@@ -5798,7 +5798,7 @@ global class StringUtils {
 //     *
 //     * @since 3.2
 //     */
-//    public static String prependIfMissing(final String str, final CharSequence prefix, final CharSequence... prefixes) {
+//    global static String prependIfMissing(final String str, final CharSequence prefix, final CharSequence... prefixes) {
 //        return prependIfMissing(str, prefix, false, prefixes);
 //    }
 //
@@ -5836,7 +5836,7 @@ global class StringUtils {
 //     *
 //     * @since 3.2
 //     */
-//    public static String prependIfMissingIgnoreCase(final String str, final CharSequence prefix, final CharSequence... prefixes) {
+//    global static String prependIfMissingIgnoreCase(final String str, final CharSequence prefix, final CharSequence... prefixes) {
 //        return prependIfMissing(str, prefix, true, prefixes);
 //    }
 //
@@ -5859,7 +5859,7 @@ global class StringUtils {
 //     *  {@code null} if null String input
 //     * @since 2.1
 //     */
-//    public static String remove(final String str, final char remove) {
+//    global static String remove(final String str, final char remove) {
 //        if (isEmpty(str) || str.indexOf(remove) == INDEX_NOT_FOUND) {
 //            return str;
 //        }
@@ -5896,7 +5896,7 @@ global class StringUtils {
 //     *  {@code null} if null String input
 //     * @since 2.1
 //     */
-//    public static String remove(final String str, final String remove) {
+//    global static String remove(final String str, final String remove) {
 //        if (isEmpty(str) || isEmpty(remove)) {
 //            return str;
 //        }
@@ -5949,7 +5949,7 @@ global class StringUtils {
 //     * @deprecated Moved to RegExUtils.
 //     */
 //    @Deprecated
-//    public static String removeAll(final String text, final String regex) {
+//    global static String removeAll(final String text, final String regex) {
 //        return RegExUtils.removeAll(text, regex);
 //    }
 //
@@ -5977,7 +5977,7 @@ global class StringUtils {
 //     *  {@code null} if null String input
 //     * @since 2.1
 //     */
-//    public static String removeEnd(final String str, final String remove) {
+//    global static String removeEnd(final String str, final String remove) {
 //        if (isEmpty(str) || isEmpty(remove)) {
 //            return str;
 //        }
@@ -6013,7 +6013,7 @@ global class StringUtils {
 //     *  {@code null} if null String input
 //     * @since 2.4
 //     */
-//    public static String removeEndIgnoreCase(final String str, final String remove) {
+//    global static String removeEndIgnoreCase(final String str, final String remove) {
 //        if (isEmpty(str) || isEmpty(remove)) {
 //            return str;
 //        }
@@ -6068,7 +6068,7 @@ global class StringUtils {
 //     * @deprecated Moved to RegExUtils.
 //     */
 //    @Deprecated
-//    public static String removeFirst(final String text, final String regex) {
+//    global static String removeFirst(final String text, final String regex) {
 //        return replaceFirst(text, regex, EMPTY);
 //    }
 //
@@ -6105,7 +6105,7 @@ global class StringUtils {
 //     *         null String input
 //     * @since 3.5
 //     */
-//    public static String removeIgnoreCase(final String str, final String remove) {
+//    global static String removeIgnoreCase(final String str, final String remove) {
 //        return replaceIgnoreCase(str, remove, EMPTY, -1);
 //    }
 //
@@ -6142,7 +6142,7 @@ global class StringUtils {
 //     * @deprecated Moved to RegExUtils.
 //     */
 //    @Deprecated
-//    public static String removePattern(final String source, final String regex) {
+//    global static String removePattern(final String source, final String regex) {
 //        return RegExUtils.removePattern(source, regex);
 //    }
 //
@@ -6170,7 +6170,7 @@ global class StringUtils {
 //     *  {@code null} if null String input
 //     * @since 2.1
 //     */
-//    public static String removeStart(final String str, final String remove) {
+//    global static String removeStart(final String str, final String remove) {
 //        if (isEmpty(str) || isEmpty(remove)) {
 //            return str;
 //        }
@@ -6205,7 +6205,7 @@ global class StringUtils {
 //     *  {@code null} if null String input
 //     * @since 2.4
 //     */
-//    public static String removeStartIgnoreCase(final String str, final String remove) {
+//    global static String removeStartIgnoreCase(final String str, final String remove) {
 //        if (str != null && startsWithIgnoreCase(str, remove)) {
 //            return str.substring(length(remove));
 //        }
@@ -6234,7 +6234,7 @@ global class StringUtils {
 //     * @return String with repeated character
 //     * @see #repeat(String, int)
 //     */
-//    public static String repeat(final char ch, final Integer repeat) {
+//    global static String repeat(final char ch, final Integer repeat) {
 //        if (repeat <= 0) {
 //            return EMPTY;
 //        }
@@ -6261,7 +6261,7 @@ global class StringUtils {
 //     * @return a new String consisting of the original String repeated,
 //     *  {@code null} if null String input
 //     */
-//    public static String repeat(final String str, final Integer repeat) {
+//    global static String repeat(final String str, final Integer repeat) {
 //        // Performance tuned for 2.0 (JDK1.4)
 //        if (str == null) {
 //            return null;
@@ -6319,7 +6319,7 @@ global class StringUtils {
 //     *  {@code null} if null String input
 //     * @since 2.5
 //     */
-//    public static String repeat(final String str, final String separator, final Integer repeat) {
+//    global static String repeat(final String str, final String separator, final Integer repeat) {
 //        if (str == null || separator == null) {
 //            return repeat(str, repeat);
 //        }
@@ -6351,7 +6351,7 @@ global class StringUtils {
 //     * @return the text with any replacements processed,
 //     *  {@code null} if null String input
 //     */
-//    public static String replace(final String text, final String searchString, final String replacement) {
+//    global static String replace(final String text, final String searchString, final String replacement) {
 //        return replace(text, searchString, replacement, -1);
 //    }
 //
@@ -6383,7 +6383,7 @@ global class StringUtils {
 //     * @return the text with any replacements processed,
 //     *  {@code null} if null String input
 //     */
-//    public static String replace(final String text, final String searchString, final String replacement, final Integer max) {
+//    global static String replace(final String text, final String searchString, final String replacement, final Integer max) {
 //        return replace(text, searchString, replacement, max, false);
 //    }
 //
@@ -6497,7 +6497,7 @@ global class StringUtils {
 //     * @deprecated Moved to RegExUtils.
 //     */
 //    @Deprecated
-//    public static String replaceAll(final String text, final String regex, final String replacement) {
+//    global static String replaceAll(final String text, final String regex, final String replacement) {
 //        return RegExUtils.replaceAll(text, regex, replacement);
 //    }
 //
@@ -6521,7 +6521,7 @@ global class StringUtils {
 //     * @return modified String, {@code null} if null string input
 //     * @since 2.0
 //     */
-//    public static String replaceChars(final String str, final char searchChar, final char replaceChar) {
+//    global static String replaceChars(final String str, final char searchChar, final char replaceChar) {
 //        if (str == null) {
 //            return null;
 //        }
@@ -6564,7 +6564,7 @@ global class StringUtils {
 //     * @return modified String, {@code null} if null string input
 //     * @since 2.0
 //     */
-//    public static String replaceChars(final String str, final String searchChars, String replaceChars) {
+//    global static String replaceChars(final String str, final String searchChars, String replaceChars) {
 //        if (isEmpty(str) || isEmpty(searchChars)) {
 //            return str;
 //        }
@@ -6632,7 +6632,7 @@ global class StringUtils {
 //     *             and/or size 0)
 //     * @since 2.4
 //     */
-//    public static String replaceEach(final String text, final String[] searchList, final String[] replacementList) {
+//    global static String replaceEach(final String text, final String[] searchList, final String[] replacementList) {
 //        return replaceEach(text, searchList, replacementList, false, 0);
 //    }
 //
@@ -6854,7 +6854,7 @@ global class StringUtils {
 //     *             and/or size 0)
 //     * @since 2.4
 //     */
-//    public static String replaceEachRepeatedly(final String text, final String[] searchList, final String[] replacementList) {
+//    global static String replaceEachRepeatedly(final String text, final String[] searchList, final String[] replacementList) {
 //        // timeToLive should be 0 if not used or nothing to replace, else it's
 //        // the length of the replace array
 //        final Integer timeToLive = searchList == null ? 0 : searchList.length;
@@ -6910,7 +6910,7 @@ global class StringUtils {
 //     * @deprecated Moved to RegExUtils.
 //     */
 //    @Deprecated
-//    public static String replaceFirst(final String text, final String regex, final String replacement) {
+//    global static String replaceFirst(final String text, final String regex, final String replacement) {
 //        return RegExUtils.replaceFirst(text, regex, replacement);
 //    }
 //
@@ -6938,7 +6938,7 @@ global class StringUtils {
 //    *  {@code null} if null String input
 //    * @since 3.5
 //    */
-//   public static String replaceIgnoreCase(final String text, final String searchString, final String replacement) {
+//   global static String replaceIgnoreCase(final String text, final String searchString, final String replacement) {
 //       return replaceIgnoreCase(text, searchString, replacement, -1);
 //   }
 //
@@ -6971,7 +6971,7 @@ global class StringUtils {
 //     *  {@code null} if null String input
 //     * @since 3.5
 //     */
-//    public static String replaceIgnoreCase(final String text, final String searchString, final String replacement, final Integer max) {
+//    global static String replaceIgnoreCase(final String text, final String searchString, final String replacement, final Integer max) {
 //        return replace(text, searchString, replacement, max, true);
 //    }
 //
@@ -6998,7 +6998,7 @@ global class StringUtils {
 //     * @return the text with any replacements processed,
 //     *  {@code null} if null String input
 //     */
-//    public static String replaceOnce(final String text, final String searchString, final String replacement) {
+//    global static String replaceOnce(final String text, final String searchString, final String replacement) {
 //        return replace(text, searchString, replacement, 1);
 //    }
 //
@@ -7027,7 +7027,7 @@ global class StringUtils {
 //     *  {@code null} if null String input
 //     * @since 3.5
 //     */
-//    public static String replaceOnceIgnoreCase(final String text, final String searchString, final String replacement) {
+//    global static String replaceOnceIgnoreCase(final String text, final String searchString, final String replacement) {
 //        return replaceIgnoreCase(text, searchString, replacement, 1);
 //    }
 //
@@ -7073,7 +7073,7 @@ global class StringUtils {
 //     * @deprecated Moved to RegExUtils.
 //     */
 //    @Deprecated
-//    public static String replacePattern(final String source, final String regex, final String replacement) {
+//    global static String replacePattern(final String source, final String regex, final String replacement) {
 //        return RegExUtils.replacePattern(source, regex, replacement);
 //    }
 //
@@ -7091,7 +7091,7 @@ global class StringUtils {
 //     * @param str  the String to reverse, may be null
 //     * @return the reversed String, {@code null} if null String input
 //     */
-//    public static String reverse(final String str) {
+//    global static String reverse(final String str) {
 //        if (str == null) {
 //            return null;
 //        }
@@ -7117,7 +7117,7 @@ global class StringUtils {
 //     * @return the reversed String, {@code null} if null String input
 //     * @since 2.0
 //     */
-//    public static String reverseDelimited(final String str, final char separatorChar) {
+//    global static String reverseDelimited(final String str, final char separatorChar) {
 //        if (str == null) {
 //            return null;
 //        }
@@ -7148,7 +7148,7 @@ global class StringUtils {
 //     * @param len  the length of the required String
 //     * @return the rightmost characters, {@code null} if null String input
 //     */
-//    public static String right(final String str, final Integer len) {
+//    global static String right(final String str, final Integer len) {
 //        if (str == null) {
 //            return null;
 //        }
@@ -7180,7 +7180,7 @@ global class StringUtils {
 //     * @return right padded String or original String if no padding is necessary,
 //     *  {@code null} if null String input
 //     */
-//    public static String rightPad(final String str, final Integer size) {
+//    global static String rightPad(final String str, final Integer size) {
 //        return rightPad(str, size, ' ');
 //    }
 //
@@ -7205,7 +7205,7 @@ global class StringUtils {
 //     *  {@code null} if null String input
 //     * @since 2.0
 //     */
-//    public static String rightPad(final String str, final Integer size, final char padChar) {
+//    global static String rightPad(final String str, final Integer size, final char padChar) {
 //        if (str == null) {
 //            return null;
 //        }
@@ -7242,7 +7242,7 @@ global class StringUtils {
 //     * @return right padded String or original String if no padding is necessary,
 //     *  {@code null} if null String input
 //     */
-//    public static String rightPad(final String str, final Integer size, String padStr) {
+//    global static String rightPad(final String str, final Integer size, String padStr) {
 //        if (str == null) {
 //            return null;
 //        }
@@ -7299,7 +7299,7 @@ global class StringUtils {
 //     *          or {@code null} if null String input
 //     * @since 3.5
 //     */
-//    public static String rotate(final String str, final Integer shift) {
+//    global static String rotate(final String str, final Integer shift) {
 //        if (str == null) {
 //            return null;
 //        }
@@ -7338,7 +7338,7 @@ global class StringUtils {
 //     * @param str  the String to parse, may be null
 //     * @return an array of parsed Strings, {@code null} if null String input
 //     */
-//    public static String[] split(final String str) {
+//    global static String[] split(final String str) {
 //        return split(str, null, -1);
 //    }
 //
@@ -7366,7 +7366,7 @@ global class StringUtils {
 //     * @return an array of parsed Strings, {@code null} if null String input
 //     * @since 2.0
 //     */
-//    public static String[] split(final String str, final char separatorChar) {
+//    global static String[] split(final String str, final char separatorChar) {
 //        return splitWorker(str, separatorChar, false);
 //    }
 //
@@ -7395,7 +7395,7 @@ global class StringUtils {
 //     *  {@code null} splits on whitespace
 //     * @return an array of parsed Strings, {@code null} if null String input
 //     */
-//    public static String[] split(final String str, final String separatorChars) {
+//    global static String[] split(final String str, final String separatorChars) {
 //        return splitWorker(str, separatorChars, -1, false);
 //    }
 //
@@ -7429,7 +7429,7 @@ global class StringUtils {
 //     *  array. A zero or negative value implies no limit
 //     * @return an array of parsed Strings, {@code null} if null String input
 //     */
-//    public static String[] split(final String str, final String separatorChars, final Integer max) {
+//    global static String[] split(final String str, final String separatorChars, final Integer max) {
 //        return splitWorker(str, separatorChars, max, false);
 //    }
 //
@@ -7452,7 +7452,7 @@ global class StringUtils {
 //     * @return an array of parsed Strings, {@code null} if null String input
 //     * @since 2.4
 //     */
-//    public static String[] splitByCharacterType(final String str) {
+//    global static String[] splitByCharacterType(final String str) {
 //        return splitByCharacterType(str, false);
 //    }
 //
@@ -7526,7 +7526,7 @@ global class StringUtils {
 //     * @return an array of parsed Strings, {@code null} if null String input
 //     * @since 2.4
 //     */
-//    public static String[] splitByCharacterTypeCamelCase(final String str) {
+//    global static String[] splitByCharacterTypeCamelCase(final String str) {
 //        return splitByCharacterType(str, true);
 //    }
 //
@@ -7553,7 +7553,7 @@ global class StringUtils {
 //     *  {@code null} splits on whitespace
 //     * @return an array of parsed Strings, {@code null} if null String was input
 //     */
-//    public static String[] splitByWholeSeparator(final String str, final String separator) {
+//    global static String[] splitByWholeSeparator(final String str, final String separator) {
 //        return splitByWholeSeparatorWorker(str, separator, -1, false);
 //    }
 //
@@ -7584,7 +7584,7 @@ global class StringUtils {
 //     *  array. A zero or negative value implies no limit.
 //     * @return an array of parsed Strings, {@code null} if null String was input
 //     */
-//    public static String[] splitByWholeSeparator( final String str, final String separator, final Integer max) {
+//    global static String[] splitByWholeSeparator( final String str, final String separator, final Integer max) {
 //        return splitByWholeSeparatorWorker(str, separator, max, false);
 //    }
 //
@@ -7613,7 +7613,7 @@ global class StringUtils {
 //     * @return an array of parsed Strings, {@code null} if null String was input
 //     * @since 2.4
 //     */
-//    public static String[] splitByWholeSeparatorPreserveAllTokens(final String str, final String separator) {
+//    global static String[] splitByWholeSeparatorPreserveAllTokens(final String str, final String separator) {
 //        return splitByWholeSeparatorWorker(str, separator, -1, true);
 //    }
 //
@@ -7646,7 +7646,7 @@ global class StringUtils {
 //     * @return an array of parsed Strings, {@code null} if null String was input
 //     * @since 2.4
 //     */
-//    public static String[] splitByWholeSeparatorPreserveAllTokens(final String str, final String separator, final Integer max) {
+//    global static String[] splitByWholeSeparatorPreserveAllTokens(final String str, final String separator, final Integer max) {
 //        return splitByWholeSeparatorWorker(str, separator, max, true);
 //    }
 //
@@ -7754,7 +7754,7 @@ global class StringUtils {
 //     * @return an array of parsed Strings, {@code null} if null String input
 //     * @since 2.1
 //     */
-//    public static String[] splitPreserveAllTokens(final String str) {
+//    global static String[] splitPreserveAllTokens(final String str) {
 //        return splitWorker(str, null, -1, true);
 //    }
 //
@@ -7790,7 +7790,7 @@ global class StringUtils {
 //     * @return an array of parsed Strings, {@code null} if null String input
 //     * @since 2.1
 //     */
-//    public static String[] splitPreserveAllTokens(final String str, final char separatorChar) {
+//    global static String[] splitPreserveAllTokens(final String str, final char separatorChar) {
 //        return splitWorker(str, separatorChar, true);
 //    }
 //
@@ -7827,7 +7827,7 @@ global class StringUtils {
 //     * @return an array of parsed Strings, {@code null} if null String input
 //     * @since 2.1
 //     */
-//    public static String[] splitPreserveAllTokens(final String str, final String separatorChars) {
+//    global static String[] splitPreserveAllTokens(final String str, final String separatorChars) {
 //        return splitWorker(str, separatorChars, -1, true);
 //    }
 //
@@ -7867,7 +7867,7 @@ global class StringUtils {
 //     * @return an array of parsed Strings, {@code null} if null String input
 //     * @since 2.1
 //     */
-//    public static String[] splitPreserveAllTokens(final String str, final String separatorChars, final Integer max) {
+//    global static String[] splitPreserveAllTokens(final String str, final String separatorChars, final Integer max) {
 //        return splitWorker(str, separatorChars, max, true);
 //    }
 //
@@ -8040,7 +8040,7 @@ global class StringUtils {
 //     * @since 2.4
 //     * @since 3.0 Changed signature from startsWith(String, String) to startsWith(CharSequence, CharSequence)
 //     */
-//    public static Boolean startsWith(final CharSequence str, final CharSequence prefix) {
+//    global static Boolean startsWith(final CharSequence str, final CharSequence prefix) {
 //        return startsWith(str, prefix, false);
 //    }
 //
@@ -8089,7 +8089,7 @@ global class StringUtils {
 //     * @since 2.5
 //     * @since 3.0 Changed signature from startsWithAny(String, String[]) to startsWithAny(CharSequence, CharSequence...)
 //     */
-//    public static Boolean startsWithAny(final CharSequence sequence, final CharSequence... searchStrings) {
+//    global static Boolean startsWithAny(final CharSequence sequence, final CharSequence... searchStrings) {
 //        if (isEmpty(sequence) || ArrayUtils.isEmpty(searchStrings)) {
 //            return false;
 //        }
@@ -8123,7 +8123,7 @@ global class StringUtils {
 //     * @since 2.4
 //     * @since 3.0 Changed signature from startsWithIgnoreCase(String, String) to startsWithIgnoreCase(CharSequence, CharSequence)
 //     */
-//    public static Boolean startsWithIgnoreCase(final CharSequence str, final CharSequence prefix) {
+//    global static Boolean startsWithIgnoreCase(final CharSequence str, final CharSequence prefix) {
 //        return startsWith(str, prefix, true);
 //    }
 //
@@ -8149,7 +8149,7 @@ global class StringUtils {
 //     * @param str  the String to remove whitespace from, may be null
 //     * @return the stripped String, {@code null} if null String input
 //     */
-//    public static String strip(final String str) {
+//    global static String strip(final String str) {
 //        return strip(str, null);
 //    }
 //
@@ -8179,7 +8179,7 @@ global class StringUtils {
 //     * @param stripChars  the characters to remove, null treated as whitespace
 //     * @return the stripped String, {@code null} if null String input
 //     */
-//    public static String strip(String str, final String stripChars) {
+//    global static String strip(String str, final String stripChars) {
 //        str = stripStart(str, stripChars);
 //        return stripEnd(str, stripChars);
 //    }
@@ -8202,7 +8202,7 @@ global class StringUtils {
 //     * @since 3.0
 //     */
 //    // See also Lucene's ASCIIFoldingFilter (Lucene 2.9) that replaces accented characters by their unaccented equivalent (and uncommitted bug fix: https://issues.apache.org/jira/browse/LUCENE-1343?focusedCommentId=12858907&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#action_12858907).
-//    public static String stripAccents(final String input) {
+//    global static String stripAccents(final String input) {
 //        if (input == null) {
 //            return null;
 //        }
@@ -8231,7 +8231,7 @@ global class StringUtils {
 //     * @param strs  the array to remove whitespace from, may be null
 //     * @return the stripped Strings, {@code null} if null array input
 //     */
-//    public static String[] stripAll(final String... strs) {
+//    global static String[] stripAll(final String... strs) {
 //        return stripAll(strs, null);
 //    }
 //
@@ -8260,7 +8260,7 @@ global class StringUtils {
 //     * @param stripChars  the characters to remove, null treated as whitespace
 //     * @return the stripped Strings, {@code null} if null array input
 //     */
-//    public static String[] stripAll(final String[] strs, final String stripChars) {
+//    global static String[] stripAll(final String[] strs, final String stripChars) {
 //        final Integer strsLen = ArrayUtils.getLength(strs);
 //        if (strsLen == 0) {
 //            return strs;
@@ -8297,7 +8297,7 @@ global class StringUtils {
 //     * @param stripChars  the set of characters to remove, null treated as whitespace
 //     * @return the stripped String, {@code null} if null String input
 //     */
-//    public static String stripEnd(final String str, final String stripChars) {
+//    global static String stripEnd(final String str, final String stripChars) {
 //        Integer end = length(str);
 //        if (end == 0) {
 //            return str;
@@ -8341,7 +8341,7 @@ global class StringUtils {
 //     * @param stripChars  the characters to remove, null treated as whitespace
 //     * @return the stripped String, {@code null} if null String input
 //     */
-//    public static String stripStart(final String str, final String stripChars) {
+//    global static String stripStart(final String str, final String stripChars) {
 //        final Integer strLen = length(str);
 //        if (strLen == 0) {
 //            return str;
@@ -8383,7 +8383,7 @@ global class StringUtils {
 //     * @return the trimmed String, or an empty String if {@code null} input
 //     * @since 2.0
 //     */
-//    public static String stripToEmpty(final String str) {
+//    global static String stripToEmpty(final String str) {
 //        return str == null ? EMPTY : strip(str, null);
 //    }
 //
@@ -8410,7 +8410,7 @@ global class StringUtils {
 //     *  {@code null} if whitespace, empty or null String input
 //     * @since 2.0
 //     */
-//    public static String stripToNull(String str) {
+//    global static String stripToNull(String str) {
 //        if (str == null) {
 //            return null;
 //        }
@@ -8442,7 +8442,7 @@ global class StringUtils {
 //     *  count back from the end of the String by this many characters
 //     * @return substring from start position, {@code null} if null String input
 //     */
-//    public static String substring(final String str, Integer start) {
+//    global static String substring(final String str, Integer start) {
 //        if (str == null) {
 //            return null;
 //        }
@@ -8497,7 +8497,7 @@ global class StringUtils {
 //     * @return substring from start position to end position,
 //     *  {@code null} if null String input
 //     */
-//    public static String substring(final String str, Integer start, Integer end) {
+//    global static String substring(final String str, Integer start, Integer end) {
 //        if (str == null) {
 //            return null;
 //        }
@@ -8555,7 +8555,7 @@ global class StringUtils {
 //     *  {@code null} if null String input
 //     * @since 3.11
 //     */
-//    public static String substringAfter(final String str, final Integer separator) {
+//    global static String substringAfter(final String str, final Integer separator) {
 //        if (isEmpty(str)) {
 //            return str;
 //        }
@@ -8594,7 +8594,7 @@ global class StringUtils {
 //     *  {@code null} if null String input
 //     * @since 2.0
 //     */
-//    public static String substringAfter(final String str, final String separator) {
+//    global static String substringAfter(final String str, final String separator) {
 //        if (isEmpty(str)) {
 //            return str;
 //        }
@@ -8634,7 +8634,7 @@ global class StringUtils {
 //     *  {@code null} if null String input
 //     * @since 3.11
 //     */
-//    public static String substringAfterLast(final String str, final Integer separator) {
+//    global static String substringAfterLast(final String str, final Integer separator) {
 //        if (isEmpty(str)) {
 //            return str;
 //        }
@@ -8674,7 +8674,7 @@ global class StringUtils {
 //     *  {@code null} if null String input
 //     * @since 2.0
 //     */
-//    public static String substringAfterLast(final String str, final String separator) {
+//    global static String substringAfterLast(final String str, final String separator) {
 //        if (isEmpty(str)) {
 //            return str;
 //        }
@@ -8715,7 +8715,7 @@ global class StringUtils {
 //     * @return the substring before the first occurrence of the separator, {@code null} if null String input
 //     * @since 3.12.0
 //     */
-//    public static String substringBefore(final String str, final Integer separator) {
+//    global static String substringBefore(final String str, final Integer separator) {
 //        if (isEmpty(str)) {
 //            return str;
 //        }
@@ -8753,7 +8753,7 @@ global class StringUtils {
 //     *  {@code null} if null String input
 //     * @since 2.0
 //     */
-//    public static String substringBefore(final String str, final String separator) {
+//    global static String substringBefore(final String str, final String separator) {
 //        if (isEmpty(str) || separator == null) {
 //            return str;
 //        }
@@ -8794,7 +8794,7 @@ global class StringUtils {
 //     *  {@code null} if null String input
 //     * @since 2.0
 //     */
-//    public static String substringBeforeLast(final String str, final String separator) {
+//    global static String substringBeforeLast(final String str, final String separator) {
 //        if (isEmpty(str) || isEmpty(separator)) {
 //            return str;
 //        }
@@ -8826,7 +8826,7 @@ global class StringUtils {
 //     * @return the substring, {@code null} if no match
 //     * @since 2.0
 //     */
-//    public static String substringBetween(final String str, final String tag) {
+//    global static String substringBetween(final String str, final String tag) {
 //        return substringBetween(str, tag, tag);
 //    }
 //
@@ -8857,7 +8857,7 @@ global class StringUtils {
 //     * @return the substring, {@code null} if no match
 //     * @since 2.0
 //     */
-//    public static String substringBetween(final String str, final String open, final String close) {
+//    global static String substringBetween(final String str, final String open, final String close) {
 //        if (!ObjectUtils.allNotNull(str, open, close)) {
 //            return null;
 //        }
@@ -8893,7 +8893,7 @@ global class StringUtils {
 //     * @return a String Array of substrings, or {@code null} if no match
 //     * @since 2.3
 //     */
-//    public static String[] substringsBetween(final String str, final String open, final String close) {
+//    global static String[] substringsBetween(final String str, final String open, final String close) {
 //        if (str == null || isEmpty(open) || isEmpty(close)) {
 //            return null;
 //        }
@@ -8951,7 +8951,7 @@ global class StringUtils {
 //     * @param str  the String to swap case, may be null
 //     * @return the changed String, {@code null} if null String input
 //     */
-//    public static String swapCase(final String str) {
+//    global static String swapCase(final String str) {
 //        if (isEmpty(str)) {
 //            return str;
 //        }
@@ -8991,7 +8991,7 @@ global class StringUtils {
 //     * @return an array of code points
 //     * @since 3.6
 //     */
-//    public static int[] toCodePoints(final CharSequence cs) {
+//    global static int[] toCodePoints(final CharSequence cs) {
 //        if (cs == null) {
 //            return null;
 //        }
@@ -9022,7 +9022,7 @@ global class StringUtils {
 //     * @since 3.2
 //     * @since 3.3 No longer throws {@link UnsupportedEncodingException}.
 //     */
-//    public static String toEncodedString(final byte[] bytes, final Charset charset) {
+//    global static String toEncodedString(final byte[] bytes, final Charset charset) {
 //        return new String(bytes, Charsets.toCharset(charset));
 //    }
 //
@@ -9033,7 +9033,7 @@ global class StringUtils {
 //     * @return the given source String as a lower-case using the {@link Locale#ROOT} locale or null.
 //     * @since 3.10
 //     */
-//    public static String toRootLowerCase(final String source) {
+//    global static String toRootLowerCase(final String source) {
 //        return source == null ? null : source.toLowerCase(Locale.ROOT);
 //    }
 //
@@ -9044,7 +9044,7 @@ global class StringUtils {
 //     * @return the given source String as a upper-case using the {@link Locale#ROOT} locale or null.
 //     * @since 3.10
 //     */
-//    public static String toRootUpperCase(final String source) {
+//    global static String toRootUpperCase(final String source) {
 //        return source == null ? null : source.toUpperCase(Locale.ROOT);
 //    }
 //
@@ -9064,7 +9064,7 @@ global class StringUtils {
 //     * @since 3.1
 //     */
 //    @Deprecated
-//    public static String toString(final byte[] bytes, final String charsetName) throws UnsupportedEncodingException {
+//    global static String toString(final byte[] bytes, final String charsetName) throws UnsupportedEncodingException {
 //        return new String(bytes, Charsets.toCharset(charsetName));
 //    }
 //
@@ -9095,7 +9095,7 @@ global class StringUtils {
 //     * @param str  the String to be trimmed, may be null
 //     * @return the trimmed string, {@code null} if null String input
 //     */
-//    public static String trim(final String str) {
+//    global static String trim(final String str) {
 //        return str == null ? null : str.trim();
 //    }
 //
@@ -9120,7 +9120,7 @@ global class StringUtils {
 //     * @return the trimmed String, or an empty String if {@code null} input
 //     * @since 2.0
 //     */
-//    public static String trimToEmpty(final String str) {
+//    global static String trimToEmpty(final String str) {
 //        return str == null ? EMPTY : str.trim();
 //    }
 //
@@ -9146,7 +9146,7 @@ global class StringUtils {
 //     *  {@code null} if only chars &lt;= 32, empty or null String input
 //     * @since 2.0
 //     */
-//    public static String trimToNull(final String str) {
+//    global static String trimToNull(final String str) {
 //        final String ts = trim(str);
 //        return isEmpty(ts) ? null : ts;
 //    }
@@ -9183,7 +9183,7 @@ global class StringUtils {
 //     * @throws IllegalArgumentException If {@code maxWidth} is less than {@code 0}
 //     * @since 3.5
 //     */
-//    public static String truncate(final String str, final Integer maxWidth) {
+//    global static String truncate(final String str, final Integer maxWidth) {
 //        return truncate(str, 0, maxWidth);
 //    }
 //
@@ -9247,7 +9247,7 @@ global class StringUtils {
 //     * @throws IllegalArgumentException If {@code offset} or {@code maxWidth} is less than {@code 0}
 //     * @since 3.5
 //     */
-//    public static String truncate(final String str, final Integer offset, final Integer maxWidth) {
+//    global static String truncate(final String str, final Integer offset, final Integer maxWidth) {
 //        if (offset < 0) {
 //            throw new IllegalArgumentException('offset cannot be negative');
 //        }
@@ -9288,7 +9288,7 @@ global class StringUtils {
 //     * @see #capitalize(String)
 //     * @since 2.0
 //     */
-//    public static String uncapitalize(final String str) {
+//    global static String uncapitalize(final String str) {
 //        final Integer strLen = length(str);
 //        if (strLen == 0) {
 //            return str;
@@ -9338,7 +9338,7 @@ global class StringUtils {
 //     *          if it is not quoted properly with the wrapChar
 //     * @since 3.6
 //     */
-//    public static String unwrap(final String str, final char wrapChar) {
+//    global static String unwrap(final String str, final char wrapChar) {
 //        if (isEmpty(str) || wrapChar == CharUtils.NUL || str.length() == 1) {
 //            return str;
 //        }
@@ -9380,7 +9380,7 @@ global class StringUtils {
 //     *          if it is not quoted properly with the wrapToken
 //     * @since 3.6
 //     */
-//    public static String unwrap(final String str, final String wrapToken) {
+//    global static String unwrap(final String str, final String wrapToken) {
 //        if (isEmpty(str) || isEmpty(wrapToken) || str.length() < 2 * wrapToken.length()) {
 //            return str;
 //        }
@@ -9417,7 +9417,7 @@ global class StringUtils {
 //     * @param str  the String to upper case, may be null
 //     * @return the upper cased String, {@code null} if null String input
 //     */
-//    public static String upperCase(final String str) {
+//    global static String upperCase(final String str) {
 //        if (str == null) {
 //            return null;
 //        }
@@ -9440,7 +9440,7 @@ global class StringUtils {
 //     * @return the upper cased String, {@code null} if null String input
 //     * @since 2.5
 //     */
-//    public static String upperCase(final String str, final Locale locale) {
+//    global static String upperCase(final String str, final Locale locale) {
 //        if (str == null) {
 //            return null;
 //        }
@@ -9455,7 +9455,7 @@ global class StringUtils {
 //     * @see String#valueOf(char[])
 //     * @since 3.9
 //     */
-//    public static String valueOf(final char[] value) {
+//    global static String valueOf(final char[] value) {
 //        return value == null ? null : String.valueOf(value);
 //    }
 //
@@ -9480,7 +9480,7 @@ global class StringUtils {
 //     * @return the wrapped string, or {@code null} if {@code str==null}
 //     * @since 3.4
 //     */
-//    public static String wrap(final String str, final char wrapWith) {
+//    global static String wrap(final String str, final char wrapWith) {
 //
 //        if (isEmpty(str) || wrapWith == CharUtils.NUL) {
 //            return str;
@@ -9518,7 +9518,7 @@ global class StringUtils {
 //     * @return wrapped String, {@code null} if null String input
 //     * @since 3.4
 //     */
-//    public static String wrap(final String str, final String wrapWith) {
+//    global static String wrap(final String str, final String wrapWith) {
 //
 //        if (isEmpty(str) || isEmpty(wrapWith)) {
 //            return str;
@@ -9554,7 +9554,7 @@ global class StringUtils {
 //     * @return the wrapped string, or {@code null} if {@code str==null}
 //     * @since 3.5
 //     */
-//    public static String wrapIfMissing(final String str, final char wrapWith) {
+//    global static String wrapIfMissing(final String str, final char wrapWith) {
 //        if (isEmpty(str) || wrapWith == CharUtils.NUL) {
 //            return str;
 //        }
@@ -9606,7 +9606,7 @@ global class StringUtils {
 //     * @return the wrapped string, or {@code null} if {@code str==null}
 //     * @since 3.5
 //     */
-//    public static String wrapIfMissing(final String str, final String wrapWith) {
+//    global static String wrapIfMissing(final String str, final String wrapWith) {
 //        if (isEmpty(str) || isEmpty(wrapWith)) {
 //            return str;
 //        }
@@ -9633,7 +9633,7 @@ global class StringUtils {
      * standard programming. Instead, the class should be used as
      * {@code StringUtils.trim(' foo ');}.</p>
      *
-     * <p>This constructor is public to permit tools that require a JavaBean
+     * <p>This constructor is global to permit tools that require a JavaBean
      * instance to operate.</p>
      */
     global StringUtils() {
