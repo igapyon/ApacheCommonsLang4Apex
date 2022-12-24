@@ -9355,21 +9355,21 @@ global class StringUtils {
      *          if it is not quoted properly with the wrapChar
      * @since 3.6
      */
-//    global static String unwrap(final String str, final char wrapChar) {
-//        if (isEmpty(str) || wrapChar == CharUtils.NUL || str.length() == 1) {
-//            return str;
-//        }
-//
-//        if (str.charAt(0) == wrapChar && str.charAt(str.length() - 1) == wrapChar) {
-//            final Integer startIndex = 0;
-//            final Integer endIndex = str.length() - 1;
-//
-//            return str.substring(startIndex + 1, endIndex);
-//        }
-//
-//        return str;
-//    }
-//
+    global static String unwrap(final String str, final Integer wrapChar) {
+        if (isEmpty(str) || wrapChar == CharUtils.NUL || str.length() == 1) {
+            return str;
+        }
+
+        if (str.charAt(0) == wrapChar && str.charAt(str.length() - 1) == wrapChar) {
+            final Integer startIndex = 0;
+            final Integer endIndex = str.length() - 1;
+
+            return str.substring(startIndex + 1, endIndex);
+        }
+
+        return str;
+    }
+
     /**
      * <p>
      * Unwraps a given string from anther string.
@@ -9397,24 +9397,24 @@ global class StringUtils {
      *          if it is not quoted properly with the wrapToken
      * @since 3.6
      */
-//    global static String unwrap(final String str, final String wrapToken) {
-//        if (isEmpty(str) || isEmpty(wrapToken) || str.length() < 2 * wrapToken.length()) {
-//            return str;
-//        }
-//
-//        if (startsWith(str, wrapToken) && endsWith(str, wrapToken)) {
-//            final Integer startIndex = str.indexOf(wrapToken);
-//            final Integer endIndex = str.lastIndexOf(wrapToken);
-//            final Integer wrapLength = wrapToken.length();
-//
-//            if (startIndex != -1 && endIndex != -1) {
-//                return str.substring(startIndex + wrapLength, endIndex);
-//            }
-//        }
-//
-//        return str;
-//    }
-//
+    global static String unwrap(final String str, final String wrapToken) {
+        if (isEmpty(str) || isEmpty(wrapToken) || str.length() < 2 * wrapToken.length()) {
+            return str;
+        }
+
+        if (startsWith(str, wrapToken) && endsWith(str, wrapToken)) {
+            final Integer startIndex = str.indexOf(wrapToken);
+            final Integer endIndex = str.lastIndexOf(wrapToken);
+            final Integer wrapLength = wrapToken.length();
+
+            if (startIndex != -1 && endIndex != -1) {
+                return str.substring(startIndex + wrapLength, endIndex);
+            }
+        }
+
+        return str;
+    }
+
     /**
      * <p>Converts a String to upper case as per {@link String#toUpperCase()}.</p>
      *
