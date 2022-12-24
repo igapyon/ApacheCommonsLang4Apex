@@ -806,10 +806,10 @@ global class StringUtils {
      * @return &lt; 0, 0, &gt; 0, if {@code str1} is respectively less, equal or greater than {@code str2}
      * @since 3.5
      */
-//    global static Integer compare(final String str1, final String str2) {
-//        return compare(str1, str2, true);
-//    }
-//
+    global static Integer compare(final String str1, final String str2) {
+        return compare(str1, str2, true);
+    }
+
     /**
      * <p>Compare two Strings lexicographically, as per {@link String#compareTo(String)}, returning :</p>
      * <ul>
@@ -844,19 +844,19 @@ global class StringUtils {
      * @return &lt; 0, 0, &gt; 0, if {@code str1} is respectively less, equal ou greater than {@code str2}
      * @since 3.5
      */
-//    global static Integer compare(final String str1, final String str2, final Boolean nullIsLess) {
-//        if (str1 == str2) { // NOSONARLINT this intentionally uses == to allow for both null
-//            return 0;
-//        }
-//        if (str1 == null) {
-//            return nullIsLess ? -1 : 1;
-//        }
-//        if (str2 == null) {
-//            return nullIsLess ? 1 : - 1;
-//        }
-//        return str1.compareTo(str2);
-//    }
-//
+    global static Integer compare(final String str1, final String str2, final Boolean nullIsLess) {
+        if (str1 == str2) { // NOSONARLINT this intentionally uses == to allow for both null
+            return 0;
+        }
+        if (str1 == null) {
+            return nullIsLess ? -1 : 1;
+        }
+        if (str2 == null) {
+            return nullIsLess ? 1 : - 1;
+        }
+        return str1.compareTo(str2);
+    }
+
     /**
      * <p>Compare two Strings lexicographically, ignoring case differences,
      * as per {@link String#compareToIgnoreCase(String)}, returning :</p>
@@ -894,10 +894,10 @@ global class StringUtils {
      *          ignoring case differences.
      * @since 3.5
      */
-//    global static Integer compareIgnoreCase(final String str1, final String str2) {
-//        return compareIgnoreCase(str1, str2, true);
-//    }
-//
+    global static Integer compareIgnoreCase(final String str1, final String str2) {
+        return compareIgnoreCase(str1, str2, true);
+    }
+
     /**
      * <p>Compare two Strings lexicographically, ignoring case differences,
      * as per {@link String#compareToIgnoreCase(String)}, returning :</p>
@@ -937,19 +937,21 @@ global class StringUtils {
      *          ignoring case differences.
      * @since 3.5
      */
-//    global static Integer compareIgnoreCase(final String str1, final String str2, final Boolean nullIsLess) {
-//        if (str1 == str2) { // NOSONARLINT this intentionally uses == to allow for both null
-//            return 0;
-//        }
-//        if (str1 == null) {
-//            return nullIsLess ? -1 : 1;
-//        }
-//        if (str2 == null) {
-//            return nullIsLess ? 1 : - 1;
-//        }
-//        return str1.compareToIgnoreCase(str2);
-//    }
-//
+    global static Integer compareIgnoreCase(final String str1, final String str2, final Boolean nullIsLess) {
+        if (str1 == str2) { // NOSONARLINT this intentionally uses == to allow for both null
+            return 0;
+        }
+        if (str1 == null) {
+            return nullIsLess ? -1 : 1;
+        }
+        if (str2 == null) {
+            return nullIsLess ? 1 : - 1;
+        }
+        str1 = str1.toUpperCase();
+        str2 = str2.toUpperCase();
+        return str1.compareTo(str2);
+    }
+
     /**
      * <p>Checks if CharSequence contains a search CharSequence, handling {@code null}.
      * This method uses {@link String#indexOf(String)} if possible.</p>
@@ -999,13 +1001,13 @@ global class StringUtils {
      * @since 2.0
      * @since 3.0 Changed signature from contains(String, int) to contains(CharSequence, int)
      */
-//    global static Boolean contains(final CharSequence seq, final Integer searchChar) {
-//        if (isEmpty(seq)) {
-//            return false;
-//        }
-//        return CharSequenceUtils.indexOf(seq, searchChar, 0) >= 0;
-//    }
-//
+    global static Boolean contains(final String seq, final Integer searchChar) {
+        if (isEmpty(seq)) {
+            return false;
+        }
+        return seq.indexOf(int2string(searchChar)) >= 0;
+    }
+
     /**
      * <p>Checks if the CharSequence contains any character in the given
      * set of characters.</p>
@@ -1669,10 +1671,10 @@ global class StringUtils {
      * @since 2.4
      * @since 3.0 Changed signature from endsWith(String, String) to endsWith(CharSequence, CharSequence)
      */
-//    global static Boolean endsWith(final CharSequence str, final CharSequence suffix) {
-//        return endsWith(str, suffix, false);
-//    }
-//
+    global static Boolean endsWith(final String str, final String suffix) {
+        return endsWith(str, suffix, false);
+    }
+
     /**
      * <p>Check if a CharSequence ends with a specified suffix (optionally case insensitive).</p>
      *
@@ -1684,17 +1686,21 @@ global class StringUtils {
      * @return {@code true} if the CharSequence starts with the prefix or
      *  both {@code null}
      */
-//    private static Boolean endsWith(final CharSequence str, final CharSequence suffix, final Boolean ignoreCase) {
-//        if (str == null || suffix == null) {
-//            return str == suffix;
-//        }
-//        if (suffix.length() > str.length()) {
-//            return false;
-//        }
-//        final Integer strOffset = str.length() - suffix.length();
-//        return CharSequenceUtils.regionMatches(str, ignoreCase, strOffset, suffix, 0, suffix.length());
-//    }
-//
+    private static Boolean endsWith(final String str, final String suffix, final Boolean ignoreCase) {
+        if (str == null || suffix == null) {
+            return str == suffix;
+        }
+        if (suffix.length() > str.length()) {
+            return false;
+        }
+        final Integer strOffset = str.length() - suffix.length();
+        if (ignoreCase) {
+            str = str.toUpperCase();
+            suffix = suffix.toUpperCase();
+        }
+        return str.endsWith(suffix);
+    }
+
     /**
      * <p>Check if a CharSequence ends with any of the provided case-sensitive suffixes.</p>
      *
