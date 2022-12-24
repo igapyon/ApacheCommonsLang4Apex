@@ -9108,10 +9108,10 @@ global class StringUtils {
      * @param str  the String to be trimmed, may be null
      * @return the trimmed string, {@code null} if null String input
      */
-//    global static String trim(final String str) {
-//        return str == null ? null : str.trim();
-//    }
-//
+    global static String trim(final String str) {
+        return str == null ? null : str.trim();
+    }
+
     /**
      * <p>Removes control characters (char &lt;= 32) from both
      * ends of this String returning an empty String ('') if the String
