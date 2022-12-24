@@ -23,6 +23,52 @@ private class StringUtilsTest {
     }
 
     @isTest(SeeAllData=false)
+    static void abbreviate2args() {
+        System.assertEquals(null, StringUtils.abbreviate(null, 5));
+        System.assertEquals('', StringUtils.abbreviate('', 4));
+        System.assertEquals('abc...', StringUtils.abbreviate('abcdefg', 6));
+        System.assertEquals('abcdefg', StringUtils.abbreviate('abcdefg', 7));
+        System.assertEquals('abcdefg', StringUtils.abbreviate('abcdefg', 8));
+        System.assertEquals('a...', StringUtils.abbreviate('abcdefg', 4));
+        try {
+            System.assertEquals('abcdefg', StringUtils.abbreviate('abcdefg', 3));
+            System.assert(false, 'ここに入ってはダメ');
+        } catch(IllegalArgumentException ex) {
+            System.assert(true);
+        }
+    }
+
+    @isTest(SeeAllData=false)
+    static void abbreviate3args() {
+        System.assertEquals(null, StringUtils.abbreviate(null, 5, 5));
+        System.assertEquals('', StringUtils.abbreviate('', 0, 4));
+        System.assertEquals('abcdefg...', StringUtils.abbreviate('abcdefghijklmno', -1, 10));
+        System.assertEquals('abcdefg...', StringUtils.abbreviate('abcdefghijklmno', 0, 10));
+        System.assertEquals('abcdefg...', StringUtils.abbreviate('abcdefghijklmno', 1, 10));
+        System.assertEquals('abcdefg...', StringUtils.abbreviate('abcdefghijklmno', 4, 10));
+        System.assertEquals('...fghi...', StringUtils.abbreviate('abcdefghijklmno', 5, 10));
+        System.assertEquals('...ghij...', StringUtils.abbreviate('abcdefghijklmno', 6, 10));
+        System.assertEquals('...ijklmno', StringUtils.abbreviate('abcdefghijklmno', 8, 10));
+        System.assertEquals('...ijklmno', StringUtils.abbreviate('abcdefghijklmno', 10, 10));
+        System.assertEquals('...ijklmno', StringUtils.abbreviate('abcdefghijklmno', 12, 10));
+        try {
+            StringUtils.abbreviate('abcdefghij', 0, 3);
+            System.assert(false, 'ここに入ってはダメ');
+        } catch(IllegalArgumentException ex) {
+            System.assert(true);
+        }
+        try {
+            StringUtils.abbreviate('abcdefghij', 5, 6);
+            System.assert(false, 'ここに入ってはダメ');
+        } catch(IllegalArgumentException ex) {
+            System.assert(true);
+        }
+    }
+
+
+
+
+    @isTest(SeeAllData=false)
     static void defaultStringTest01() {
         System.assertEquals('', StringUtils.defaultString(null));
         System.assertEquals('', StringUtils.defaultString(''));
