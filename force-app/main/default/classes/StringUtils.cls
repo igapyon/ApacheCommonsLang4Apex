@@ -200,10 +200,10 @@ global class StringUtils {
      * @throws IllegalArgumentException if the width is too small
      * @since 2.0
      */
-//    global static String abbreviate(final String str, final Integer maxWidth) {
-//        return abbreviate(str, '...', 0, maxWidth);
-//    }
-//
+    global static String abbreviate(final String str, final Integer maxWidth) {
+        return abbreviate(str, '...', 0, maxWidth);
+    }
+
     /**
      * <p>Abbreviates a String using ellipses. This will turn
      * 'Now is the time for all good men' into '...is the time for...'</p>
@@ -239,10 +239,10 @@ global class StringUtils {
      * @throws IllegalArgumentException if the width is too small
      * @since 2.0
      */
-//    global static String abbreviate(final String str, final Integer offset, final Integer maxWidth) {
-//        return abbreviate(str, '...', offset, maxWidth);
-//    }
-//
+    global static String abbreviate(final String str, final Integer offset, final Integer maxWidth) {
+        return abbreviate(str, '...', offset, maxWidth);
+    }
+
     /**
      * <p>Abbreviates a String using another given String as replacement marker. This will turn
      * 'Now is the time for all good men' into 'Now is the time for...' if '...' was defined
@@ -383,20 +383,20 @@ global class StringUtils {
      * @return the abbreviated String if the above criteria is met, or the original String supplied for abbreviation.
      * @since 2.5
      */
-//    global static String abbreviateMiddle(final String str, final String middle, final Integer length) {
-//        if (isAnyEmpty(str, middle) || length >= str.length() || length < middle.length()+2) {
-//            return str;
-//        }
-//
-//        final Integer targetSting = length-middle.length();
-//        final Integer startOffset = targetSting/2+targetSting%2;
-//        final Integer endOffset = str.length()-targetSting/2;
-//
-//        return str.substring(0, startOffset) +
-//            middle +
-//            str.substring(endOffset);
-//    }
-//
+    global static String abbreviateMiddle(final String str, final String middle, final Integer length) {
+        if (isAnyEmpty(str, middle) || length >= str.length() || length < middle.length()+2) {
+            return str;
+        }
+
+        final Integer targetSting = length-middle.length();
+        final Integer startOffset = targetSting/2+Math.mod(targetSting, 2);
+        final Integer endOffset = str.length()-targetSting/2;
+
+        return str.substring(0, startOffset) +
+            middle +
+            str.substring(endOffset);
+    }
+
     /**
      * Appends the suffix to the end of the string if the string does not
      * already end with the suffix.
@@ -566,10 +566,10 @@ global class StringUtils {
      * @param size  the Integer size of new String, negative treated as zero
      * @return centered String, {@code null} if null String input
      */
-//    global static String center(final String str, final Integer size) {
-//        return center(str, size, ' ');
-//    }
-//
+    global static String center(final String str, final Integer size) {
+        return center(str, size, ' '.charAt(0));
+    }
+
     /**
      * <p>Centers a String in a larger String of size {@code size}.
      * Uses a supplied character as the value to pad the String with.</p>
@@ -594,20 +594,20 @@ global class StringUtils {
      * @return centered String, {@code null} if null String input
      * @since 2.0
      */
-//    global static String center(String str, final Integer size, final char padChar) {
-//        if (str == null || size <= 0) {
-//            return str;
-//        }
-//        final Integer strLen = str.length();
-//        final Integer pads = size - strLen;
-//        if (pads <= 0) {
-//            return str;
-//        }
-//        str = leftPad(str, strLen + pads / 2, padChar);
-//        str = rightPad(str, size, padChar);
-//        return str;
-//    }
-//
+    global static String center(String str, final Integer size, final Integer padChar) {
+        if (str == null || size <= 0) {
+            return str;
+        }
+        final Integer strLen = str.length();
+        final Integer pads = size - strLen;
+        if (pads <= 0) {
+            return str;
+        }
+        str = leftPad(str, strLen + pads / 2, padChar);
+        str = rightPad(str, size, padChar);
+        return str;
+    }
+
     /**
      * <p>Centers a String in a larger String of size {@code size}.
      * Uses a supplied String as the value to pad the String with.</p>
@@ -634,23 +634,23 @@ global class StringUtils {
      * @return centered String, {@code null} if null String input
      * @throws IllegalArgumentException if padStr is {@code null} or empty
      */
-//    global static String center(String str, final Integer size, String padStr) {
-//        if (str == null || size <= 0) {
-//            return str;
-//        }
-//        if (isEmpty(padStr)) {
-//            padStr = SPACE;
-//        }
-//        final Integer strLen = str.length();
-//        final Integer pads = size - strLen;
-//        if (pads <= 0) {
-//            return str;
-//        }
-//        str = leftPad(str, strLen + pads / 2, padStr);
-//        str = rightPad(str, size, padStr);
-//        return str;
-//    }
-//
+    global static String center(String str, final Integer size, String padStr) {
+        if (str == null || size <= 0) {
+            return str;
+        }
+        if (isEmpty(padStr)) {
+            padStr = SPACE;
+        }
+        final Integer strLen = str.length();
+        final Integer pads = size - strLen;
+        if (pads <= 0) {
+            return str;
+        }
+        str = leftPad(str, strLen + pads / 2, padStr);
+        str = rightPad(str, size, padStr);
+        return str;
+    }
+
     /**
      * <p>Removes one newline from end of a String if it's there,
      * otherwise leave it alone.  A newline is &quot;{@code \n}&quot;,
@@ -676,32 +676,32 @@ global class StringUtils {
      * @param str  the String to chomp a newline from, may be null
      * @return String without newline, {@code null} if null String input
      */
-//    global static String chomp(final String str) {
-//        if (isEmpty(str)) {
-//            return str;
-//        }
-//
-//        if (str.length() == 1) {
-//            final char ch = str.charAt(0);
-//            if (ch == CharUtils.CR || ch == CharUtils.LF) {
-//                return EMPTY;
-//            }
-//            return str;
-//        }
-//
-//        Integer lastIdx = str.length() - 1;
-//        final char last = str.charAt(lastIdx);
-//
-//        if (last == CharUtils.LF) {
-//            if (str.charAt(lastIdx - 1) == CharUtils.CR) {
-//                lastIdx--;
-//            }
-//        } else if (last != CharUtils.CR) {
-//            lastIdx++;
-//        }
-//        return str.substring(0, lastIdx);
-//    }
-//
+    global static String chomp(final String str) {
+        if (isEmpty(str)) {
+            return str;
+        }
+
+        if (str.length() == 1) {
+            final Integer ch = str.charAt(0);
+            if (ch == CharUtils.CR || ch == CharUtils.LF) {
+                return EMPTY;
+            }
+            return str;
+        }
+
+        Integer lastIdx = str.length() - 1;
+        final Integer last = str.charAt(lastIdx);
+
+        if (last == CharUtils.LF) {
+            if (str.charAt(lastIdx - 1) == CharUtils.CR) {
+                lastIdx--;
+            }
+        } else if (last != CharUtils.CR) {
+            lastIdx++;
+        }
+        return str.substring(0, lastIdx);
+    }
+
     /**
      * <p>Removes {@code separator} from the end of
      * {@code str} if it's there, otherwise leave it alone.</p>
@@ -806,10 +806,10 @@ global class StringUtils {
      * @return &lt; 0, 0, &gt; 0, if {@code str1} is respectively less, equal or greater than {@code str2}
      * @since 3.5
      */
-//    global static Integer compare(final String str1, final String str2) {
-//        return compare(str1, str2, true);
-//    }
-//
+    global static Integer compare(final String str1, final String str2) {
+        return compare(str1, str2, true);
+    }
+
     /**
      * <p>Compare two Strings lexicographically, as per {@link String#compareTo(String)}, returning :</p>
      * <ul>
@@ -844,19 +844,19 @@ global class StringUtils {
      * @return &lt; 0, 0, &gt; 0, if {@code str1} is respectively less, equal ou greater than {@code str2}
      * @since 3.5
      */
-//    global static Integer compare(final String str1, final String str2, final Boolean nullIsLess) {
-//        if (str1 == str2) { // NOSONARLINT this intentionally uses == to allow for both null
-//            return 0;
-//        }
-//        if (str1 == null) {
-//            return nullIsLess ? -1 : 1;
-//        }
-//        if (str2 == null) {
-//            return nullIsLess ? 1 : - 1;
-//        }
-//        return str1.compareTo(str2);
-//    }
-//
+    global static Integer compare(final String str1, final String str2, final Boolean nullIsLess) {
+        if (str1 == str2) { // NOSONARLINT this intentionally uses == to allow for both null
+            return 0;
+        }
+        if (str1 == null) {
+            return nullIsLess ? -1 : 1;
+        }
+        if (str2 == null) {
+            return nullIsLess ? 1 : - 1;
+        }
+        return str1.compareTo(str2);
+    }
+
     /**
      * <p>Compare two Strings lexicographically, ignoring case differences,
      * as per {@link String#compareToIgnoreCase(String)}, returning :</p>
@@ -894,10 +894,10 @@ global class StringUtils {
      *          ignoring case differences.
      * @since 3.5
      */
-//    global static Integer compareIgnoreCase(final String str1, final String str2) {
-//        return compareIgnoreCase(str1, str2, true);
-//    }
-//
+    global static Integer compareIgnoreCase(final String str1, final String str2) {
+        return compareIgnoreCase(str1, str2, true);
+    }
+
     /**
      * <p>Compare two Strings lexicographically, ignoring case differences,
      * as per {@link String#compareToIgnoreCase(String)}, returning :</p>
@@ -937,19 +937,21 @@ global class StringUtils {
      *          ignoring case differences.
      * @since 3.5
      */
-//    global static Integer compareIgnoreCase(final String str1, final String str2, final Boolean nullIsLess) {
-//        if (str1 == str2) { // NOSONARLINT this intentionally uses == to allow for both null
-//            return 0;
-//        }
-//        if (str1 == null) {
-//            return nullIsLess ? -1 : 1;
-//        }
-//        if (str2 == null) {
-//            return nullIsLess ? 1 : - 1;
-//        }
-//        return str1.compareToIgnoreCase(str2);
-//    }
-//
+    global static Integer compareIgnoreCase(final String str1, final String str2, final Boolean nullIsLess) {
+        if (str1 == str2) { // NOSONARLINT this intentionally uses == to allow for both null
+            return 0;
+        }
+        if (str1 == null) {
+            return nullIsLess ? -1 : 1;
+        }
+        if (str2 == null) {
+            return nullIsLess ? 1 : - 1;
+        }
+        str1 = str1.toUpperCase();
+        str2 = str2.toUpperCase();
+        return str1.compareTo(str2);
+    }
+
     /**
      * <p>Checks if CharSequence contains a search CharSequence, handling {@code null}.
      * This method uses {@link String#indexOf(String)} if possible.</p>
@@ -999,13 +1001,13 @@ global class StringUtils {
      * @since 2.0
      * @since 3.0 Changed signature from contains(String, int) to contains(CharSequence, int)
      */
-//    global static Boolean contains(final CharSequence seq, final Integer searchChar) {
-//        if (isEmpty(seq)) {
-//            return false;
-//        }
-//        return CharSequenceUtils.indexOf(seq, searchChar, 0) >= 0;
-//    }
-//
+    global static Boolean contains(final String seq, final Integer searchChar) {
+        if (isEmpty(seq)) {
+            return false;
+        }
+        return seq.indexOf(int2string(searchChar)) >= 0;
+    }
+
     /**
      * <p>Checks if the CharSequence contains any character in the given
      * set of characters.</p>
@@ -1669,10 +1671,10 @@ global class StringUtils {
      * @since 2.4
      * @since 3.0 Changed signature from endsWith(String, String) to endsWith(CharSequence, CharSequence)
      */
-//    global static Boolean endsWith(final CharSequence str, final CharSequence suffix) {
-//        return endsWith(str, suffix, false);
-//    }
-//
+    global static Boolean endsWith(final String str, final String suffix) {
+        return endsWith(str, suffix, false);
+    }
+
     /**
      * <p>Check if a CharSequence ends with a specified suffix (optionally case insensitive).</p>
      *
@@ -1684,17 +1686,21 @@ global class StringUtils {
      * @return {@code true} if the CharSequence starts with the prefix or
      *  both {@code null}
      */
-//    private static Boolean endsWith(final CharSequence str, final CharSequence suffix, final Boolean ignoreCase) {
-//        if (str == null || suffix == null) {
-//            return str == suffix;
-//        }
-//        if (suffix.length() > str.length()) {
-//            return false;
-//        }
-//        final Integer strOffset = str.length() - suffix.length();
-//        return CharSequenceUtils.regionMatches(str, ignoreCase, strOffset, suffix, 0, suffix.length());
-//    }
-//
+    private static Boolean endsWith(final String str, final String suffix, final Boolean ignoreCase) {
+        if (str == null || suffix == null) {
+            return str == suffix;
+        }
+        if (suffix.length() > str.length()) {
+            return false;
+        }
+        final Integer strOffset = str.length() - suffix.length();
+        if (ignoreCase) {
+            str = str.toUpperCase();
+            suffix = suffix.toUpperCase();
+        }
+        return str.endsWith(suffix);
+    }
+
     /**
      * <p>Check if a CharSequence ends with any of the provided case-sensitive suffixes.</p>
      *
@@ -2068,21 +2074,21 @@ global class StringUtils {
      *           or {@code null} String if {@code str} is null
      * @since 3.6
      */
-//    global static String getDigits(final String str) {
-//        if (isEmpty(str)) {
-//            return str;
-//        }
-//        final Integer sz = str.length();
-//        final StringBuilder strDigits = new StringBuilder(sz);
-//        for (int i = 0; i < sz; i++) {
-//            final char tempChar = str.charAt(i);
-//            if (Character.isDigit(tempChar)) {
-//                strDigits.append(tempChar);
-//            }
-//        }
-//        return strDigits.toString();
-//    }
-//
+    global static String getDigits(final String str) {
+        if (isEmpty(str)) {
+            return str;
+        }
+        final Integer sz = str.length();
+        String strDigits = '';
+        for (Integer i = 0; i < sz; i++) {
+            final Integer tempChar = str.charAt(i);
+            if (CharUtils.isAsciiNumeric(tempChar)) {
+                strDigits += (tempChar);
+            }
+        }
+        return strDigits;
+    }
+
     /**
      * <p>Find the Fuzzy Distance which indicates the similarity score between two Strings.</p>
      *
@@ -2558,13 +2564,13 @@ global class StringUtils {
      * @since 2.0
      * @since 3.0 Changed signature from indexOf(String, String) to indexOf(CharSequence, CharSequence)
      */
-//    global static Integer indexOf(final CharSequence seq, final CharSequence searchSeq) {
-//        if (seq == null || searchSeq == null) {
-//            return INDEX_NOT_FOUND;
-//        }
-//        return CharSequenceUtils.indexOf(seq, searchSeq, 0);
-//    }
-//
+    global static Integer indexOf(final String seq, final String searchSeq) {
+        if (seq == null || searchSeq == null) {
+            return INDEX_NOT_FOUND;
+        }
+        return seq.indexOf(searchSeq);
+    }
+
     /**
      * <p>Finds the first index within a CharSequence, handling {@code null}.
      * This method uses {@link String#indexOf(String, int)} if possible.</p>
@@ -2642,13 +2648,13 @@ global class StringUtils {
      * @since 3.0 Changed signature from indexOf(String, int) to indexOf(CharSequence, int)
      * @since 3.6 Updated {@link CharSequenceUtils} call to behave more like {@code String}
      */
-//    global static Integer indexOf(final CharSequence seq, final Integer searchChar) {
-//        if (isEmpty(seq)) {
-//            return INDEX_NOT_FOUND;
-//        }
-//        return CharSequenceUtils.indexOf(seq, searchChar, 0);
-//    }
-//
+    global static Integer indexOf(final String seq, final Integer searchChar) {
+        if (isEmpty(seq)) {
+            return INDEX_NOT_FOUND;
+        }
+        return seq.indexOf(int2string(searchChar));
+    }
+
     /**
      *
      * Returns the index within {@code seq} of the first occurrence of the
@@ -2856,7 +2862,7 @@ global class StringUtils {
      * StringUtils.indexOfAnyBut('zzabyycdxx', new char[] {'z', 'a'} ) = 3
      * StringUtils.indexOfAnyBut('aba', new char[] {'z'} )             = 0
      * StringUtils.indexOfAnyBut('aba', new char[] {'a', 'b'} )        = -1
-//
+     * 
      * </pre>
      *
      * @param cs  the CharSequence to check, may be null
@@ -3306,19 +3312,19 @@ global class StringUtils {
      * @since 3.0 Changed signature from isAlpha(String) to isAlpha(CharSequence)
      * @since 3.0 Changed '' to return false and not true
      */
-//    global static Boolean isAlpha(final CharSequence cs) {
-//        if (isEmpty(cs)) {
-//            return false;
-//        }
-//        final Integer sz = cs.length();
-//        for (int i = 0; i < sz; i++) {
-//            if (!Character.isLetter(cs.charAt(i))) {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
-//
+    global static Boolean isAlpha(final String cs) {
+        if (isEmpty(cs)) {
+            return false;
+        }
+        final Integer sz = cs.length();
+        for (Integer i = 0; i < sz; i++) {
+            if (!CharUtils.isAsciiAlpha(cs.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * <p>Checks if the CharSequence contains only Unicode letters or digits.</p>
      *
@@ -3341,19 +3347,19 @@ global class StringUtils {
      * @since 3.0 Changed signature from isAlphanumeric(String) to isAlphanumeric(CharSequence)
      * @since 3.0 Changed '' to return false and not true
      */
-//    global static Boolean isAlphanumeric(final CharSequence cs) {
-//        if (isEmpty(cs)) {
-//            return false;
-//        }
-//        final Integer sz = cs.length();
-//        for (int i = 0; i < sz; i++) {
-//            if (!Character.isLetterOrDigit(cs.charAt(i))) {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
-//
+    global static Boolean isAlphanumeric(final String cs) {
+        if (isEmpty(cs)) {
+            return false;
+        }
+        final Integer sz = cs.length();
+        for (Integer i = 0; i < sz; i++) {
+            if (!CharUtils.isAsciiAlphanumeric(cs.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * <p>Checks if the CharSequence contains only Unicode letters, digits
      * or space ({@code ' '}).</p>
@@ -3731,7 +3737,7 @@ global class StringUtils {
     global static Boolean isNotEmpty(final String cs) {
         return !isEmpty(cs);
     }
-//
+
     /**
      * <p>Checks if the CharSequence contains only Unicode digits.
      * A decimal point is not a Unicode digit and returns false.</p>
@@ -3763,19 +3769,19 @@ global class StringUtils {
      * @since 3.0 Changed signature from isNumeric(String) to isNumeric(CharSequence)
      * @since 3.0 Changed '' to return false and not true
      */
-//    global static Boolean isNumeric(final CharSequence cs) {
-//        if (isEmpty(cs)) {
-//            return false;
-//        }
-//        final Integer sz = cs.length();
-//        for (int i = 0; i < sz; i++) {
-//            if (!Character.isDigit(cs.charAt(i))) {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
-//
+    global static Boolean isNumeric(final String cs) {
+        if (isEmpty(cs)) {
+            return false;
+        }
+        final Integer sz = cs.length();
+        for (Integer i = 0; i < sz; i++) {
+            if (!CharUtils.isAsciiNumeric(cs.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * <p>Checks if the CharSequence contains only Unicode digits or space
      * ({@code ' '}).
@@ -5296,7 +5302,7 @@ global class StringUtils {
         if (pads > PAD_LIMIT) {
             return leftPad(str, size, String.valueOf(padChar));
         }
-        return (repeatChar(padChar, pads) + (str));
+        return (repeat(padChar, pads) + (str));
     }
 
     /**
@@ -5499,22 +5505,22 @@ global class StringUtils {
      * @param len  the length of the required String
      * @return the middle characters, {@code null} if null String input
      */
-//    global static String mid(final String str, Integer pos, final Integer len) {
-//        if (str == null) {
-//            return null;
-//        }
-//        if (len < 0 || pos > str.length()) {
-//            return EMPTY;
-//        }
-//        if (pos < 0) {
-//            pos = 0;
-//        }
-//        if (str.length() <= pos + len) {
-//            return str.substring(pos);
-//        }
-//        return str.substring(pos, pos + len);
-//    }
-//
+    global static String mid(final String str, Integer pos, final Integer len) {
+        if (str == null) {
+            return null;
+        }
+        if (len < 0 || pos > str.length()) {
+            return EMPTY;
+        }
+        if (pos < 0) {
+            pos = 0;
+        }
+        if (str.length() <= pos + len) {
+            return str.substring(pos);
+        }
+        return str.substring(pos, pos + len);
+    }
+
 //    private static StringJoiner newStringJoiner(final char delimiter) {
 //        return new StringJoiner(String.valueOf(delimiter));
 //    }
@@ -6238,9 +6244,8 @@ global class StringUtils {
      * @param repeat  number of times to repeat char, negative treated as zero
      * @return String with repeated character
      * @see #repeat(String, int)
-     * @memo 移植の都合メソッド名を変更。
      */
-    global static String repeatChar(final Integer ch, final Integer repeat) {
+    global static String repeat(final Integer ch, final Integer repeat) {
         if (repeat <= 0) {
             return EMPTY;
         }
@@ -6278,13 +6283,13 @@ global class StringUtils {
             return str;
         }
         if (inputLength == 1 && repeat <= PAD_LIMIT) {
-            return repeatChar(str.charAt(0), repeat);
+            return repeat(str.charAt(0), repeat);
         }
 
         final Integer outputLength = inputLength * repeat;
         switch on inputLength {
             when 1 {
-                return repeatChar(str.charAt(0), repeat);
+                return repeat(str.charAt(0), repeat);
             }
             when 2 {
                 final Integer ch0 = str.charAt(0);
@@ -7213,20 +7218,20 @@ global class StringUtils {
      *  {@code null} if null String input
      * @since 2.0
      */
-//    global static String rightPad(final String str, final Integer size, final char padChar) {
-//        if (str == null) {
-//            return null;
-//        }
-//        final Integer pads = size - str.length();
-//        if (pads <= 0) {
-//            return str; // returns original String when possible
-//        }
-//        if (pads > PAD_LIMIT) {
-//            return rightPad(str, size, String.valueOf(padChar));
-//        }
-//        return str.concat(repeat(padChar, pads));
-//    }
-//
+    global static String rightPad(final String str, final Integer size, final Integer padChar) {
+        if (str == null) {
+            return null;
+        }
+        final Integer pads = size - str.length();
+        if (pads <= 0) {
+            return str; // returns original String when possible
+        }
+        if (pads > PAD_LIMIT) {
+            return rightPad(str, size, int2string(padChar));
+        }
+        return str + (repeat(padChar, pads));
+    }
+
     /**
      * <p>Right pad a String with a specified String.</p>
      *
@@ -7250,37 +7255,37 @@ global class StringUtils {
      * @return right padded String or original String if no padding is necessary,
      *  {@code null} if null String input
      */
-//    global static String rightPad(final String str, final Integer size, String padStr) {
-//        if (str == null) {
-//            return null;
-//        }
-//        if (isEmpty(padStr)) {
-//            padStr = SPACE;
-//        }
-//        final Integer padLen = padStr.length();
-//        final Integer strLen = str.length();
-//        final Integer pads = size - strLen;
-//        if (pads <= 0) {
-//            return str; // returns original String when possible
-//        }
-//        if (padLen == 1 && pads <= PAD_LIMIT) {
-//            return rightPad(str, size, padStr.charAt(0));
-//        }
-//
-//        if (pads == padLen) {
-//            return str.concat(padStr);
-//        } else if (pads < padLen) {
-//            return str.concat(padStr.substring(0, pads));
-//        } else {
-//            final char[] padding = new char[pads];
-//            final char[] padChars = padStr.toCharArray();
-//            for (int i = 0; i < pads; i++) {
-//                padding[i] = padChars[i % padLen];
-//            }
-//            return str.concat(new String(padding));
-//        }
-//    }
-//
+    global static String rightPad(final String str, final Integer size, String padStr) {
+        if (str == null) {
+            return null;
+        }
+        if (isEmpty(padStr)) {
+            padStr = SPACE;
+        }
+        final Integer padLen = padStr.length();
+        final Integer strLen = str.length();
+        final Integer pads = size - strLen;
+        if (pads <= 0) {
+            return str; // returns original String when possible
+        }
+        if (padLen == 1 && pads <= PAD_LIMIT) {
+            return rightPad(str, size, padStr.charAt(0));
+        }
+
+        if (pads == padLen) {
+            return str + (padStr);
+        } else if (pads < padLen) {
+            return str + (padStr.substring(0, pads));
+        } else {
+            final List<Integer> padding = new List<Integer>(pads);
+            final List<Integer> padChars = padStr.getChars();
+            for (Integer i = 0; i < pads; i++) {
+                padding[i] = padChars[Math.mod(i, padLen)];
+            }
+            return str + (String.fromCharArray(padding));
+        }
+    }
+
     /**
      * <p>Rotate (circular shift) a String of {@code shift} characters.</p>
      * <ul>
@@ -8048,10 +8053,10 @@ global class StringUtils {
      * @since 2.4
      * @since 3.0 Changed signature from startsWith(String, String) to startsWith(CharSequence, CharSequence)
      */
-//    global static Boolean startsWith(final CharSequence str, final CharSequence prefix) {
-//        return startsWith(str, prefix, false);
-//    }
-//
+    global static Boolean startsWith(final String str, final String prefix) {
+        return startsWith(str, prefix, false);
+    }
+
     /**
      * <p>Check if a CharSequence starts with a specified prefix (optionally case insensitive).</p>
      *
@@ -8063,18 +8068,22 @@ global class StringUtils {
      * @return {@code true} if the CharSequence starts with the prefix or
      *  both {@code null}
      */
-//    private static Boolean startsWith(final CharSequence str, final CharSequence prefix, final Boolean ignoreCase) {
-//        if (str == null || prefix == null) {
-//            return str == prefix;
-//        }
-//        // Get length once instead of twice in the unlikely case that it changes.
-//        final Integer preLen = prefix.length();
-//        if (preLen > str.length()) {
-//            return false;
-//        }
-//        return CharSequenceUtils.regionMatches(str, ignoreCase, 0, prefix, 0, preLen);
-//    }
-//
+    private static Boolean startsWith(final String str, final String prefix, final Boolean ignoreCase) {
+        if (str == null || prefix == null) {
+            return str == prefix;
+        }
+        // Get length once instead of twice in the unlikely case that it changes.
+        final Integer preLen = prefix.length();
+        if (preLen > str.length()) {
+            return false;
+        }
+        if (ignoreCase) {
+            str = str.toUpperCase();
+            prefix = prefix.toUpperCase();
+        }
+        return str.startsWith(prefix);
+    }
+
     /**
      * <p>Check if a CharSequence starts with any of the provided case-sensitive prefixes.</p>
      *
@@ -9103,10 +9112,10 @@ global class StringUtils {
      * @param str  the String to be trimmed, may be null
      * @return the trimmed string, {@code null} if null String input
      */
-//    global static String trim(final String str) {
-//        return str == null ? null : str.trim();
-//    }
-//
+    global static String trim(final String str) {
+        return str == null ? null : str.trim();
+    }
+
     /**
      * <p>Removes control characters (char &lt;= 32) from both
      * ends of this String returning an empty String ('') if the String
@@ -9128,10 +9137,10 @@ global class StringUtils {
      * @return the trimmed String, or an empty String if {@code null} input
      * @since 2.0
      */
-//    global static String trimToEmpty(final String str) {
-//        return str == null ? EMPTY : str.trim();
-//    }
-//
+    global static String trimToEmpty(final String str) {
+        return str == null ? EMPTY : str.trim();
+    }
+
     /**
      * <p>Removes control characters (char &lt;= 32) from both
      * ends of this String returning {@code null} if the String is
@@ -9154,11 +9163,11 @@ global class StringUtils {
      *  {@code null} if only chars &lt;= 32, empty or null String input
      * @since 2.0
      */
-//    global static String trimToNull(final String str) {
-//        final String ts = trim(str);
-//        return isEmpty(ts) ? null : ts;
-//    }
-//
+    global static String trimToNull(final String str) {
+        final String ts = trim(str);
+        return isEmpty(ts) ? null : ts;
+    }
+
     /**
      * <p>Truncates a String. This will turn
      * 'Now is the time for all good men' into 'Now is the time for'.</p>
@@ -9191,10 +9200,10 @@ global class StringUtils {
      * @throws IllegalArgumentException If {@code maxWidth} is less than {@code 0}
      * @since 3.5
      */
-//    global static String truncate(final String str, final Integer maxWidth) {
-//        return truncate(str, 0, maxWidth);
-//    }
-//
+    global static String truncate(final String str, final Integer maxWidth) {
+        return truncate(str, 0, maxWidth);
+    }
+
     /**
      * <p>Truncates a String. This will turn
      * 'Now is the time for all good men' into 'is the time for all'.</p>
@@ -9255,26 +9264,26 @@ global class StringUtils {
      * @throws IllegalArgumentException If {@code offset} or {@code maxWidth} is less than {@code 0}
      * @since 3.5
      */
-//    global static String truncate(final String str, final Integer offset, final Integer maxWidth) {
-//        if (offset < 0) {
-//            throw new IllegalArgumentException('offset cannot be negative');
-//        }
-//        if (maxWidth < 0) {
-//            throw new IllegalArgumentException('maxWith cannot be negative');
-//        }
-//        if (str == null) {
-//            return null;
-//        }
-//        if (offset > str.length()) {
-//            return EMPTY;
-//        }
-//        if (str.length() > maxWidth) {
-//            final Integer ix = Math.min(offset + maxWidth, str.length());
-//            return str.substring(offset, ix);
-//        }
-//        return str.substring(offset);
-//    }
-//
+    global static String truncate(final String str, final Integer offset, final Integer maxWidth) {
+        if (offset < 0) {
+            throw new IllegalArgumentException('offset cannot be negative');
+        }
+        if (maxWidth < 0) {
+            throw new IllegalArgumentException('maxWith cannot be negative');
+        }
+        if (str == null) {
+            return null;
+        }
+        if (offset > str.length()) {
+            return EMPTY;
+        }
+        if (str.length() > maxWidth) {
+            final Integer ix = Math.min(offset + maxWidth, str.length());
+            return str.substring(offset, ix);
+        }
+        return str.substring(offset);
+    }
+
     /**
      * <p>Uncapitalizes a String, changing the first character to lower case as
      * per {@link Character#toLowerCase(int)}. No other characters are changed.</p>
@@ -9346,21 +9355,21 @@ global class StringUtils {
      *          if it is not quoted properly with the wrapChar
      * @since 3.6
      */
-//    global static String unwrap(final String str, final char wrapChar) {
-//        if (isEmpty(str) || wrapChar == CharUtils.NUL || str.length() == 1) {
-//            return str;
-//        }
-//
-//        if (str.charAt(0) == wrapChar && str.charAt(str.length() - 1) == wrapChar) {
-//            final Integer startIndex = 0;
-//            final Integer endIndex = str.length() - 1;
-//
-//            return str.substring(startIndex + 1, endIndex);
-//        }
-//
-//        return str;
-//    }
-//
+    global static String unwrap(final String str, final Integer wrapChar) {
+        if (isEmpty(str) || wrapChar == CharUtils.NUL || str.length() == 1) {
+            return str;
+        }
+
+        if (str.charAt(0) == wrapChar && str.charAt(str.length() - 1) == wrapChar) {
+            final Integer startIndex = 0;
+            final Integer endIndex = str.length() - 1;
+
+            return str.substring(startIndex + 1, endIndex);
+        }
+
+        return str;
+    }
+
     /**
      * <p>
      * Unwraps a given string from anther string.
@@ -9388,24 +9397,24 @@ global class StringUtils {
      *          if it is not quoted properly with the wrapToken
      * @since 3.6
      */
-//    global static String unwrap(final String str, final String wrapToken) {
-//        if (isEmpty(str) || isEmpty(wrapToken) || str.length() < 2 * wrapToken.length()) {
-//            return str;
-//        }
-//
-//        if (startsWith(str, wrapToken) && endsWith(str, wrapToken)) {
-//            final Integer startIndex = str.indexOf(wrapToken);
-//            final Integer endIndex = str.lastIndexOf(wrapToken);
-//            final Integer wrapLength = wrapToken.length();
-//
-//            if (startIndex != -1 && endIndex != -1) {
-//                return str.substring(startIndex + wrapLength, endIndex);
-//            }
-//        }
-//
-//        return str;
-//    }
-//
+    global static String unwrap(final String str, final String wrapToken) {
+        if (isEmpty(str) || isEmpty(wrapToken) || str.length() < 2 * wrapToken.length()) {
+            return str;
+        }
+
+        if (startsWith(str, wrapToken) && endsWith(str, wrapToken)) {
+            final Integer startIndex = str.indexOf(wrapToken);
+            final Integer endIndex = str.lastIndexOf(wrapToken);
+            final Integer wrapLength = wrapToken.length();
+
+            if (startIndex != -1 && endIndex != -1) {
+                return str.substring(startIndex + wrapLength, endIndex);
+            }
+        }
+
+        return str;
+    }
+
     /**
      * <p>Converts a String to upper case as per {@link String#toUpperCase()}.</p>
      *
@@ -9425,13 +9434,13 @@ global class StringUtils {
      * @param str  the String to upper case, may be null
      * @return the upper cased String, {@code null} if null String input
      */
-//    global static String upperCase(final String str) {
-//        if (str == null) {
-//            return null;
-//        }
-//        return str.toUpperCase();
-//    }
-//
+    global static String upperCase(final String str) {
+        if (str == null) {
+            return null;
+        }
+        return str.toUpperCase();
+    }
+
     /**
      * <p>Converts a String to upper case as per {@link String#toUpperCase(Locale)}.</p>
      *
@@ -9463,10 +9472,10 @@ global class StringUtils {
      * @see String#valueOf(char[])
      * @since 3.9
      */
-//    global static String valueOf(final char[] value) {
-//        return value == null ? null : String.valueOf(value);
-//    }
-//
+    global static String valueOf(final Integer[] value) {
+        return value == null ? null : String.valueOf(value);
+    }
+
     /**
      * <p>
      * Wraps a string with a char.
@@ -9488,15 +9497,15 @@ global class StringUtils {
      * @return the wrapped string, or {@code null} if {@code str==null}
      * @since 3.4
      */
-//    global static String wrap(final String str, final char wrapWith) {
-//
-//        if (isEmpty(str) || wrapWith == CharUtils.NUL) {
-//            return str;
-//        }
-//
-//        return wrapWith + str + wrapWith;
-//    }
-//
+    global static String wrap(final String str, final Integer wrapWith) {
+
+        if (isEmpty(str) || wrapWith == null) {
+            return str;
+        }
+
+        return wrapWith + str + wrapWith;
+    }
+
     /**
      * <p>
      * Wraps a String with another String.
@@ -9526,15 +9535,15 @@ global class StringUtils {
      * @return wrapped String, {@code null} if null String input
      * @since 3.4
      */
-//    global static String wrap(final String str, final String wrapWith) {
-//
-//        if (isEmpty(str) || isEmpty(wrapWith)) {
-//            return str;
-//        }
-//
-//        return wrapWith.concat(str).concat(wrapWith);
-//    }
-//
+    global static String wrap(final String str, final String wrapWith) {
+
+        if (isEmpty(str) || isEmpty(wrapWith)) {
+            return str;
+        }
+
+        return wrapWith + str + (wrapWith);
+    }
+
     /**
      * <p>
      * Wraps a string with a char if that char is missing from the start or end of the given string.
@@ -9562,27 +9571,27 @@ global class StringUtils {
      * @return the wrapped string, or {@code null} if {@code str==null}
      * @since 3.5
      */
-//    global static String wrapIfMissing(final String str, final char wrapWith) {
-//        if (isEmpty(str) || wrapWith == CharUtils.NUL) {
-//            return str;
-//        }
-//        final Boolean wrapStart = str.charAt(0) != wrapWith;
-//        final Boolean wrapEnd = str.charAt(str.length() - 1) != wrapWith;
-//        if (!wrapStart && !wrapEnd) {
-//            return str;
-//        }
-//
-//        final StringBuilder builder = new StringBuilder(str.length() + 2);
-//        if (wrapStart) {
-//            builder.append(wrapWith);
-//        }
-//        builder.append(str);
-//        if (wrapEnd) {
-//            builder.append(wrapWith);
-//        }
-//        return builder.toString();
-//    }
-//
+    global static String wrapIfMissing(final String str, final Integer wrapWith) {
+        if (isEmpty(str) || wrapWith == null) {
+            return str;
+        }
+        final Boolean wrapStart = str.charAt(0) != wrapWith;
+        final Boolean wrapEnd = str.charAt(str.length() - 1) != wrapWith;
+        if (!wrapStart && !wrapEnd) {
+            return str;
+        }
+
+        String builder = '';
+        if (wrapStart) {
+            builder += (wrapWith);
+        }
+        builder += (str);
+        if (wrapEnd) {
+            builder += (wrapWith);
+        }
+        return builder;
+    }
+
     /**
      * <p>
      * Wraps a string with a string if that string is missing from the start or end of the given string.
@@ -9614,27 +9623,27 @@ global class StringUtils {
      * @return the wrapped string, or {@code null} if {@code str==null}
      * @since 3.5
      */
-//    global static String wrapIfMissing(final String str, final String wrapWith) {
-//        if (isEmpty(str) || isEmpty(wrapWith)) {
-//            return str;
-//        }
-//
-//        final Boolean wrapStart = !str.startsWith(wrapWith);
-//        final Boolean wrapEnd = !str.endsWith(wrapWith);
-//        if (!wrapStart && !wrapEnd) {
-//            return str;
-//        }
-//
-//        final StringBuilder builder = new StringBuilder(str.length() + wrapWith.length() + wrapWith.length());
-//        if (wrapStart) {
-//            builder.append(wrapWith);
-//        }
-//        builder.append(str);
-//        if (wrapEnd) {
-//            builder.append(wrapWith);
-//        }
-//        return builder.toString();
-//    }
+    global static String wrapIfMissing(final String str, final String wrapWith) {
+        if (isEmpty(str) || isEmpty(wrapWith)) {
+            return str;
+        }
+
+        final Boolean wrapStart = !str.startsWith(wrapWith);
+        final Boolean wrapEnd = !str.endsWith(wrapWith);
+        if (!wrapStart && !wrapEnd) {
+            return str;
+        }
+
+        String builder = '';
+        if (wrapStart) {
+            builder += (wrapWith);
+        }
+        builder += (str);
+        if (wrapEnd) {
+            builder += (wrapWith);
+        }
+        return builder;
+    }
 
     /**
      * <p>{@code StringUtils} instances should NOT be constructed in
