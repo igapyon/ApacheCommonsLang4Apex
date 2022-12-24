@@ -143,7 +143,4 @@ private class CharUtilsTest {
         System.assertEquals(true, CharUtils.compare('a'.charAt(0),'a'.charAt(0)) == 0);
         System.assertEquals(true, CharUtils.compare('b'.charAt(0),'a'.charAt(0)) > 0);
     }
-
-
-
 }
