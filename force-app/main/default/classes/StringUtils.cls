@@ -5395,13 +5395,13 @@ global class StringUtils {
      * @param str  the String to lower case, may be null
      * @return the lower cased String, {@code null} if null String input
      */
-//    global static String lowerCase(final String str) {
-//        if (str == null) {
-//            return null;
-//        }
-//        return str.toLowerCase();
-//    }
-//
+    global static String lowerCase(final String str) {
+        if (str == null) {
+            return null;
+        }
+        return str.toLowerCase();
+    }
+
     /**
      * <p>Converts a String to lower case as per {@link String#toLowerCase(Locale)}.</p>
      *
@@ -7314,23 +7314,23 @@ global class StringUtils {
      *          or {@code null} if null String input
      * @since 3.5
      */
-//    global static String rotate(final String str, final Integer shift) {
-//        if (str == null) {
-//            return null;
-//        }
-//
-//        final Integer strLen = str.length();
-//        if (shift == 0 || strLen == 0 || shift % strLen == 0) {
-//            return str;
-//        }
-//
-//        final StringBuilder builder = new StringBuilder(strLen);
-//        final Integer offset = - (shift % strLen);
-//        builder.append(substring(str, offset));
-//        builder.append(substring(str, 0, offset));
-//        return builder.toString();
-//    }
-//
+    global static String rotate(final String str, final Integer shift) {
+        if (str == null) {
+            return null;
+        }
+
+        final Integer strLen = str.length();
+        if (shift == 0 || strLen == 0 || Math.mod(shift, strLen) == 0) {
+            return str;
+        }
+
+        String builder = '';
+        final Integer offset = - (Math.mod(shift, strLen));
+        builder += (substring(str, offset));
+        builder += (substring(str, 0, offset));
+        return builder;
+    }
+
     /**
      * <p>Splits the provided text into an array, using whitespace as the
      * separator.
