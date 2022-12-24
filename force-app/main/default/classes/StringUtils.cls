@@ -7163,19 +7163,19 @@ global class StringUtils {
      * @param len  the length of the required String
      * @return the rightmost characters, {@code null} if null String input
      */
-//    global static String right(final String str, final Integer len) {
-//        if (str == null) {
-//            return null;
-//        }
-//        if (len < 0) {
-//            return EMPTY;
-//        }
-//        if (str.length() <= len) {
-//            return str;
-//        }
-//        return str.substring(str.length() - len);
-//    }
-//
+    global static String right(final String str, final Integer len) {
+        if (str == null) {
+            return null;
+        }
+        if (len < 0) {
+            return EMPTY;
+        }
+        if (str.length() <= len) {
+            return str;
+        }
+        return str.substring(str.length() - len);
+    }
+
     /**
      * <p>Right pad a String with spaces (' ').</p>
      *
@@ -7195,10 +7195,10 @@ global class StringUtils {
      * @return right padded String or original String if no padding is necessary,
      *  {@code null} if null String input
      */
-//    global static String rightPad(final String str, final Integer size) {
-//        return rightPad(str, size, ' ');
-//    }
-//
+    global static String rightPad(final String str, final Integer size) {
+        return rightPad(str, size, ' '.charAt(0));
+    }
+
     /**
      * <p>Right pad a String with a specified character.</p>
      *
