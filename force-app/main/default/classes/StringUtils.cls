@@ -3564,12 +3564,6 @@ global class StringUtils {
         return true;
     }
 
-    private static String int2string(final Integer val) {
-        List<Integer> nextOne = new List<Integer>();
-        nextOne.add(val);
-        return String.fromCharArray(nextOne);
-    }
-
     /**
      * <p>Checks if a CharSequence is empty ('') or null.</p>
      *
@@ -9624,16 +9618,25 @@ global class StringUtils {
 //        }
 //        return builder.toString();
 //    }
-//
-//    /**
-//     * <p>{@code StringUtils} instances should NOT be constructed in
-//     * standard programming. Instead, the class should be used as
-//     * {@code StringUtils.trim(' foo ');}.</p>
-//     *
-//     * <p>This constructor is public to permit tools that require a JavaBean
-//     * instance to operate.</p>
-//     */
-//    public StringUtils() {
-//    }
 
+    /**
+     * <p>{@code StringUtils} instances should NOT be constructed in
+     * standard programming. Instead, the class should be used as
+     * {@code StringUtils.trim(' foo ');}.</p>
+     *
+     * <p>This constructor is public to permit tools that require a JavaBean
+     * instance to operate.</p>
+     */
+    global StringUtils() {
+    }
+
+
+    /////////////////////////////////////////////////////
+    // additional service methods.
+
+    private static String int2string(final Integer val) {
+        List<Integer> nextOne = new List<Integer>();
+        nextOne.add(val);
+        return String.fromCharArray(nextOne);
+    }
 }

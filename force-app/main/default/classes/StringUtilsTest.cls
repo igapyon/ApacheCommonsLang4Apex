@@ -19,6 +19,11 @@
 @isTest(SeeAllData=false)
 private class StringUtilsTest {
     @isTest(SeeAllData=false)
+    static void constructorTest01() {
+        new StringUtils();
+    }
+
+    @isTest(SeeAllData=false)
     static void defaultStringTest01() {
         System.assertEquals('', StringUtils.defaultString(null));
         System.assertEquals('', StringUtils.defaultString(''));
