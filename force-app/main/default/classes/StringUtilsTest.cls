@@ -89,6 +89,9 @@ private class StringUtilsTest {
         }
     }
     
+    @isTest(SeeAllData=false)
+    static void abbreviate4args() {
+/*
     * StringUtils.abbreviate(null, null, *, *)                 = null
     * StringUtils.abbreviate('abcdefghijklmno', null, *, *)    = 'abcdefghijklmno'
     * StringUtils.abbreviate('', '...', 0, 4)                  = ''
@@ -103,64 +106,40 @@ private class StringUtilsTest {
     * StringUtils.abbreviate('abcdefghijklmno', '!', 12, 10)   = '!ghijklmno'
     * StringUtils.abbreviate('abcdefghij', 'abra', 0, 4)       = IllegalArgumentException
     * StringUtils.abbreviate('abcdefghij', '...', 5, 6)        = IllegalArgumentException
-    * </pre>
-    *
-    * @param str  the String to check, may be null
-    * @param abbrevMarker  the String used as replacement marker
-    * @param offset  left edge of source String
-    * @param maxWidth  maximum length of result String, must be at least 4
-    * @return abbreviated String, {@code null} if null String input
-    * @throws IllegalArgumentException if the width is too small
-    * @since 3.6
-    */
    global static String abbreviate(final String str, final String abbrevMarker, Integer offset, final Integer maxWidth) {
+*/
+    }
 
-
-
-    * <p>This abbreviation only occurs if the following criteria is met:</p>
-    * <ul>
-    * <li>Neither the String for abbreviation nor the replacement String are null or empty </li>
-    * <li>The length to truncate to is less than the length of the supplied String</li>
-    * <li>The length to truncate to is greater than 0</li>
-    * <li>The abbreviated String will have enough room for the length supplied replacement String
-    * and the first and last characters of the supplied String for abbreviation</li>
-    * </ul>
-    * <p>Otherwise, the returned String will be the same as the supplied String for abbreviation.
-    * </p>
-    *
-    * <pre>
+    @isTest(SeeAllData=false)
+    static void abbreviateMiddle() {
+/*
     * StringUtils.abbreviateMiddle(null, null, 0)      = null
     * StringUtils.abbreviateMiddle('abc', null, 0)      = 'abc'
     * StringUtils.abbreviateMiddle('abc', '.', 0)      = 'abc'
     * StringUtils.abbreviateMiddle('abc', '.', 3)      = 'abc'
     * StringUtils.abbreviateMiddle('abcdef', '.', 4)     = 'ab.f'
-    * </pre>
-    *
-    * @param str  the String to abbreviate, may be null
-    * @param middle the String to replace the middle characters with, may be null
-    * @param length the length to abbreviate {@code str} to.
-    * @return the abbreviated String if the above criteria is met, or the original String supplied for abbreviation.
-    * @since 2.5
-    */
    global static String abbreviateMiddle(final String str, final String middle, final Integer length) {
+    */
+    }
+
     
-
-
+    @isTest(SeeAllData=false)
+    static void center2args() {
+/*
     * StringUtils.center(null, *)   = null
     * StringUtils.center('', 4)     = '    '
     * StringUtils.center('ab', -1)  = 'ab'
     * StringUtils.center('ab', 4)   = ' ab '
     * StringUtils.center('abcd', 2) = 'abcd'
     * StringUtils.center('a', 4)    = ' a  '
-    * </pre>
-    *
-    * @param str  the String to center, may be null
-    * @param size  the Integer size of new String, negative treated as zero
-    * @return centered String, {@code null} if null String input
-    */
    global static String center(final String str, final Integer size) {
+    */
+}
 
 
+    @isTest(SeeAllData=false)
+    static void center3argsSII() {
+/*
     * StringUtils.center(null, *, *)     = null
     * StringUtils.center('', 4, ' ')     = '    '
     * StringUtils.center('ab', -1, ' ')  = 'ab'
@@ -168,18 +147,13 @@ private class StringUtilsTest {
     * StringUtils.center('abcd', 2, ' ') = 'abcd'
     * StringUtils.center('a', 4, ' ')    = ' a  '
     * StringUtils.center('a', 4, 'y')    = 'yayy'
-    * </pre>
-    *
-    * @param str  the String to center, may be null
-    * @param size  the Integer size of new String, negative treated as zero
-    * @param padChar  the character to pad the new String with
-    * @return centered String, {@code null} if null String input
-    * @since 2.0
-    */
    global static String center(String str, final Integer size, final Integer padChar) {
+    */
+    }
 
-
-
+    @isTest(SeeAllData=false)
+    static void center3argsSIS() {
+    /*
     * StringUtils.center(null, *, *)     = null
     * StringUtils.center('', 4, ' ')     = '    '
     * StringUtils.center('ab', -1, ' ')  = 'ab'
@@ -189,17 +163,13 @@ private class StringUtilsTest {
     * StringUtils.center('a', 4, 'yz')   = 'yayz'
     * StringUtils.center('abc', 7, null) = '  abc  '
     * StringUtils.center('abc', 7, '')   = '  abc  '
-    * </pre>
-    *
-    * @param str  the String to center, may be null
-    * @param size  the Integer size of new String, negative treated as zero
-    * @param padStr  the String to pad the new String with, must not be null or empty
-    * @return centered String, {@code null} if null String input
-    * @throws IllegalArgumentException if padStr is {@code null} or empty
-    */
    global static String center(String str, final Integer size, String padStr) {
+    */
+    }
 
-
+    @isTest(SeeAllData=false)
+    static void chomp() {
+/*
     * StringUtils.chomp(null)          = null
     * StringUtils.chomp('')            = ''
     * StringUtils.chomp('abc \r')      = 'abc '
@@ -211,15 +181,13 @@ private class StringUtilsTest {
     * StringUtils.chomp('\r')          = ''
     * StringUtils.chomp('\n')          = ''
     * StringUtils.chomp('\r\n')        = ''
-    * </pre>
-    *
-    * @param str  the String to chomp a newline from, may be null
-    * @return String without newline, {@code null} if null String input
-    */
    global static String chomp(final String str) {
+    */
+    }
 
-
-
+    @isTest(SeeAllData=false)
+    static void compare2args() {
+    /*
     * StringUtils.compare(null, null)   = 0
     * StringUtils.compare(null , 'a')   &lt; 0
     * StringUtils.compare('a', null)    &gt; 0
@@ -228,20 +196,13 @@ private class StringUtilsTest {
     * StringUtils.compare('b', 'a')     &gt; 0
     * StringUtils.compare('a', 'B')     &gt; 0
     * StringUtils.compare('ab', 'abc')  &lt; 0
-    * </pre>
-    *
-    * @see #compare(String, String, Boolean)
-    * @see String#compareTo(String)
-    * @param str1  the String to compare from
-    * @param str2  the String to compare to
-    * @return &lt; 0, 0, &gt; 0, if {@code str1} is respectively less, equal or greater than {@code str2}
-    * @since 3.5
-    */
    global static Integer compare(final String str1, final String str2) {
+    */
+    }
 
-
-
-
+    @isTest(SeeAllData=false)
+    static void compare3args() {
+    /*
     * StringUtils.compare(null, null, *)     = 0
     * StringUtils.compare(null , 'a', true)  &lt; 0
     * StringUtils.compare(null , 'a', false) &gt; 0
@@ -252,20 +213,13 @@ private class StringUtilsTest {
     * StringUtils.compare('b', 'a', *)       &gt; 0
     * StringUtils.compare('a', 'B', *)       &gt; 0
     * StringUtils.compare('ab', 'abc', *)    &lt; 0
-    * </pre>
-    *
-    * @see String#compareTo(String)
-    * @param str1  the String to compare from
-    * @param str2  the String to compare to
-    * @param nullIsLess  whether consider {@code null} value less than non-{@code null} value
-    * @return &lt; 0, 0, &gt; 0, if {@code str1} is respectively less, equal ou greater than {@code str2}
-    * @since 3.5
-    */
    global static Integer compare(final String str1, final String str2, final Boolean nullIsLess) {
+    */
+}
      
-
-
-
+    @isTest(SeeAllData=false)
+    static void compareIgnoreCase2args() {
+    /*
     * StringUtils.compareIgnoreCase(null, null)   = 0
     * StringUtils.compareIgnoreCase(null , 'a')   &lt; 0
     * StringUtils.compareIgnoreCase('a', null)    &gt; 0
@@ -276,19 +230,13 @@ private class StringUtilsTest {
     * StringUtils.compareIgnoreCase('a', 'B')     &lt; 0
     * StringUtils.compareIgnoreCase('A', 'b')     &lt; 0
     * StringUtils.compareIgnoreCase('ab', 'ABC')  &lt; 0
-    * </pre>
-    *
-    * @see #compareIgnoreCase(String, String, Boolean)
-    * @see String#compareToIgnoreCase(String)
-    * @param str1  the String to compare from
-    * @param str2  the String to compare to
-    * @return &lt; 0, 0, &gt; 0, if {@code str1} is respectively less, equal ou greater than {@code str2},
-    *          ignoring case differences.
-    * @since 3.5
-    */
    global static Integer compareIgnoreCase(final String str1, final String str2) {
+    */
+    }
 
-
+    @isTest(SeeAllData=false)
+    static void compareIgnoreCase3args() {
+    /*
     * StringUtils.compareIgnoreCase(null, null, *)     = 0
     * StringUtils.compareIgnoreCase(null , 'a', true)  &lt; 0
     * StringUtils.compareIgnoreCase(null , 'a', false) &gt; 0
@@ -301,39 +249,20 @@ private class StringUtilsTest {
     * StringUtils.compareIgnoreCase('a', 'B', *)       &lt; 0
     * StringUtils.compareIgnoreCase('A', 'b', *)       &lt; 0
     * StringUtils.compareIgnoreCase('ab', 'abc', *)    &lt; 0
-    * </pre>
-    *
-    * @see String#compareToIgnoreCase(String)
-    * @param str1  the String to compare from
-    * @param str2  the String to compare to
-    * @param nullIsLess  whether consider {@code null} value less than non-{@code null} value
-    * @return &lt; 0, 0, &gt; 0, if {@code str1} is respectively less, equal ou greater than {@code str2},
-    *          ignoring case differences.
-    * @since 3.5
-    */
    global static Integer compareIgnoreCase(final String str1, final String str2, final Boolean nullIsLess) {
+    */
+    }
     
-
-
-
+    @isTest(SeeAllData=false)
+    static void contains() {
+/*
     * StringUtils.contains(null, *)    = false
     * StringUtils.contains('', *)      = false
     * StringUtils.contains('abc', 'a') = true
     * StringUtils.contains('abc', 'z') = false
-    * </pre>
-    *
-    * @param seq  the CharSequence to check, may be null
-    * @param searchChar  the character to find
-    * @return true if the CharSequence contains the search character,
-    *  false if not or {@code null} string input
-    * @since 2.0
-    * @since 3.0 Changed signature from contains(String, int) to contains(CharSequence, int)
-    */
    global static Boolean contains(final String seq, final Integer searchChar) {
-
-
-
-
+    */
+    }
 
     @isTest(SeeAllData=false)
     static void defaultStringTest01() {
@@ -349,10 +278,9 @@ private class StringUtilsTest {
         System.assertEquals('bat', StringUtils.defaultString('bat', 'NULL'));
     }
 
-
-
-
-
+    @isTest(SeeAllData=false)
+    static void endsWith2args() {
+    /*
     * StringUtils.endsWith(null, null)      = true
     * StringUtils.endsWith(null, 'def')     = false
     * StringUtils.endsWith('abcdef', null)  = false
@@ -360,42 +288,31 @@ private class StringUtilsTest {
     * StringUtils.endsWith('ABCDEF', 'def') = false
     * StringUtils.endsWith('ABCDEF', 'cde') = false
     * StringUtils.endsWith('ABCDEF', '')    = true
-    * </pre>
-    *
-    * @see java.lang.String#endsWith(String)
-    * @param str  the CharSequence to check, may be null
-    * @param suffix the suffix to find, may be null
-    * @return {@code true} if the CharSequence ends with the suffix, case sensitive, or
-    *  both {@code null}
-    * @since 2.4
-    * @since 3.0 Changed signature from endsWith(String, String) to endsWith(CharSequence, CharSequence)
-    */
    global static Boolean endsWith(final String str, final String suffix) {
+    */
+    }
 
+    @isTest(SeeAllData=false)
+    static void XXXXX() {
+//        private static Boolean endsWith(final String str, final String suffix, final Boolean ignoreCase) {
+    }
 
-
-    private static Boolean endsWith(final String str, final String suffix, final Boolean ignoreCase) {
-
-
+    @isTest(SeeAllData=false)
+    static void XXXXX() {
+    }
+    
 
         * StringUtils.equals(null, null)   = true
         * StringUtils.equals(null, 'abc')  = false
         * StringUtils.equals('abc', null)  = false
         * StringUtils.equals('abc', 'abc') = true
         * StringUtils.equals('abc', 'ABC') = false
-        * </pre>
-        *
-        * @param cs1  the first CharSequence, may be {@code null}
-        * @param cs2  the second CharSequence, may be {@code null}
-        * @return {@code true} if the CharSequences are equal (case-sensitive), or both {@code null}
-        * @since 3.0 Changed signature from equals(String, String) to equals(CharSequence, CharSequence)
-        * @see Object#equals(Object)
-        * @see #equalsIgnoreCase(CharSequence, CharSequence)
-        */
        global static Boolean equals(final String cs1, final String cs2) {
-           if (cs1 == cs2) {
 
-
+    @isTest(SeeAllData=false)
+    static void XXXXX() {
+    }
+        
 
 
      * StringUtils.equalsIgnoreCase(null, null)   = true
@@ -403,17 +320,12 @@ private class StringUtilsTest {
      * StringUtils.equalsIgnoreCase('abc', null)  = false
      * StringUtils.equalsIgnoreCase('abc', 'abc') = true
      * StringUtils.equalsIgnoreCase('abc', 'ABC') = true
-     * </pre>
-     *
-     * @param cs1  the first CharSequence, may be {@code null}
-     * @param cs2  the second CharSequence, may be {@code null}
-     * @return {@code true} if the CharSequences are equal (case-insensitive), or both {@code null}
-     * @since 3.0 Changed signature from equalsIgnoreCase(String, String) to equalsIgnoreCase(CharSequence, CharSequence)
-     * @see #equals(CharSequence, CharSequence)
-     */
     global static Boolean equalsIgnoreCase(final String cs1, final String cs2) {
 
-
+    @isTest(SeeAllData=false)
+    static void XXXXX() {
+    }
+    
 
 
      * StringUtils.getDigits(null)  = null
@@ -423,18 +335,13 @@ private class StringUtilsTest {
      * StringUtils.getDigits('1123~45') = '112345'
      * StringUtils.getDigits('(541) 754-3010') = '5417543010'
      * StringUtils.getDigits('\u0967\u0968\u0969') = '\u0967\u0968\u0969'
-     * </pre>
-     *
-     * @param str the String to extract digits from, may be null
-     * @return String with only digits,
-     *           or an empty ('') String if no digits found,
-     *           or {@code null} String if {@code str} is null
-     * @since 3.6
-     */
     global static String getDigits(final String str) {
 
 
-
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
 
      * StringUtils.indexOf(null, *)          = -1
      * StringUtils.indexOf(*, null)          = -1
@@ -444,37 +351,23 @@ private class StringUtilsTest {
      * StringUtils.indexOf('aabaabaa', 'b')  = 2
      * StringUtils.indexOf('aabaabaa', 'ab') = 1
      * StringUtils.indexOf('aabaabaa', '')   = 0
-     * </pre>
-     *
-     * @param seq  the CharSequence to check, may be null
-     * @param searchSeq  the CharSequence to find, may be null
-     * @return the first index of the search CharSequence,
-     *  -1 if no match or {@code null} string input
-     * @since 2.0
-     * @since 3.0 Changed signature from indexOf(String, String) to indexOf(CharSequence, CharSequence)
-     */
     global static Integer indexOf(final String seq, final String searchSeq) {
 
-
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
 
      * StringUtils.indexOf(null, *)         = -1
      * StringUtils.indexOf('', *)           = -1
      * StringUtils.indexOf('aabaabaa', 'a') = 0
      * StringUtils.indexOf('aabaabaa', 'b') = 2
-     * </pre>
-     *
-     * @param seq  the CharSequence to check, may be null
-     * @param searchChar  the character to find
-     * @return the first index of the search character,
-     *  -1 if no match or {@code null} string input
-     * @since 2.0
-     * @since 3.0 Changed signature from indexOf(String, int) to indexOf(CharSequence, int)
-     * @since 3.6 Updated {@link CharSequenceUtils} call to behave more like {@code String}
-     */
     global static Integer indexOf(final String seq, final Integer searchChar) {
 
-
-
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
 
 
      * StringUtils.isAllLowerCase(null)   = false
@@ -485,16 +378,12 @@ private class StringUtilsTest {
      * StringUtils.isAllLowerCase('ab c') = false
      * StringUtils.isAllLowerCase('ab1c') = false
      * StringUtils.isAllLowerCase('ab/c') = false
-     * </pre>
-     *
-     * @param cs  the CharSequence to check, may be null
-     * @return {@code true} if only contains lowercase characters, and is non-null
-     * @since 2.5
-     * @since 3.0 Changed signature from isAllLowerCase(String) to isAllLowerCase(CharSequence)
-     */
     global static Boolean isAllLowerCase(final String cs) {
 
-
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
 
      * StringUtils.isAllUpperCase(null)   = false
      * StringUtils.isAllUpperCase('')     = false
@@ -504,16 +393,12 @@ private class StringUtilsTest {
      * StringUtils.isAllUpperCase('A C')  = false
      * StringUtils.isAllUpperCase('A1C')  = false
      * StringUtils.isAllUpperCase('A/C')  = false
-     * </pre>
-     *
-     * @param cs the CharSequence to check, may be null
-     * @return {@code true} if only contains uppercase characters, and is non-null
-     * @since 2.5
-     * @since 3.0 Changed signature from isAllUpperCase(String) to isAllUpperCase(CharSequence)
-     */
     global static Boolean isAllUpperCase(final String cs) {
 
-
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
 
      * StringUtils.isAlpha(null)   = false
      * StringUtils.isAlpha('')     = false
@@ -521,16 +406,12 @@ private class StringUtilsTest {
      * StringUtils.isAlpha('abc')  = true
      * StringUtils.isAlpha('ab2c') = false
      * StringUtils.isAlpha('ab-c') = false
-     * </pre>
-     *
-     * @param cs  the CharSequence to check, may be null
-     * @return {@code true} if only contains letters, and is non-null
-     * @since 3.0 Changed signature from isAlpha(String) to isAlpha(CharSequence)
-     * @since 3.0 Changed '' to return false and not true
-     */
     global static Boolean isAlpha(final String cs) {
 
-
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
 
      * StringUtils.isAlphanumeric(null)   = false
      * StringUtils.isAlphanumeric('')     = false
@@ -539,17 +420,12 @@ private class StringUtilsTest {
      * StringUtils.isAlphanumeric('ab c') = false
      * StringUtils.isAlphanumeric('ab2c') = true
      * StringUtils.isAlphanumeric('ab-c') = false
-     * </pre>
-     *
-     * @param cs  the CharSequence to check, may be null
-     * @return {@code true} if only contains letters or digits,
-     *  and is non-null
-     * @since 3.0 Changed signature from isAlphanumeric(String) to isAlphanumeric(CharSequence)
-     * @since 3.0 Changed '' to return false and not true
-     */
     global static Boolean isAlphanumeric(final String cs) {
 
-
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
 
      @isTest(SeeAllData=false)
      static void isAnyBlankTest() {
@@ -566,7 +442,10 @@ private class StringUtilsTest {
          System.assertEquals(false, StringUtils.isAnyBlank('foo', 'bar'));
      }
 
-
+     @isTest(SeeAllData=false)
+     static void XXXXX() {
+     }
+ 
 
      * StringUtils.isAnyEmpty((String) null)    = true
      * StringUtils.isAnyEmpty((String[]) null)  = false
@@ -578,15 +457,12 @@ private class StringUtilsTest {
      * StringUtils.isAnyEmpty('foo', 'bar')     = false
      * StringUtils.isAnyEmpty(new String[]{})   = false
      * StringUtils.isAnyEmpty(new String[]{''}) = true
-     * </pre>
-     *
-     * @param css  the CharSequences to check, may be null or empty
-     * @return {@code true} if any of the CharSequences are empty or null
-     * @since 3.2
-     */
     global static Boolean isAnyEmpty(final String cs1, String cs2) {
 
-
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
 
 
      * StringUtils.isAsciiPrintable(null)     = false
@@ -600,14 +476,6 @@ private class StringUtilsTest {
      * StringUtils.isAsciiPrintable('\u007e') = true
      * StringUtils.isAsciiPrintable('\u007f') = false
      * StringUtils.isAsciiPrintable('Ceki G\u00fclc\u00fc') = false
-     * </pre>
-     *
-     * @param cs the CharSequence to check, may be null
-     * @return {@code true} if every character is in the range
-     *  32 thru 126
-     * @since 2.1
-     * @since 3.0 Changed signature from isAsciiPrintable(String) to isAsciiPrintable(CharSequence)
-     */
     global static Boolean isAsciiPrintable(final String cs) {
 
     @isTest(SeeAllData=false)
@@ -619,24 +487,21 @@ private class StringUtilsTest {
         System.assertEquals(false, StringUtils.isBlank('  bob  '));
     }
 
+    @isTest(SeeAllData=false)
+    static void XXXXX() {
+    }
+
 
     * StringUtils.isEmpty(null)      = true
     * StringUtils.isEmpty('')        = true
     * StringUtils.isEmpty(' ')       = false
     * StringUtils.isEmpty('bob')     = false
     * StringUtils.isEmpty('  bob  ') = false
-    * </pre>
-    *
-    * <p>NOTE: This method changed in Lang version 2.0.
-    * It no longer trims the CharSequence.
-    * That functionality is available in isBlank().</p>
-    *
-    * @param cs  the CharSequence to check, may be null
-    * @return {@code true} if the CharSequence is empty or null
-    * @since 3.0 Changed signature from isEmpty(String) to isEmpty(CharSequence)
-    */
    global static Boolean isEmpty(final String cs) {
 
+    @isTest(SeeAllData=false)
+    static void XXXXX() {
+    }
 
 
     * StringUtils.isMixedCase(null)    = false
@@ -648,12 +513,6 @@ private class StringUtilsTest {
     * StringUtils.isMixedCase('A1c')   = true
     * StringUtils.isMixedCase('a/C')   = true
     * StringUtils.isMixedCase('aC\t')  = true
-    * </pre>
-    *
-    * @param cs the CharSequence to check, may be null
-    * @return {@code true} if the CharSequence contains both uppercase and lowercase characters
-    * @since 3.5
-    */
    global static Boolean isMixedCase(final String cs) {
 
 
@@ -682,31 +541,23 @@ private class StringUtilsTest {
     * StringUtils.isNotBlank(' ')       = false
     * StringUtils.isNotBlank('bob')     = true
     * StringUtils.isNotBlank('  bob  ') = true
-    * </pre>
-    *
-    * @param cs  the CharSequence to check, may be null
-    * @return {@code true} if the CharSequence is
-    *  not empty and not null and not whitespace only
-    * @since 2.0
-    * @since 3.0 Changed signature from isNotBlank(String) to isNotBlank(CharSequence)
-    */
    global static Boolean isNotBlank(final String cs) {
 
 
+    @isTest(SeeAllData=false)
+    static void XXXXX() {
+    }
 
     * StringUtils.isNotEmpty(null)      = false
     * StringUtils.isNotEmpty('')        = false
     * StringUtils.isNotEmpty(' ')       = true
     * StringUtils.isNotEmpty('bob')     = true
     * StringUtils.isNotEmpty('  bob  ') = true
-    * </pre>
-    *
-    * @param cs  the CharSequence to check, may be null
-    * @return {@code true} if the CharSequence is not empty and not null
-    * @since 3.0 Changed signature from isNotEmpty(String) to isNotEmpty(CharSequence)
-    */
    global static Boolean isNotEmpty(final String cs) {
 
+    @isTest(SeeAllData=false)
+    static void XXXXX() {
+    }
 
     StringUtils.isNumeric(null)   = false
      * StringUtils.isNumeric('')     = false
@@ -719,15 +570,12 @@ private class StringUtilsTest {
      * StringUtils.isNumeric('12.3') = false
      * StringUtils.isNumeric('-123') = false
      * StringUtils.isNumeric('+123') = false
-     * </pre>
-     *
-     * @param cs  the CharSequence to check, may be null
-     * @return {@code true} if only contains digits, and is non-null
-     * @since 3.0 Changed signature from isNumeric(String) to isNumeric(CharSequence)
-     * @since 3.0 Changed '' to return false and not true
-     */
     global static Boolean isNumeric(final String cs) {
 
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
 
         StringUtils.isWhitespace(null)   = false
      * StringUtils.isWhitespace('')     = true
@@ -735,16 +583,13 @@ private class StringUtilsTest {
      * StringUtils.isWhitespace('abc')  = false
      * StringUtils.isWhitespace('ab2c') = false
      * StringUtils.isWhitespace('ab-c') = false
-     * </pre>
-     *
-     * @param cs  the CharSequence to check, may be null
-     * @return {@code true} if only contains whitespace, and is non-null
-     * @since 2.0
-     * @since 3.0 Changed signature from isWhitespace(String) to isWhitespace(CharSequence)
-     */
     global static Boolean isWhitespace(final String cs) {
 
 
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
         StringUtils.lastIndexOf(null, *)          = -1
      * StringUtils.lastIndexOf(*, null)          = -1
      * StringUtils.lastIndexOf('', '')           = 0
@@ -752,18 +597,12 @@ private class StringUtilsTest {
      * StringUtils.lastIndexOf('aabaabaa', 'b')  = 5
      * StringUtils.lastIndexOf('aabaabaa', 'ab') = 4
      * StringUtils.lastIndexOf('aabaabaa', '')   = 8
-     * </pre>
-     *
-     * @param seq  the CharSequence to check, may be null
-     * @param searchSeq  the CharSequence to find, may be null
-     * @return the last index of the search String,
-     *  -1 if no match or {@code null} string input
-     * @since 2.0
-     * @since 3.0 Changed signature from lastIndexOf(String, String) to lastIndexOf(CharSequence, CharSequence)
-     */
     global static Integer lastIndexOf(final String seq, final String searchSeq) {
 
-
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
 
 
      * StringUtils.lastIndexOf(null, *, *)          = -1
@@ -778,51 +617,36 @@ private class StringUtilsTest {
      * StringUtils.lastIndexOf('aabaabaa', 'b', 1)  = -1
      * StringUtils.lastIndexOf('aabaabaa', 'b', 2)  = 2
      * StringUtils.lastIndexOf('aabaabaa', 'ba', 2)  = 2
-     * </pre>
-     *
-     * @param seq  the CharSequence to check, may be null
-     * @param searchSeq  the CharSequence to find, may be null
-     * @param startPos  the start position, negative treated as zero
-     * @return the last index of the search CharSequence (always &le; startPos),
-     *  -1 if no match or {@code null} string input
-     * @since 2.0
-     * @since 3.0 Changed signature from lastIndexOf(String, String, int) to lastIndexOf(CharSequence, CharSequence, int)
-     */
     global static Integer lastIndexOf(final String seq, final String searchSeq, final Integer startPos) {
       
-
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
 
         StringUtils.lastIndexOf(null, *)         = -1
      * StringUtils.lastIndexOf('', *)           = -1
      * StringUtils.lastIndexOf('aabaabaa', 'a') = 7
      * StringUtils.lastIndexOf('aabaabaa', 'b') = 5
-     * </pre>
-     *
-     * @param seq  the {@code CharSequence} to check, may be null
-     * @param searchChar  the character to find
-     * @return the last index of the search character,
-     *  -1 if no match or {@code null} string input
-     * @since 2.0
-     * @since 3.0 Changed signature from lastIndexOf(String, int) to lastIndexOf(CharSequence, int)
-     * @since 3.6 Updated {@link CharSequenceUtils} call to behave more like {@code String}
-     */
     global static Integer lastIndexOf(final String seq, final Integer searchChar) {
 
 
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
         StringUtils.left(null, *)    = null
      * StringUtils.left(*, -ve)     = ''
      * StringUtils.left('', *)      = ''
      * StringUtils.left('abc', 0)   = ''
      * StringUtils.left('abc', 2)   = 'ab'
      * StringUtils.left('abc', 4)   = 'abc'
-     * </pre>
-     *
-     * @param str  the String to get the leftmost characters from, may be null
-     * @param len  the length of the required String
-     * @return the leftmost characters, {@code null} if null String input
-     */
     global static String left(final String str, final Integer len) {
 
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
 
 
      * StringUtils.leftPad(null, *)   = null
@@ -831,15 +655,12 @@ private class StringUtilsTest {
      * StringUtils.leftPad('bat', 5)  = '  bat'
      * StringUtils.leftPad('bat', 1)  = 'bat'
      * StringUtils.leftPad('bat', -1) = 'bat'
-     * </pre>
-     *
-     * @param str  the String to pad out, may be null
-     * @param size  the size to pad to
-     * @return left padded String or original String if no padding is necessary,
-     *  {@code null} if null String input
-     */
     global static String leftPad(final String str, final Integer size) {
 
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
 
         StringUtils.leftPad(null, *, *)     = null
      * StringUtils.leftPad('', 3, 'z')     = 'zzz'
@@ -847,18 +668,13 @@ private class StringUtilsTest {
      * StringUtils.leftPad('bat', 5, 'z')  = 'zzbat'
      * StringUtils.leftPad('bat', 1, 'z')  = 'bat'
      * StringUtils.leftPad('bat', -1, 'z') = 'bat'
-     * </pre>
-     *
-     * @param str  the String to pad out, may be null
-     * @param size  the size to pad to
-     * @param padChar  the character to pad with
-     * @return left padded String or original String if no padding is necessary,
-     *  {@code null} if null String input
-     * @since 2.0
-     */
     global static String leftPad(final String str, final Integer size, final Integer/*char*/ padChar) {
       
 
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
 
         StringUtils.leftPad(null, *, *)      = null
      * StringUtils.leftPad('', 3, 'z')      = 'zzz'
@@ -869,21 +685,19 @@ private class StringUtilsTest {
      * StringUtils.leftPad('bat', -1, 'yz') = 'bat'
      * StringUtils.leftPad('bat', 5, null)  = '  bat'
      * StringUtils.leftPad('bat', 5, '')    = '  bat'
-     * </pre>
-     *
-     * @param str  the String to pad out, may be null
-     * @param size  the size to pad to
-     * @param padStr  the String to pad with, null or empty treated as single space
-     * @return left padded String or original String if no padding is necessary,
-     *  {@code null} if null String input
-     */
     global static String leftPad(final String str, final Integer size, String padStr) {
 
 
-
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
         global static Integer length(final String cs) {
 
-
+            @isTest(SeeAllData=false)
+            static void XXXXX() {
+            }
+        
 
 
 
@@ -892,20 +706,13 @@ private class StringUtilsTest {
      * StringUtils.lowerCase(null)  = null
      * StringUtils.lowerCase('')    = ''
      * StringUtils.lowerCase('aBc') = 'abc'
-     * </pre>
-     *
-     * <p><strong>Note:</strong> As described in the documentation for {@link String#toLowerCase()},
-     * the result of this method is affected by the current locale.
-     * For platform-independent case transformations, the method {@link #lowerCase(String, Locale)}
-     * should be used with a specific locale (e.g. {@link Locale#ENGLISH}).</p>
-     *
-     * @param str  the String to lower case, may be null
-     * @return the lower cased String, {@code null} if null String input
-     */
     global static String lowerCase(final String str) {
 
 
-
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
 
      * StringUtils.mid(null, *, *)    = null
      * StringUtils.mid(*, *, -ve)     = ''
@@ -925,7 +732,10 @@ private class StringUtilsTest {
     global static String mid(final String str, Integer pos, final Integer len) {
 
 
-
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
 
      * StringUtils.repeat(null, 2) = null
      * StringUtils.repeat('', 0)   = ''
@@ -943,7 +753,10 @@ private class StringUtilsTest {
     global static String repeat(final String str, final Integer repeat) {
         // Performance tuned for 2.0 (JDK1.4)
 
-
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
 
         * StringUtils.right(null, *)    = null
         * StringUtils.right(*, -ve)     = ''
@@ -959,7 +772,10 @@ private class StringUtilsTest {
         */
        global static String right(final String str, final Integer len) {
 
-
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
 
      * StringUtils.rightPad(null, *)   = null
      * StringUtils.rightPad('', 3)     = '   '
@@ -976,7 +792,10 @@ private class StringUtilsTest {
      */
     global static String rightPad(final String str, final Integer size) {
 
-
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
         StringUtils.rightPad(null, *, *)     = null
      * StringUtils.rightPad('', 3, 'z')     = 'zzz'
      * StringUtils.rightPad('bat', 3, 'z')  = 'bat'
@@ -995,7 +814,10 @@ private class StringUtilsTest {
     global static String rightPad(final String str, final Integer size, final Integer padChar) {
       
 
-
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
 
      * StringUtils.rightPad(null, *, *)      = null
      * StringUtils.rightPad('', 3, 'z')      = 'zzz'
@@ -1016,7 +838,10 @@ private class StringUtilsTest {
      */
     global static String rightPad(final String str, final Integer size, String padStr) {
 
-
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
 
         StringUtils.rotate(null, *)        = null
      * StringUtils.rotate('', *)          = ''
@@ -1038,7 +863,10 @@ private class StringUtilsTest {
      */
     global static String rotate(final String str, final Integer shift) {
 
-
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
 
         StringUtils.startsWith(null, null)      = true
      * StringUtils.startsWith(null, 'abc')     = false
@@ -1057,11 +885,17 @@ private class StringUtilsTest {
      */
     global static Boolean startsWith(final String str, final String prefix) {
 
-
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
 
         private static Boolean startsWith(final String str, final String prefix, final Boolean ignoreCase) {
 
-
+            @isTest(SeeAllData=false)
+            static void XXXXX() {
+            }
+        
 
             StringUtils.substring(null, *)   = null
      * StringUtils.substring('', *)     = ''
@@ -1079,7 +913,10 @@ private class StringUtilsTest {
      */
     global static String substring(final String str, Integer start) {
 
-
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
 
         StringUtils.substring(null, *, *)    = null
      * StringUtils.substring('', * ,  *)    = '';
@@ -1102,7 +939,10 @@ private class StringUtilsTest {
      */
     global static String substring(final String str, Integer start, Integer end1) {
 
-
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
 
         StringUtils.trim(null)          = null
      * StringUtils.trim('')            = ''
@@ -1116,7 +956,10 @@ private class StringUtilsTest {
      */
     global static String trim(final String str) {
 
-
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
         StringUtils.trimToEmpty(null)          = ''
      * StringUtils.trimToEmpty('')            = ''
      * StringUtils.trimToEmpty('     ')       = ''
@@ -1130,7 +973,11 @@ private class StringUtilsTest {
      */
     global static String trimToEmpty(final String str) {
 
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
 
+        
         StringUtils.trimToNull(null)          = null
      * StringUtils.trimToNull('')            = null
      * StringUtils.trimToNull('     ')       = null
@@ -1145,6 +992,10 @@ private class StringUtilsTest {
      */
     global static String trimToNull(final String str) {
 
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
 
         StringUtils.truncate(null, 0)       = null
      * StringUtils.truncate(null, 2)       = null
@@ -1165,6 +1016,10 @@ private class StringUtilsTest {
     global static String truncate(final String str, final Integer maxWidth) {
 
 
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
         StringUtils.truncate(null, 0, 0) = null
         * StringUtils.truncate(null, 2, 4) = null
         * StringUtils.truncate('', 0, 10) = ''
@@ -1206,7 +1061,10 @@ private class StringUtilsTest {
         */
        global static String truncate(final String str, final Integer offset, final Integer maxWidth) {
     
-        
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+       
 
         StringUtils.unwrap(null, null)         = null
      * StringUtils.unwrap(null, '\0')         = null
@@ -1230,6 +1088,10 @@ private class StringUtilsTest {
      */
     global static String unwrap(final String str, final Integer wrapChar) {
 
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
 
         StringUtils.unwrap(null, null)         = null
      * StringUtils.unwrap(null, '')           = null
@@ -1255,6 +1117,10 @@ private class StringUtilsTest {
     global static String unwrap(final String str, final String wrapToken) {
 
 
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
         StringUtils.upperCase(null)  = null
      * StringUtils.upperCase('')    = ''
      * StringUtils.upperCase('aBc') = 'ABC'
@@ -1270,10 +1136,17 @@ private class StringUtilsTest {
      */
     global static String upperCase(final String str) {
 
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
 
         global static String valueOf(final Integer[] value) {
 
-
+            @isTest(SeeAllData=false)
+            static void XXXXX() {
+            }
+        
 
             StringUtils.wrap(null, *)        = null
      * StringUtils.wrap('', *)          = ''
@@ -1292,7 +1165,10 @@ private class StringUtilsTest {
      */
     global static String wrap(final String str, final Integer wrapWith) {
 
-
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
 
         StringUtils.wrap(null, *)         = null
      * StringUtils.wrap('', *)           = ''
@@ -1315,6 +1191,10 @@ private class StringUtilsTest {
      */
     global static String wrap(final String str, final String wrapWith) {
 
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
 
         StringUtils.wrapIfMissing(null, *)        = null
      * StringUtils.wrapIfMissing('', *)          = ''
@@ -1337,6 +1217,10 @@ private class StringUtilsTest {
      */
     global static String wrapIfMissing(final String str, final Integer wrapWith) {
 
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+    
 
 
         StringUtils.wrapIfMissing(null, *)         = null
@@ -1365,7 +1249,10 @@ private class StringUtilsTest {
     global static String wrapIfMissing(final String str, final String wrapWith) {
 
 
-        
+        @isTest(SeeAllData=false)
+        static void XXXXX() {
+        }
+         
 
 
 
