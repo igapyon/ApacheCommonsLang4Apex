@@ -9617,27 +9617,27 @@ global class StringUtils {
      * @return the wrapped string, or {@code null} if {@code str==null}
      * @since 3.5
      */
-//    global static String wrapIfMissing(final String str, final String wrapWith) {
-//        if (isEmpty(str) || isEmpty(wrapWith)) {
-//            return str;
-//        }
-//
-//        final Boolean wrapStart = !str.startsWith(wrapWith);
-//        final Boolean wrapEnd = !str.endsWith(wrapWith);
-//        if (!wrapStart && !wrapEnd) {
-//            return str;
-//        }
-//
-//        final StringBuilder builder = new StringBuilder(str.length() + wrapWith.length() + wrapWith.length());
-//        if (wrapStart) {
-//            builder.append(wrapWith);
-//        }
-//        builder.append(str);
-//        if (wrapEnd) {
-//            builder.append(wrapWith);
-//        }
-//        return builder.toString();
-//    }
+    global static String wrapIfMissing(final String str, final String wrapWith) {
+        if (isEmpty(str) || isEmpty(wrapWith)) {
+            return str;
+        }
+
+        final Boolean wrapStart = !str.startsWith(wrapWith);
+        final Boolean wrapEnd = !str.endsWith(wrapWith);
+        if (!wrapStart && !wrapEnd) {
+            return str;
+        }
+
+        String builder = '';
+        if (wrapStart) {
+            builder += (wrapWith);
+        }
+        builder += (str);
+        if (wrapEnd) {
+            builder += (wrapWith);
+        }
+        return builder;
+    }
 
     /**
      * <p>{@code StringUtils} instances should NOT be constructed in
