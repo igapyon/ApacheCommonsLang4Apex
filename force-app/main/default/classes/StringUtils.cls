@@ -200,10 +200,10 @@ global class StringUtils {
      * @throws IllegalArgumentException if the width is too small
      * @since 2.0
      */
-//    global static String abbreviate(final String str, final Integer maxWidth) {
-//        return abbreviate(str, '...', 0, maxWidth);
-//    }
-//
+    global static String abbreviate(final String str, final Integer maxWidth) {
+        return abbreviate(str, '...', 0, maxWidth);
+    }
+
     /**
      * <p>Abbreviates a String using ellipses. This will turn
      * 'Now is the time for all good men' into '...is the time for...'</p>
@@ -239,10 +239,10 @@ global class StringUtils {
      * @throws IllegalArgumentException if the width is too small
      * @since 2.0
      */
-//    global static String abbreviate(final String str, final Integer offset, final Integer maxWidth) {
-//        return abbreviate(str, '...', offset, maxWidth);
-//    }
-//
+    global static String abbreviate(final String str, final Integer offset, final Integer maxWidth) {
+        return abbreviate(str, '...', offset, maxWidth);
+    }
+
     /**
      * <p>Abbreviates a String using another given String as replacement marker. This will turn
      * 'Now is the time for all good men' into 'Now is the time for...' if '...' was defined
@@ -383,20 +383,20 @@ global class StringUtils {
      * @return the abbreviated String if the above criteria is met, or the original String supplied for abbreviation.
      * @since 2.5
      */
-//    global static String abbreviateMiddle(final String str, final String middle, final Integer length) {
-//        if (isAnyEmpty(str, middle) || length >= str.length() || length < middle.length()+2) {
-//            return str;
-//        }
-//
-//        final Integer targetSting = length-middle.length();
-//        final Integer startOffset = targetSting/2+targetSting%2;
-//        final Integer endOffset = str.length()-targetSting/2;
-//
-//        return str.substring(0, startOffset) +
-//            middle +
-//            str.substring(endOffset);
-//    }
-//
+    global static String abbreviateMiddle(final String str, final String middle, final Integer length) {
+        if (isAnyEmpty(str, middle) || length >= str.length() || length < middle.length()+2) {
+            return str;
+        }
+
+        final Integer targetSting = length-middle.length();
+        final Integer startOffset = targetSting/2+Math.mod(targetSting, 2);
+        final Integer endOffset = str.length()-targetSting/2;
+
+        return str.substring(0, startOffset) +
+            middle +
+            str.substring(endOffset);
+    }
+
     /**
      * Appends the suffix to the end of the string if the string does not
      * already end with the suffix.
