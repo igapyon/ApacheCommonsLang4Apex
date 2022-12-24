@@ -173,10 +173,12 @@ global class CharUtils {
      * @throws NullPointerException if the string is null
      * @throws IllegalArgumentException if the String is empty
      */
-//    global static Integer toChar(final String str) {
-//        Validate.notEmpty(str, "The String must not be empty");
-//        return str.charAt(0);
-//    }
+    global static Integer toChar(final String str) {
+        if (str == null || str.length() == 0) {
+            throw new IllegalArgumentException('The String must not be empty');
+        }
+        return str.charAt(0);
+    }
 
     /**
      * <p>Converts the String to a Integer using the first character, defaulting
@@ -352,10 +354,10 @@ global class CharUtils {
      */
     global static String unicodeEscaped(final Integer ch) {
         return '\\u' +
-            HEX_DIGITS[(ch >> 12) & 15] +
-            HEX_DIGITS[(ch >> 8) & 15] +
-            HEX_DIGITS[(ch >> 4) & 15] +
-            HEX_DIGITS[(ch) & 15];
+            int2string(HEX_DIGITS[(ch >> 12) & 15]) +
+            int2string(HEX_DIGITS[(ch >> 8) & 15]) +
+            int2string(HEX_DIGITS[(ch >> 4) & 15]) +
+            int2string(HEX_DIGITS[(ch) & 15]);
     }
 
     /**
