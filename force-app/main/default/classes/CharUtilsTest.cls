@@ -27,8 +27,8 @@ private class CharUtilsTest {
     static void toCharStringDefault01() {
         System.assertEquals('X'.charAt(0), CharUtils.toChar(null, 'X'.charAt(0)));
         System.assertEquals('X'.charAt(0), CharUtils.toChar('', 'X'.charAt(0)));
-        System.assertEquals('A'.charAt(0), CharUtils.toChar('', 'A'.charAt(0)));
-        System.assertEquals('B'.charAt(0), CharUtils.toChar('', 'BA'.charAt(0)));
+        System.assertEquals('A'.charAt(0), CharUtils.toChar('A', 'X'.charAt(0)));
+        System.assertEquals('B'.charAt(0), CharUtils.toChar('BA', 'X'.charAt(0)));
     }
 
     @isTest(SeeAllData=false)
