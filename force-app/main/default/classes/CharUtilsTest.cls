@@ -15,4 +15,15 @@ private class CharUtilsTest {
         System.assertEquals('A'.charAt(0), CharUtils.toChar('A', 'B'.charAt(0)));
         System.assertEquals('B'.charAt(0), CharUtils.toChar('', 'B'.charAt(0)));
     }
+
+    @isTest(SeeAllData=false)
+    static void toIntValue01() {
+        System.assertEquals(3, CharUtils.toIntValue('3'.charat(0)));
+        try {
+            CharUtils.toIntValue('A'.charat(0));
+            System.assert(false, 'ここに来ちゃダメ');
+        } catch (IllegalArgumentException ex) {
+            System.assert(true);
+        }
+    }
 }
