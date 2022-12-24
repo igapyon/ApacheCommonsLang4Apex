@@ -70,4 +70,21 @@ private class CharUtilsTest {
         System.assertEquals(false, CharUtils.isAscii('愛'.charAt(0)));
     }
 
+    @isTest(SeeAllData=false)
+    static void isAsciiPrintable01() {
+        System.assertEquals(true, CharUtils.isAsciiPrintable('a'.charAt(0)));
+        System.assertEquals(true, CharUtils.isAsciiPrintable('A'.charAt(0)));
+        System.assertEquals(true, CharUtils.isAsciiPrintable('3'.charAt(0)));
+        System.assertEquals(true, CharUtils.isAsciiPrintable('-'.charAt(0)));
+        System.assertEquals(false, CharUtils.isAsciiPrintable('\n'.charAt(0)));
+        System.assertEquals(false, CharUtils.isAsciiPrintable('愛'.charAt(0)));
+    }
+
+    @isTest(SeeAllData=false)
+    static void isAsciiControl01() {
+        System.assertEquals(false, CharUtils.isAsciiControl('A'.charAt(0)));
+        System.assertEquals(false, CharUtils.isAsciiControl('3'.charAt(0)));
+        System.assertEquals(false, CharUtils.isAsciiControl('-'.charAt(0)));
+        System.assertEquals(true, CharUtils.isAsciiControl('\n'.charAt(0)));
+     }
 }
