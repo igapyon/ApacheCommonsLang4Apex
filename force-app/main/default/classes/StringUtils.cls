@@ -594,20 +594,20 @@ global class StringUtils {
      * @return centered String, {@code null} if null String input
      * @since 2.0
      */
-//    global static String center(String str, final Integer size, final char padChar) {
-//        if (str == null || size <= 0) {
-//            return str;
-//        }
-//        final Integer strLen = str.length();
-//        final Integer pads = size - strLen;
-//        if (pads <= 0) {
-//            return str;
-//        }
-//        str = leftPad(str, strLen + pads / 2, padChar);
-//        str = rightPad(str, size, padChar);
-//        return str;
-//    }
-//
+    global static String center(String str, final Integer size, final Integer padChar) {
+        if (str == null || size <= 0) {
+            return str;
+        }
+        final Integer strLen = str.length();
+        final Integer pads = size - strLen;
+        if (pads <= 0) {
+            return str;
+        }
+        str = leftPad(str, strLen + pads / 2, padChar);
+        str = rightPad(str, size, padChar);
+        return str;
+    }
+
     /**
      * <p>Centers a String in a larger String of size {@code size}.
      * Uses a supplied String as the value to pad the String with.</p>
@@ -5296,7 +5296,7 @@ global class StringUtils {
         if (pads > PAD_LIMIT) {
             return leftPad(str, size, String.valueOf(padChar));
         }
-        return (repeatChar(padChar, pads) + (str));
+        return (repeat(padChar, pads) + (str));
     }
 
     /**
@@ -6238,9 +6238,8 @@ global class StringUtils {
      * @param repeat  number of times to repeat char, negative treated as zero
      * @return String with repeated character
      * @see #repeat(String, int)
-     * @memo 移植の都合メソッド名を変更。
      */
-    global static String repeatChar(final Integer ch, final Integer repeat) {
+    global static String repeat(final Integer ch, final Integer repeat) {
         if (repeat <= 0) {
             return EMPTY;
         }
@@ -6278,13 +6277,13 @@ global class StringUtils {
             return str;
         }
         if (inputLength == 1 && repeat <= PAD_LIMIT) {
-            return repeatChar(str.charAt(0), repeat);
+            return repeat(str.charAt(0), repeat);
         }
 
         final Integer outputLength = inputLength * repeat;
         switch on inputLength {
             when 1 {
-                return repeatChar(str.charAt(0), repeat);
+                return repeat(str.charAt(0), repeat);
             }
             when 2 {
                 final Integer ch0 = str.charAt(0);
@@ -7212,9 +7211,8 @@ global class StringUtils {
      * @return right padded String or original String if no padding is necessary,
      *  {@code null} if null String input
      * @since 2.0
-     * 実装上の都合メソッド名を変更。
      */
-    global static String rightPadChar(final String str, final Integer size, final Integer padChar) {
+    global static String rightPad(final String str, final Integer size, final Integer padChar) {
         if (str == null) {
             return null;
         }
@@ -7225,7 +7223,7 @@ global class StringUtils {
         if (pads > PAD_LIMIT) {
             return rightPad(str, size, int2string(padChar));
         }
-        return str + (repeatChar(padChar, pads));
+        return str + (repeat(padChar, pads));
     }
 
     /**
@@ -7265,7 +7263,7 @@ global class StringUtils {
             return str; // returns original String when possible
         }
         if (padLen == 1 && pads <= PAD_LIMIT) {
-            return rightPadChar(str, size, padStr.charAt(0));
+            return rightPad(str, size, padStr.charAt(0));
         }
 
         if (pads == padLen) {
@@ -9493,7 +9491,7 @@ global class StringUtils {
      * @return the wrapped string, or {@code null} if {@code str==null}
      * @since 3.4
      */
-    global static String wrapChar(final String str, final Integer wrapWith) {
+    global static String wrap(final String str, final Integer wrapWith) {
 
         if (isEmpty(str) || wrapWith == null) {
             return str;
