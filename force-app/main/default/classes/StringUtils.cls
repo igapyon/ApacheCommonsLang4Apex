@@ -3246,19 +3246,19 @@ global class StringUtils {
      * @since 2.5
      * @since 3.0 Changed signature from isAllLowerCase(String) to isAllLowerCase(CharSequence)
      */
-//    global static Boolean isAllLowerCase(final CharSequence cs) {
-//        if (isEmpty(cs)) {
-//            return false;
-//        }
-//        final Integer sz = cs.length();
-//        for (int i = 0; i < sz; i++) {
-//            if (!Character.isLowerCase(cs.charAt(i))) {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
-//
+    global static Boolean isAllLowerCase(final String cs) {
+        if (isEmpty(cs)) {
+            return false;
+        }
+        final Integer sz = cs.length();
+        for (Integer i = 0; i < sz; i++) {
+            if (!CharUtils.isAsciiAlphaLower(cs.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * <p>Checks if the CharSequence contains only uppercase characters.</p>
      *
@@ -3281,19 +3281,19 @@ global class StringUtils {
      * @since 2.5
      * @since 3.0 Changed signature from isAllUpperCase(String) to isAllUpperCase(CharSequence)
      */
-//    global static Boolean isAllUpperCase(final CharSequence cs) {
-//        if (isEmpty(cs)) {
-//            return false;
-//        }
-//        final Integer sz = cs.length();
-//        for (int i = 0; i < sz; i++) {
-//            if (!Character.isUpperCase(cs.charAt(i))) {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
-//
+    global static Boolean isAllUpperCase(final String cs) {
+        if (isEmpty(cs)) {
+            return false;
+        }
+        final Integer sz = cs.length();
+        for (Integer i = 0; i < sz; i++) {
+            if (!CharUtils.isAsciiAlphaUpper(cs.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * <p>Checks if the CharSequence contains only Unicode letters.</p>
      *
@@ -3536,19 +3536,19 @@ global class StringUtils {
      * @since 2.1
      * @since 3.0 Changed signature from isAsciiPrintable(String) to isAsciiPrintable(CharSequence)
      */
-//    global static Boolean isAsciiPrintable(final CharSequence cs) {
-//        if (cs == null) {
-//            return false;
-//        }
-//        final Integer sz = cs.length();
-//        for (int i = 0; i < sz; i++) {
-//            if (!CharUtils.isAsciiPrintable(cs.charAt(i))) {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
-//
+    global static Boolean isAsciiPrintable(final String cs) {
+        if (cs == null) {
+          return false;
+        }
+        final Integer sz = cs.length();
+        for (Integer i = 0; i < sz; i++) {
+            if (!CharUtils.isAsciiPrintable(cs.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * <p>Checks if a CharSequence is empty (''), null or whitespace only.</p>
      *
@@ -3625,24 +3625,24 @@ global class StringUtils {
      * @return {@code true} if the CharSequence contains both uppercase and lowercase characters
      * @since 3.5
      */
-//    global static Boolean isMixedCase(final CharSequence cs) {
-//        if (isEmpty(cs) || cs.length() == 1) {
-//            return false;
-//        }
-//        Boolean containsUppercase = false;
-//        Boolean containsLowercase = false;
-//        final Integer sz = cs.length();
-//        for (int i = 0; i < sz; i++) {
-//            if (containsUppercase && containsLowercase) {
-//                return true;
-//            } else if (Character.isUpperCase(cs.charAt(i))) {
-//                containsUppercase = true;
-//            } else if (Character.isLowerCase(cs.charAt(i))) {
-//                containsLowercase = true;
-//            }
-//        }
-//        return containsUppercase && containsLowercase;
-//    }
+    global static Boolean isMixedCase(final String cs) {
+        if (isEmpty(cs) || cs.length() == 1) {
+            return false;
+        }
+        Boolean containsUppercase = false;
+        Boolean containsLowercase = false;
+        final Integer sz = cs.length();
+        for (Integer i = 0; i < sz; i++) {
+            if (containsUppercase && containsLowercase) {
+                return true;
+            } else if (CharUtils.isAsciiAlphaUpper(cs.charAt(i))) {
+                containsUppercase = true;
+            } else if (CharUtils.isAsciiAlphaLower(cs.charAt(i))) {
+                containsLowercase = true;
+            }
+        }
+        return containsUppercase && containsLowercase;
+    }
 
     /**
      * <p>Checks if none of the CharSequences are empty (''), null or whitespace only.</p>
