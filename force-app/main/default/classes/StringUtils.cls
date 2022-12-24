@@ -9565,27 +9565,27 @@ global class StringUtils {
      * @return the wrapped string, or {@code null} if {@code str==null}
      * @since 3.5
      */
-//    global static String wrapIfMissing(final String str, final char wrapWith) {
-//        if (isEmpty(str) || wrapWith == CharUtils.NUL) {
-//            return str;
-//        }
-//        final Boolean wrapStart = str.charAt(0) != wrapWith;
-//        final Boolean wrapEnd = str.charAt(str.length() - 1) != wrapWith;
-//        if (!wrapStart && !wrapEnd) {
-//            return str;
-//        }
-//
-//        final StringBuilder builder = new StringBuilder(str.length() + 2);
-//        if (wrapStart) {
-//            builder.append(wrapWith);
-//        }
-//        builder.append(str);
-//        if (wrapEnd) {
-//            builder.append(wrapWith);
-//        }
-//        return builder.toString();
-//    }
-//
+    global static String wrapIfMissing(final String str, final Integer wrapWith) {
+        if (isEmpty(str) || wrapWith == null) {
+            return str;
+        }
+        final Boolean wrapStart = str.charAt(0) != wrapWith;
+        final Boolean wrapEnd = str.charAt(str.length() - 1) != wrapWith;
+        if (!wrapStart && !wrapEnd) {
+            return str;
+        }
+
+        String builder = '';
+        if (wrapStart) {
+            builder += (wrapWith);
+        }
+        builder += (str);
+        if (wrapEnd) {
+            builder += (wrapWith);
+        }
+        return builder;
+    }
+
     /**
      * <p>
      * Wraps a string with a string if that string is missing from the start or end of the given string.
