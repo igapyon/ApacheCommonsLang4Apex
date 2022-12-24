@@ -279,9 +279,9 @@ global class StringUtils {
 //     * @throws IllegalArgumentException if the width is too small
 //     * @since 3.6
 //     */
-//    global static String abbreviate(final String str, final String abbrevMarker, final Integer maxWidth) {
-//        return abbreviate(str, abbrevMarker, 0, maxWidth);
-//    }
+    global static String abbreviate(final String str, final String abbrevMarker, final Integer maxWidth) {
+        return abbreviate(str, abbrevMarker, 0, maxWidth);
+    }
 //    /**
 //     * <p>Abbreviates a String using a given replacement marker. This will turn
 //     * 'Now is the time for all good men' into '...is the time for...' if '...' was defined
@@ -319,41 +319,41 @@ global class StringUtils {
 //     * @throws IllegalArgumentException if the width is too small
 //     * @since 3.6
 //     */
-//    global static String abbreviate(final String str, final String abbrevMarker, Integer offset, final Integer maxWidth) {
-//        if (isNotEmpty(str) && EMPTY.equals(abbrevMarker) && maxWidth > 0) {
-//            return substring(str, 0, maxWidth);
-//        } else if (isAnyEmpty(str, abbrevMarker)) {
-//            return str;
-//        }
-//        final Integer abbrevMarkerLength = abbrevMarker.length();
-//        final Integer minAbbrevWidth = abbrevMarkerLength + 1;
-//        final Integer minAbbrevWidthOffset = abbrevMarkerLength + abbrevMarkerLength + 1;
-//
-//        if (maxWidth < minAbbrevWidth) {
-//            throw new IllegalArgumentException(String.format('Minimum abbreviation width is %d', minAbbrevWidth));
-//        }
-//        final Integer strLen = str.length();
-//        if (strLen <= maxWidth) {
-//            return str;
-//        }
-//        if (offset > strLen) {
-//            offset = strLen;
-//        }
-//        if (strLen - offset < maxWidth - abbrevMarkerLength) {
-//            offset = strLen - (maxWidth - abbrevMarkerLength);
-//        }
-//        if (offset <= abbrevMarkerLength+1) {
-//            return str.substring(0, maxWidth - abbrevMarkerLength) + abbrevMarker;
-//        }
-//        if (maxWidth < minAbbrevWidthOffset) {
-//            throw new IllegalArgumentException(String.format('Minimum abbreviation width with offset is %d', minAbbrevWidthOffset));
-//        }
-//        if (offset + maxWidth - abbrevMarkerLength < strLen) {
-//            return abbrevMarker + abbreviate(str.substring(offset), abbrevMarker, maxWidth - abbrevMarkerLength);
-//        }
-//        return abbrevMarker + str.substring(strLen - (maxWidth - abbrevMarkerLength));
-//    }
-//
+    global static String abbreviate(final String str, final String abbrevMarker, Integer offset, final Integer maxWidth) {
+        if (isNotEmpty(str) && EMPTY.equals(abbrevMarker) && maxWidth > 0) {
+            return substring(str, 0, maxWidth);
+        } else if (isAnyEmpty(str, abbrevMarker)) {
+            return str;
+        }
+        final Integer abbrevMarkerLength = abbrevMarker.length();
+        final Integer minAbbrevWidth = abbrevMarkerLength + 1;
+        final Integer minAbbrevWidthOffset = abbrevMarkerLength + abbrevMarkerLength + 1;
+
+        if (maxWidth < minAbbrevWidth) {
+            throw new IllegalArgumentException('Minimum abbreviation width is ' + minAbbrevWidth);
+        }
+        final Integer strLen = str.length();
+        if (strLen <= maxWidth) {
+            return str;
+        }
+        if (offset > strLen) {
+            offset = strLen;
+        }
+        if (strLen - offset < maxWidth - abbrevMarkerLength) {
+            offset = strLen - (maxWidth - abbrevMarkerLength);
+        }
+        if (offset <= abbrevMarkerLength+1) {
+            return str.substring(0, maxWidth - abbrevMarkerLength) + abbrevMarker;
+        }
+        if (maxWidth < minAbbrevWidthOffset) {
+            throw new IllegalArgumentException('Minimum abbreviation width with offset is ' + minAbbrevWidthOffset);
+        }
+        if (offset + maxWidth - abbrevMarkerLength < strLen) {
+            return abbrevMarker + abbreviate(str.substring(offset), abbrevMarker, maxWidth - abbrevMarkerLength);
+        }
+        return abbrevMarker + str.substring(strLen - (maxWidth - abbrevMarkerLength));
+    }
+
 //    /**
 //     * <p>Abbreviates a String to the length passed, replacing the middle characters with the supplied
 //     * replacement String.</p>
@@ -3467,38 +3467,41 @@ global class StringUtils {
         return false;
     }
 
-//    /**
-//     * <p>Checks if any of the CharSequences are empty ('') or null.</p>
-//     *
-//     * <pre>
-//     * StringUtils.isAnyEmpty((String) null)    = true
-//     * StringUtils.isAnyEmpty((String[]) null)  = false
-//     * StringUtils.isAnyEmpty(null, 'foo')      = true
-//     * StringUtils.isAnyEmpty('', 'bar')        = true
-//     * StringUtils.isAnyEmpty('bob', '')        = true
-//     * StringUtils.isAnyEmpty('  bob  ', null)  = true
-//     * StringUtils.isAnyEmpty(' ', 'bar')       = false
-//     * StringUtils.isAnyEmpty('foo', 'bar')     = false
-//     * StringUtils.isAnyEmpty(new String[]{})   = false
-//     * StringUtils.isAnyEmpty(new String[]{''}) = true
-//     * </pre>
-//     *
-//     * @param css  the CharSequences to check, may be null or empty
-//     * @return {@code true} if any of the CharSequences are empty or null
-//     * @since 3.2
-//     */
-//    global static Boolean isAnyEmpty(final CharSequence... css) {
-//        if (ArrayUtils.isEmpty(css)) {
-//            return false;
-//        }
-//        for (final CharSequence cs : css) {
-//            if (isEmpty(cs)) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-//
+    /**
+     * <p>Checks if any of the CharSequences are empty ('') or null.</p>
+     *
+     * <pre>
+     * StringUtils.isAnyEmpty((String) null)    = true
+     * StringUtils.isAnyEmpty((String[]) null)  = false
+     * StringUtils.isAnyEmpty(null, 'foo')      = true
+     * StringUtils.isAnyEmpty('', 'bar')        = true
+     * StringUtils.isAnyEmpty('bob', '')        = true
+     * StringUtils.isAnyEmpty('  bob  ', null)  = true
+     * StringUtils.isAnyEmpty(' ', 'bar')       = false
+     * StringUtils.isAnyEmpty('foo', 'bar')     = false
+     * StringUtils.isAnyEmpty(new String[]{})   = false
+     * StringUtils.isAnyEmpty(new String[]{''}) = true
+     * </pre>
+     *
+     * @param css  the CharSequences to check, may be null or empty
+     * @return {@code true} if any of the CharSequences are empty or null
+     * @since 3.2
+     */
+    global static Boolean isAnyEmpty(final String cs1, String cs2) {
+        return (isAnyEmpty(cs1) || isAnyEmpty(cs2));
+    }
+    global static Boolean isAnyEmpty(final String css) {
+        //if (ArrayUtils.isEmpty(css)) {
+        //    return false;
+        //}
+        //for (final CharSequence cs : css) {
+            if (isEmpty(css)) {
+                return true;
+            }
+        //}
+        return false;
+    }
+
 //    /**
 //     * <p>Checks if the CharSequence contains only ASCII printable characters.</p>
 //     *
@@ -3710,25 +3713,25 @@ global class StringUtils {
 //    global static Boolean isNotBlank(final CharSequence cs) {
 //        return !isBlank(cs);
 //    }
-//
-//    /**
-//     * <p>Checks if a CharSequence is not empty ('') and not null.</p>
-//     *
-//     * <pre>
-//     * StringUtils.isNotEmpty(null)      = false
-//     * StringUtils.isNotEmpty('')        = false
-//     * StringUtils.isNotEmpty(' ')       = true
-//     * StringUtils.isNotEmpty('bob')     = true
-//     * StringUtils.isNotEmpty('  bob  ') = true
-//     * </pre>
-//     *
-//     * @param cs  the CharSequence to check, may be null
-//     * @return {@code true} if the CharSequence is not empty and not null
-//     * @since 3.0 Changed signature from isNotEmpty(String) to isNotEmpty(CharSequence)
-//     */
-//    global static Boolean isNotEmpty(final CharSequence cs) {
-//        return !isEmpty(cs);
-//    }
+
+    /**
+     * <p>Checks if a CharSequence is not empty ('') and not null.</p>
+     *
+     * <pre>
+     * StringUtils.isNotEmpty(null)      = false
+     * StringUtils.isNotEmpty('')        = false
+     * StringUtils.isNotEmpty(' ')       = true
+     * StringUtils.isNotEmpty('bob')     = true
+     * StringUtils.isNotEmpty('  bob  ') = true
+     * </pre>
+     *
+     * @param cs  the CharSequence to check, may be null
+     * @return {@code true} if the CharSequence is not empty and not null
+     * @since 3.0 Changed signature from isNotEmpty(String) to isNotEmpty(CharSequence)
+     */
+    global static Boolean isNotEmpty(final String cs) {
+        return !isEmpty(cs);
+    }
 //
 //    /**
 //     * <p>Checks if the CharSequence contains only Unicode digits.
@@ -8417,51 +8420,51 @@ global class StringUtils {
 //        str = strip(str, null);
 //        return str.isEmpty() ? null : str; // NOSONARLINT str cannot be null here
 //    }
-//
-//    /**
-//     * <p>Gets a substring from the specified String avoiding exceptions.</p>
-//     *
-//     * <p>A negative start position can be used to start {@code n}
-//     * characters from the end of the String.</p>
-//     *
-//     * <p>A {@code null} String will return {@code null}.
-//     * An empty ('') String will return ''.</p>
-//     *
-//     * <pre>
-//     * StringUtils.substring(null, *)   = null
-//     * StringUtils.substring('', *)     = ''
-//     * StringUtils.substring('abc', 0)  = 'abc'
-//     * StringUtils.substring('abc', 2)  = 'c'
-//     * StringUtils.substring('abc', 4)  = ''
-//     * StringUtils.substring('abc', -2) = 'bc'
-//     * StringUtils.substring('abc', -4) = 'abc'
-//     * </pre>
-//     *
-//     * @param str  the String to get the substring from, may be null
-//     * @param start  the position to start from, negative means
-//     *  count back from the end of the String by this many characters
-//     * @return substring from start position, {@code null} if null String input
-//     */
-//    global static String substring(final String str, Integer start) {
-//        if (str == null) {
-//            return null;
-//        }
-//
-//        // handle negatives, which means last n characters
-//        if (start < 0) {
-//            start = str.length() + start; // remember start is negative
-//        }
-//
-//        if (start < 0) {
-//            start = 0;
-//        }
-//        if (start > str.length()) {
-//            return EMPTY;
-//        }
-//
-//        return str.substring(start);
-//    }
-//
+
+    /**
+     * <p>Gets a substring from the specified String avoiding exceptions.</p>
+     *
+     * <p>A negative start position can be used to start {@code n}
+     * characters from the end of the String.</p>
+     *
+     * <p>A {@code null} String will return {@code null}.
+     * An empty ('') String will return ''.</p>
+     *
+     * <pre>
+     * StringUtils.substring(null, *)   = null
+     * StringUtils.substring('', *)     = ''
+     * StringUtils.substring('abc', 0)  = 'abc'
+     * StringUtils.substring('abc', 2)  = 'c'
+     * StringUtils.substring('abc', 4)  = ''
+     * StringUtils.substring('abc', -2) = 'bc'
+     * StringUtils.substring('abc', -4) = 'abc'
+     * </pre>
+     *
+     * @param str  the String to get the substring from, may be null
+     * @param start  the position to start from, negative means
+     *  count back from the end of the String by this many characters
+     * @return substring from start position, {@code null} if null String input
+     */
+    global static String substring(final String str, Integer start) {
+        if (str == null) {
+            return null;
+        }
+
+        // handle negatives, which means last n characters
+        if (start < 0) {
+            start = str.length() + start; // remember start is negative
+        }
+
+        if (start < 0) {
+            start = 0;
+        }
+        if (start > str.length()) {
+            return EMPTY;
+        }
+
+        return str.substring(start);
+    }
+
 //    /**
 //     * <p>Gets a substring from the specified String avoiding exceptions.</p>
 //     *
@@ -8492,44 +8495,44 @@ global class StringUtils {
 //     * @param str  the String to get the substring from, may be null
 //     * @param start  the position to start from, negative means
 //     *  count back from the end of the String by this many characters
-//     * @param end  the position to end at (exclusive), negative means
+//     * @param end1  the position to end at (exclusive), negative means
 //     *  count back from the end of the String by this many characters
 //     * @return substring from start position to end position,
 //     *  {@code null} if null String input
 //     */
-//    global static String substring(final String str, Integer start, Integer end) {
-//        if (str == null) {
-//            return null;
-//        }
-//
-//        // handle negatives
-//        if (end < 0) {
-//            end = str.length() + end; // remember end is negative
-//        }
-//        if (start < 0) {
-//            start = str.length() + start; // remember start is negative
-//        }
-//
-//        // check length next
-//        if (end > str.length()) {
-//            end = str.length();
-//        }
-//
-//        // if start is greater than end, return ''
-//        if (start > end) {
-//            return EMPTY;
-//        }
-//
-//        if (start < 0) {
-//            start = 0;
-//        }
-//        if (end < 0) {
-//            end = 0;
-//        }
-//
-//        return str.substring(start, end);
-//    }
-//
+    global static String substring(final String str, Integer start, Integer end1) {
+        if (str == null) {
+            return null;
+        }
+
+        // handle negatives
+        if (end1 < 0) {
+            end1 = str.length() + end1; // remember end is negative
+        }
+        if (start < 0) {
+            start = str.length() + start; // remember start is negative
+        }
+
+        // check length next
+        if (end1 > str.length()) {
+            end1 = str.length();
+        }
+
+        // if start is greater than end, return ''
+        if (start > end1) {
+            return EMPTY;
+        }
+
+        if (start < 0) {
+            start = 0;
+        }
+        if (end1 < 0) {
+            end1 = 0;
+        }
+
+        return str.substring(start, end1);
+    }
+
 //    /**
 //     * <p>Gets the substring after the first occurrence of a separator.
 //     * The separator is not returned.</p>
