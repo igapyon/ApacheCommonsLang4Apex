@@ -39,7 +39,7 @@ private class StringUtilsTest {
     }
 
     @isTest(SeeAllData=false)
-    static void abbreviate3args() {
+    static void abbreviate3argsSII() {
         System.assertEquals(null, StringUtils.abbreviate(null, 5, 5));
         System.assertEquals('', StringUtils.abbreviate('', 0, 4));
         System.assertEquals('abcdefg...', StringUtils.abbreviate('abcdefghijklmno', -1, 10));
