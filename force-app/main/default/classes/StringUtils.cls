@@ -2862,7 +2862,7 @@ global class StringUtils {
      * StringUtils.indexOfAnyBut('zzabyycdxx', new char[] {'z', 'a'} ) = 3
      * StringUtils.indexOfAnyBut('aba', new char[] {'z'} )             = 0
      * StringUtils.indexOfAnyBut('aba', new char[] {'a', 'b'} )        = -1
-//
+     * 
      * </pre>
      *
      * @param cs  the CharSequence to check, may be null
@@ -3312,19 +3312,19 @@ global class StringUtils {
      * @since 3.0 Changed signature from isAlpha(String) to isAlpha(CharSequence)
      * @since 3.0 Changed '' to return false and not true
      */
-//    global static Boolean isAlpha(final CharSequence cs) {
-//        if (isEmpty(cs)) {
-//            return false;
-//        }
-//        final Integer sz = cs.length();
-//        for (int i = 0; i < sz; i++) {
-//            if (!Character.isLetter(cs.charAt(i))) {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
-//
+    global static Boolean isAlpha(final String cs) {
+        if (isEmpty(cs)) {
+            return false;
+        }
+        final Integer sz = cs.length();
+        for (Integer i = 0; i < sz; i++) {
+            if (!CharUtils.isAsciiAlpha(cs.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * <p>Checks if the CharSequence contains only Unicode letters or digits.</p>
      *
@@ -3347,19 +3347,19 @@ global class StringUtils {
      * @since 3.0 Changed signature from isAlphanumeric(String) to isAlphanumeric(CharSequence)
      * @since 3.0 Changed '' to return false and not true
      */
-//    global static Boolean isAlphanumeric(final CharSequence cs) {
-//        if (isEmpty(cs)) {
-//            return false;
-//        }
-//        final Integer sz = cs.length();
-//        for (int i = 0; i < sz; i++) {
-//            if (!Character.isLetterOrDigit(cs.charAt(i))) {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
-//
+    global static Boolean isAlphanumeric(final String cs) {
+        if (isEmpty(cs)) {
+            return false;
+        }
+        final Integer sz = cs.length();
+        for (Integer i = 0; i < sz; i++) {
+            if (!CharUtils.isAsciiAlphanumeric(cs.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * <p>Checks if the CharSequence contains only Unicode letters, digits
      * or space ({@code ' '}).</p>
@@ -3737,7 +3737,7 @@ global class StringUtils {
     global static Boolean isNotEmpty(final String cs) {
         return !isEmpty(cs);
     }
-//
+
     /**
      * <p>Checks if the CharSequence contains only Unicode digits.
      * A decimal point is not a Unicode digit and returns false.</p>
@@ -3769,19 +3769,19 @@ global class StringUtils {
      * @since 3.0 Changed signature from isNumeric(String) to isNumeric(CharSequence)
      * @since 3.0 Changed '' to return false and not true
      */
-//    global static Boolean isNumeric(final CharSequence cs) {
-//        if (isEmpty(cs)) {
-//            return false;
-//        }
-//        final Integer sz = cs.length();
-//        for (int i = 0; i < sz; i++) {
-//            if (!Character.isDigit(cs.charAt(i))) {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
-//
+    global static Boolean isNumeric(final String cs) {
+        if (isEmpty(cs)) {
+            return false;
+        }
+        final Integer sz = cs.length();
+        for (Integer i = 0; i < sz; i++) {
+            if (!CharUtils.isAsciiNumeric(cs.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * <p>Checks if the CharSequence contains only Unicode digits or space
      * ({@code ' '}).
@@ -5505,22 +5505,22 @@ global class StringUtils {
      * @param len  the length of the required String
      * @return the middle characters, {@code null} if null String input
      */
-//    global static String mid(final String str, Integer pos, final Integer len) {
-//        if (str == null) {
-//            return null;
-//        }
-//        if (len < 0 || pos > str.length()) {
-//            return EMPTY;
-//        }
-//        if (pos < 0) {
-//            pos = 0;
-//        }
-//        if (str.length() <= pos + len) {
-//            return str.substring(pos);
-//        }
-//        return str.substring(pos, pos + len);
-//    }
-//
+    global static String mid(final String str, Integer pos, final Integer len) {
+        if (str == null) {
+            return null;
+        }
+        if (len < 0 || pos > str.length()) {
+            return EMPTY;
+        }
+        if (pos < 0) {
+            pos = 0;
+        }
+        if (str.length() <= pos + len) {
+            return str.substring(pos);
+        }
+        return str.substring(pos, pos + len);
+    }
+
 //    private static StringJoiner newStringJoiner(final char delimiter) {
 //        return new StringJoiner(String.valueOf(delimiter));
 //    }
