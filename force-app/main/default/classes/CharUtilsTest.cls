@@ -87,4 +87,36 @@ private class CharUtilsTest {
         System.assertEquals(false, CharUtils.isAsciiControl('-'.charAt(0)));
         System.assertEquals(true, CharUtils.isAsciiControl('\n'.charAt(0)));
      }
+
+    @isTest(SeeAllData=false)
+    static void isAsciiAlpha01() {
+         System.assertEquals(true, CharUtils.isAsciiAlpha('A'.charAt(0)));
+         System.assertEquals(false, CharUtils.isAsciiAlpha('3'.charAt(0)));
+         System.assertEquals(false, CharUtils.isAsciiAlpha('-'.charAt(0)));
+         System.assertEquals(false, CharUtils.isAsciiAlpha('\n'.charAt(0)));
+         System.assertEquals(false, CharUtils.isAsciiAlpha('愛'.charAt(0)));
+    }
+
+    @isTest(SeeAllData=false)
+    static void isAsciiAlphaUpper01() {
+        System.assertEquals(false, CharUtils.isAsciiAlphaUpper('a'.charAt(0)));
+        System.assertEquals(true, CharUtils.isAsciiAlphaUpper('A'.charAt(0)));
+        System.assertEquals(false, CharUtils.isAsciiAlphaUpper('3'.charAt(0)));
+        System.assertEquals(false, CharUtils.isAsciiAlphaUpper('-'.charAt(0)));
+        System.assertEquals(false, CharUtils.isAsciiAlphaUpper('\n'.charAt(0)));
+        System.assertEquals(false, CharUtils.isAsciiAlphaUpper('愛'.charAt(0)));
+    }
+
+    @isTest(SeeAllData=false)
+    static void isAsciiAlphaLower01() {
+        System.assertEquals(true, CharUtils.isAsciiAlphaLower('a'.charAt(0)));
+        System.assertEquals(false, CharUtils.isAsciiAlphaLower('A'.charAt(0)));
+        System.assertEquals(false, CharUtils.isAsciiAlphaLower('3'.charAt(0)));
+        System.assertEquals(false, CharUtils.isAsciiAlphaLower('-'.charAt(0)));
+        System.assertEquals(false, CharUtils.isAsciiAlphaLower('\n'.charAt(0)));
+        System.assertEquals(false, CharUtils.isAsciiAlphaLower('愛'.charAt(0)));
+    }
+
+
+
 }
