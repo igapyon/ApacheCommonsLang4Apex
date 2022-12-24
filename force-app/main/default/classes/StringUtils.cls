@@ -566,10 +566,10 @@ global class StringUtils {
      * @param size  the Integer size of new String, negative treated as zero
      * @return centered String, {@code null} if null String input
      */
-//    global static String center(final String str, final Integer size) {
-//        return center(str, size, ' ');
-//    }
-//
+    global static String center(final String str, final Integer size) {
+        return center(str, size, ' '.charAt(0));
+    }
+
     /**
      * <p>Centers a String in a larger String of size {@code size}.
      * Uses a supplied character as the value to pad the String with.</p>
@@ -634,23 +634,23 @@ global class StringUtils {
      * @return centered String, {@code null} if null String input
      * @throws IllegalArgumentException if padStr is {@code null} or empty
      */
-//    global static String center(String str, final Integer size, String padStr) {
-//        if (str == null || size <= 0) {
-//            return str;
-//        }
-//        if (isEmpty(padStr)) {
-//            padStr = SPACE;
-//        }
-//        final Integer strLen = str.length();
-//        final Integer pads = size - strLen;
-//        if (pads <= 0) {
-//            return str;
-//        }
-//        str = leftPad(str, strLen + pads / 2, padStr);
-//        str = rightPad(str, size, padStr);
-//        return str;
-//    }
-//
+    global static String center(String str, final Integer size, String padStr) {
+        if (str == null || size <= 0) {
+            return str;
+        }
+        if (isEmpty(padStr)) {
+            padStr = SPACE;
+        }
+        final Integer strLen = str.length();
+        final Integer pads = size - strLen;
+        if (pads <= 0) {
+            return str;
+        }
+        str = leftPad(str, strLen + pads / 2, padStr);
+        str = rightPad(str, size, padStr);
+        return str;
+    }
+
     /**
      * <p>Removes one newline from end of a String if it's there,
      * otherwise leave it alone.  A newline is &quot;{@code \n}&quot;,
