@@ -9430,13 +9430,13 @@ global class StringUtils {
      * @param str  the String to upper case, may be null
      * @return the upper cased String, {@code null} if null String input
      */
-//    global static String upperCase(final String str) {
-//        if (str == null) {
-//            return null;
-//        }
-//        return str.toUpperCase();
-//    }
-//
+    global static String upperCase(final String str) {
+        if (str == null) {
+            return null;
+        }
+        return str.toUpperCase();
+    }
+
     /**
      * <p>Converts a String to upper case as per {@link String#toUpperCase(Locale)}.</p>
      *
@@ -9468,10 +9468,10 @@ global class StringUtils {
      * @see String#valueOf(char[])
      * @since 3.9
      */
-//    global static String valueOf(final char[] value) {
-//        return value == null ? null : String.valueOf(value);
-//    }
-//
+    global static String valueOf(final Integer[] value) {
+        return value == null ? null : String.valueOf(value);
+    }
+
     /**
      * <p>
      * Wraps a string with a char.
@@ -9493,15 +9493,15 @@ global class StringUtils {
      * @return the wrapped string, or {@code null} if {@code str==null}
      * @since 3.4
      */
-//    global static String wrap(final String str, final char wrapWith) {
-//
-//        if (isEmpty(str) || wrapWith == CharUtils.NUL) {
-//            return str;
-//        }
-//
-//        return wrapWith + str + wrapWith;
-//    }
-//
+    global static String wrapChar(final String str, final Integer wrapWith) {
+
+        if (isEmpty(str) || wrapWith == null) {
+            return str;
+        }
+
+        return wrapWith + str + wrapWith;
+    }
+
     /**
      * <p>
      * Wraps a String with another String.
@@ -9531,15 +9531,15 @@ global class StringUtils {
      * @return wrapped String, {@code null} if null String input
      * @since 3.4
      */
-//    global static String wrap(final String str, final String wrapWith) {
-//
-//        if (isEmpty(str) || isEmpty(wrapWith)) {
-//            return str;
-//        }
-//
-//        return wrapWith.concat(str).concat(wrapWith);
-//    }
-//
+    global static String wrap(final String str, final String wrapWith) {
+
+        if (isEmpty(str) || isEmpty(wrapWith)) {
+            return str;
+        }
+
+        return wrapWith + str + (wrapWith);
+    }
+
     /**
      * <p>
      * Wraps a string with a char if that char is missing from the start or end of the given string.
