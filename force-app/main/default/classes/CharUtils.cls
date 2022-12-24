@@ -354,10 +354,10 @@ global class CharUtils {
      */
     global static String unicodeEscaped(final Integer ch) {
         return '\\u' +
-            HEX_DIGITS[(ch >> 12) & 15] +
-            HEX_DIGITS[(ch >> 8) & 15] +
-            HEX_DIGITS[(ch >> 4) & 15] +
-            HEX_DIGITS[(ch) & 15];
+            int2string(HEX_DIGITS[(ch >> 12) & 15]) +
+            int2string(HEX_DIGITS[(ch >> 8) & 15]) +
+            int2string(HEX_DIGITS[(ch >> 4) & 15]) +
+            int2string(HEX_DIGITS[(ch) & 15]);
     }
 
     /**

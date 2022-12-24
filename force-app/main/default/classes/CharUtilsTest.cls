@@ -48,4 +48,16 @@ private class CharUtilsTest {
         System.assertEquals(-1, CharUtils.toIntValue('A'.charat(0), -1));
     }
 
+    @isTest(SeeAllData=false)
+    static void toString01() {
+        System.assertEquals(' ', CharUtils.toString(' '.charAt(0)));
+        System.assertEquals('A', CharUtils.toString('A'.charAt(0)));
+    }
+
+    @isTest(SeeAllData=false)
+    static void unicodeEscaped01() {
+        System.assertEquals('\\u0020', CharUtils.unicodeEscaped(' '.charAt(0)));
+        System.assertEquals('\\u0041', CharUtils.unicodeEscaped('A'.charAt(0)));
+    }
+
 }
