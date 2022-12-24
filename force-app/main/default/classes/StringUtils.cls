@@ -1783,29 +1783,29 @@ global class StringUtils {
      * @see Object#equals(Object)
      * @see #equalsIgnoreCase(CharSequence, CharSequence)
      */
-//    global static Boolean equals(final CharSequence cs1, final CharSequence cs2) {
-//        if (cs1 == cs2) {
-//            return true;
-//        }
-//        if (cs1 == null || cs2 == null) {
-//            return false;
-//        }
-//        if (cs1.length() != cs2.length()) {
-//            return false;
-//        }
-//        if (cs1 instanceof String && cs2 instanceof String) {
-//            return cs1.equals(cs2);
-//        }
-//        // Step-wise comparison
-//        final Integer length = cs1.length();
-//        for (int i = 0; i < length; i++) {
-//            if (cs1.charAt(i) != cs2.charAt(i)) {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
-//
+    global static Boolean equals(final String cs1, final String cs2) {
+        if (cs1 == cs2) {
+            return true;
+        }
+        if (cs1 == null || cs2 == null) {
+            return false;
+        }
+        if (cs1.length() != cs2.length()) {
+            return false;
+        }
+        //if (cs1 instanceof String && cs2 instanceof String) {
+        return cs1.equals(cs2);
+        //}
+        // Step-wise comparison
+        //final Integer length = cs1.length();
+        //for (Integer i = 0; i < length; i++) {
+        //    if (cs1.charAt(i) != cs2.charAt(i)) {
+        //        return false;
+        //    }
+        //}
+        //return true;
+    }
+
     /**
      * <p>Compares given {@code string} to a CharSequences vararg of {@code searchStrings},
      * returning {@code true} if the {@code string} is equal to any of the {@code searchStrings}.</p>
@@ -1887,19 +1887,21 @@ global class StringUtils {
      * @since 3.0 Changed signature from equalsIgnoreCase(String, String) to equalsIgnoreCase(CharSequence, CharSequence)
      * @see #equals(CharSequence, CharSequence)
      */
-//    global static Boolean equalsIgnoreCase(final CharSequence cs1, final CharSequence cs2) {
-//        if (cs1 == cs2) {
-//            return true;
-//        }
-//        if (cs1 == null || cs2 == null) {
-//            return false;
-//        }
-//        if (cs1.length() != cs2.length()) {
-//            return false;
-//        }
-//        return CharSequenceUtils.regionMatches(cs1, true, 0, cs2, 0, cs1.length());
-//    }
-//
+    global static Boolean equalsIgnoreCase(final String cs1, final String cs2) {
+        if (cs1 == cs2) {
+            return true;
+        }
+        if (cs1 == null || cs2 == null) {
+            return false;
+        }
+        if (cs1.length() != cs2.length()) {
+            return false;
+        }
+        cs1 = cs1.toUpperCase();
+        cs2 = cs2.toUpperCase();
+        return cs1.equals(cs2);
+    }
+
     /**
      * <p>Returns the first value in the array which is not empty (''),
      * {@code null} or whitespace only.</p>
