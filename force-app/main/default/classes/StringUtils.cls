@@ -8049,10 +8049,10 @@ global class StringUtils {
      * @since 2.4
      * @since 3.0 Changed signature from startsWith(String, String) to startsWith(CharSequence, CharSequence)
      */
-//    global static Boolean startsWith(final CharSequence str, final CharSequence prefix) {
-//        return startsWith(str, prefix, false);
-//    }
-//
+    global static Boolean startsWith(final String str, final String prefix) {
+        return startsWith(str, prefix, false);
+    }
+
     /**
      * <p>Check if a CharSequence starts with a specified prefix (optionally case insensitive).</p>
      *
@@ -8064,18 +8064,22 @@ global class StringUtils {
      * @return {@code true} if the CharSequence starts with the prefix or
      *  both {@code null}
      */
-//    private static Boolean startsWith(final CharSequence str, final CharSequence prefix, final Boolean ignoreCase) {
-//        if (str == null || prefix == null) {
-//            return str == prefix;
-//        }
-//        // Get length once instead of twice in the unlikely case that it changes.
-//        final Integer preLen = prefix.length();
-//        if (preLen > str.length()) {
-//            return false;
-//        }
-//        return CharSequenceUtils.regionMatches(str, ignoreCase, 0, prefix, 0, preLen);
-//    }
-//
+    private static Boolean startsWith(final String str, final String prefix, final Boolean ignoreCase) {
+        if (str == null || prefix == null) {
+            return str == prefix;
+        }
+        // Get length once instead of twice in the unlikely case that it changes.
+        final Integer preLen = prefix.length();
+        if (preLen > str.length()) {
+            return false;
+        }
+        if (ignoreCase) {
+            str = str.toUpperCase();
+            prefix = prefix.toUpperCase();
+        }
+        return str.startsWith(prefix);
+    }
+
     /**
      * <p>Check if a CharSequence starts with any of the provided case-sensitive prefixes.</p>
      *
