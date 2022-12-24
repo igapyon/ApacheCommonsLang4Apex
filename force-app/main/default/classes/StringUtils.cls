@@ -2564,13 +2564,13 @@ global class StringUtils {
      * @since 2.0
      * @since 3.0 Changed signature from indexOf(String, String) to indexOf(CharSequence, CharSequence)
      */
-//    global static Integer indexOf(final CharSequence seq, final CharSequence searchSeq) {
-//        if (seq == null || searchSeq == null) {
-//            return INDEX_NOT_FOUND;
-//        }
-//        return CharSequenceUtils.indexOf(seq, searchSeq, 0);
-//    }
-//
+    global static Integer indexOf(final String seq, final String searchSeq) {
+        if (seq == null || searchSeq == null) {
+            return INDEX_NOT_FOUND;
+        }
+        return seq.indexOf(searchSeq);
+    }
+
     /**
      * <p>Finds the first index within a CharSequence, handling {@code null}.
      * This method uses {@link String#indexOf(String, int)} if possible.</p>
@@ -2648,13 +2648,13 @@ global class StringUtils {
      * @since 3.0 Changed signature from indexOf(String, int) to indexOf(CharSequence, int)
      * @since 3.6 Updated {@link CharSequenceUtils} call to behave more like {@code String}
      */
-//    global static Integer indexOf(final CharSequence seq, final Integer searchChar) {
-//        if (isEmpty(seq)) {
-//            return INDEX_NOT_FOUND;
-//        }
-//        return CharSequenceUtils.indexOf(seq, searchChar, 0);
-//    }
-//
+    global static Integer indexOf(final String seq, final Integer searchChar) {
+        if (isEmpty(seq)) {
+            return INDEX_NOT_FOUND;
+        }
+        return seq.indexOf(int2string(searchChar));
+    }
+
     /**
      *
      * Returns the index within {@code seq} of the first occurrence of the
