@@ -117,6 +117,33 @@ private class CharUtilsTest {
         System.assertEquals(false, CharUtils.isAsciiAlphaLower('愛'.charAt(0)));
     }
 
+    @isTest(SeeAllData=false)
+    static void isAsciiNumeric01() {
+        System.assertEquals(false, CharUtils.isAsciiNumeric('a'.charAt(0)));
+        System.assertEquals(false, CharUtils.isAsciiNumeric('A'.charAt(0)));
+        System.assertEquals(true, CharUtils.isAsciiNumeric('3'.charAt(0)));
+        System.assertEquals(false, CharUtils.isAsciiNumeric('-'.charAt(0)));
+        System.assertEquals(false, CharUtils.isAsciiNumeric('\n'.charAt(0)));
+        System.assertEquals(false, CharUtils.isAsciiNumeric('愛'.charAt(0)));
+    }
+
+    @isTest(SeeAllData=false)
+    static void isAsciiAlphanumeric01() {
+        System.assertEquals(true, CharUtils.isAsciiAlphanumeric('a'.charAt(0)));
+        System.assertEquals(true, CharUtils.isAsciiAlphanumeric('A'.charAt(0)));
+        System.assertEquals(true, CharUtils.isAsciiAlphanumeric('3'.charAt(0)));
+        System.assertEquals(false, CharUtils.isAsciiAlphanumeric('-'.charAt(0)));
+        System.assertEquals(false, CharUtils.isAsciiAlphanumeric('\n'.charAt(0)));
+        System.assertEquals(false, CharUtils.isAsciiAlphanumeric('愛'.charAt(0)));
+    }
+
+    @isTest(SeeAllData=false)
+    static void compare01() {
+        System.assertEquals(true, CharUtils.compare('a'.charAt(0),'b'.charAt(0)) < 0);
+        System.assertEquals(true, CharUtils.compare('a'.charAt(0),'a'.charAt(0)) == 0);
+        System.assertEquals(true, CharUtils.compare('b'.charAt(0),'a'.charAt(0)) > 0);
+    }
+
 
 
 }
