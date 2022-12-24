@@ -7212,21 +7212,22 @@ global class StringUtils {
      * @return right padded String or original String if no padding is necessary,
      *  {@code null} if null String input
      * @since 2.0
+     * 実装上の都合メソッド名を変更。
      */
-//    global static String rightPad(final String str, final Integer size, final char padChar) {
-//        if (str == null) {
-//            return null;
-//        }
-//        final Integer pads = size - str.length();
-//        if (pads <= 0) {
-//            return str; // returns original String when possible
-//        }
-//        if (pads > PAD_LIMIT) {
-//            return rightPad(str, size, String.valueOf(padChar));
-//        }
-//        return str.concat(repeat(padChar, pads));
-//    }
-//
+    global static String rightPadChar(final String str, final Integer size, final Integer padChar) {
+        if (str == null) {
+            return null;
+        }
+        final Integer pads = size - str.length();
+        if (pads <= 0) {
+            return str; // returns original String when possible
+        }
+        if (pads > PAD_LIMIT) {
+            return rightPad(str, size, int2string(padChar));
+        }
+        return str + (repeatChar(padChar, pads));
+    }
+
     /**
      * <p>Right pad a String with a specified String.</p>
      *
@@ -7250,37 +7251,37 @@ global class StringUtils {
      * @return right padded String or original String if no padding is necessary,
      *  {@code null} if null String input
      */
-//    global static String rightPad(final String str, final Integer size, String padStr) {
-//        if (str == null) {
-//            return null;
-//        }
-//        if (isEmpty(padStr)) {
-//            padStr = SPACE;
-//        }
-//        final Integer padLen = padStr.length();
-//        final Integer strLen = str.length();
-//        final Integer pads = size - strLen;
-//        if (pads <= 0) {
-//            return str; // returns original String when possible
-//        }
-//        if (padLen == 1 && pads <= PAD_LIMIT) {
-//            return rightPad(str, size, padStr.charAt(0));
-//        }
-//
-//        if (pads == padLen) {
-//            return str.concat(padStr);
-//        } else if (pads < padLen) {
-//            return str.concat(padStr.substring(0, pads));
-//        } else {
-//            final char[] padding = new char[pads];
-//            final char[] padChars = padStr.toCharArray();
-//            for (int i = 0; i < pads; i++) {
-//                padding[i] = padChars[i % padLen];
-//            }
-//            return str.concat(new String(padding));
-//        }
-//    }
-//
+    global static String rightPad(final String str, final Integer size, String padStr) {
+        if (str == null) {
+            return null;
+        }
+        if (isEmpty(padStr)) {
+            padStr = SPACE;
+        }
+        final Integer padLen = padStr.length();
+        final Integer strLen = str.length();
+        final Integer pads = size - strLen;
+        if (pads <= 0) {
+            return str; // returns original String when possible
+        }
+        if (padLen == 1 && pads <= PAD_LIMIT) {
+            return rightPadChar(str, size, padStr.charAt(0));
+        }
+
+        if (pads == padLen) {
+            return str + (padStr);
+        } else if (pads < padLen) {
+            return str + (padStr.substring(0, pads));
+        } else {
+            final List<Integer> padding = new List<Integer>(pads);
+            final List<Integer> padChars = padStr.getChars();
+            for (Integer i = 0; i < pads; i++) {
+                padding[i] = padChars[Math.mod(i, padLen)];
+            }
+            return str + (String.fromCharArray(padding));
+        }
+    }
+
     /**
      * <p>Rotate (circular shift) a String of {@code shift} characters.</p>
      * <ul>
