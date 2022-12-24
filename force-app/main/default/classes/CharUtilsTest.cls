@@ -60,4 +60,14 @@ private class CharUtilsTest {
         System.assertEquals('\\u0041', CharUtils.unicodeEscaped('A'.charAt(0)));
     }
 
+    @isTest(SeeAllData=false)
+    static void isAscii01() {
+        System.assertEquals(true, CharUtils.isAscii('a'.charAt(0)));
+        System.assertEquals(true, CharUtils.isAscii('A'.charAt(0)));
+        System.assertEquals(true, CharUtils.isAscii('3'.charAt(0)));
+        System.assertEquals(true, CharUtils.isAscii('-'.charAt(0)));
+        System.assertEquals(true, CharUtils.isAscii('\n'.charAt(0)));
+        System.assertEquals(false, CharUtils.isAscii('愛'.charAt(0)));
+    }
+
 }
