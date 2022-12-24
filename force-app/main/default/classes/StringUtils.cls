@@ -1783,29 +1783,29 @@ global class StringUtils {
      * @see Object#equals(Object)
      * @see #equalsIgnoreCase(CharSequence, CharSequence)
      */
-//    global static Boolean equals(final CharSequence cs1, final CharSequence cs2) {
-//        if (cs1 == cs2) {
-//            return true;
-//        }
-//        if (cs1 == null || cs2 == null) {
-//            return false;
-//        }
-//        if (cs1.length() != cs2.length()) {
-//            return false;
-//        }
-//        if (cs1 instanceof String && cs2 instanceof String) {
-//            return cs1.equals(cs2);
-//        }
-//        // Step-wise comparison
-//        final Integer length = cs1.length();
-//        for (int i = 0; i < length; i++) {
-//            if (cs1.charAt(i) != cs2.charAt(i)) {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
-//
+    global static Boolean equals(final String cs1, final String cs2) {
+        if (cs1 == cs2) {
+            return true;
+        }
+        if (cs1 == null || cs2 == null) {
+            return false;
+        }
+        if (cs1.length() != cs2.length()) {
+            return false;
+        }
+        //if (cs1 instanceof String && cs2 instanceof String) {
+        return cs1.equals(cs2);
+        //}
+        // Step-wise comparison
+        //final Integer length = cs1.length();
+        //for (Integer i = 0; i < length; i++) {
+        //    if (cs1.charAt(i) != cs2.charAt(i)) {
+        //        return false;
+        //    }
+        //}
+        //return true;
+    }
+
     /**
      * <p>Compares given {@code string} to a CharSequences vararg of {@code searchStrings},
      * returning {@code true} if the {@code string} is equal to any of the {@code searchStrings}.</p>
@@ -1887,19 +1887,21 @@ global class StringUtils {
      * @since 3.0 Changed signature from equalsIgnoreCase(String, String) to equalsIgnoreCase(CharSequence, CharSequence)
      * @see #equals(CharSequence, CharSequence)
      */
-//    global static Boolean equalsIgnoreCase(final CharSequence cs1, final CharSequence cs2) {
-//        if (cs1 == cs2) {
-//            return true;
-//        }
-//        if (cs1 == null || cs2 == null) {
-//            return false;
-//        }
-//        if (cs1.length() != cs2.length()) {
-//            return false;
-//        }
-//        return CharSequenceUtils.regionMatches(cs1, true, 0, cs2, 0, cs1.length());
-//    }
-//
+    global static Boolean equalsIgnoreCase(final String cs1, final String cs2) {
+        if (cs1 == cs2) {
+            return true;
+        }
+        if (cs1 == null || cs2 == null) {
+            return false;
+        }
+        if (cs1.length() != cs2.length()) {
+            return false;
+        }
+        cs1 = cs1.toUpperCase();
+        cs2 = cs2.toUpperCase();
+        return cs1.equals(cs2);
+    }
+
     /**
      * <p>Returns the first value in the array which is not empty (''),
      * {@code null} or whitespace only.</p>
@@ -3244,19 +3246,19 @@ global class StringUtils {
      * @since 2.5
      * @since 3.0 Changed signature from isAllLowerCase(String) to isAllLowerCase(CharSequence)
      */
-//    global static Boolean isAllLowerCase(final CharSequence cs) {
-//        if (isEmpty(cs)) {
-//            return false;
-//        }
-//        final Integer sz = cs.length();
-//        for (int i = 0; i < sz; i++) {
-//            if (!Character.isLowerCase(cs.charAt(i))) {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
-//
+    global static Boolean isAllLowerCase(final String cs) {
+        if (isEmpty(cs)) {
+            return false;
+        }
+        final Integer sz = cs.length();
+        for (Integer i = 0; i < sz; i++) {
+            if (!CharUtils.isAsciiAlphaLower(cs.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * <p>Checks if the CharSequence contains only uppercase characters.</p>
      *
@@ -3279,19 +3281,19 @@ global class StringUtils {
      * @since 2.5
      * @since 3.0 Changed signature from isAllUpperCase(String) to isAllUpperCase(CharSequence)
      */
-//    global static Boolean isAllUpperCase(final CharSequence cs) {
-//        if (isEmpty(cs)) {
-//            return false;
-//        }
-//        final Integer sz = cs.length();
-//        for (int i = 0; i < sz; i++) {
-//            if (!Character.isUpperCase(cs.charAt(i))) {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
-//
+    global static Boolean isAllUpperCase(final String cs) {
+        if (isEmpty(cs)) {
+            return false;
+        }
+        final Integer sz = cs.length();
+        for (Integer i = 0; i < sz; i++) {
+            if (!CharUtils.isAsciiAlphaUpper(cs.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * <p>Checks if the CharSequence contains only Unicode letters.</p>
      *
@@ -3534,19 +3536,19 @@ global class StringUtils {
      * @since 2.1
      * @since 3.0 Changed signature from isAsciiPrintable(String) to isAsciiPrintable(CharSequence)
      */
-//    global static Boolean isAsciiPrintable(final CharSequence cs) {
-//        if (cs == null) {
-//            return false;
-//        }
-//        final Integer sz = cs.length();
-//        for (int i = 0; i < sz; i++) {
-//            if (!CharUtils.isAsciiPrintable(cs.charAt(i))) {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
-//
+    global static Boolean isAsciiPrintable(final String cs) {
+        if (cs == null) {
+          return false;
+        }
+        final Integer sz = cs.length();
+        for (Integer i = 0; i < sz; i++) {
+            if (!CharUtils.isAsciiPrintable(cs.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * <p>Checks if a CharSequence is empty (''), null or whitespace only.</p>
      *
@@ -3623,24 +3625,24 @@ global class StringUtils {
      * @return {@code true} if the CharSequence contains both uppercase and lowercase characters
      * @since 3.5
      */
-//    global static Boolean isMixedCase(final CharSequence cs) {
-//        if (isEmpty(cs) || cs.length() == 1) {
-//            return false;
-//        }
-//        Boolean containsUppercase = false;
-//        Boolean containsLowercase = false;
-//        final Integer sz = cs.length();
-//        for (int i = 0; i < sz; i++) {
-//            if (containsUppercase && containsLowercase) {
-//                return true;
-//            } else if (Character.isUpperCase(cs.charAt(i))) {
-//                containsUppercase = true;
-//            } else if (Character.isLowerCase(cs.charAt(i))) {
-//                containsLowercase = true;
-//            }
-//        }
-//        return containsUppercase && containsLowercase;
-//    }
+    global static Boolean isMixedCase(final String cs) {
+        if (isEmpty(cs) || cs.length() == 1) {
+            return false;
+        }
+        Boolean containsUppercase = false;
+        Boolean containsLowercase = false;
+        final Integer sz = cs.length();
+        for (Integer i = 0; i < sz; i++) {
+            if (containsUppercase && containsLowercase) {
+                return true;
+            } else if (CharUtils.isAsciiAlphaUpper(cs.charAt(i))) {
+                containsUppercase = true;
+            } else if (CharUtils.isAsciiAlphaLower(cs.charAt(i))) {
+                containsLowercase = true;
+            }
+        }
+        return containsUppercase && containsLowercase;
+    }
 
     /**
      * <p>Checks if none of the CharSequences are empty (''), null or whitespace only.</p>
@@ -5393,13 +5395,13 @@ global class StringUtils {
      * @param str  the String to lower case, may be null
      * @return the lower cased String, {@code null} if null String input
      */
-//    global static String lowerCase(final String str) {
-//        if (str == null) {
-//            return null;
-//        }
-//        return str.toLowerCase();
-//    }
-//
+    global static String lowerCase(final String str) {
+        if (str == null) {
+            return null;
+        }
+        return str.toLowerCase();
+    }
+
     /**
      * <p>Converts a String to lower case as per {@link String#toLowerCase(Locale)}.</p>
      *
@@ -7312,23 +7314,23 @@ global class StringUtils {
      *          or {@code null} if null String input
      * @since 3.5
      */
-//    global static String rotate(final String str, final Integer shift) {
-//        if (str == null) {
-//            return null;
-//        }
-//
-//        final Integer strLen = str.length();
-//        if (shift == 0 || strLen == 0 || shift % strLen == 0) {
-//            return str;
-//        }
-//
-//        final StringBuilder builder = new StringBuilder(strLen);
-//        final Integer offset = - (shift % strLen);
-//        builder.append(substring(str, offset));
-//        builder.append(substring(str, 0, offset));
-//        return builder.toString();
-//    }
-//
+    global static String rotate(final String str, final Integer shift) {
+        if (str == null) {
+            return null;
+        }
+
+        final Integer strLen = str.length();
+        if (shift == 0 || strLen == 0 || Math.mod(shift, strLen) == 0) {
+            return str;
+        }
+
+        String builder = '';
+        final Integer offset = - (Math.mod(shift, strLen));
+        builder += (substring(str, offset));
+        builder += (substring(str, 0, offset));
+        return builder;
+    }
+
     /**
      * <p>Splits the provided text into an array, using whitespace as the
      * separator.
