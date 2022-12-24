@@ -31,4 +31,13 @@ private class StringUtilsTest {
         System.assertEquals('', StringUtils.defaultString('', 'NULL'));
         System.assertEquals('bat', StringUtils.defaultString('bat', 'NULL'));
     }
+
+    @isTest(SeeAllData=false)
+    static void isBlankTest01() {
+        System.assertEquals(true, StringUtils.isBlank(null));
+        System.assertEquals(true, StringUtils.isBlank(''));
+        System.assertEquals(true, StringUtils.isBlank(' '));
+        System.assertEquals(false, StringUtils.isBlank('bob'));
+        System.assertEquals(false, StringUtils.isBlank('  bob  '));
+    }
 }

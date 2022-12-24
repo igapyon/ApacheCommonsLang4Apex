@@ -3532,60 +3532,67 @@ global class StringUtils {
 //        return true;
 //    }
 //
-//    /**
-//     * <p>Checks if a CharSequence is empty (''), null or whitespace only.</p>
-//     *
-//     * <p>Whitespace is defined by {@link Character#isWhitespace(char)}.</p>
-//     *
-//     * <pre>
-//     * StringUtils.isBlank(null)      = true
-//     * StringUtils.isBlank('')        = true
-//     * StringUtils.isBlank(' ')       = true
-//     * StringUtils.isBlank('bob')     = false
-//     * StringUtils.isBlank('  bob  ') = false
-//     * </pre>
-//     *
-//     * @param cs  the CharSequence to check, may be null
-//     * @return {@code true} if the CharSequence is null, empty or whitespace only
-//     * @since 2.0
-//     * @since 3.0 Changed signature from isBlank(String) to isBlank(CharSequence)
-//     */
-//    public static Boolean isBlank(final CharSequence cs) {
-//        final Integer strLen = length(cs);
-//        if (strLen == 0) {
-//            return true;
-//        }
-//        for (int i = 0; i < strLen; i++) {
-//            if (!Character.isWhitespace(cs.charAt(i))) {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
-//
-//    /**
-//     * <p>Checks if a CharSequence is empty ('') or null.</p>
-//     *
-//     * <pre>
-//     * StringUtils.isEmpty(null)      = true
-//     * StringUtils.isEmpty('')        = true
-//     * StringUtils.isEmpty(' ')       = false
-//     * StringUtils.isEmpty('bob')     = false
-//     * StringUtils.isEmpty('  bob  ') = false
-//     * </pre>
-//     *
-//     * <p>NOTE: This method changed in Lang version 2.0.
-//     * It no longer trims the CharSequence.
-//     * That functionality is available in isBlank().</p>
-//     *
-//     * @param cs  the CharSequence to check, may be null
-//     * @return {@code true} if the CharSequence is empty or null
-//     * @since 3.0 Changed signature from isEmpty(String) to isEmpty(CharSequence)
-//     */
-//    public static Boolean isEmpty(final CharSequence cs) {
-//        return cs == null || cs.length() == 0;
-//    }
-//
+    /**
+     * <p>Checks if a CharSequence is empty (''), null or whitespace only.</p>
+     *
+     * <p>Whitespace is defined by {@link Character#isWhitespace(char)}.</p>
+     *
+     * <pre>
+     * StringUtils.isBlank(null)      = true
+     * StringUtils.isBlank('')        = true
+     * StringUtils.isBlank(' ')       = true
+     * StringUtils.isBlank('bob')     = false
+     * StringUtils.isBlank('  bob  ') = false
+     * </pre>
+     *
+     * @param cs  the CharSequence to check, may be null
+     * @return {@code true} if the CharSequence is null, empty or whitespace only
+     * @since 2.0
+     * @since 3.0 Changed signature from isBlank(String) to isBlank(CharSequence)
+     */
+    global static Boolean isBlank(final String cs) {
+        final Integer strLen = length(cs);
+        if (strLen == 0) {
+            return true;
+        }
+        for (Integer i = 0; i < strLen; i++) {
+            String check = int2string(cs.charAt(i));
+            if (!check.isWhitespace()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static String int2string(final Integer val) {
+        List<Integer> nextOne = new List<Integer>();
+        nextOne.add(val);
+        return String.fromCharArray(nextOne);
+    }
+
+    /**
+     * <p>Checks if a CharSequence is empty ('') or null.</p>
+     *
+     * <pre>
+     * StringUtils.isEmpty(null)      = true
+     * StringUtils.isEmpty('')        = true
+     * StringUtils.isEmpty(' ')       = false
+     * StringUtils.isEmpty('bob')     = false
+     * StringUtils.isEmpty('  bob  ') = false
+     * </pre>
+     *
+     * <p>NOTE: This method changed in Lang version 2.0.
+     * It no longer trims the CharSequence.
+     * That functionality is available in isBlank().</p>
+     *
+     * @param cs  the CharSequence to check, may be null
+     * @return {@code true} if the CharSequence is empty or null
+     * @since 3.0 Changed signature from isEmpty(String) to isEmpty(CharSequence)
+     */
+    global static Boolean isEmpty(final String cs) {
+        return cs == null || cs.length() == 0;
+    }
+
 //    /**
 //     * <p>Checks if the CharSequence contains mixed casing of both uppercase and lowercase characters.</p>
 //     *
@@ -5338,21 +5345,21 @@ global class StringUtils {
 //        }
 //    }
 //
-//    /**
-//     * Gets a CharSequence length or {@code 0} if the CharSequence is
-//     * {@code null}.
-//     *
-//     * @param cs
-//     *            a CharSequence or {@code null}
-//     * @return CharSequence length or {@code 0} if the CharSequence is
-//     *         {@code null}.
-//     * @since 2.4
-//     * @since 3.0 Changed signature from length(String) to length(CharSequence)
-//     */
-//    public static Integer length(final CharSequence cs) {
-//        return cs == null ? 0 : cs.length();
-//    }
-//
+    /**
+     * Gets a CharSequence length or {@code 0} if the CharSequence is
+     * {@code null}.
+     *
+     * @param cs
+     *            a CharSequence or {@code null}
+     * @return CharSequence length or {@code 0} if the CharSequence is
+     *         {@code null}.
+     * @since 2.4
+     * @since 3.0 Changed signature from length(String) to length(CharSequence)
+     */
+    public static Integer length(final String cs) {
+        return cs == null ? 0 : cs.length();
+    }
+
 //    /**
 //     * <p>Converts a String to lower case as per {@link String#toLowerCase()}.</p>
 //     *
