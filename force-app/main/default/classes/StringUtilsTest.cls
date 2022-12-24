@@ -15,7 +15,6 @@
  * limitations under the License.
  */
 
-
 @isTest(SeeAllData=false)
 private class StringUtilsTest {
     @isTest(SeeAllData=false)
@@ -45,4 +44,35 @@ private class StringUtilsTest {
         System.assertEquals(false, StringUtils.isBlank('bob'));
         System.assertEquals(false, StringUtils.isBlank('  bob  '));
     }
+
+    @isTest(SeeAllData=false)
+    static void isNonBlankTest() {
+        System.assertEquals(false, StringUtils.isNoneBlank((String) null));
+        //* StringUtils.isNoneBlank((String[]) null)  = true
+        System.assertEquals(false, StringUtils.isNoneBlank(null, 'foo'));
+        System.assertEquals(false, StringUtils.isNoneBlank(null, null));
+        System.assertEquals(false, StringUtils.isNoneBlank('', 'bar'));
+        System.assertEquals(false, StringUtils.isNoneBlank('bob', ''));
+        System.assertEquals(false, StringUtils.isNoneBlank('  bob  ', null));
+        System.assertEquals(false, StringUtils.isNoneBlank(' ', 'bar'));
+        //* StringUtils.isNoneBlank(new String[] {})  = true
+        //* StringUtils.isNoneBlank(new String[]{''}) = false
+        System.assertEquals(true, StringUtils.isNoneBlank('foo', 'bar'));
+    }
+
+    @isTest(SeeAllData=false)
+    static void isAnyBlankTest() {
+        System.assertEquals(true, StringUtils.isAnyBlank((String) null));
+        //* StringUtils.isAnyBlank((String[]) null)  = false
+        System.assertEquals(true, StringUtils.isAnyBlank(null, 'foo'));
+        System.assertEquals(true, StringUtils.isAnyBlank(null, null));
+        System.assertEquals(true, StringUtils.isAnyBlank('', 'bar'));
+        System.assertEquals(true, StringUtils.isAnyBlank('bob', ''));
+        System.assertEquals(true, StringUtils.isAnyBlank('  bob  ', null));
+        System.assertEquals(true, StringUtils.isAnyBlank(' ', 'bar'));
+        //* StringUtils.isAnyBlank(new String[] {})  = false
+        //* StringUtils.isAnyBlank(new String[]{''}) = true
+        System.assertEquals(false, StringUtils.isAnyBlank('foo', 'bar'));
+    }
+
 }
