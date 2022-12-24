@@ -9133,10 +9133,10 @@ global class StringUtils {
      * @return the trimmed String, or an empty String if {@code null} input
      * @since 2.0
      */
-//    global static String trimToEmpty(final String str) {
-//        return str == null ? EMPTY : str.trim();
-//    }
-//
+    global static String trimToEmpty(final String str) {
+        return str == null ? EMPTY : str.trim();
+    }
+
     /**
      * <p>Removes control characters (char &lt;= 32) from both
      * ends of this String returning {@code null} if the String is
@@ -9159,11 +9159,11 @@ global class StringUtils {
      *  {@code null} if only chars &lt;= 32, empty or null String input
      * @since 2.0
      */
-//    global static String trimToNull(final String str) {
-//        final String ts = trim(str);
-//        return isEmpty(ts) ? null : ts;
-//    }
-//
+    global static String trimToNull(final String str) {
+        final String ts = trim(str);
+        return isEmpty(ts) ? null : ts;
+    }
+
     /**
      * <p>Truncates a String. This will turn
      * 'Now is the time for all good men' into 'Now is the time for'.</p>
@@ -9196,10 +9196,10 @@ global class StringUtils {
      * @throws IllegalArgumentException If {@code maxWidth} is less than {@code 0}
      * @since 3.5
      */
-//    global static String truncate(final String str, final Integer maxWidth) {
-//        return truncate(str, 0, maxWidth);
-//    }
-//
+    global static String truncate(final String str, final Integer maxWidth) {
+        return truncate(str, 0, maxWidth);
+    }
+
     /**
      * <p>Truncates a String. This will turn
      * 'Now is the time for all good men' into 'is the time for all'.</p>
@@ -9260,26 +9260,26 @@ global class StringUtils {
      * @throws IllegalArgumentException If {@code offset} or {@code maxWidth} is less than {@code 0}
      * @since 3.5
      */
-//    global static String truncate(final String str, final Integer offset, final Integer maxWidth) {
-//        if (offset < 0) {
-//            throw new IllegalArgumentException('offset cannot be negative');
-//        }
-//        if (maxWidth < 0) {
-//            throw new IllegalArgumentException('maxWith cannot be negative');
-//        }
-//        if (str == null) {
-//            return null;
-//        }
-//        if (offset > str.length()) {
-//            return EMPTY;
-//        }
-//        if (str.length() > maxWidth) {
-//            final Integer ix = Math.min(offset + maxWidth, str.length());
-//            return str.substring(offset, ix);
-//        }
-//        return str.substring(offset);
-//    }
-//
+    global static String truncate(final String str, final Integer offset, final Integer maxWidth) {
+        if (offset < 0) {
+            throw new IllegalArgumentException('offset cannot be negative');
+        }
+        if (maxWidth < 0) {
+            throw new IllegalArgumentException('maxWith cannot be negative');
+        }
+        if (str == null) {
+            return null;
+        }
+        if (offset > str.length()) {
+            return EMPTY;
+        }
+        if (str.length() > maxWidth) {
+            final Integer ix = Math.min(offset + maxWidth, str.length());
+            return str.substring(offset, ix);
+        }
+        return str.substring(offset);
+    }
+
     /**
      * <p>Uncapitalizes a String, changing the first character to lower case as
      * per {@link Character#toLowerCase(int)}. No other characters are changed.</p>
