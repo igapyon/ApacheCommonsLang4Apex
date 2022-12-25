@@ -292,64 +292,52 @@ private class StringUtilsTest {
     @isTest(SeeAllData=false)
     static void compare3args() {
         System.assertEquals(0, StringUtils.compare(null, null, true));
-    /*
-    * StringUtils.compare(null , 'a', true)  &lt; 0
-    * StringUtils.compare(null , 'a', false) &gt; 0
-    * StringUtils.compare('a', null, true)   &gt; 0
-    * StringUtils.compare('a', null, false)  &lt; 0
-    * StringUtils.compare('abc', 'abc', *)   = 0
-    * StringUtils.compare('a', 'b', *)       &lt; 0
-    * StringUtils.compare('b', 'a', *)       &gt; 0
-    * StringUtils.compare('a', 'B', *)       &gt; 0
-    * 
-    */
+        System.assert(StringUtils.compare(null , 'a', true)  < 0);
+        System.assert(StringUtils.compare(null , 'a', false) > 0);
+        System.assert(StringUtils.compare('a', null, true) > 0);
+        System.assert(StringUtils.compare('a', null, false) < 0);
+        System.assert(StringUtils.compare('abc', 'abc', false) == 0);
+        System.assert(StringUtils.compare('a', 'b', true) < 0);
+        System.assert(StringUtils.compare('b', 'a', false) > 0);
+        System.assert(StringUtils.compare('a', 'B', true) > 0);
         System.assert(StringUtils.compare('ab', 'abc', true) < 0);
     }
      
     @isTest(SeeAllData=false)
     static void compareIgnoreCase2args() {
         System.assertEquals(0, StringUtils.compareIgnoreCase(null, null));
-    /*
-    *    = 0
-    * StringUtils.compareIgnoreCase(null , 'a')   &lt; 0
-    * StringUtils.compareIgnoreCase('a', null)    &gt; 0
-    * StringUtils.compareIgnoreCase('abc', 'abc') = 0
-    * StringUtils.compareIgnoreCase('abc', 'ABC') = 0
-    * StringUtils.compareIgnoreCase('a', 'b')     &lt; 0
-    * StringUtils.compareIgnoreCase('b', 'a')     &gt; 0
-    * StringUtils.compareIgnoreCase('a', 'B')     &lt; 0
-    * StringUtils.compareIgnoreCase('A', 'b')     &lt; 0
-    * 
-    */
+        System.assert(StringUtils.compareIgnoreCase(null , 'a') < 0);
+        System.assert(StringUtils.compareIgnoreCase('a', null) > 0);
+        System.assert(StringUtils.compareIgnoreCase('abc', 'abc') == 0);
+        System.assert(StringUtils.compareIgnoreCase('abc', 'ABC') == 0);
+        System.assert(StringUtils.compareIgnoreCase('a', 'b') < 0);
+        System.assert(StringUtils.compareIgnoreCase('b', 'a') > 0);
+        System.assert(StringUtils.compareIgnoreCase('a', 'B') < 0);
+        System.assert(StringUtils.compareIgnoreCase('A', 'b') < 0);
         System.assert(StringUtils.compareIgnoreCase('ab', 'ABC') < 0);
     }
 
     @isTest(SeeAllData=false)
     static void compareIgnoreCase3args() {
         System.assertEquals(0, StringUtils.compareIgnoreCase(null, null, true));
-    /*
-    *      = 0
-    * StringUtils.compareIgnoreCase(null , 'a', true)  &lt; 0
-    * StringUtils.compareIgnoreCase(null , 'a', false) &gt; 0
-    * StringUtils.compareIgnoreCase('a', null, true)   &gt; 0
-    * StringUtils.compareIgnoreCase('a', null, false)  &lt; 0
-    * StringUtils.compareIgnoreCase('abc', 'abc', *)   = 0
-    * StringUtils.compareIgnoreCase('abc', 'ABC', *)   = 0
-    * StringUtils.compareIgnoreCase('a', 'b', *)       &lt; 0
-    * StringUtils.compareIgnoreCase('b', 'a', *)       &gt; 0
-    * StringUtils.compareIgnoreCase('a', 'B', *)       &lt; 0
-    * StringUtils.compareIgnoreCase('A', 'b', *)       &lt; 0
-    */
+        System.assert(StringUtils.compareIgnoreCase(null , 'a', true) < 0);
+        System.assert(StringUtils.compareIgnoreCase(null , 'a', false) > 0);
+        System.assert(StringUtils.compareIgnoreCase('a', null, true) > 0);
+        System.assert(StringUtils.compareIgnoreCase('a', null, false) < 0);
+        System.assert(StringUtils.compareIgnoreCase('abc', 'abc', true) == 0);
+        System.assert(StringUtils.compareIgnoreCase('abc', 'ABC', false) == 0);
+        System.assert(StringUtils.compareIgnoreCase('a', 'b', true) < 0);
+        System.assert(StringUtils.compareIgnoreCase('b', 'a', false) > 0);
+        System.assert(StringUtils.compareIgnoreCase('a', 'B', true) < 0);
+        System.assert(StringUtils.compareIgnoreCase('A', 'b', false) < 0);
         System.assert(StringUtils.compareIgnoreCase('ab', 'abc', true) < 0);
     }
     
     @isTest(SeeAllData=false)
     static void contains() {
         System.assertEquals(false, StringUtils.contains((String) null, 'a'.charAt(0)));
-/*
-    * StringUtils.contains('', *)      = false
-    * StringUtils.contains('abc', 'a') = true
-    */
+        System.assertEquals(false, StringUtils.contains('', 99));
+        System.assertEquals(true, StringUtils.contains('abc', 'a'.charAt(0)));
         System.assertEquals(false, StringUtils.contains('abc', 'z'.charAt(0)));
     }
 
