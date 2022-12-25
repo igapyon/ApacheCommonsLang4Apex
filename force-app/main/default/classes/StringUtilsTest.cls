@@ -1007,8 +1007,7 @@ private class StringUtilsTest {
      * StringUtils.wrapIfMissing('/', '/')  = '/'
      * StringUtils.wrapIfMissing('a/b/c', '/')  = '/a/b/c/'
      * StringUtils.wrapIfMissing('/a/b/c', '/')  = '/a/b/c/'
-     * StringUtils.wrapIfMissing('a/b/c/', '/')  = '/a/b/c/'
-    global static String wrapIfMissing(final String str, final String wrapWith) {
 */
+        System.assertEquals('/a/b/c/', StringUtils.wrapIfMissing('a/b/c/', '/'));
     }
 }
