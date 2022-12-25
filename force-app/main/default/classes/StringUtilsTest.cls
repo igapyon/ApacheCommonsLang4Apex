@@ -629,41 +629,37 @@ private class StringUtilsTest {
     
     @isTest(SeeAllData=false)
     static void lastIndexOf2args1() {
-        System.assertEquals(-1, StringUtils.lastIndexOf(null, 99));
-/*  * StringUtils.lastIndexOf(*, null)          = -1
-    * StringUtils.lastIndexOf('', '')           = 0
-    * StringUtils.lastIndexOf('aabaabaa', 'a')  = 7
-    * StringUtils.lastIndexOf('aabaabaa', 'b')  = 5
-    * StringUtils.lastIndexOf('aabaabaa', 'ab') = 4*/
+        System.assertEquals(-1, StringUtils.lastIndexOf(null, 'Z'));
+        System.assertEquals(-1, StringUtils.lastIndexOf('DUMMY', (String) null));
+        System.assertEquals(0, StringUtils.lastIndexOf('', ''));
+        System.assertEquals(7, StringUtils.lastIndexOf('aabaabaa', 'a'));
+        System.assertEquals(5, StringUtils.lastIndexOf('aabaabaa', 'b'));
+        System.assertEquals(4, StringUtils.lastIndexOf('aabaabaa', 'ab'));
         System.assertEquals(8, StringUtils.lastIndexOf('aabaabaa', ''));
     }
     
 
     @isTest(SeeAllData=false)
     static void lastIndexOf3args() {
-        System.assertEquals(-1, StringUtils.lastIndexOf((String) null, '99', 99));
-/*
-     * StringUtils.lastIndexOf(*, null, *)          = -1
-     * StringUtils.lastIndexOf('aabaabaa', 'a', 8)  = 7
-     * StringUtils.lastIndexOf('aabaabaa', 'b', 8)  = 5
-     * StringUtils.lastIndexOf('aabaabaa', 'ab', 8) = 4
-     * StringUtils.lastIndexOf('aabaabaa', 'b', 9)  = 5
-     * StringUtils.lastIndexOf('aabaabaa', 'b', -1) = -1
-     * StringUtils.lastIndexOf('aabaabaa', 'a', 0)  = 0
-     * StringUtils.lastIndexOf('aabaabaa', 'b', 0)  = -1
-     * StringUtils.lastIndexOf('aabaabaa', 'b', 1)  = -1
-     * StringUtils.lastIndexOf('aabaabaa', 'b', 2)  = 2
-    */
+        System.assertEquals(-1, StringUtils.lastIndexOf((String) null, '9', 99));
+        System.assertEquals(-1, StringUtils.lastIndexOf('DUMMY', null, 99));
+        System.assertEquals(7, StringUtils.lastIndexOf('aabaabaa', 'a', 8));
+        System.assertEquals(5, StringUtils.lastIndexOf('aabaabaa', 'b', 8));
+        System.assertEquals(4, StringUtils.lastIndexOf('aabaabaa', 'ab', 8));
+        System.assertEquals(5, StringUtils.lastIndexOf('aabaabaa', 'b', 9));
+        System.assertEquals(-1, StringUtils.lastIndexOf('aabaabaa', 'b', -1));
+        System.assertEquals(0, StringUtils.lastIndexOf('aabaabaa', 'a', 0));
+        System.assertEquals(-1, StringUtils.lastIndexOf('aabaabaa', 'b', 0));
+        System.assertEquals(-1, StringUtils.lastIndexOf('aabaabaa', 'b', 1));
+        System.assertEquals(2, StringUtils.lastIndexOf('aabaabaa', 'b', 2));
         System.assertEquals(2, StringUtils.lastIndexOf('aabaabaa', 'ba', 2));
     }
 
     @isTest(SeeAllData=false)
     static void lastIndexOf2args2() {
         System.assertEquals(-1, StringUtils.lastIndexOf(null, 99));
-/*   * StringUtils.lastIndexOf('', *)           = -1
-     * StringUtils.lastIndexOf('aabaabaa', 'a') = 7
-     *  = 5
-*/
+        System.assertEquals(-1, StringUtils.lastIndexOf('', 99));
+        System.assertEquals(7, StringUtils.lastIndexOf('aabaabaa', 'a'));
         System.assertEquals(5, StringUtils.lastIndexOf('aabaabaa', 'b'));
     }
     

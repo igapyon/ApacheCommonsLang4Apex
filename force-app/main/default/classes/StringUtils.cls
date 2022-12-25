@@ -4918,6 +4918,9 @@ global class StringUtils {
         if (seq == null) {
             return INDEX_NOT_FOUND;
         }
+        if (searchSeq == null) {
+            return INDEX_NOT_FOUND;
+        }
         return seq.lastIndexOf(searchSeq, seq.length());
     }
 
@@ -4958,6 +4961,9 @@ global class StringUtils {
      */
     global static Integer lastIndexOf(final String seq, final String searchSeq, final Integer startPos) {
         if (seq == null) {
+            return INDEX_NOT_FOUND;
+        }
+        if (searchSeq == null) {
             return INDEX_NOT_FOUND;
         }
         return seq.lastIndexOf(searchSeq, startPos);
