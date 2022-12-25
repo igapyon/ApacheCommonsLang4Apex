@@ -939,7 +939,7 @@ global class StringUtils {
      * @since 3.5
      */
     global static Integer compareIgnoreCase(final String str1, final String str2, final Boolean nullIsLess) {
-        if (str1 == str2) { // NOSONARLINT this intentionally uses == to allow for both null
+        if (equals(str1, str2)) { // NOSONARLINT this intentionally uses == to allow for both null
             return 0;
         }
         if (str1 == null) {
@@ -1689,7 +1689,7 @@ global class StringUtils {
      */
     private static Boolean endsWith(final String str, final String suffix, final Boolean ignoreCase) {
         if (str == null || suffix == null) {
-            return str == suffix;
+            return equals(str, suffix);
         }
         if (suffix.length() > str.length()) {
             return false;
@@ -8079,7 +8079,7 @@ global class StringUtils {
      */
     private static Boolean startsWith(final String str, final String prefix, final Boolean ignoreCase) {
         if (str == null || prefix == null) {
-            return str == prefix;
+            return equals(str, prefix);
         }
         // Get length once instead of twice in the unlikely case that it changes.
         final Integer preLen = prefix.length();
