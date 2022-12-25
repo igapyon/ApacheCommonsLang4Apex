@@ -100,6 +100,7 @@
  * <p>#ThreadSafe#</p>
  * @see java.lang.String
  * @since 1.0
+ * @author Apex migration by Toshiki Iga.
  */
 //@Immutable
 global class StringUtils {
@@ -3323,7 +3324,8 @@ global class StringUtils {
         }
         final Integer sz = cs.length();
         for (Integer i = 0; i < sz; i++) {
-            if (!CharUtils.isAsciiAlpha(cs.charAt(i))) {
+            String look = int2string(cs.charAt(i));
+            if (!look.isAlpha()) {
                 return false;
             }
         }
@@ -3358,7 +3360,8 @@ global class StringUtils {
         }
         final Integer sz = cs.length();
         for (Integer i = 0; i < sz; i++) {
-            if (!CharUtils.isAsciiAlphanumeric(cs.charAt(i))) {
+            String look = int2string(cs.charAt(i));
+            if (!look.isAlphanumeric()) {
                 return false;
             }
         }
@@ -3780,7 +3783,8 @@ global class StringUtils {
         }
         final Integer sz = cs.length();
         for (Integer i = 0; i < sz; i++) {
-            if (!CharUtils.isAsciiNumeric(cs.charAt(i))) {
+            String look = int2string(cs.charAt(i));
+            if (!look.isNumeric()) {
                 return false;
             }
         }
