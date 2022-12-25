@@ -882,7 +882,8 @@ private class StringUtilsTest {
   
     @isTest(SeeAllData=false)
     static void unwrap2args1() {
-/*        StringUtils.unwrap(null, null)         = null
+        System.assertEquals(null, StringUtils.unwrap((String)null, (String)null));
+/*             
      * StringUtils.unwrap(null, '\0')         = null
      * StringUtils.unwrap(null, '1')          = null
      * StringUtils.unwrap('a', 'a')           = 'a'
@@ -897,7 +898,8 @@ private class StringUtilsTest {
 
     @isTest(SeeAllData=false)
     static void unwrap2args2() {
-/*        StringUtils.unwrap(null, null)         = null
+        System.assertEquals(null, StringUtils.unwrap((String)null, (String)null));
+/*             
      * StringUtils.unwrap(null, '')           = null
      * StringUtils.unwrap(null, '1')          = null
      * StringUtils.unwrap('a', 'a')           = 'a'
@@ -913,7 +915,8 @@ private class StringUtilsTest {
     
     @isTest(SeeAllData=false)
     static void upperCase() {
-/*        StringUtils.upperCase(null)  = null
+        System.assertEquals(null, StringUtils.upperCase(null));
+/*   
      * StringUtils.upperCase('')    = ''
 */
         System.assertEquals('ABC', StringUtils.upperCase('aBc'));
@@ -928,7 +931,8 @@ private class StringUtilsTest {
     
     @isTest(SeeAllData=false)
     static void wrap2args() {
-/*            StringUtils.wrap(null, *)        = null
+        System.assertEquals(null, StringUtils.wrap(null, 99));
+/*             
      * StringUtils.wrap('', *)          = ''
      * StringUtils.wrap('ab', '\0')     = 'ab'
      * StringUtils.wrap('ab', 'x')      = 'xabx'
