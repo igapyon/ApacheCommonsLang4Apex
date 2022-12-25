@@ -697,30 +697,32 @@ private class StringUtilsTest {
 
     @isTest(SeeAllData=false)
     static void rightPad2args() {
-/*     * StringUtils.rightPad(null, *)   = null
+        System.assertEquals(null, StringUtils.rightPad(null, 99));
+/*    
      * StringUtils.rightPad('', 3)     = '   '
      * StringUtils.rightPad('bat', 3)  = 'bat'
      * StringUtils.rightPad('bat', 5)  = 'bat  '
      * StringUtils.rightPad('bat', 1)  = 'bat'
-     * StringUtils.rightPad('bat', -1) = 'bat'
 */
+        System.assertEquals('bat', StringUtils.rightPad('bat', -1));
     }
     
     @isTest(SeeAllData=false)
     static void rightPad3args() {
-/*        StringUtils.rightPad(null, *, *)     = null
+        System.assertEquals(null, StringUtils.rightPad((String) null, 99, 'z'));
+/*      
      * StringUtils.rightPad('', 3, 'z')     = 'zzz'
      * StringUtils.rightPad('bat', 3, 'z')  = 'bat'
      * StringUtils.rightPad('bat', 5, 'z')  = 'batzz'
      * StringUtils.rightPad('bat', 1, 'z')  = 'bat'
-     * StringUtils.rightPad('bat', -1, 'z') = 'bat'
-    global static String rightPad(final String str, final Integer size, final Integer padChar) {
    */  
+        System.assertEquals('bat', StringUtils.rightPad('bat', -1, 'z'));
     }
 
     @isTest(SeeAllData=false)
     static void rightPad3args2() {
-/*     * StringUtils.rightPad(null, *, *)      = null
+        System.assertEquals(null, StringUtils.rightPad(null, 99, '99'));
+/*    
      * StringUtils.rightPad('', 3, 'z')      = 'zzz'
      * StringUtils.rightPad('bat', 3, 'yz')  = 'bat'
      * StringUtils.rightPad('bat', 5, 'yz')  = 'batyz'
@@ -728,9 +730,8 @@ private class StringUtilsTest {
      * StringUtils.rightPad('bat', 1, 'yz')  = 'bat'
      * StringUtils.rightPad('bat', -1, 'yz') = 'bat'
      * StringUtils.rightPad('bat', 5, null)  = 'bat  '
-     * StringUtils.rightPad('bat', 5, '')    = 'bat  '
-    global static String rightPad(final String str, final Integer size, String padStr) {
 */    
+        System.assertEquals('bat  ', StringUtils.rightPad('bat', 5, ''));
     }
 
     @isTest(SeeAllData=false)
