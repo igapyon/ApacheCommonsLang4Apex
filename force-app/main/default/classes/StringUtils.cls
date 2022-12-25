@@ -947,9 +947,9 @@ global class StringUtils {
         if (str2 == null) {
             return nullIsLess ? 1 : - 1;
         }
-        str1 = str1.toUpperCase();
-        str2 = str2.toUpperCase();
-        return str1.compareTo(str2);
+        String str1B = str1.toUpperCase();
+        String str2B = str2.toUpperCase();
+        return str1B.compareTo(str2B);
     }
 
     /**
@@ -1784,7 +1784,11 @@ global class StringUtils {
      * @see #equalsIgnoreCase(CharSequence, CharSequence)
      */
     global static Boolean equals(final String cs1, final String cs2) {
-        if (cs1 == cs2) {
+        // Apexの文字列比較の特性のため以下はコメント。
+        //if (cs1 == cs2) {
+        //    return true;
+        //}
+        if (cs1 == null && cs2 == null) {
             return true;
         }
         if (cs1 == null || cs2 == null) {
