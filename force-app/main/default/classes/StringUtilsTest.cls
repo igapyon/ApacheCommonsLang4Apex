@@ -618,44 +618,43 @@ private class StringUtilsTest {
     
     @isTest(SeeAllData=false)
     static void leftPad() {
-/*        StringUtils.leftPad(null, *, *)     = null
+        System.assertEquals(null, StringUtils.leftPad((String) null, 99, 99));
+/*             = null
      * StringUtils.leftPad('', 3, 'z')     = 'zzz'
      * StringUtils.leftPad('bat', 3, 'z')  = 'bat'
      * StringUtils.leftPad('bat', 5, 'z')  = 'zzbat'
      * StringUtils.leftPad('bat', 1, 'z')  = 'bat'
-     * StringUtils.leftPad('bat', -1, 'z') = 'bat'
-    global static String leftPad(final String str, final Integer size, final Integer/*char padChar) {
     */
+        System.assertEquals('bat', StringUtils.leftPad('bat', -1, 'z'));
     }
     
     @isTest(SeeAllData=false)
     static void leftPad3args() {
-/*        StringUtils.leftPad(null, *, *)      = null
-     * StringUtils.leftPad('', 3, 'z')      = 'zzz'
+        System.assertEquals(null, StringUtils.leftPad((String) null, 99, '99'));
+/*   * StringUtils.leftPad('', 3, 'z')      = 'zzz'
      * StringUtils.leftPad('bat', 3, 'yz')  = 'bat'
      * StringUtils.leftPad('bat', 5, 'yz')  = 'yzbat'
      * StringUtils.leftPad('bat', 8, 'yz')  = 'yzyzybat'
      * StringUtils.leftPad('bat', 1, 'yz')  = 'bat'
      * StringUtils.leftPad('bat', -1, 'yz') = 'bat'
      * StringUtils.leftPad('bat', 5, null)  = '  bat'
-     * StringUtils.leftPad('bat', 5, '')    = '  bat'
-    global static String leftPad(final String str, final Integer size, String padStr) {
-*/   
+*/
+        System.assertEquals('  bat', StringUtils.leftPad('bat', 5, ''));   
     }
     
     @isTest(SeeAllData=false)
     static void length1arg() {
-//        global static Integer length(final String cs) {
+        System.assertEquals(3, StringUtils.length('abc'));
     }
 
 
     @isTest(SeeAllData=false)
     static void lowerCase() {
-        /*     * StringUtils.lowerCase(null)  = null
+        System.assertEquals(null, StringUtils.lowerCase(null));
+        /*   
      * StringUtils.lowerCase('')    = ''
-     * StringUtils.lowerCase('aBc') = 'abc'
-    global static String lowerCase(final String str) {
 */    
+        System.assertEquals('abc', StringUtils.lowerCase('aBc'));
     }
 
     @isTest(SeeAllData=false)
