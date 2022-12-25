@@ -295,120 +295,114 @@ private class StringUtilsTest {
 
     @isTest(SeeAllData=false)
     static void equals2args() {
+        System.assertEquals(true, StringUtils.equals(null, null));
 /*
-        * StringUtils.equals(null, null)   = true
         * StringUtils.equals(null, 'abc')  = false
         * StringUtils.equals('abc', null)  = false
         * StringUtils.equals('abc', 'abc') = true
-        * StringUtils.equals('abc', 'ABC') = false
-       global static Boolean equals(final String cs1, final String cs2) {
 */
-}
+        System.assertEquals(false, StringUtils.equals('abc', 'ABC'));
+    }
     
     @isTest(SeeAllData=false)
     static void equalsIgnoreCase2args() {
-    /*     * StringUtils.equalsIgnoreCase(null, null)   = true
+        System.assertEquals(true, StringUtils.equalsIgnoreCase(null, null));
+        /*
      * StringUtils.equalsIgnoreCase(null, 'abc')  = false
      * StringUtils.equalsIgnoreCase('abc', null)  = false
      * StringUtils.equalsIgnoreCase('abc', 'abc') = true
-     * StringUtils.equalsIgnoreCase('abc', 'ABC') = true
-    global static Boolean equalsIgnoreCase(final String cs1, final String cs2) {
         */
+        System.assertEquals(true, StringUtils.equalsIgnoreCase('abc', 'ABC'));
     }
 
 
     @isTest(SeeAllData=false)
     static void getDigits() {
-/*     * StringUtils.getDigits(null)  = null
-     * StringUtils.getDigits('')    = ''
+        System.assertEquals(null, StringUtils.getDigits(null));
+/*     * StringUtils.getDigits('')    = ''
      * StringUtils.getDigits('abc') = ''
      * StringUtils.getDigits('1000$') = '1000'
      * StringUtils.getDigits('1123~45') = '112345'
      * StringUtils.getDigits('(541) 754-3010') = '5417543010'
-     * StringUtils.getDigits('\u0967\u0968\u0969') = '\u0967\u0968\u0969'
-    global static String getDigits(final String str) {
 */
+        System.assertEquals('\u0967\u0968\u0969', StringUtils.getDigits('\u0967\u0968\u0969'));
     }
 
     @isTest(SeeAllData=false)
     static void indexOf2args() {
+        System.assertEquals(-1, StringUtils.indexOf(null, 5));
     /*
-     * StringUtils.indexOf(null, *)          = -1
      * StringUtils.indexOf(*, null)          = -1
      * StringUtils.indexOf('', '')           = 0
      * StringUtils.indexOf('', *)            = -1 (except when * = '')
      * StringUtils.indexOf('aabaabaa', 'a')  = 0
      * StringUtils.indexOf('aabaabaa', 'b')  = 2
      * StringUtils.indexOf('aabaabaa', 'ab') = 1
-     * StringUtils.indexOf('aabaabaa', '')   = 0
-    global static Integer indexOf(final String seq, final String searchSeq) {
         */
-    }
-    
+        System.assertEquals(0, StringUtils.indexOf('aabaabaa', ''));
+    }    
 
     @isTest(SeeAllData=false)
     static void indexOf2args2() {
-/*     * StringUtils.indexOf(null, *)         = -1
-     * StringUtils.indexOf('', *)           = -1
-     * StringUtils.indexOf('aabaabaa', 'a') = 0
-     * StringUtils.indexOf('aabaabaa', 'b') = 2
-    global static Integer indexOf(final String seq, final Integer searchChar) {
+        System.assertEquals(-1, StringUtils.indexOf('', 99));
+/*     * StringUtils.indexOf('aabaabaa', 'a') = 0
         */
+        System.assertEquals(2, StringUtils.indexOf('aabaabaa', 'b'));
     }
     
     @isTest(SeeAllData=false)
     static void isAllLowerCase() {
+        System.assertEquals(false, StringUtils.isAllLowerCase(null));
 /*
-     * StringUtils.isAllLowerCase(null)   = false
+     *    = false
      * StringUtils.isAllLowerCase('')     = false
      * StringUtils.isAllLowerCase('  ')   = false
      * StringUtils.isAllLowerCase('abc')  = true
      * StringUtils.isAllLowerCase('abC')  = false
      * StringUtils.isAllLowerCase('ab c') = false
      * StringUtils.isAllLowerCase('ab1c') = false
-     * StringUtils.isAllLowerCase('ab/c') = false
-    global static Boolean isAllLowerCase(final String cs) {
         */
+        System.assertEquals(false, StringUtils.isAllLowerCase('ab/c'));
     }
     
     @isTest(SeeAllData=false)
     static void isAllUpperCase() {
+        System.assertEquals(false, StringUtils.isAllUpperCase(null));
 /*
-     * StringUtils.isAllUpperCase(null)   = false
+     *    = false
      * StringUtils.isAllUpperCase('')     = false
      * StringUtils.isAllUpperCase('  ')   = false
      * StringUtils.isAllUpperCase('ABC')  = true
      * StringUtils.isAllUpperCase('aBC')  = false
      * StringUtils.isAllUpperCase('A C')  = false
      * StringUtils.isAllUpperCase('A1C')  = false
-     * StringUtils.isAllUpperCase('A/C')  = false
-    global static Boolean isAllUpperCase(final String cs) {
         */
+        System.assertEquals(false, StringUtils.isAllUpperCase('A/C'));
     }
     
 
     @isTest(SeeAllData=false)
     static void isAlpha() {
-/*     * StringUtils.isAlpha(null)   = false
+        System.assertEquals(false, StringUtils.isAlpha(null));
+/*     *    = false
      * StringUtils.isAlpha('')     = false
      * StringUtils.isAlpha('  ')   = false
      * StringUtils.isAlpha('abc')  = true
      * StringUtils.isAlpha('ab2c') = false
-     * StringUtils.isAlpha('ab-c') = false
-    global static Boolean isAlpha(final String cs) {
-*/  }
+*/  
+        System.assertEquals(false, StringUtils.isAlpha('ab-c'));
+    }
     
     @isTest(SeeAllData=false)
     static void isAlphanumeric() {
-/*     * StringUtils.isAlphanumeric(null)   = false
-     * StringUtils.isAlphanumeric('')     = false
+        System.assertEquals(false, StringUtils.isAlphanumeric(null));
+/*   * StringUtils.isAlphanumeric('')     = false
      * StringUtils.isAlphanumeric('  ')   = false
      * StringUtils.isAlphanumeric('abc')  = true
      * StringUtils.isAlphanumeric('ab c') = false
      * StringUtils.isAlphanumeric('ab2c') = true
-     * StringUtils.isAlphanumeric('ab-c') = false
-    global static Boolean isAlphanumeric(final String cs) {
 */  
+        System.assertEquals(false, StringUtils.isAlphanumeric('ab-c'));
     }
     
     @isTest(SeeAllData=false)
@@ -428,24 +422,23 @@ private class StringUtilsTest {
 
     @isTest(SeeAllData=false)
     static void isAnyEmpty() {
-/*     * StringUtils.isAnyEmpty((String) null)    = true
+        System.assertEquals(true, StringUtils.isAnyEmpty((String) null));
+/*   
      * StringUtils.isAnyEmpty((String[]) null)  = false
      * StringUtils.isAnyEmpty(null, 'foo')      = true
      * StringUtils.isAnyEmpty('', 'bar')        = true
      * StringUtils.isAnyEmpty('bob', '')        = true
      * StringUtils.isAnyEmpty('  bob  ', null)  = true
      * StringUtils.isAnyEmpty(' ', 'bar')       = false
-     * StringUtils.isAnyEmpty('foo', 'bar')     = false
-     * StringUtils.isAnyEmpty(new String[]{})   = false
-     * StringUtils.isAnyEmpty(new String[]{''}) = true
-    global static Boolean isAnyEmpty(final String cs1, String cs2) {
+     *      = false
 */     
+        System.assertEquals(false, StringUtils.isAnyEmpty('foo', 'bar'));
     }
  
     @isTest(SeeAllData=false)
     static void isAsciiPrintable() {
-/*     * StringUtils.isAsciiPrintable(null)     = false
-     * StringUtils.isAsciiPrintable('')       = true
+        System.assertEquals(false, StringUtils.isAsciiPrintable(null));
+/*  * StringUtils.isAsciiPrintable('')       = true
      * StringUtils.isAsciiPrintable(' ')      = true
      * StringUtils.isAsciiPrintable('Ceki')   = true
      * StringUtils.isAsciiPrintable('ab2c')   = true
@@ -454,9 +447,9 @@ private class StringUtilsTest {
      * StringUtils.isAsciiPrintable('\u0021') = true
      * StringUtils.isAsciiPrintable('\u007e') = true
      * StringUtils.isAsciiPrintable('\u007f') = false
-     * StringUtils.isAsciiPrintable('Ceki G\u00fclc\u00fc') = false
-    global static Boolean isAsciiPrintable(final String cs) {
+     *  = false
 */   
+        System.assertEquals(false, StringUtils.isAsciiPrintable('Ceki G\u00fclc\u00fc'));
     }
 
     @isTest(SeeAllData=false)
@@ -470,19 +463,18 @@ private class StringUtilsTest {
 
     @isTest(SeeAllData=false)
     static void isEmpty() {
-/*    * StringUtils.isEmpty(null)      = true
-    * StringUtils.isEmpty('')        = true
+        System.assertEquals(true, StringUtils.isEmpty(null));
+/*    * StringUtils.isEmpty('')        = true
     * StringUtils.isEmpty(' ')       = false
     * StringUtils.isEmpty('bob')     = false
-    * StringUtils.isEmpty('  bob  ') = false
-   global static Boolean isEmpty(final String cs) {
 */    
+        System.assertEquals(false, StringUtils.isEmpty('  bob  '));
     }
 
     @isTest(SeeAllData=false)
     static void isMixedCase() {
+        System.assertEquals(false, StringUtils.isMixedCase(null));
 /*
-    * StringUtils.isMixedCase(null)    = false
     * StringUtils.isMixedCase('')      = false
     * StringUtils.isMixedCase('ABC')   = false
     * StringUtils.isMixedCase('abc')   = false
@@ -490,9 +482,8 @@ private class StringUtilsTest {
     * StringUtils.isMixedCase('A c')   = true
     * StringUtils.isMixedCase('A1c')   = true
     * StringUtils.isMixedCase('a/C')   = true
-    * StringUtils.isMixedCase('aC\t')  = true
-   global static Boolean isMixedCase(final String cs) {
 */    
+        System.assertEquals(true, StringUtils.isMixedCase('aC\t'));
     }
 
     @isTest(SeeAllData=false)
@@ -512,33 +503,31 @@ private class StringUtilsTest {
 
     @isTest(SeeAllData=false)
     static void isNotBlank() {
+        System.assertEquals(false, StringUtils.isNotBlank(null));
 /*
-    * StringUtils.isNotBlank(null)      = false
     * StringUtils.isNotBlank('')        = false
     * StringUtils.isNotBlank(' ')       = false
     * StringUtils.isNotBlank('bob')     = true
-    * StringUtils.isNotBlank('  bob  ') = true
-   global static Boolean isNotBlank(final String cs) {
 */    
+        System.assertEquals(true, StringUtils.isNotBlank('  bob  '));
     }
 
 
     @isTest(SeeAllData=false)
     static void isNotEmpty() {
+        System.assertEquals(false, StringUtils.isNotEmpty(null));
     /*
-    * StringUtils.isNotEmpty(null)      = false
     * StringUtils.isNotEmpty('')        = false
     * StringUtils.isNotEmpty(' ')       = true
     * StringUtils.isNotEmpty('bob')     = true
-    * StringUtils.isNotEmpty('  bob  ') = true
-   global static Boolean isNotEmpty(final String cs) {
 */    
+        System.assertEquals(true, StringUtils.isNotEmpty('  bob  '));
     }
 
     @isTest(SeeAllData=false)
     static void isNumeric() {
+        System.assertEquals(false, StringUtils.isNumeric(null));
 /*
-    StringUtils.isNumeric(null)   = false
      * StringUtils.isNumeric('')     = false
      * StringUtils.isNumeric('  ')   = false
      * StringUtils.isNumeric('123')  = true
@@ -548,40 +537,37 @@ private class StringUtilsTest {
      * StringUtils.isNumeric('12-3') = false
      * StringUtils.isNumeric('12.3') = false
      * StringUtils.isNumeric('-123') = false
-     * StringUtils.isNumeric('+123') = false
-    global static Boolean isNumeric(final String cs) {
 */    
+        System.assertEquals(false, StringUtils.isNumeric('+123'));
     }
 
     @isTest(SeeAllData=false)
     static void isWhitespace() {
-/*        StringUtils.isWhitespace(null)   = false
-     * StringUtils.isWhitespace('')     = true
+        System.assertEquals(false, StringUtils.isWhitespace((String) null));
+/*   * StringUtils.isWhitespace('')     = true
      * StringUtils.isWhitespace('  ')   = true
      * StringUtils.isWhitespace('abc')  = false
      * StringUtils.isWhitespace('ab2c') = false
-     * StringUtils.isWhitespace('ab-c') = false
-    global static Boolean isWhitespace(final String cs) {
 */    
+        System.assertEquals(false, StringUtils.isWhitespace('ab-c'));
     }
     
-        @isTest(SeeAllData=false)
-        static void lastIndexOf2args1() {
-    /*    StringUtils.lastIndexOf(null, *)          = -1
-     * StringUtils.lastIndexOf(*, null)          = -1
-     * StringUtils.lastIndexOf('', '')           = 0
-     * StringUtils.lastIndexOf('aabaabaa', 'a')  = 7
-     * StringUtils.lastIndexOf('aabaabaa', 'b')  = 5
-     * StringUtils.lastIndexOf('aabaabaa', 'ab') = 4
-     * StringUtils.lastIndexOf('aabaabaa', '')   = 8
-    global static Integer lastIndexOf(final String seq, final String searchSeq) {*/
-        }
+    @isTest(SeeAllData=false)
+    static void lastIndexOf2args1() {
+        System.assertEquals(-1, StringUtils.lastIndexOf(null, 99));
+/*  * StringUtils.lastIndexOf(*, null)          = -1
+    * StringUtils.lastIndexOf('', '')           = 0
+    * StringUtils.lastIndexOf('aabaabaa', 'a')  = 7
+    * StringUtils.lastIndexOf('aabaabaa', 'b')  = 5
+    * StringUtils.lastIndexOf('aabaabaa', 'ab') = 4*/
+        System.assertEquals(8, StringUtils.lastIndexOf('aabaabaa', ''));
+    }
     
 
-        @isTest(SeeAllData=false)
-        static void lastIndexOf3args() {
+    @isTest(SeeAllData=false)
+    static void lastIndexOf3args() {
+        System.assertEquals(-1, StringUtils.lastIndexOf((String) null, '99', 99));
 /*
-     * StringUtils.lastIndexOf(null, *, *)          = -1
      * StringUtils.lastIndexOf(*, null, *)          = -1
      * StringUtils.lastIndexOf('aabaabaa', 'a', 8)  = 7
      * StringUtils.lastIndexOf('aabaabaa', 'b', 8)  = 5
@@ -592,43 +578,42 @@ private class StringUtilsTest {
      * StringUtils.lastIndexOf('aabaabaa', 'b', 0)  = -1
      * StringUtils.lastIndexOf('aabaabaa', 'b', 1)  = -1
      * StringUtils.lastIndexOf('aabaabaa', 'b', 2)  = 2
-     * StringUtils.lastIndexOf('aabaabaa', 'ba', 2)  = 2
-    global static Integer lastIndexOf(final String seq, final String searchSeq, final Integer startPos) {
     */
-        }
-    
-
+        System.assertEquals(2, StringUtils.lastIndexOf('aabaabaa', 'ba', 2));
+    }
 
     @isTest(SeeAllData=false)
     static void lastIndexOf2args2() {
-/*        StringUtils.lastIndexOf(null, *)         = -1
-     * StringUtils.lastIndexOf('', *)           = -1
+        System.assertEquals(-1, StringUtils.lastIndexOf(null, 99));
+/*   * StringUtils.lastIndexOf('', *)           = -1
      * StringUtils.lastIndexOf('aabaabaa', 'a') = 7
-     * StringUtils.lastIndexOf('aabaabaa', 'b') = 5
-    global static Integer lastIndexOf(final String seq, final Integer searchChar) {
-*/    }
+     *  = 5
+*/
+        System.assertEquals(5, StringUtils.lastIndexOf('aabaabaa', 'b'));
+    }
     
     @isTest(SeeAllData=false)
     static void left2args() {
-/*        StringUtils.left(null, *)    = null
+        System.assertEquals(null, StringUtils.left(null, 99));
+/*            
      * StringUtils.left(*, -ve)     = ''
      * StringUtils.left('', *)      = ''
      * StringUtils.left('abc', 0)   = ''
      * StringUtils.left('abc', 2)   = 'ab'
-     * StringUtils.left('abc', 4)   = 'abc'
-    global static String left(final String str, final Integer len) {
-*/    }
-    
+*/    
+        System.assertEquals('abc', StringUtils.left('abc', 4));
+    }
 
     @isTest(SeeAllData=false)
     static void leftPad2args() {
-/*     * StringUtils.leftPad(null, *)   = null
+        System.assertEquals(null, StringUtils.leftPad(null, 99));
+/*   
      * StringUtils.leftPad('', 3)     = '   '
      * StringUtils.leftPad('bat', 3)  = 'bat'
      * StringUtils.leftPad('bat', 5)  = '  bat'
      * StringUtils.leftPad('bat', 1)  = 'bat'
-     * StringUtils.leftPad('bat', -1) = 'bat'
-    global static String leftPad(final String str, final Integer size) {*/    
+   */
+        System.assertEquals('bat', StringUtils.leftPad('bat', -1));
     }
     
     @isTest(SeeAllData=false)
