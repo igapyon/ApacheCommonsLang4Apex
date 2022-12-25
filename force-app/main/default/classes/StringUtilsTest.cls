@@ -762,41 +762,39 @@ private class StringUtilsTest {
 
     @isTest(SeeAllData=false)
     static void substring2arg() {
-/*            StringUtils.substring(null, *)   = null
-     * StringUtils.substring('', *)     = ''
+        System.assertEquals(null, StringUtils.substring(null, 99));
+/*   * StringUtils.substring('', *)     = ''
      * StringUtils.substring('abc', 0)  = 'abc'
      * StringUtils.substring('abc', 2)  = 'c'
      * StringUtils.substring('abc', 4)  = ''
      * StringUtils.substring('abc', -2) = 'bc'
-     * StringUtils.substring('abc', -4) = 'abc'
-    global static String substring(final String str, Integer start) {
 */  
+        System.assertEquals('abc', StringUtils.substring('abc', -4));
     }
         
     @isTest(SeeAllData=false)
     static void substring3args() {
-/*        StringUtils.substring(null, *, *)    = null
-     * StringUtils.substring('', * ,  *)    = '';
+        System.assertEquals(null, StringUtils.substring(null, 99, 99));
+/*   * StringUtils.substring('', * ,  *)    = '';
      * StringUtils.substring('abc', 0, 2)   = 'ab'
      * StringUtils.substring('abc', 2, 0)   = ''
      * StringUtils.substring('abc', 2, 4)   = 'c'
      * StringUtils.substring('abc', 4, 6)   = ''
      * StringUtils.substring('abc', 2, 2)   = ''
      * StringUtils.substring('abc', -2, -1) = 'b'
-     * StringUtils.substring('abc', -4, 2)  = 'ab'
-    global static String substring(final String str, Integer start, Integer end1) {
 */    
+        System.assertEquals('ab', StringUtils.substring('abc', -4, 2));
     }
     
     @isTest(SeeAllData=false)
     static void trim() {
-/*        StringUtils.trim(null)          = null
+        System.assertEquals(null, StringUtils.trim(null));
+/*            
      * StringUtils.trim('')            = ''
      * StringUtils.trim('     ')       = ''
      * StringUtils.trim('abc')         = 'abc'
-     * StringUtils.trim('    abc    ') = 'abc'
-    global static String trim(final String str) {
 */    
+        System.assertEquals('abc', StringUtils.trim('    abc    '));
     }
 
     @isTest(SeeAllData=false)
