@@ -2088,8 +2088,9 @@ global class StringUtils {
         String strDigits = '';
         for (Integer i = 0; i < sz; i++) {
             final Integer tempChar = str.charAt(i);
-            if (CharUtils.isAsciiNumeric(tempChar)) {
-                strDigits += (tempChar);
+            String look = int2string(tempChar);
+            if (look.isNumeric()) {
+                strDigits += look;
             }
         }
         return strDigits;
