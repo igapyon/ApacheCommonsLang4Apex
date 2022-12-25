@@ -1892,7 +1892,7 @@ global class StringUtils {
      * @see #equals(CharSequence, CharSequence)
      */
     global static Boolean equalsIgnoreCase(final String cs1, final String cs2) {
-        if (cs1 == cs2) {
+        if (cs1 == null && cs2 == null && cs1 == cs2) {
             return true;
         }
         if (cs1 == null || cs2 == null) {
@@ -1901,9 +1901,7 @@ global class StringUtils {
         if (cs1.length() != cs2.length()) {
             return false;
         }
-        cs1 = cs1.toUpperCase();
-        cs2 = cs2.toUpperCase();
-        return cs1.equals(cs2);
+        return cs1.equalsIgnoreCase(cs2);
     }
 
     /**
