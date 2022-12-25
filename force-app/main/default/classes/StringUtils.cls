@@ -100,6 +100,7 @@
  * <p>#ThreadSafe#</p>
  * @see java.lang.String
  * @since 1.0
+ * @author Apex migration by Toshiki Iga.
  */
 //@Immutable
 global class StringUtils {
@@ -845,7 +846,7 @@ global class StringUtils {
      * @since 3.5
      */
     global static Integer compare(final String str1, final String str2, final Boolean nullIsLess) {
-        if (str1 == str2) { // NOSONARLINT this intentionally uses == to allow for both null
+        if (str1 == null && str2 == null && str1 == str2) { // NOSONARLINT this intentionally uses == to allow for both null
             return 0;
         }
         if (str1 == null) {
@@ -938,7 +939,7 @@ global class StringUtils {
      * @since 3.5
      */
     global static Integer compareIgnoreCase(final String str1, final String str2, final Boolean nullIsLess) {
-        if (str1 == str2) { // NOSONARLINT this intentionally uses == to allow for both null
+        if (equals(str1, str2)) { // NOSONARLINT this intentionally uses == to allow for both null
             return 0;
         }
         if (str1 == null) {
@@ -1686,17 +1687,17 @@ global class StringUtils {
      * @return {@code true} if the CharSequence starts with the prefix or
      *  both {@code null}
      */
+    @TestVisible
     private static Boolean endsWith(final String str, final String suffix, final Boolean ignoreCase) {
         if (str == null || suffix == null) {
-            return str == suffix;
+            return equals(str, suffix);
         }
         if (suffix.length() > str.length()) {
             return false;
         }
         final Integer strOffset = str.length() - suffix.length();
         if (ignoreCase) {
-            str = str.toUpperCase();
-            suffix = suffix.toUpperCase();
+            return str.endsWithIgnoreCase(suffix);
         }
         return str.endsWith(suffix);
     }
@@ -1892,7 +1893,7 @@ global class StringUtils {
      * @see #equals(CharSequence, CharSequence)
      */
     global static Boolean equalsIgnoreCase(final String cs1, final String cs2) {
-        if (cs1 == cs2) {
+        if (cs1 == null && cs2 == null && cs1 == cs2) {
             return true;
         }
         if (cs1 == null || cs2 == null) {
@@ -1901,9 +1902,7 @@ global class StringUtils {
         if (cs1.length() != cs2.length()) {
             return false;
         }
-        cs1 = cs1.toUpperCase();
-        cs2 = cs2.toUpperCase();
-        return cs1.equals(cs2);
+        return cs1.equalsIgnoreCase(cs2);
     }
 
     /**
@@ -3325,7 +3324,8 @@ global class StringUtils {
         }
         final Integer sz = cs.length();
         for (Integer i = 0; i < sz; i++) {
-            if (!CharUtils.isAsciiAlpha(cs.charAt(i))) {
+            String look = int2string(cs.charAt(i));
+            if (!look.isAlpha()) {
                 return false;
             }
         }
@@ -3360,7 +3360,8 @@ global class StringUtils {
         }
         final Integer sz = cs.length();
         for (Integer i = 0; i < sz; i++) {
-            if (!CharUtils.isAsciiAlphanumeric(cs.charAt(i))) {
+            String look = int2string(cs.charAt(i));
+            if (!look.isAlphanumeric()) {
                 return false;
             }
         }
@@ -3782,7 +3783,8 @@ global class StringUtils {
         }
         final Integer sz = cs.length();
         for (Integer i = 0; i < sz; i++) {
-            if (!CharUtils.isAsciiNumeric(cs.charAt(i))) {
+            String look = int2string(cs.charAt(i));
+            if (!look.isNumeric()) {
                 return false;
             }
         }
@@ -4916,6 +4918,9 @@ global class StringUtils {
         if (seq == null) {
             return INDEX_NOT_FOUND;
         }
+        if (searchSeq == null) {
+            return INDEX_NOT_FOUND;
+        }
         return seq.lastIndexOf(searchSeq, seq.length());
     }
 
@@ -4956,6 +4961,9 @@ global class StringUtils {
      */
     global static Integer lastIndexOf(final String seq, final String searchSeq, final Integer startPos) {
         if (seq == null) {
+            return INDEX_NOT_FOUND;
+        }
+        if (searchSeq == null) {
             return INDEX_NOT_FOUND;
         }
         return seq.lastIndexOf(searchSeq, startPos);
@@ -8075,9 +8083,10 @@ global class StringUtils {
      * @return {@code true} if the CharSequence starts with the prefix or
      *  both {@code null}
      */
+    @TestVisible
     private static Boolean startsWith(final String str, final String prefix, final Boolean ignoreCase) {
         if (str == null || prefix == null) {
-            return str == prefix;
+            return equals(str, prefix);
         }
         // Get length once instead of twice in the unlikely case that it changes.
         final Integer preLen = prefix.length();
@@ -8085,8 +8094,7 @@ global class StringUtils {
             return false;
         }
         if (ignoreCase) {
-            str = str.toUpperCase();
-            prefix = prefix.toUpperCase();
+            return str.startsWithIgnoreCase(prefix);
         }
         return str.startsWith(prefix);
     }
@@ -9510,7 +9518,8 @@ global class StringUtils {
             return str;
         }
 
-        return wrapWith + str + wrapWith;
+        final String wrapWithString = int2string(wrapWith);
+        return wrapWithString + str + wrapWithString;
     }
 
     /**
@@ -9548,7 +9557,7 @@ global class StringUtils {
             return str;
         }
 
-        return wrapWith + str + (wrapWith);
+        return (wrapWith + str + wrapWith);
     }
 
     /**
@@ -9582,6 +9591,7 @@ global class StringUtils {
         if (isEmpty(str) || wrapWith == null) {
             return str;
         }
+        final String wrapWithString = int2string(wrapWith);
         final Boolean wrapStart = str.charAt(0) != wrapWith;
         final Boolean wrapEnd = str.charAt(str.length() - 1) != wrapWith;
         if (!wrapStart && !wrapEnd) {
@@ -9590,11 +9600,11 @@ global class StringUtils {
 
         String builder = '';
         if (wrapStart) {
-            builder += (wrapWith);
+            builder += wrapWithString;
         }
         builder += (str);
         if (wrapEnd) {
-            builder += (wrapWith);
+            builder += wrapWithString;
         }
         return builder;
     }
