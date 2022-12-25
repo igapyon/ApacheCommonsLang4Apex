@@ -549,15 +549,13 @@ private class StringUtilsTest {
     @isTest(SeeAllData=false)
     static void isMixedCase() {
         System.assertEquals(false, StringUtils.isMixedCase(null));
-/*
-    * StringUtils.isMixedCase('')      = false
-    * StringUtils.isMixedCase('ABC')   = false
-    * StringUtils.isMixedCase('abc')   = false
-    * StringUtils.isMixedCase('aBc')   = true
-    * StringUtils.isMixedCase('A c')   = true
-    * StringUtils.isMixedCase('A1c')   = true
-    * StringUtils.isMixedCase('a/C')   = true
-*/    
+        System.assertEquals(false, StringUtils.isMixedCase(''));
+        System.assertEquals(false, StringUtils.isMixedCase('ABC'));
+        System.assertEquals(false, StringUtils.isMixedCase('abc'));
+        System.assertEquals(true, StringUtils.isMixedCase('aBc'));
+        System.assertEquals(true, StringUtils.isMixedCase('A c'));
+        System.assertEquals(true, StringUtils.isMixedCase('A1c'));
+        System.assertEquals(true, StringUtils.isMixedCase('a/C'));
         System.assertEquals(true, StringUtils.isMixedCase('aC\t'));
     }
 
@@ -602,11 +600,11 @@ private class StringUtilsTest {
     @isTest(SeeAllData=false)
     static void isNumeric() {
         System.assertEquals(false, StringUtils.isNumeric(null));
+        System.assertEquals(false, StringUtils.isNumeric(''));
+        System.assertEquals(false, StringUtils.isNumeric('  '));
+        System.assertEquals(true, StringUtils.isNumeric('123'));
+        System.assertEquals(true, StringUtils.isNumeric('\u0967\u0968\u0969'));
 /*
-     * StringUtils.isNumeric('')     = false
-     * StringUtils.isNumeric('  ')   = false
-     * StringUtils.isNumeric('123')  = true
-     * StringUtils.isNumeric('\u0967\u0968\u0969')  = true
      * StringUtils.isNumeric('12 3') = false
      * StringUtils.isNumeric('ab2c') = false
      * StringUtils.isNumeric('12-3') = false
@@ -619,11 +617,10 @@ private class StringUtilsTest {
     @isTest(SeeAllData=false)
     static void isWhitespace() {
         System.assertEquals(false, StringUtils.isWhitespace((String) null));
-/*   * StringUtils.isWhitespace('')     = true
-     * StringUtils.isWhitespace('  ')   = true
-     * StringUtils.isWhitespace('abc')  = false
-     * StringUtils.isWhitespace('ab2c') = false
-*/    
+        System.assertEquals(true, StringUtils.isWhitespace(''));
+        System.assertEquals(true, StringUtils.isWhitespace('  '));
+        System.assertEquals(false, StringUtils.isWhitespace('abc'));
+        System.assertEquals(false, StringUtils.isWhitespace('ab2c'));
         System.assertEquals(false, StringUtils.isWhitespace('ab-c'));
     }
     
