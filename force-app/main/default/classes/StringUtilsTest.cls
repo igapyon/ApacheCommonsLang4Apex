@@ -100,7 +100,9 @@
  * <p>#ThreadSafe#</p>
  * @see java.lang.String
  * @since 1.0
- * @author Apex migration by Toshiki Iga.
+ * @author [Apex] Toshiki Iga.
+ * @version [Apex] v0.8.20221226a
+ * @version [Java original] commons-lang3-3.12.0
  */
 @isTest(SeeAllData=false)
 private class StringUtilsTest {
