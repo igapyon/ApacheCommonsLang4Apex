@@ -659,40 +659,40 @@ private class StringUtilsTest {
 
     @isTest(SeeAllData=false)
     static void mid() {
-/*     * StringUtils.mid(null, *, *)    = null
-     * StringUtils.mid(*, *, -ve)     = ''
+        System.assertEquals(null, StringUtils.mid(null, 99, 99));
+/*   * StringUtils.mid(*, *, -ve)     = ''
      * StringUtils.mid('', 0, *)      = ''
      * StringUtils.mid('abc', 0, 2)   = 'ab'
      * StringUtils.mid('abc', 0, 4)   = 'abc'
      * StringUtils.mid('abc', 2, 4)   = 'c'
      * StringUtils.mid('abc', 4, 2)   = ''
-     * StringUtils.mid('abc', -2, 2)  = 'ab'
-    global static String mid(final String str, Integer pos, final Integer len) {
 */  
+        System.assertEquals('ab', StringUtils.mid('abc', -2, 2));
     }
 
     @isTest(SeeAllData=false)
     static void repeat2args() {
-/*     * StringUtils.repeat(null, 2) = null
+        System.assertEquals(null, StringUtils.repeat((String) null, 2));
+/*  
      * StringUtils.repeat('', 0)   = ''
      * StringUtils.repeat('', 2)   = ''
      * StringUtils.repeat('a', 3)  = 'aaa'
      * StringUtils.repeat('ab', 2) = 'abab'
-     * StringUtils.repeat('a', -2) = ''
-    global static String repeat(final String str, final Integer repeat) {
+     *  = 
 */
+        System.assertEquals('', StringUtils.repeat('a', -2));
     }    
 
     @isTest(SeeAllData=false)
     static void right2args() {
-     /*   * StringUtils.right(null, *)    = null
+        System.assertEquals(null, StringUtils.right(null, 99));
+     /*  
         * StringUtils.right(*, -ve)     = ''
         * StringUtils.right('', *)      = ''
         * StringUtils.right('abc', 0)   = ''
         * StringUtils.right('abc', 2)   = 'bc'
-        * StringUtils.right('abc', 4)   = 'abc'
-       global static String right(final String str, final Integer len) {
 */
+        System.assertEquals('abc', StringUtils.right('abc', 4));
     }
 
     @isTest(SeeAllData=false)
@@ -703,7 +703,6 @@ private class StringUtilsTest {
      * StringUtils.rightPad('bat', 5)  = 'bat  '
      * StringUtils.rightPad('bat', 1)  = 'bat'
      * StringUtils.rightPad('bat', -1) = 'bat'
-    global static String rightPad(final String str, final Integer size) {
 */
     }
     
