@@ -1004,24 +1004,24 @@ private class StringUtilsTest {
     static void wrap2args2() {
         System.assertEquals(null, StringUtils.wrap(null, 99));
         System.assertEquals('', StringUtils.wrap('', 99));
-        System.assertEquals('ab', StringUtils.wrap('ab', (String) null));
-        System.assertEquals('xabx', StringUtils.wrap('ab', 'x'));
-        System.assertEquals('\'ab\'', StringUtils.wrap('ab', '\''));
-        System.assertEquals('\'\'ab\'\'', StringUtils.wrap('\'ab\'', '\''));
-        System.assertEquals('\'ab\'', StringUtils.wrap('ab', '\''));
-        System.assertEquals('\'\'abcd\'\'', StringUtils.wrap('\'abcd\'', '\''));
-        System.assertEquals('\'\'abcd\'\'', StringUtils.wrap('\'abcd\'', '\''));
-        System.assertEquals('\'\'abcd\'\'', StringUtils.wrap('\'abcd\'', '\''));
+        System.assertEquals('ab', StringUtils.wrap('ab', (Integer) null));
+        System.assertEquals('xabx', StringUtils.wrap('ab', 'x'.charAt(0)));
+        System.assertEquals('\'ab\'', StringUtils.wrap('ab', '\''.charAt(0)));
+        System.assertEquals('\'\'ab\'\'', StringUtils.wrap('\'ab\'', '\''.charAt(0)));
+        System.assertEquals('\'ab\'', StringUtils.wrap('ab', '\''.charAt(0)));
+        System.assertEquals('\'\'abcd\'\'', StringUtils.wrap('\'abcd\'', '\''.charAt(0)));
+        System.assertEquals('\'\'abcd\'\'', StringUtils.wrap('\'abcd\'', '\''.charAt(0)));
+        System.assertEquals('\'\'abcd\'\'', StringUtils.wrap('\'abcd\'', '\''.charAt(0)));
     }
     
     @isTest(SeeAllData=false)
     static void wrapIfMissing2args() {
         System.assertEquals(null, StringUtils.wrapIfMissing(null, 999));
+        System.assertEquals('', StringUtils.wrapIfMissing('', 999));
+        // 移植不能と判断 System.assertEquals('ab', StringUtils.wrapIfMissing('ab', '\u0000'));
+        System.assertEquals('xabx', StringUtils.wrapIfMissing('ab', 'x'));
+        System.assertEquals('\'ab\'', StringUtils.wrapIfMissing('ab', '\''));
             /*
-     * StringUtils.wrapIfMissing('', *)          = ''
-     * StringUtils.wrapIfMissing('ab', '\0')     = 'ab'
-     * StringUtils.wrapIfMissing('ab', 'x')      = 'xabx'
-     * StringUtils.wrapIfMissing('ab', '\'')     = ''ab''
      * StringUtils.wrapIfMissing('\'ab\'', '\'') = '\'ab\''
      * StringUtils.wrapIfMissing('/', '/')  = '/'
      * StringUtils.wrapIfMissing('a/b/c', '/')  = '/a/b/c/'
@@ -1032,11 +1032,11 @@ private class StringUtilsTest {
 
     @isTest(SeeAllData=false)
     static void wrapIfMissing() {
-        System.assertEquals(null, StringUtils.wrapIfMissing((String)null, 'Z'));
-/*                 = null
-     * StringUtils.wrapIfMissing('', *)           = ''
-     * StringUtils.wrapIfMissing('ab', null)      = 'ab'
-     * StringUtils.wrapIfMissing('ab', 'x')       = 'xabx'
+        System.assertEquals(null, StringUtils.wrapIfMissing((String)null, 'Z'.charAt(0)));
+        System.assertEquals('', StringUtils.wrapIfMissing('', '9'.charAt(0)));
+        System.assertEquals('ab', StringUtils.wrapIfMissing('ab', (Integer) null));
+        System.assertEquals('xabx', StringUtils.wrapIfMissing('ab', 'x'.charAt(0)));
+/*  
      * StringUtils.wrapIfMissing('ab', '\'')      = '\'ab\''
      * StringUtils.wrapIfMissing('\'ab\'', '\'')  = '\'ab\''
      * StringUtils.wrapIfMissing('ab', ''')       = ''ab''
@@ -1047,6 +1047,6 @@ private class StringUtilsTest {
      * StringUtils.wrapIfMissing('a/b/c', '/')  = '/a/b/c/'
      * StringUtils.wrapIfMissing('/a/b/c', '/')  = '/a/b/c/'
 */
-        System.assertEquals('/a/b/c/', StringUtils.wrapIfMissing('a/b/c/', '/'));
+        System.assertEquals('/a/b/c/', StringUtils.wrapIfMissing('a/b/c/', '/'.charAt(0)));
     }
 }

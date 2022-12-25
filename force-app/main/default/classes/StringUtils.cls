@@ -9518,7 +9518,8 @@ global class StringUtils {
             return str;
         }
 
-        return wrapWith + str + wrapWith;
+        final String wrapWithString = int2string(wrapWith);
+        return wrapWithString + str + wrapWithString;
     }
 
     /**
@@ -9590,6 +9591,7 @@ global class StringUtils {
         if (isEmpty(str) || wrapWith == null) {
             return str;
         }
+        final String wrapWithString = int2string(wrapWith);
         final Boolean wrapStart = str.charAt(0) != wrapWith;
         final Boolean wrapEnd = str.charAt(str.length() - 1) != wrapWith;
         if (!wrapStart && !wrapEnd) {
@@ -9598,11 +9600,11 @@ global class StringUtils {
 
         String builder = '';
         if (wrapStart) {
-            builder += (wrapWith);
+            builder += wrapWithString;
         }
         builder += (str);
         if (wrapEnd) {
-            builder += (wrapWith);
+            builder += wrapWithString;
         }
         return builder;
     }
