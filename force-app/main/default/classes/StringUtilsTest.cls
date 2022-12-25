@@ -654,10 +654,10 @@ private class StringUtilsTest {
 
     @isTest(SeeAllData=false)
     static void lastIndexOf2args2() {
-        System.assertEquals(-1, StringUtils.lastIndexOf(null, 99));
-        System.assertEquals(-1, StringUtils.lastIndexOf('', 99));
-        System.assertEquals(7, StringUtils.lastIndexOf('aabaabaa', 'a'));
-        System.assertEquals(5, StringUtils.lastIndexOf('aabaabaa', 'b'));
+        System.assertEquals(-1, StringUtils.lastIndexOf(null, 'a'.charAt(0)));
+        System.assertEquals(-1, StringUtils.lastIndexOf('', 'a'.charAt(0)));
+        System.assertEquals(7, StringUtils.lastIndexOf('aabaabaa', 'a'.charAt(0)));
+        System.assertEquals(5, StringUtils.lastIndexOf('aabaabaa', 'b'.charAt(0)));
     }
     
     @isTest(SeeAllData=false)
@@ -944,45 +944,38 @@ private class StringUtilsTest {
     @isTest(SeeAllData=false)
     static void unwrap2args1() {
         System.assertEquals(null, StringUtils.unwrap((String)null, (String)null));
-/*             
-     * StringUtils.unwrap(null, '\0')         = null
-     * StringUtils.unwrap(null, '1')          = null
-     * StringUtils.unwrap('a', 'a')           = 'a'
-     * StringUtils.unwrap('aa', 'a')           = ''
-     * StringUtils.unwrap('\'abc\'', '\'')    = 'abc'
-     * StringUtils.unwrap('AABabcBAA', 'A')   = 'ABabcBA'
-     * StringUtils.unwrap('A', '#')           = 'A'
-     * StringUtils.unwrap('#A', '#')          = '#A'
-*/
+        System.assertEquals(null, StringUtils.unwrap(null, '\u0000'));
+        System.assertEquals(null, StringUtils.unwrap(null, '1'));
+        System.assertEquals('a', StringUtils.unwrap('a', 'a'));
+        System.assertEquals('', StringUtils.unwrap('aa', 'a'));
+        System.assertEquals('abc', StringUtils.unwrap('\'abc\'', '\''));
+        System.assertEquals('ABabcBA', StringUtils.unwrap('AABabcBAA', 'A'));
+        System.assertEquals('A', StringUtils.unwrap('A', '#'));
+        System.assertEquals('#A', StringUtils.unwrap('#A', '#'));
         System.assertEquals('A#', StringUtils.unwrap('A#', '#'));
     }
 
     @isTest(SeeAllData=false)
     static void unwrap2args2() {
         System.assertEquals(null, StringUtils.unwrap((String)null, (String)null));
-/*             
-     * StringUtils.unwrap(null, '')           = null
-     * StringUtils.unwrap(null, '1')          = null
-     * StringUtils.unwrap('a', 'a')           = 'a'
-     * StringUtils.unwrap('aa', 'a')          = ''
-     * StringUtils.unwrap('\'abc\'', '\'')    = 'abc'
-     * StringUtils.unwrap('\'abc\'', '\'')    = 'abc'
-     * StringUtils.unwrap('AABabcBAA', 'AA')  = 'BabcB'
-     * StringUtils.unwrap('A', '#')           = 'A'
-     * StringUtils.unwrap('#A', '#')          = '#A'
-*/
+        System.assertEquals(null, StringUtils.unwrap(null, ''));
+        System.assertEquals(null, StringUtils.unwrap(null, '1'));
+        System.assertEquals('a', StringUtils.unwrap('a', 'a'));
+        System.assertEquals('', StringUtils.unwrap('aa', 'a'));
+        System.assertEquals('abc', StringUtils.unwrap('\'abc\'', '\''));
+        System.assertEquals('abc', StringUtils.unwrap('\'abc\'', '\''));
+        System.assertEquals('BabcB', StringUtils.unwrap('AABabcBAA', 'AA'));
+        System.assertEquals('A', StringUtils.unwrap('A', '#'));
+        System.assertEquals('#A', StringUtils.unwrap('#A', '#'));
         System.assertEquals('A#', StringUtils.unwrap('A#', '#'));
     }
     
     @isTest(SeeAllData=false)
     static void upperCase() {
         System.assertEquals(null, StringUtils.upperCase(null));
-/*   
-     * StringUtils.upperCase('')    = ''
-*/
+        System.assertEquals('', StringUtils.upperCase(''));
         System.assertEquals('ABC', StringUtils.upperCase('aBc'));
     }
-
 
     @isTest(SeeAllData=false)
     static void valueOf() {
