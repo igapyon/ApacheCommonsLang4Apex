@@ -845,7 +845,7 @@ global class StringUtils {
      * @since 3.5
      */
     global static Integer compare(final String str1, final String str2, final Boolean nullIsLess) {
-        if (str1 == str2) { // NOSONARLINT this intentionally uses == to allow for both null
+        if (str1 == null && str2 == null && str1 == str2) { // NOSONARLINT this intentionally uses == to allow for both null
             return 0;
         }
         if (str1 == null) {
