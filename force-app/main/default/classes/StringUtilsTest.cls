@@ -894,7 +894,6 @@ private class StringUtilsTest {
         * StringUtils.truncate('abcdefghijklmno', Integer.MAX_VALUE, Integer.MAX_VALUE) = ''
         * StringUtils.truncate('abcdefghij', 3, -1) = throws an IllegalArgumentException
         * StringUtils.truncate('abcdefghij', -2, 4) = throws an IllegalArgumentException
-       global static String truncate(final String str, final Integer offset, final Integer maxWidth) {
   */    
     }
   
@@ -909,9 +908,8 @@ private class StringUtilsTest {
      * StringUtils.unwrap('AABabcBAA', 'A')   = 'ABabcBA'
      * StringUtils.unwrap('A', '#')           = 'A'
      * StringUtils.unwrap('#A', '#')          = '#A'
-     * StringUtils.unwrap('A#', '#')          = 'A#'
-    global static String unwrap(final String str, final Integer wrapChar) {
 */
+        System.assertEquals('A#', StringUtils.unwrap('A#', '#'));
     }
 
     @isTest(SeeAllData=false)
@@ -926,24 +924,23 @@ private class StringUtilsTest {
      * StringUtils.unwrap('AABabcBAA', 'AA')  = 'BabcB'
      * StringUtils.unwrap('A', '#')           = 'A'
      * StringUtils.unwrap('#A', '#')          = '#A'
-     * StringUtils.unwrap('A#', '#')          = 'A#'
-    global static String unwrap(final String str, final String wrapToken) {
 */
+        System.assertEquals('A#', StringUtils.unwrap('A#', '#'));
     }
     
     @isTest(SeeAllData=false)
     static void upperCase() {
 /*        StringUtils.upperCase(null)  = null
      * StringUtils.upperCase('')    = ''
-     * StringUtils.upperCase('aBc') = 'ABC'
-    global static String upperCase(final String str) {
 */
+        System.assertEquals('ABC', StringUtils.upperCase('aBc'));
     }
 
 
     @isTest(SeeAllData=false)
     static void valueOf() {
-//            global static String valueOf(final Integer[] value) {
+        // TODO 戻り値チェックが必要
+        StringUtils.valueOf(new Integer[]{1,2,3});
     }
     
     @isTest(SeeAllData=false)
@@ -953,9 +950,8 @@ private class StringUtilsTest {
      * StringUtils.wrap('ab', '\0')     = 'ab'
      * StringUtils.wrap('ab', 'x')      = 'xabx'
      * StringUtils.wrap('ab', '\'')     = ''ab''
-     * StringUtils.wrap('\'ab\'', '\'') = '\'\'ab\'\''
-    global static String wrap(final String str, final Integer wrapWith) {
 */
+        System.assertEquals('\'\'ab\'\'', StringUtils.wrap('\'ab\'', '\''));
     }
 
     @isTest(SeeAllData=false)
@@ -978,7 +974,8 @@ private class StringUtilsTest {
 
         @isTest(SeeAllData=false)
         static void wrapIfMissing2args() {
-/*        StringUtils.wrapIfMissing(null, *)        = null
+            System.assertEquals(null, StringUtils.wrapIfMissing(null, 999));
+            /*
      * StringUtils.wrapIfMissing('', *)          = ''
      * StringUtils.wrapIfMissing('ab', '\0')     = 'ab'
      * StringUtils.wrapIfMissing('ab', 'x')      = 'xabx'
@@ -987,9 +984,8 @@ private class StringUtilsTest {
      * StringUtils.wrapIfMissing('/', '/')  = '/'
      * StringUtils.wrapIfMissing('a/b/c', '/')  = '/a/b/c/'
      * StringUtils.wrapIfMissing('/a/b/c', '/')  = '/a/b/c/'
-     * StringUtils.wrapIfMissing('a/b/c/', '/')  = '/a/b/c/'
-    global static String wrapIfMissing(final String str, final Integer wrapWith) {
 */
+        System.assertEquals('/a/b/c/', StringUtils.wrapIfMissing('a/b/c/', '/'));
     }
 
     @isTest(SeeAllData=false)
