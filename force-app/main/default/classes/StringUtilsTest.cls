@@ -415,30 +415,24 @@ private class StringUtilsTest {
     @isTest(SeeAllData=false)
     static void isAllLowerCase() {
         System.assertEquals(false, StringUtils.isAllLowerCase(null));
-/*
-     *    = false
-     * StringUtils.isAllLowerCase('')     = false
-     * StringUtils.isAllLowerCase('  ')   = false
-     * StringUtils.isAllLowerCase('abc')  = true
-     * StringUtils.isAllLowerCase('abC')  = false
-     * StringUtils.isAllLowerCase('ab c') = false
-     * StringUtils.isAllLowerCase('ab1c') = false
-        */
+        System.assertEquals(false, StringUtils.isAllLowerCase(''));
+        System.assertEquals(false, StringUtils.isAllLowerCase('  '));
+        System.assertEquals(true, StringUtils.isAllLowerCase('abc'));
+        System.assertEquals(false, StringUtils.isAllLowerCase('abC'));
+        System.assertEquals(false, StringUtils.isAllLowerCase('ab c'));
+        System.assertEquals(false, StringUtils.isAllLowerCase('ab1c'));
         System.assertEquals(false, StringUtils.isAllLowerCase('ab/c'));
     }
     
     @isTest(SeeAllData=false)
     static void isAllUpperCase() {
         System.assertEquals(false, StringUtils.isAllUpperCase(null));
-/*
-     *    = false
-     * StringUtils.isAllUpperCase('')     = false
-     * StringUtils.isAllUpperCase('  ')   = false
-     * StringUtils.isAllUpperCase('ABC')  = true
-     * StringUtils.isAllUpperCase('aBC')  = false
-     * StringUtils.isAllUpperCase('A C')  = false
-     * StringUtils.isAllUpperCase('A1C')  = false
-        */
+        System.assertEquals(false, StringUtils.isAllUpperCase(''));
+        System.assertEquals(false, StringUtils.isAllUpperCase('  '));
+        System.assertEquals(true, StringUtils.isAllUpperCase('ABC'));
+        System.assertEquals(false, StringUtils.isAllUpperCase('aBC'));
+        System.assertEquals(false, StringUtils.isAllUpperCase('A C'));
+        System.assertEquals(false, StringUtils.isAllUpperCase('A1C'));
         System.assertEquals(false, StringUtils.isAllUpperCase('A/C'));
     }
     
@@ -446,24 +440,21 @@ private class StringUtilsTest {
     @isTest(SeeAllData=false)
     static void isAlpha() {
         System.assertEquals(false, StringUtils.isAlpha(null));
-/*     *    = false
-     * StringUtils.isAlpha('')     = false
-     * StringUtils.isAlpha('  ')   = false
-     * StringUtils.isAlpha('abc')  = true
-     * StringUtils.isAlpha('ab2c') = false
-*/  
+        System.assertEquals(false, StringUtils.isAlpha(''));
+        System.assertEquals(false, StringUtils.isAlpha('  '));
+        System.assertEquals(true, StringUtils.isAlpha('abc'));
+        System.assertEquals(false, StringUtils.isAlpha('ab2c'));
         System.assertEquals(false, StringUtils.isAlpha('ab-c'));
     }
     
     @isTest(SeeAllData=false)
     static void isAlphanumeric() {
         System.assertEquals(false, StringUtils.isAlphanumeric(null));
-/*   * StringUtils.isAlphanumeric('')     = false
-     * StringUtils.isAlphanumeric('  ')   = false
-     * StringUtils.isAlphanumeric('abc')  = true
-     * StringUtils.isAlphanumeric('ab c') = false
-     * StringUtils.isAlphanumeric('ab2c') = true
-*/  
+        System.assertEquals(false, StringUtils.isAlphanumeric(''));
+        System.assertEquals(false, StringUtils.isAlphanumeric('  '));
+        System.assertEquals(true, StringUtils.isAlphanumeric('abc'));
+        System.assertEquals(false, StringUtils.isAlphanumeric('ab c'));
+        System.assertEquals(true, StringUtils.isAlphanumeric('ab2c'));
         System.assertEquals(false, StringUtils.isAlphanumeric('ab-c'));
     }
     
@@ -485,32 +476,27 @@ private class StringUtilsTest {
     @isTest(SeeAllData=false)
     static void isAnyEmpty() {
         System.assertEquals(true, StringUtils.isAnyEmpty((String) null));
-/*   
-     * StringUtils.isAnyEmpty((String[]) null)  = false
-     * StringUtils.isAnyEmpty(null, 'foo')      = true
-     * StringUtils.isAnyEmpty('', 'bar')        = true
-     * StringUtils.isAnyEmpty('bob', '')        = true
-     * StringUtils.isAnyEmpty('  bob  ', null)  = true
-     * StringUtils.isAnyEmpty(' ', 'bar')       = false
-     *      = false
-*/     
+        // 対応を保留 StringUtils.isAnyEmpty((String[]) null)  = false
+        System.assertEquals(true, StringUtils.isAnyEmpty(null, 'foo'));
+        System.assertEquals(true, StringUtils.isAnyEmpty('', 'bar'));
+        System.assertEquals(true, StringUtils.isAnyEmpty('bob', ''));
+        System.assertEquals(true, StringUtils.isAnyEmpty('  bob  ', null));
+        System.assertEquals(false, StringUtils.isAnyEmpty(' ', 'bar'));
         System.assertEquals(false, StringUtils.isAnyEmpty('foo', 'bar'));
     }
  
     @isTest(SeeAllData=false)
     static void isAsciiPrintable() {
         System.assertEquals(false, StringUtils.isAsciiPrintable(null));
-/*  * StringUtils.isAsciiPrintable('')       = true
-     * StringUtils.isAsciiPrintable(' ')      = true
-     * StringUtils.isAsciiPrintable('Ceki')   = true
-     * StringUtils.isAsciiPrintable('ab2c')   = true
-     * StringUtils.isAsciiPrintable('!ab-c~') = true
-     * StringUtils.isAsciiPrintable('\u0020') = true
-     * StringUtils.isAsciiPrintable('\u0021') = true
-     * StringUtils.isAsciiPrintable('\u007e') = true
-     * StringUtils.isAsciiPrintable('\u007f') = false
-     *  = false
-*/   
+        System.assertEquals(true, StringUtils.isAsciiPrintable(''));
+        System.assertEquals(true, StringUtils.isAsciiPrintable(' '));
+        System.assertEquals(true, StringUtils.isAsciiPrintable('Ceki'));
+        System.assertEquals(true, StringUtils.isAsciiPrintable('ab2c'));
+        System.assertEquals(true, StringUtils.isAsciiPrintable('!ab-c~'));
+        System.assertEquals(true, StringUtils.isAsciiPrintable('\u0020'));
+        System.assertEquals(true, StringUtils.isAsciiPrintable('\u0021'));
+        System.assertEquals(true, StringUtils.isAsciiPrintable('\u007e'));
+        System.assertEquals(false, StringUtils.isAsciiPrintable('\u007f'));
         System.assertEquals(false, StringUtils.isAsciiPrintable('Ceki G\u00fclc\u00fc'));
     }
 
@@ -526,10 +512,9 @@ private class StringUtilsTest {
     @isTest(SeeAllData=false)
     static void isEmpty() {
         System.assertEquals(true, StringUtils.isEmpty(null));
-/*    * StringUtils.isEmpty('')        = true
-    * StringUtils.isEmpty(' ')       = false
-    * StringUtils.isEmpty('bob')     = false
-*/    
+        System.assertEquals(true, StringUtils.isEmpty(''));
+        System.assertEquals(false, StringUtils.isEmpty(' '));
+        System.assertEquals(false, StringUtils.isEmpty('bob'));
         System.assertEquals(false, StringUtils.isEmpty('  bob  '));
     }
 
@@ -564,11 +549,8 @@ private class StringUtilsTest {
     @isTest(SeeAllData=false)
     static void isNotBlank() {
         System.assertEquals(false, StringUtils.isNotBlank(null));
-/*
-    * StringUtils.isNotBlank('')        = false
-    * StringUtils.isNotBlank(' ')       = false
-    * StringUtils.isNotBlank('bob')     = true
-*/    
+        System.assertEquals(false, StringUtils.isNotBlank(''));
+        System.assertEquals(true, StringUtils.isNotBlank('bob'));
         System.assertEquals(true, StringUtils.isNotBlank('  bob  '));
     }
 
@@ -576,11 +558,9 @@ private class StringUtilsTest {
     @isTest(SeeAllData=false)
     static void isNotEmpty() {
         System.assertEquals(false, StringUtils.isNotEmpty(null));
-    /*
-    * StringUtils.isNotEmpty('')        = false
-    * StringUtils.isNotEmpty(' ')       = true
-    * StringUtils.isNotEmpty('bob')     = true
-*/    
+        System.assertEquals(false, StringUtils.isNotEmpty(''));
+        System.assertEquals(true, StringUtils.isNotEmpty(' '));
+        System.assertEquals(true, StringUtils.isNotEmpty('bob'));
         System.assertEquals(true, StringUtils.isNotEmpty('  bob  '));
     }
 
@@ -591,13 +571,11 @@ private class StringUtilsTest {
         System.assertEquals(false, StringUtils.isNumeric('  '));
         System.assertEquals(true, StringUtils.isNumeric('123'));
         System.assertEquals(true, StringUtils.isNumeric('\u0967\u0968\u0969'));
-/*
-     * StringUtils.isNumeric('12 3') = false
-     * StringUtils.isNumeric('ab2c') = false
-     * StringUtils.isNumeric('12-3') = false
-     * StringUtils.isNumeric('12.3') = false
-     * StringUtils.isNumeric('-123') = false
-*/    
+        System.assertEquals(false, StringUtils.isNumeric('12 3'));
+        System.assertEquals(false, StringUtils.isNumeric('ab2c'));
+        System.assertEquals(false, StringUtils.isNumeric('12-3'));
+        System.assertEquals(false, StringUtils.isNumeric('12.3'));
+        System.assertEquals(false, StringUtils.isNumeric('-123'));
         System.assertEquals(false, StringUtils.isNumeric('+123'));
     }
 
