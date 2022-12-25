@@ -307,14 +307,11 @@ private class StringUtilsTest {
     @isTest(SeeAllData=false)
     static void equalsIgnoreCase2args() {
         System.assertEquals(true, StringUtils.equalsIgnoreCase(null, null));
-        /*
-     * StringUtils.equalsIgnoreCase(null, 'abc')  = false
-     * StringUtils.equalsIgnoreCase('abc', null)  = false
-     * StringUtils.equalsIgnoreCase('abc', 'abc') = true
-        */
+        System.assertEquals(false, StringUtils.equalsIgnoreCase(null, 'abc'));
+        System.assertEquals(false, StringUtils.equalsIgnoreCase('abc', null));
+        System.assertEquals(true, StringUtils.equalsIgnoreCase('abc', 'abc'));
         System.assertEquals(true, StringUtils.equalsIgnoreCase('abc', 'ABC'));
     }
-
 
     @isTest(SeeAllData=false)
     static void getDigits() {
@@ -698,65 +695,55 @@ private class StringUtilsTest {
     @isTest(SeeAllData=false)
     static void rightPad2args() {
         System.assertEquals(null, StringUtils.rightPad(null, 99));
-/*    
-     * StringUtils.rightPad('', 3)     = '   '
-     * StringUtils.rightPad('bat', 3)  = 'bat'
-     * StringUtils.rightPad('bat', 5)  = 'bat  '
-     * StringUtils.rightPad('bat', 1)  = 'bat'
-*/
+        System.assertEquals('   ', StringUtils.rightPad('', 3));
+        System.assertEquals('bat', StringUtils.rightPad('bat', 3));
+        System.assertEquals('bat  ', StringUtils.rightPad('bat', 5));
+        System.assertEquals('bat', StringUtils.rightPad('bat', 1));
         System.assertEquals('bat', StringUtils.rightPad('bat', -1));
     }
     
     @isTest(SeeAllData=false)
     static void rightPad3args() {
         System.assertEquals(null, StringUtils.rightPad((String) null, 99, 'z'));
-/*      
-     * StringUtils.rightPad('', 3, 'z')     = 'zzz'
-     * StringUtils.rightPad('bat', 3, 'z')  = 'bat'
-     * StringUtils.rightPad('bat', 5, 'z')  = 'batzz'
-     * StringUtils.rightPad('bat', 1, 'z')  = 'bat'
-   */  
+        System.assertEquals('zzz', StringUtils.rightPad('', 3, 'z'));
+        System.assertEquals('bat', StringUtils.rightPad('bat', 3, 'z'));
+        System.assertEquals('batzz', StringUtils.rightPad('bat', 5, 'z'));
+        System.assertEquals('bat', StringUtils.rightPad('bat', 1, 'z'));
         System.assertEquals('bat', StringUtils.rightPad('bat', -1, 'z'));
     }
 
     @isTest(SeeAllData=false)
     static void rightPad3args2() {
         System.assertEquals(null, StringUtils.rightPad(null, 99, '99'));
-/*    
-     * StringUtils.rightPad('', 3, 'z')      = 'zzz'
-     * StringUtils.rightPad('bat', 3, 'yz')  = 'bat'
-     * StringUtils.rightPad('bat', 5, 'yz')  = 'batyz'
-     * StringUtils.rightPad('bat', 8, 'yz')  = 'batyzyzy'
-     * StringUtils.rightPad('bat', 1, 'yz')  = 'bat'
-     * StringUtils.rightPad('bat', -1, 'yz') = 'bat'
-     * StringUtils.rightPad('bat', 5, null)  = 'bat  '
-*/    
+        System.assertEquals('zzz', StringUtils.rightPad('', 3, 'z'));
+        System.assertEquals('bat', StringUtils.rightPad('bat', 3, 'yz'));
+        System.assertEquals('batyz', StringUtils.rightPad('bat', 5, 'yz'));
+        System.assertEquals('batyzyzy', StringUtils.rightPad('bat', 8, 'yz'));
+        System.assertEquals('bat', StringUtils.rightPad('bat', 1, 'yz'));
+        System.assertEquals('bat', StringUtils.rightPad('bat', -1, 'yz'));
+        System.assertEquals('bat  ', StringUtils.rightPad('bat', 5, (String) null));
         System.assertEquals('bat  ', StringUtils.rightPad('bat', 5, ''));
     }
 
     @isTest(SeeAllData=false)
     static void rotate2args() {
         System.assertEquals(null, StringUtils.rotate(null, 99));
-/*              
-     * StringUtils.rotate('', *)          = ''
-     * StringUtils.rotate('abcdefg', 0)   = 'abcdefg'
-     * StringUtils.rotate('abcdefg', 2)   = 'fgabcde'
-     * StringUtils.rotate('abcdefg', -2)  = 'cdefgab'
-     * StringUtils.rotate('abcdefg', 7)   = 'abcdefg'
-     * StringUtils.rotate('abcdefg', -7)  = 'abcdefg'
-     * StringUtils.rotate('abcdefg', 9)   = 'fgabcde'
-*/    
+        System.assertEquals('', StringUtils.rotate('', 99));
+        System.assertEquals('abcdefg', StringUtils.rotate('abcdefg', 0));
+        System.assertEquals('fgabcde', StringUtils.rotate('abcdefg', 2));
+        System.assertEquals('cdefgab', StringUtils.rotate('abcdefg', -2));
+        System.assertEquals('abcdefg', StringUtils.rotate('abcdefg', 7));
+        System.assertEquals('abcdefg', StringUtils.rotate('abcdefg', -7));
+        System.assertEquals('fgabcde', StringUtils.rotate('abcdefg', 9));
         System.assertEquals('cdefgab', StringUtils.rotate('abcdefg', -9));
     }
 
     @isTest(SeeAllData=false)
     static void startsWith2args() {
         System.assertEquals(true, StringUtils.startsWith(null, null));
-/*   
-     * StringUtils.startsWith(null, 'abc')     = false
-     * StringUtils.startsWith('abcdef', null)  = false
-     * StringUtils.startsWith('abcdef', 'abc') = true
-*/
+        System.assertEquals(false, StringUtils.startsWith(null, 'abc'));
+        System.assertEquals(false, StringUtils.startsWith('abcdef', null));
+        System.assertEquals(true, StringUtils.startsWith('abcdef', 'abc'));
         System.assertEquals(false, StringUtils.startsWith('ABCDEF', 'abc'));
     }
 
