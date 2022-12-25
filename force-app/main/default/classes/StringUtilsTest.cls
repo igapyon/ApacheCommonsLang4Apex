@@ -91,8 +91,8 @@ private class StringUtilsTest {
     
     @isTest(SeeAllData=false)
     static void abbreviate4args() {
+        System.assertEquals(null, StringUtils.abbreviate(null, null, 5, 5));
 /*
-    * StringUtils.abbreviate(null, null, *, *)                 = null
     * StringUtils.abbreviate('abcdefghijklmno', null, *, *)    = 'abcdefghijklmno'
     * StringUtils.abbreviate('', '...', 0, 4)                  = ''
     * StringUtils.abbreviate('abcdefghijklmno', '---', -1, 10) = 'abcdefg---'
@@ -104,51 +104,56 @@ private class StringUtilsTest {
     * StringUtils.abbreviate('abcdefghijklmno', '*', 9, 10)    = '*ghijklmno'
     * StringUtils.abbreviate('abcdefghijklmno', ''', 10, 10)   = ''ghijklmno'
     * StringUtils.abbreviate('abcdefghijklmno', '!', 12, 10)   = '!ghijklmno'
-    * StringUtils.abbreviate('abcdefghij', 'abra', 0, 4)       = IllegalArgumentException
-    * StringUtils.abbreviate('abcdefghij', '...', 5, 6)        = IllegalArgumentException
-   global static String abbreviate(final String str, final String abbrevMarker, Integer offset, final Integer maxWidth) {
 */
+        try {
+            StringUtils.abbreviate('abcdefghij', 'abra', 0, 4);
+            System.assert(false, 'ここに入ってはダメ');
+        } catch(IllegalArgumentException ex) {
+            System.assert(true);
+        }
+        try {
+            StringUtils.abbreviate('abcdefghij', '...', 5, 6);
+            System.assert(false, 'ここに入ってはダメ');
+        } catch(IllegalArgumentException ex) {
+            System.assert(true);
+        }
     }
 
     @isTest(SeeAllData=false)
     static void abbreviateMiddle() {
+        System.assertEquals(null, StringUtils.abbreviateMiddle(null, null, 0));
 /*
-    * StringUtils.abbreviateMiddle(null, null, 0)      = null
     * StringUtils.abbreviateMiddle('abc', null, 0)      = 'abc'
     * StringUtils.abbreviateMiddle('abc', '.', 0)      = 'abc'
     * StringUtils.abbreviateMiddle('abc', '.', 3)      = 'abc'
-    * StringUtils.abbreviateMiddle('abcdef', '.', 4)     = 'ab.f'
-   global static String abbreviateMiddle(final String str, final String middle, final Integer length) {
     */
+        System.assertEquals('ab.f', StringUtils.abbreviateMiddle('abcdef', '.', 4));
     }
-
     
     @isTest(SeeAllData=false)
     static void center2args() {
+        System.assertEquals(null, StringUtils.center(null, 100));
 /*
-    * StringUtils.center(null, *)   = null
+    *    = null
     * StringUtils.center('', 4)     = '    '
     * StringUtils.center('ab', -1)  = 'ab'
     * StringUtils.center('ab', 4)   = ' ab '
     * StringUtils.center('abcd', 2) = 'abcd'
-    * StringUtils.center('a', 4)    = ' a  '
-   global static String center(final String str, final Integer size) {
     */
-}
-
+        System.assertEquals(' a  ', StringUtils.center('a', 4));
+    }
 
     @isTest(SeeAllData=false)
     static void center3argsSII() {
+        System.assertEquals(null, StringUtils.center(null, 3, ' '));
 /*
-    * StringUtils.center(null, *, *)     = null
     * StringUtils.center('', 4, ' ')     = '    '
     * StringUtils.center('ab', -1, ' ')  = 'ab'
     * StringUtils.center('ab', 4, ' ')   = ' ab '
     * StringUtils.center('abcd', 2, ' ') = 'abcd'
     * StringUtils.center('a', 4, ' ')    = ' a  '
-    * StringUtils.center('a', 4, 'y')    = 'yayy'
-   global static String center(String str, final Integer size, final Integer padChar) {
     */
+        System.assertEquals('yayy', StringUtils.center('a', 4, 'y'));
     }
 
     @isTest(SeeAllData=false)
@@ -162,9 +167,8 @@ private class StringUtilsTest {
     * StringUtils.center('a', 4, ' ')    = ' a  '
     * StringUtils.center('a', 4, 'yz')   = 'yayz'
     * StringUtils.center('abc', 7, null) = '  abc  '
-    * StringUtils.center('abc', 7, '')   = '  abc  '
-   global static String center(String str, final Integer size, String padStr) {
     */
+        System.assertEquals('  abc  ', StringUtils.center('abc', 7, ''));
     }
 
     @isTest(SeeAllData=false)
@@ -177,12 +181,11 @@ private class StringUtilsTest {
     * StringUtils.chomp('abc\r\n')     = 'abc'
     * StringUtils.chomp('abc\r\n\r\n') = 'abc\r\n'
     * StringUtils.chomp('abc\n\r')     = 'abc\n'
-    * StringUtils.chomp('abc\n\rabc')  = 'abc\n\rabc'
-    * StringUtils.chomp('\r')          = ''
-    * StringUtils.chomp('\n')          = ''
-    * StringUtils.chomp('\r\n')        = ''
-   global static String chomp(final String str) {
     */
+        System.assertEquals('abc\n\rabc', StringUtils.chomp('abc\n\rabc'));
+        System.assertEquals('', StringUtils.chomp('\r'));
+        System.assertEquals('', StringUtils.chomp('\n'));
+        System.assertEquals('', StringUtils.chomp('\r\n'));
     }
 
     @isTest(SeeAllData=false)
@@ -195,9 +198,8 @@ private class StringUtilsTest {
     * StringUtils.compare('a', 'b')     &lt; 0
     * StringUtils.compare('b', 'a')     &gt; 0
     * StringUtils.compare('a', 'B')     &gt; 0
-    * StringUtils.compare('ab', 'abc')  &lt; 0
-   global static Integer compare(final String str1, final String str2) {
     */
+        System.assert(StringUtils.compare('ab', 'abc') < 0);
     }
 
     @isTest(SeeAllData=false)
@@ -212,10 +214,10 @@ private class StringUtilsTest {
     * StringUtils.compare('a', 'b', *)       &lt; 0
     * StringUtils.compare('b', 'a', *)       &gt; 0
     * StringUtils.compare('a', 'B', *)       &gt; 0
-    * StringUtils.compare('ab', 'abc', *)    &lt; 0
-   global static Integer compare(final String str1, final String str2, final Boolean nullIsLess) {
+    * 
     */
-}
+        System.assert(StringUtils.compare('ab', 'abc', true) < 0);
+    }
      
     @isTest(SeeAllData=false)
     static void compareIgnoreCase2args() {
@@ -230,7 +232,6 @@ private class StringUtilsTest {
     * StringUtils.compareIgnoreCase('a', 'B')     &lt; 0
     * StringUtils.compareIgnoreCase('A', 'b')     &lt; 0
     * StringUtils.compareIgnoreCase('ab', 'ABC')  &lt; 0
-   global static Integer compareIgnoreCase(final String str1, final String str2) {
     */
     }
 
@@ -1006,8 +1007,7 @@ private class StringUtilsTest {
      * StringUtils.wrapIfMissing('/', '/')  = '/'
      * StringUtils.wrapIfMissing('a/b/c', '/')  = '/a/b/c/'
      * StringUtils.wrapIfMissing('/a/b/c', '/')  = '/a/b/c/'
-     * StringUtils.wrapIfMissing('a/b/c/', '/')  = '/a/b/c/'
-    global static String wrapIfMissing(final String str, final String wrapWith) {
 */
+        System.assertEquals('/a/b/c/', StringUtils.wrapIfMissing('a/b/c/', '/'));
     }
 }
