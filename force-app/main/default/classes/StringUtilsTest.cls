@@ -799,44 +799,50 @@ private class StringUtilsTest {
 
     @isTest(SeeAllData=false)
     static void trimToEmpty() {
-/*        StringUtils.trimToEmpty(null)          = ''
+        System.assertEquals('', StringUtils.trimToEmpty(null));
+/*        
      * StringUtils.trimToEmpty('')            = ''
      * StringUtils.trimToEmpty('     ')       = ''
      * StringUtils.trimToEmpty('abc')         = 'abc'
-     * StringUtils.trimToEmpty('    abc    ') = 'abc'
-    global static String trimToEmpty(final String str) {
 */        
+        System.assertEquals('abc', StringUtils.trimToEmpty('    abc    '));
     }
     
 
     @isTest(SeeAllData=false)
     static void trimToNull() {
-/*        StringUtils.trimToNull(null)          = null
+        System.assertEquals(null, StringUtils.trimToNull(null));
+/*      
      * StringUtils.trimToNull('')            = null
      * StringUtils.trimToNull('     ')       = null
      * StringUtils.trimToNull('abc')         = 'abc'
-     * StringUtils.trimToNull('    abc    ') = 'abc'
-    global static String trimToNull(final String str) {
 */        
+        System.assertEquals('abc', StringUtils.trimToNull('    abc    '));
     }
 
     @isTest(SeeAllData=false)
     static void truncate2args() {
-/*        StringUtils.truncate(null, 0)       = null
+        System.assertEquals(null, StringUtils.truncate(null, 0));
+/*         
      * StringUtils.truncate(null, 2)       = null
      * StringUtils.truncate('', 4)         = ''
      * StringUtils.truncate('abcdefg', 4)  = 'abcd'
      * StringUtils.truncate('abcdefg', 6)  = 'abcdef'
      * StringUtils.truncate('abcdefg', 7)  = 'abcdefg'
      * StringUtils.truncate('abcdefg', 8)  = 'abcdefg'
-     * StringUtils.truncate('abcdefg', -1) = throws an IllegalArgumentException
-    global static String truncate(final String str, final Integer maxWidth) {
 */    
+        try {
+            StringUtils.truncate('abcdefg', -1);
+            System.assert(false);
+        } catch(IllegalArgumentException ex) {
+            System.assert(true);
+        } 
     }
     
     @isTest(SeeAllData=false)
     static void truncate3args() {
-/*        StringUtils.truncate(null, 0, 0) = null
+        System.assertEquals(null, StringUtils.truncate(null, 0, 0));
+/*     
         * StringUtils.truncate(null, 2, 4) = null
         * StringUtils.truncate('', 0, 10) = ''
         * StringUtils.truncate('', 2, 10) = ''
@@ -865,8 +871,13 @@ private class StringUtilsTest {
         * StringUtils.truncate('abcdefghijklmno', 15, Integer.MAX_VALUE) = ''
         * StringUtils.truncate('abcdefghijklmno', Integer.MAX_VALUE, Integer.MAX_VALUE) = ''
         * StringUtils.truncate('abcdefghij', 3, -1) = throws an IllegalArgumentException
-        * StringUtils.truncate('abcdefghij', -2, 4) = throws an IllegalArgumentException
   */    
+        try {
+            StringUtils.truncate('abcdefghij', -2, 4);
+            System.assert(false);
+        } catch(IllegalArgumentException ex) {
+            System.assert(true);
+        }
     }
   
     @isTest(SeeAllData=false)
