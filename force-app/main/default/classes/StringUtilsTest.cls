@@ -957,11 +957,9 @@ private class StringUtilsTest {
 */
     }
     
-
-
-        @isTest(SeeAllData=false)
-        static void wrapIfMissing2args() {
-            System.assertEquals(null, StringUtils.wrapIfMissing(null, 999));
+    @isTest(SeeAllData=false)
+    static void wrapIfMissing2args() {
+        System.assertEquals(null, StringUtils.wrapIfMissing(null, 999));
             /*
      * StringUtils.wrapIfMissing('', *)          = ''
      * StringUtils.wrapIfMissing('ab', '\0')     = 'ab'
@@ -977,7 +975,8 @@ private class StringUtilsTest {
 
     @isTest(SeeAllData=false)
     static void wrapIfMissing() {
-/*        StringUtils.wrapIfMissing(null, *)         = null
+        System.assertEquals(null, StringUtils.wrapIfMissing((String)null, 'Z'));
+/*                 = null
      * StringUtils.wrapIfMissing('', *)           = ''
      * StringUtils.wrapIfMissing('ab', null)      = 'ab'
      * StringUtils.wrapIfMissing('ab', 'x')       = 'xabx'
