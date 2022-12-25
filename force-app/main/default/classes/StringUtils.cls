@@ -9556,7 +9556,7 @@ global class StringUtils {
             return str;
         }
 
-        return wrapWith + str + (wrapWith);
+        return (wrapWith + str + wrapWith);
     }
 
     /**

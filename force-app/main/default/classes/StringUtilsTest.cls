@@ -996,29 +996,25 @@ private class StringUtilsTest {
     @isTest(SeeAllData=false)
     static void wrap2args() {
         System.assertEquals(null, StringUtils.wrap(null, 99));
-/*             
-     * StringUtils.wrap('', *)          = ''
-     * StringUtils.wrap('ab', '\0')     = 'ab'
-     * StringUtils.wrap('ab', 'x')      = 'xabx'
-     * StringUtils.wrap('ab', '\'')     = ''ab''
-*/
+        System.assertEquals('', StringUtils.wrap('', 99));
+        // 実装不能と判断 System.assertEquals('ab', StringUtils.wrap('ab', '\u0000'));
+        System.assertEquals('xabx', StringUtils.wrap('ab', 'x'));
+        System.assertEquals('\'ab\'', StringUtils.wrap('ab', '\''));
         System.assertEquals('\'\'ab\'\'', StringUtils.wrap('\'ab\'', '\''));
     }
 
     @isTest(SeeAllData=false)
     static void wrap2args2() {
-/*        StringUtils.wrap(null, *)         = null
-     * StringUtils.wrap('', *)           = ''
-     * StringUtils.wrap('ab', null)      = 'ab'
-     * StringUtils.wrap('ab', 'x')       = 'xabx'
-     * StringUtils.wrap('ab', '\'')      = '\'ab\''
-     * StringUtils.wrap('\'ab\'', '\'')  = '\'\'ab\'\''
-     * StringUtils.wrap('ab', ''')       = ''ab''
-     * StringUtils.wrap(''abcd'', ''')   = '''abcd'''
-     * StringUtils.wrap('\'abcd\'', ''') = ''\'abcd\'''
-     * StringUtils.wrap(''abcd'', '\'')  = '\''abcd'\''
-    global static String wrap(final String str, final String wrapWith) {
-*/
+        System.assertEquals(null, StringUtils.wrap(null, 99));
+        System.assertEquals('', StringUtils.wrap('', 99));
+        System.assertEquals('ab', StringUtils.wrap('ab', (String) null));
+        System.assertEquals('xabx', StringUtils.wrap('ab', 'x'));
+        System.assertEquals('\'ab\'', StringUtils.wrap('ab', '\''));
+        System.assertEquals('\'\'ab\'\'', StringUtils.wrap('\'ab\'', '\''));
+        System.assertEquals('\'ab\'', StringUtils.wrap('ab', '\''));
+        System.assertEquals('\'\'abcd\'\'', StringUtils.wrap('\'abcd\'', '\''));
+        System.assertEquals('\'\'abcd\'\'', StringUtils.wrap('\'abcd\'', '\''));
+        System.assertEquals('\'\'abcd\'\'', StringUtils.wrap('\'abcd\'', '\''));
     }
     
     @isTest(SeeAllData=false)
