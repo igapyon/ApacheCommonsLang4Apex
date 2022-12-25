@@ -358,24 +358,31 @@ private class StringUtilsTest {
     @isTest(SeeAllData=false)
     static void endsWith2args() {
         System.assertEquals(true, StringUtils.endsWith(null, null));
-    /*
-    * StringUtils.endsWith(null, 'def')     = false
-    * StringUtils.endsWith('abcdef', null)  = false
-    * StringUtils.endsWith('abcdef', 'def') = true
-    * StringUtils.endsWith('ABCDEF', 'def') = false
-    * StringUtils.endsWith('ABCDEF', 'cde') = false
-    */
+        System.assertEquals(false, StringUtils.endsWith(null, 'def'));
+        System.assertEquals(false, StringUtils.endsWith('abcdef', null));
+        System.assertEquals(true, StringUtils.endsWith('abcdef', 'def'));
+        System.assertEquals(false, StringUtils.endsWith('ABCDEF', 'def'));
+        System.assertEquals(false, StringUtils.endsWith('ABCDEF', 'cde'));
         System.assertEquals(true, StringUtils.endsWith('ABCDEF', ''));
+    }
+
+    @isTest(SeeAllData=false)
+    static void endsWith3args() {
+        System.assertEquals(true, StringUtils.endsWith(null, null, true));
+        System.assertEquals(false, StringUtils.endsWith(null, 'def', true));
+        System.assertEquals(false, StringUtils.endsWith('abcdef', null, true));
+        System.assertEquals(true, StringUtils.endsWith('abcdef', 'def', true));
+        System.assertEquals(true, StringUtils.endsWith('ABCDEF', 'def', true));
+        System.assertEquals(false, StringUtils.endsWith('ABCDEF', 'cde', true));
+        System.assertEquals(true, StringUtils.endsWith('ABCDEF', '', true));
     }
 
     @isTest(SeeAllData=false)
     static void equals2args() {
         System.assertEquals(true, StringUtils.equals(null, null));
-/*
-        * StringUtils.equals(null, 'abc')  = false
-        * StringUtils.equals('abc', null)  = false
-        * StringUtils.equals('abc', 'abc') = true
-*/
+        System.assertEquals(false, StringUtils.equals(null, 'abc'));
+        System.assertEquals(false, StringUtils.equals('abc', null));
+        System.assertEquals(true, StringUtils.equals('abc', 'abc'));
         System.assertEquals(false, StringUtils.equals('abc', 'ABC'));
     }
     
@@ -391,34 +398,30 @@ private class StringUtilsTest {
     @isTest(SeeAllData=false)
     static void getDigits() {
         System.assertEquals(null, StringUtils.getDigits(null));
-/*     * StringUtils.getDigits('')    = ''
-     * StringUtils.getDigits('abc') = ''
-     * StringUtils.getDigits('1000$') = '1000'
-     * StringUtils.getDigits('1123~45') = '112345'
-     * StringUtils.getDigits('(541) 754-3010') = '5417543010'
-*/
+        System.assertEquals('', StringUtils.getDigits(''));
+        System.assertEquals('', StringUtils.getDigits('abc'));
+        System.assertEquals('1000', StringUtils.getDigits('1000$'));
+        System.assertEquals('112345', StringUtils.getDigits('1123~45'));
+        System.assertEquals('5417543010', StringUtils.getDigits('(541) 754-3010'));
         System.assertEquals('\u0967\u0968\u0969', StringUtils.getDigits('\u0967\u0968\u0969'));
     }
 
     @isTest(SeeAllData=false)
     static void indexOf2args() {
         System.assertEquals(-1, StringUtils.indexOf(null, 5));
-    /*
-     * StringUtils.indexOf(*, null)          = -1
-     * StringUtils.indexOf('', '')           = 0
-     * StringUtils.indexOf('', *)            = -1 (except when * = '')
-     * StringUtils.indexOf('aabaabaa', 'a')  = 0
-     * StringUtils.indexOf('aabaabaa', 'b')  = 2
-     * StringUtils.indexOf('aabaabaa', 'ab') = 1
-        */
+        System.assertEquals(-1, StringUtils.indexOf('USOUSO', 99));
+        System.assertEquals(0, StringUtils.indexOf('', ''));
+        System.assertEquals(-1, StringUtils.indexOf('', 'Z'));
+        System.assertEquals(0, StringUtils.indexOf('aabaabaa', 'a'));
+        System.assertEquals(2, StringUtils.indexOf('aabaabaa', 'b'));
+        System.assertEquals(1, StringUtils.indexOf('aabaabaa', 'ab'));
         System.assertEquals(0, StringUtils.indexOf('aabaabaa', ''));
     }    
 
     @isTest(SeeAllData=false)
     static void indexOf2args2() {
         System.assertEquals(-1, StringUtils.indexOf('', 99));
-/*     * StringUtils.indexOf('aabaabaa', 'a') = 0
-        */
+        System.assertEquals(0, StringUtils.indexOf('aabaabaa', 'a'));
         System.assertEquals(2, StringUtils.indexOf('aabaabaa', 'b'));
     }
     
@@ -815,6 +818,15 @@ private class StringUtilsTest {
         System.assertEquals(false, StringUtils.startsWith('abcdef', null));
         System.assertEquals(true, StringUtils.startsWith('abcdef', 'abc'));
         System.assertEquals(false, StringUtils.startsWith('ABCDEF', 'abc'));
+    }
+
+    @isTest(SeeAllData=false)
+    static void startsWith3args() {
+        System.assertEquals(true, StringUtils.startsWith(null, null, true));
+        System.assertEquals(false, StringUtils.startsWith(null, 'abc', true));
+        System.assertEquals(false, StringUtils.startsWith('abcdef', null, true));
+        System.assertEquals(true, StringUtils.startsWith('abcdef', 'abc', true));
+        System.assertEquals(true, StringUtils.startsWith('ABCDEF', 'abc', true));
     }
 
     @isTest(SeeAllData=false)

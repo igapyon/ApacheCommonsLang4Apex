@@ -1687,6 +1687,7 @@ global class StringUtils {
      * @return {@code true} if the CharSequence starts with the prefix or
      *  both {@code null}
      */
+    @TestVisible
     private static Boolean endsWith(final String str, final String suffix, final Boolean ignoreCase) {
         if (str == null || suffix == null) {
             return equals(str, suffix);
@@ -1696,8 +1697,7 @@ global class StringUtils {
         }
         final Integer strOffset = str.length() - suffix.length();
         if (ignoreCase) {
-            str = str.toUpperCase();
-            suffix = suffix.toUpperCase();
+            return str.endsWithIgnoreCase(suffix);
         }
         return str.endsWith(suffix);
     }
@@ -8077,6 +8077,7 @@ global class StringUtils {
      * @return {@code true} if the CharSequence starts with the prefix or
      *  both {@code null}
      */
+    @TestVisible
     private static Boolean startsWith(final String str, final String prefix, final Boolean ignoreCase) {
         if (str == null || prefix == null) {
             return equals(str, prefix);
@@ -8087,8 +8088,7 @@ global class StringUtils {
             return false;
         }
         if (ignoreCase) {
-            str = str.toUpperCase();
-            prefix = prefix.toUpperCase();
+            return str.startsWithIgnoreCase(prefix);
         }
         return str.startsWith(prefix);
     }
