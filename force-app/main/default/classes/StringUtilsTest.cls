@@ -736,7 +736,8 @@ private class StringUtilsTest {
 
     @isTest(SeeAllData=false)
     static void rotate2args() {
-/*        StringUtils.rotate(null, *)        = null
+        System.assertEquals(null, StringUtils.rotate(null, 99));
+/*              
      * StringUtils.rotate('', *)          = ''
      * StringUtils.rotate('abcdefg', 0)   = 'abcdefg'
      * StringUtils.rotate('abcdefg', 2)   = 'fgabcde'
@@ -744,25 +745,19 @@ private class StringUtilsTest {
      * StringUtils.rotate('abcdefg', 7)   = 'abcdefg'
      * StringUtils.rotate('abcdefg', -7)  = 'abcdefg'
      * StringUtils.rotate('abcdefg', 9)   = 'fgabcde'
-     * StringUtils.rotate('abcdefg', -9)  = 'cdefgab'
-    global static String rotate(final String str, final Integer shift) {
 */    
+        System.assertEquals('cdefgab', StringUtils.rotate('abcdefg', -9));
     }
 
     @isTest(SeeAllData=false)
     static void startsWith2args() {
-/*        StringUtils.startsWith(null, null)      = true
+        System.assertEquals(true, StringUtils.startsWith(null, null));
+/*   
      * StringUtils.startsWith(null, 'abc')     = false
      * StringUtils.startsWith('abcdef', null)  = false
      * StringUtils.startsWith('abcdef', 'abc') = true
-     * StringUtils.startsWith('ABCDEF', 'abc') = false
-    global static Boolean startsWith(final String str, final String prefix) {
 */
-    }
-
-    @isTest(SeeAllData=false)
-    static void startsWith() {
-//        private static Boolean startsWith(final String str, final String prefix, final Boolean ignoreCase) {
+        System.assertEquals(false, StringUtils.startsWith('ABCDEF', 'abc'));
     }
 
     @isTest(SeeAllData=false)
