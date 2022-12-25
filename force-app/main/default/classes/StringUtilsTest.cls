@@ -103,8 +103,8 @@ private class StringUtilsTest {
     * StringUtils.abbreviate('abcdefghijklmno', '...', 6, 10)  = '...ghij...'
     * StringUtils.abbreviate('abcdefghijklmno', '*', 9, 10)    = '*ghijklmno'
     * StringUtils.abbreviate('abcdefghijklmno', ''', 10, 10)   = ''ghijklmno'
-    * StringUtils.abbreviate('abcdefghijklmno', '!', 12, 10)   = '!ghijklmno'
 */
+        System.assertEquals('!ghijklmno', StringUtils.abbreviate('abcdefghijklmno', '!', 12, 10));
         try {
             StringUtils.abbreviate('abcdefghij', 'abra', 0, 4);
             System.assert(false, 'ここに入ってはダメ');
@@ -158,8 +158,8 @@ private class StringUtilsTest {
 
     @isTest(SeeAllData=false)
     static void center3argsSIS() {
+        System.assertEquals(null, StringUtils.center(null, 5, 5));
     /*
-    * StringUtils.center(null, *, *)     = null
     * StringUtils.center('', 4, ' ')     = '    '
     * StringUtils.center('ab', -1, ' ')  = 'ab'
     * StringUtils.center('ab', 4, ' ')   = ' ab '
@@ -173,8 +173,8 @@ private class StringUtilsTest {
 
     @isTest(SeeAllData=false)
     static void chomp() {
+        System.assertEquals(null, StringUtils.chomp(null));
 /*
-    * StringUtils.chomp(null)          = null
     * StringUtils.chomp('')            = ''
     * StringUtils.chomp('abc \r')      = 'abc '
     * StringUtils.chomp('abc\n')       = 'abc'
@@ -190,8 +190,8 @@ private class StringUtilsTest {
 
     @isTest(SeeAllData=false)
     static void compare2args() {
+        System.assertEquals(0, StringUtils.compare(null, null));
     /*
-    * StringUtils.compare(null, null)   = 0
     * StringUtils.compare(null , 'a')   &lt; 0
     * StringUtils.compare('a', null)    &gt; 0
     * StringUtils.compare('abc', 'abc') = 0
@@ -204,8 +204,8 @@ private class StringUtilsTest {
 
     @isTest(SeeAllData=false)
     static void compare3args() {
+        System.assertEquals(0, StringUtils.compare(null, null, true));
     /*
-    * StringUtils.compare(null, null, *)     = 0
     * StringUtils.compare(null , 'a', true)  &lt; 0
     * StringUtils.compare(null , 'a', false) &gt; 0
     * StringUtils.compare('a', null, true)   &gt; 0
@@ -221,8 +221,9 @@ private class StringUtilsTest {
      
     @isTest(SeeAllData=false)
     static void compareIgnoreCase2args() {
+        System.assertEquals(0, StringUtils.compareIgnoreCase(null, null));
     /*
-    * StringUtils.compareIgnoreCase(null, null)   = 0
+    *    = 0
     * StringUtils.compareIgnoreCase(null , 'a')   &lt; 0
     * StringUtils.compareIgnoreCase('a', null)    &gt; 0
     * StringUtils.compareIgnoreCase('abc', 'abc') = 0
@@ -231,14 +232,16 @@ private class StringUtilsTest {
     * StringUtils.compareIgnoreCase('b', 'a')     &gt; 0
     * StringUtils.compareIgnoreCase('a', 'B')     &lt; 0
     * StringUtils.compareIgnoreCase('A', 'b')     &lt; 0
-    * StringUtils.compareIgnoreCase('ab', 'ABC')  &lt; 0
+    * 
     */
+        System.assert(StringUtils.compareIgnoreCase('ab', 'ABC') < 0);
     }
 
     @isTest(SeeAllData=false)
     static void compareIgnoreCase3args() {
+        System.assertEquals(0, StringUtils.compareIgnoreCase(null, null, true));
     /*
-    * StringUtils.compareIgnoreCase(null, null, *)     = 0
+    *      = 0
     * StringUtils.compareIgnoreCase(null , 'a', true)  &lt; 0
     * StringUtils.compareIgnoreCase(null , 'a', false) &gt; 0
     * StringUtils.compareIgnoreCase('a', null, true)   &gt; 0
@@ -249,20 +252,18 @@ private class StringUtilsTest {
     * StringUtils.compareIgnoreCase('b', 'a', *)       &gt; 0
     * StringUtils.compareIgnoreCase('a', 'B', *)       &lt; 0
     * StringUtils.compareIgnoreCase('A', 'b', *)       &lt; 0
-    * StringUtils.compareIgnoreCase('ab', 'abc', *)    &lt; 0
-   global static Integer compareIgnoreCase(final String str1, final String str2, final Boolean nullIsLess) {
     */
+        System.assert(StringUtils.compareIgnoreCase('ab', 'abc', true) < 0);
     }
     
     @isTest(SeeAllData=false)
     static void contains() {
+        System.assertEquals(false, StringUtils.contains((String) null, 'a'.charAt(0)));
 /*
-    * StringUtils.contains(null, *)    = false
     * StringUtils.contains('', *)      = false
     * StringUtils.contains('abc', 'a') = true
-    * StringUtils.contains('abc', 'z') = false
-   global static Boolean contains(final String seq, final Integer searchChar) {
     */
+        System.assertEquals(false, StringUtils.contains('abc', 'z'.charAt(0)));
     }
 
     @isTest(SeeAllData=false)
@@ -281,21 +282,15 @@ private class StringUtilsTest {
 
     @isTest(SeeAllData=false)
     static void endsWith2args() {
+        System.assertEquals(true, StringUtils.endsWith(null, null));
     /*
-    * StringUtils.endsWith(null, null)      = true
     * StringUtils.endsWith(null, 'def')     = false
     * StringUtils.endsWith('abcdef', null)  = false
     * StringUtils.endsWith('abcdef', 'def') = true
     * StringUtils.endsWith('ABCDEF', 'def') = false
     * StringUtils.endsWith('ABCDEF', 'cde') = false
-    * StringUtils.endsWith('ABCDEF', '')    = true
-   global static Boolean endsWith(final String str, final String suffix) {
     */
-    }
-
-    @isTest(SeeAllData=false)
-    static void endsWith3args() {
-//        private static Boolean endsWith(final String str, final String suffix, final Boolean ignoreCase) {
+        System.assertEquals(true, StringUtils.endsWith('ABCDEF', ''));
     }
 
     @isTest(SeeAllData=false)
