@@ -181,12 +181,11 @@ private class StringUtilsTest {
     * StringUtils.chomp('abc\r\n')     = 'abc'
     * StringUtils.chomp('abc\r\n\r\n') = 'abc\r\n'
     * StringUtils.chomp('abc\n\r')     = 'abc\n'
-    * StringUtils.chomp('abc\n\rabc')  = 'abc\n\rabc'
-    * StringUtils.chomp('\r')          = ''
-    * StringUtils.chomp('\n')          = ''
-    * StringUtils.chomp('\r\n')        = ''
-   global static String chomp(final String str) {
     */
+        System.assertEquals('abc\n\rabc', StringUtils.chomp('abc\n\rabc'));
+        System.assertEquals('', StringUtils.chomp('\r'));
+        System.assertEquals('', StringUtils.chomp('\n'));
+        System.assertEquals('', StringUtils.chomp('\r\n'));
     }
 
     @isTest(SeeAllData=false)
@@ -199,9 +198,8 @@ private class StringUtilsTest {
     * StringUtils.compare('a', 'b')     &lt; 0
     * StringUtils.compare('b', 'a')     &gt; 0
     * StringUtils.compare('a', 'B')     &gt; 0
-    * StringUtils.compare('ab', 'abc')  &lt; 0
-   global static Integer compare(final String str1, final String str2) {
     */
+        System.assert(StringUtils.compare('ab', 'abc') < 0);
     }
 
     @isTest(SeeAllData=false)
@@ -216,10 +214,10 @@ private class StringUtilsTest {
     * StringUtils.compare('a', 'b', *)       &lt; 0
     * StringUtils.compare('b', 'a', *)       &gt; 0
     * StringUtils.compare('a', 'B', *)       &gt; 0
-    * StringUtils.compare('ab', 'abc', *)    &lt; 0
-   global static Integer compare(final String str1, final String str2, final Boolean nullIsLess) {
+    * 
     */
-}
+        System.assert(StringUtils.compare('ab', 'abc', true) < 0);
+    }
      
     @isTest(SeeAllData=false)
     static void compareIgnoreCase2args() {
@@ -234,7 +232,6 @@ private class StringUtilsTest {
     * StringUtils.compareIgnoreCase('a', 'B')     &lt; 0
     * StringUtils.compareIgnoreCase('A', 'b')     &lt; 0
     * StringUtils.compareIgnoreCase('ab', 'ABC')  &lt; 0
-   global static Integer compareIgnoreCase(final String str1, final String str2) {
     */
     }
 
