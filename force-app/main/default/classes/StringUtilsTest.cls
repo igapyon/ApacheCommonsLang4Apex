@@ -179,18 +179,16 @@ private class StringUtilsTest {
     @isTest(SeeAllData=false)
     static void abbreviate4args() {
         System.assertEquals(null, StringUtils.abbreviate(null, null, 5, 5));
-/*
-    * StringUtils.abbreviate('abcdefghijklmno', null, *, *)    = 'abcdefghijklmno'
-    * StringUtils.abbreviate('', '...', 0, 4)                  = ''
-    * StringUtils.abbreviate('abcdefghijklmno', '---', -1, 10) = 'abcdefg---'
-    * StringUtils.abbreviate('abcdefghijklmno', ',', 0, 10)    = 'abcdefghi,'
-    * StringUtils.abbreviate('abcdefghijklmno', ',', 1, 10)    = 'abcdefghi,'
-    * StringUtils.abbreviate('abcdefghijklmno', ',', 2, 10)    = 'abcdefghi,'
-    * StringUtils.abbreviate('abcdefghijklmno', '::', 4, 10)   = '::efghij::'
-    * StringUtils.abbreviate('abcdefghijklmno', '...', 6, 10)  = '...ghij...'
-    * StringUtils.abbreviate('abcdefghijklmno', '*', 9, 10)    = '*ghijklmno'
-    * StringUtils.abbreviate('abcdefghijklmno', ''', 10, 10)   = ''ghijklmno'
-*/
+        System.assertEquals('abcdefghijklmno', StringUtils.abbreviate('abcdefghijklmno', null, 99, 99));
+        System.assertEquals('', StringUtils.abbreviate('', '...', 0, 4));
+        System.assertEquals('abcdefg---', StringUtils.abbreviate('abcdefghijklmno', '---', -1, 10));
+        System.assertEquals('abcdefghi,', StringUtils.abbreviate('abcdefghijklmno', ',', 0, 10));
+        System.assertEquals('abcdefghi,', StringUtils.abbreviate('abcdefghijklmno', ',', 1, 10));
+        System.assertEquals('abcdefghi,', StringUtils.abbreviate('abcdefghijklmno', ',', 2, 10));
+        System.assertEquals('::efghij::', StringUtils.abbreviate('abcdefghijklmno', '::', 4, 10));
+        System.assertEquals('...ghij...', StringUtils.abbreviate('abcdefghijklmno', '...', 6, 10));
+        System.assertEquals('*ghijklmno', StringUtils.abbreviate('abcdefghijklmno', '*', 9, 10));
+        System.assertEquals('\'ghijklmno', StringUtils.abbreviate('abcdefghijklmno', '\'', 10, 10));
         System.assertEquals('!ghijklmno', StringUtils.abbreviate('abcdefghijklmno', '!', 12, 10));
         try {
             StringUtils.abbreviate('abcdefghij', 'abra', 0, 4);
@@ -209,66 +207,55 @@ private class StringUtilsTest {
     @isTest(SeeAllData=false)
     static void abbreviateMiddle() {
         System.assertEquals(null, StringUtils.abbreviateMiddle(null, null, 0));
-/*
-    * StringUtils.abbreviateMiddle('abc', null, 0)      = 'abc'
-    * StringUtils.abbreviateMiddle('abc', '.', 0)      = 'abc'
-    * StringUtils.abbreviateMiddle('abc', '.', 3)      = 'abc'
-    */
+        System.assertEquals('abc', StringUtils.abbreviateMiddle('abc', null, 0));
+        System.assertEquals('abc', StringUtils.abbreviateMiddle('abc', '.', 0));
+        System.assertEquals('abc', StringUtils.abbreviateMiddle('abc', '.', 3));
         System.assertEquals('ab.f', StringUtils.abbreviateMiddle('abcdef', '.', 4));
     }
     
     @isTest(SeeAllData=false)
     static void center2args() {
         System.assertEquals(null, StringUtils.center(null, 100));
-/*
-    *    = null
-    * StringUtils.center('', 4)     = '    '
-    * StringUtils.center('ab', -1)  = 'ab'
-    * StringUtils.center('ab', 4)   = ' ab '
-    * StringUtils.center('abcd', 2) = 'abcd'
-    */
+        System.assertEquals('    ', StringUtils.center('', 4));
+        System.assertEquals('ab', StringUtils.center('ab', -1));
+        System.assertEquals(' ab ', StringUtils.center('ab', 4));
+        System.assertEquals('abcd', StringUtils.center('abcd', 2));
         System.assertEquals(' a  ', StringUtils.center('a', 4));
     }
 
     @isTest(SeeAllData=false)
     static void center3argsSII() {
         System.assertEquals(null, StringUtils.center(null, 3, ' '));
-/*
-    * StringUtils.center('', 4, ' ')     = '    '
-    * StringUtils.center('ab', -1, ' ')  = 'ab'
-    * StringUtils.center('ab', 4, ' ')   = ' ab '
-    * StringUtils.center('abcd', 2, ' ') = 'abcd'
-    * StringUtils.center('a', 4, ' ')    = ' a  '
-    */
+        System.assertEquals('    ', StringUtils.center('', 4, ' '));
+        System.assertEquals('ab', StringUtils.center('ab', -1, ' '));
+        System.assertEquals(' ab ', StringUtils.center('ab', 4, ' '));
+        System.assertEquals('abcd', StringUtils.center('abcd', 2, ' '));
+        System.assertEquals(' a  ', StringUtils.center('a', 4, ' '));
         System.assertEquals('yayy', StringUtils.center('a', 4, 'y'));
     }
 
     @isTest(SeeAllData=false)
     static void center3argsSIS() {
         System.assertEquals(null, StringUtils.center(null, 5, 5));
-    /*
-    * StringUtils.center('', 4, ' ')     = '    '
-    * StringUtils.center('ab', -1, ' ')  = 'ab'
-    * StringUtils.center('ab', 4, ' ')   = ' ab '
-    * StringUtils.center('abcd', 2, ' ') = 'abcd'
-    * StringUtils.center('a', 4, ' ')    = ' a  '
-    * StringUtils.center('a', 4, 'yz')   = 'yayz'
-    * StringUtils.center('abc', 7, null) = '  abc  '
-    */
+        System.assertEquals('    ', StringUtils.center('', 4, ' '));
+        System.assertEquals('ab', StringUtils.center('ab', -1, ' '));
+        System.assertEquals(' ab ', StringUtils.center('ab', 4, ' '));
+        System.assertEquals('abcd', StringUtils.center('abcd', 2, ' '));
+        System.assertEquals(' a  ', StringUtils.center('a', 4, ' '));
+        System.assertEquals('yayz', StringUtils.center('a', 4, 'yz'));
+        System.assertEquals('  abc  ', StringUtils.center('abc', 7, (String) null));
         System.assertEquals('  abc  ', StringUtils.center('abc', 7, ''));
     }
 
     @isTest(SeeAllData=false)
     static void chomp() {
         System.assertEquals(null, StringUtils.chomp(null));
-/*
-    * StringUtils.chomp('')            = ''
-    * StringUtils.chomp('abc \r')      = 'abc '
-    * StringUtils.chomp('abc\n')       = 'abc'
-    * StringUtils.chomp('abc\r\n')     = 'abc'
-    * StringUtils.chomp('abc\r\n\r\n') = 'abc\r\n'
-    * StringUtils.chomp('abc\n\r')     = 'abc\n'
-    */
+        System.assertEquals('', StringUtils.chomp(''));
+        System.assertEquals('abc ', StringUtils.chomp('abc \r'));
+        System.assertEquals('abc', StringUtils.chomp('abc\n'));
+        System.assertEquals('abc', StringUtils.chomp('abc\r\n'));
+        System.assertEquals('abc\r\n', StringUtils.chomp('abc\r\n\r\n'));
+        System.assertEquals('abc\n', StringUtils.chomp('abc\n\r'));
         System.assertEquals('abc\n\rabc', StringUtils.chomp('abc\n\rabc'));
         System.assertEquals('', StringUtils.chomp('\r'));
         System.assertEquals('', StringUtils.chomp('\n'));
