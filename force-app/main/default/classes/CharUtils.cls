@@ -24,6 +24,7 @@
  *
  * <p>#ThreadSafe#</p>
  * @since 2.1
+ * @author Apex migration by Toshiki Iga.
  */
 global class CharUtils {
 

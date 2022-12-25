@@ -15,6 +15,93 @@
  * limitations under the License.
  */
 
+/**
+ * <p>Operations on {@link java.lang.String} that are
+ * {@code null} safe.</p>
+ *
+ * <ul>
+ *  <li><b>IsEmpty/IsBlank</b>
+ *      - checks if a String contains text</li>
+ *  <li><b>Trim/Strip</b>
+ *      - removes leading and trailing whitespace</li>
+ *  <li><b>Equals/Compare</b>
+ *      - compares two strings in a null-safe manner</li>
+ *  <li><b>startsWith</b>
+ *      - check if a String starts with a prefix in a null-safe manner</li>
+ *  <li><b>endsWith</b>
+ *      - check if a String ends with a suffix in a null-safe manner</li>
+ *  <li><b>IndexOf/LastIndexOf/Contains</b>
+ *      - null-safe index-of checks
+ *  <li><b>IndexOfAny/LastIndexOfAny/IndexOfAnyBut/LastIndexOfAnyBut</b>
+ *      - index-of any of a set of Strings</li>
+ *  <li><b>ContainsOnly/ContainsNone/ContainsAny</b>
+ *      - checks if String contains only/none/any of these characters</li>
+ *  <li><b>Substring/Left/Right/Mid</b>
+ *      - null-safe substring extractions</li>
+ *  <li><b>SubstringBefore/SubstringAfter/SubstringBetween</b>
+ *      - substring extraction relative to other strings</li>
+ *  <li><b>Split/Join</b>
+ *      - splits a String into an array of substrings and vice versa</li>
+ *  <li><b>Remove/Delete</b>
+ *      - removes part of a String</li>
+ *  <li><b>Replace/Overlay</b>
+ *      - Searches a String and replaces one String with another</li>
+ *  <li><b>Chomp/Chop</b>
+ *      - removes the last part of a String</li>
+ *  <li><b>AppendIfMissing</b>
+ *      - appends a suffix to the end of the String if not present</li>
+ *  <li><b>PrependIfMissing</b>
+ *      - prepends a prefix to the start of the String if not present</li>
+ *  <li><b>LeftPad/RightPad/Center/Repeat</b>
+ *      - pads a String</li>
+ *  <li><b>UpperCase/LowerCase/SwapCase/Capitalize/Uncapitalize</b>
+ *      - changes the case of a String</li>
+ *  <li><b>CountMatches</b>
+ *      - counts the number of occurrences of one String in another</li>
+ *  <li><b>IsAlpha/IsNumeric/IsWhitespace/IsAsciiPrintable</b>
+ *      - checks the characters in a String</li>
+ *  <li><b>DefaultString</b>
+ *      - protects against a null input String</li>
+ *  <li><b>Rotate</b>
+ *      - rotate (circular shift) a String</li>
+ *  <li><b>Reverse/ReverseDelimited</b>
+ *      - reverses a String</li>
+ *  <li><b>Abbreviate</b>
+ *      - abbreviates a string using ellipses or another given String</li>
+ *  <li><b>Difference</b>
+ *      - compares Strings and reports on their differences</li>
+ *  <li><b>LevenshteinDistance</b>
+ *      - the number of changes needed to change one String into another</li>
+ * </ul>
+ *
+ * <p>The {@code StringUtils} class defines certain words related to
+ * String handling.</p>
+ *
+ * <ul>
+ *  <li>null - {@code null}</li>
+ *  <li>empty - a zero-length string ({@code ''})</li>
+ *  <li>space - the space character ({@code ' '}, char 32)</li>
+ *  <li>whitespace - the characters defined by {@link Character#isWhitespace(char)}</li>
+ *  <li>trim - the characters &lt;= 32 as in {@link String#trim()}</li>
+ * </ul>
+ *
+ * <p>{@code StringUtils} handles {@code null} input Strings quietly.
+ * That is to say that a {@code null} input will return {@code null}.
+ * Where a {@code Boolean} or {@code int} is being returned
+ * details vary by method.</p>
+ *
+ * <p>A side effect of the {@code null} handling is that a
+ * {@code NullPointerException} should be considered a bug in
+ * {@code StringUtils}.</p>
+ *
+ * <p>Methods in this class include sample code in their Javadoc comments to explain their operation.
+ * The symbol {@code *} is used to indicate any input including {@code null}.</p>
+ *
+ * <p>#ThreadSafe#</p>
+ * @see java.lang.String
+ * @since 1.0
+ * @author Apex migration by Toshiki Iga.
+ */
 @isTest(SeeAllData=false)
 private class StringUtilsTest {
     @isTest(SeeAllData=false)
@@ -65,8 +152,181 @@ private class StringUtilsTest {
         }
     }
 
+    @isTest(SeeAllData=false)
+    static void abbreviate3argsSSI() {
+        System.assertEquals(null, StringUtils.abbreviate(null, '...', 5));
+        System.assertEquals('abcdefg', StringUtils.abbreviate('abcdefg', (String)null, 4));
+        System.assertEquals('', StringUtils.abbreviate('', '...', 4));
+        System.assertEquals('abcd.', StringUtils.abbreviate('abcdefg', '.', 5));
+        System.assertEquals('abcdefg', StringUtils.abbreviate('abcdefg', '.', 7));
+        System.assertEquals('abcdefg', StringUtils.abbreviate('abcdefg', '.', 8));
+        System.assertEquals('ab..', StringUtils.abbreviate('abcdefg', '..', 4));
+        System.assertEquals('a..', StringUtils.abbreviate('abcdefg', '..', 3));
+        try {
+            StringUtils.abbreviate('abcdefg', '..', 2);
+            System.assert(false, 'ここに入ってはダメ');
+        } catch(IllegalArgumentException ex) {
+            System.assert(true);
+        }
+        try {
+            StringUtils.abbreviate('abcdefg', '...', 3);
+            System.assert(false, 'ここに入ってはダメ');
+        } catch(IllegalArgumentException ex) {
+            System.assert(true);
+        }
+    }
+    
+    @isTest(SeeAllData=false)
+    static void abbreviate4args() {
+        System.assertEquals(null, StringUtils.abbreviate(null, null, 5, 5));
+        System.assertEquals('abcdefghijklmno', StringUtils.abbreviate('abcdefghijklmno', null, 99, 99));
+        System.assertEquals('', StringUtils.abbreviate('', '...', 0, 4));
+        System.assertEquals('abcdefg---', StringUtils.abbreviate('abcdefghijklmno', '---', -1, 10));
+        System.assertEquals('abcdefghi,', StringUtils.abbreviate('abcdefghijklmno', ',', 0, 10));
+        System.assertEquals('abcdefghi,', StringUtils.abbreviate('abcdefghijklmno', ',', 1, 10));
+        System.assertEquals('abcdefghi,', StringUtils.abbreviate('abcdefghijklmno', ',', 2, 10));
+        System.assertEquals('::efghij::', StringUtils.abbreviate('abcdefghijklmno', '::', 4, 10));
+        System.assertEquals('...ghij...', StringUtils.abbreviate('abcdefghijklmno', '...', 6, 10));
+        System.assertEquals('*ghijklmno', StringUtils.abbreviate('abcdefghijklmno', '*', 9, 10));
+        System.assertEquals('\'ghijklmno', StringUtils.abbreviate('abcdefghijklmno', '\'', 10, 10));
+        System.assertEquals('!ghijklmno', StringUtils.abbreviate('abcdefghijklmno', '!', 12, 10));
+        try {
+            StringUtils.abbreviate('abcdefghij', 'abra', 0, 4);
+            System.assert(false, 'ここに入ってはダメ');
+        } catch(IllegalArgumentException ex) {
+            System.assert(true);
+        }
+        try {
+            StringUtils.abbreviate('abcdefghij', '...', 5, 6);
+            System.assert(false, 'ここに入ってはダメ');
+        } catch(IllegalArgumentException ex) {
+            System.assert(true);
+        }
+    }
 
+    @isTest(SeeAllData=false)
+    static void abbreviateMiddle() {
+        System.assertEquals(null, StringUtils.abbreviateMiddle(null, null, 0));
+        System.assertEquals('abc', StringUtils.abbreviateMiddle('abc', null, 0));
+        System.assertEquals('abc', StringUtils.abbreviateMiddle('abc', '.', 0));
+        System.assertEquals('abc', StringUtils.abbreviateMiddle('abc', '.', 3));
+        System.assertEquals('ab.f', StringUtils.abbreviateMiddle('abcdef', '.', 4));
+    }
+    
+    @isTest(SeeAllData=false)
+    static void center2args() {
+        System.assertEquals(null, StringUtils.center(null, 100));
+        System.assertEquals('    ', StringUtils.center('', 4));
+        System.assertEquals('ab', StringUtils.center('ab', -1));
+        System.assertEquals(' ab ', StringUtils.center('ab', 4));
+        System.assertEquals('abcd', StringUtils.center('abcd', 2));
+        System.assertEquals(' a  ', StringUtils.center('a', 4));
+    }
 
+    @isTest(SeeAllData=false)
+    static void center3argsSII() {
+        System.assertEquals(null, StringUtils.center(null, 3, ' '));
+        System.assertEquals('    ', StringUtils.center('', 4, ' '));
+        System.assertEquals('ab', StringUtils.center('ab', -1, ' '));
+        System.assertEquals(' ab ', StringUtils.center('ab', 4, ' '));
+        System.assertEquals('abcd', StringUtils.center('abcd', 2, ' '));
+        System.assertEquals(' a  ', StringUtils.center('a', 4, ' '));
+        System.assertEquals('yayy', StringUtils.center('a', 4, 'y'));
+    }
+
+    @isTest(SeeAllData=false)
+    static void center3argsSIS() {
+        System.assertEquals(null, StringUtils.center(null, 5, 5));
+        System.assertEquals('    ', StringUtils.center('', 4, ' '));
+        System.assertEquals('ab', StringUtils.center('ab', -1, ' '));
+        System.assertEquals(' ab ', StringUtils.center('ab', 4, ' '));
+        System.assertEquals('abcd', StringUtils.center('abcd', 2, ' '));
+        System.assertEquals(' a  ', StringUtils.center('a', 4, ' '));
+        System.assertEquals('yayz', StringUtils.center('a', 4, 'yz'));
+        System.assertEquals('  abc  ', StringUtils.center('abc', 7, (String) null));
+        System.assertEquals('  abc  ', StringUtils.center('abc', 7, ''));
+    }
+
+    @isTest(SeeAllData=false)
+    static void chomp() {
+        System.assertEquals(null, StringUtils.chomp(null));
+        System.assertEquals('', StringUtils.chomp(''));
+        System.assertEquals('abc ', StringUtils.chomp('abc \r'));
+        System.assertEquals('abc', StringUtils.chomp('abc\n'));
+        System.assertEquals('abc', StringUtils.chomp('abc\r\n'));
+        System.assertEquals('abc\r\n', StringUtils.chomp('abc\r\n\r\n'));
+        System.assertEquals('abc\n', StringUtils.chomp('abc\n\r'));
+        System.assertEquals('abc\n\rabc', StringUtils.chomp('abc\n\rabc'));
+        System.assertEquals('', StringUtils.chomp('\r'));
+        System.assertEquals('', StringUtils.chomp('\n'));
+        System.assertEquals('', StringUtils.chomp('\r\n'));
+    }
+
+    @isTest(SeeAllData=false)
+    static void compare2args() {
+        System.assertEquals(0, StringUtils.compare(null, null));
+    /*
+    * StringUtils.compare(null , 'a')   &lt; 0
+    * StringUtils.compare('a', null)    &gt; 0
+    * StringUtils.compare('abc', 'abc') = 0
+    * StringUtils.compare('a', 'b')     &lt; 0
+    * StringUtils.compare('b', 'a')     &gt; 0
+    * StringUtils.compare('a', 'B')     &gt; 0
+    */
+        System.assert(StringUtils.compare('ab', 'abc') < 0);
+    }
+
+    @isTest(SeeAllData=false)
+    static void compare3args() {
+        System.assertEquals(0, StringUtils.compare(null, null, true));
+        System.assert(StringUtils.compare(null , 'a', true)  < 0);
+        System.assert(StringUtils.compare(null , 'a', false) > 0);
+        System.assert(StringUtils.compare('a', null, true) > 0);
+        System.assert(StringUtils.compare('a', null, false) < 0);
+        System.assert(StringUtils.compare('abc', 'abc', false) == 0);
+        System.assert(StringUtils.compare('a', 'b', true) < 0);
+        System.assert(StringUtils.compare('b', 'a', false) > 0);
+        System.assert(StringUtils.compare('a', 'B', true) > 0);
+        System.assert(StringUtils.compare('ab', 'abc', true) < 0);
+    }
+     
+    @isTest(SeeAllData=false)
+    static void compareIgnoreCase2args() {
+        System.assertEquals(0, StringUtils.compareIgnoreCase(null, null));
+        System.assert(StringUtils.compareIgnoreCase(null , 'a') < 0);
+        System.assert(StringUtils.compareIgnoreCase('a', null) > 0);
+        System.assert(StringUtils.compareIgnoreCase('abc', 'abc') == 0);
+        System.assert(StringUtils.compareIgnoreCase('abc', 'ABC') == 0);
+        System.assert(StringUtils.compareIgnoreCase('a', 'b') < 0);
+        System.assert(StringUtils.compareIgnoreCase('b', 'a') > 0);
+        System.assert(StringUtils.compareIgnoreCase('a', 'B') < 0);
+        System.assert(StringUtils.compareIgnoreCase('A', 'b') < 0);
+        System.assert(StringUtils.compareIgnoreCase('ab', 'ABC') < 0);
+    }
+
+    @isTest(SeeAllData=false)
+    static void compareIgnoreCase3args() {
+        System.assertEquals(0, StringUtils.compareIgnoreCase(null, null, true));
+        System.assert(StringUtils.compareIgnoreCase(null , 'a', true) < 0);
+        System.assert(StringUtils.compareIgnoreCase(null , 'a', false) > 0);
+        System.assert(StringUtils.compareIgnoreCase('a', null, true) > 0);
+        System.assert(StringUtils.compareIgnoreCase('a', null, false) < 0);
+        System.assert(StringUtils.compareIgnoreCase('abc', 'abc', true) == 0);
+        System.assert(StringUtils.compareIgnoreCase('abc', 'ABC', false) == 0);
+        System.assert(StringUtils.compareIgnoreCase('a', 'b', true) < 0);
+        System.assert(StringUtils.compareIgnoreCase('b', 'a', false) > 0);
+        System.assert(StringUtils.compareIgnoreCase('a', 'B', true) < 0);
+        System.assert(StringUtils.compareIgnoreCase('A', 'b', false) < 0);
+        System.assert(StringUtils.compareIgnoreCase('ab', 'abc', true) < 0);
+    }
+    
+    @isTest(SeeAllData=false)
+    static void contains() {
+        System.assertEquals(false, StringUtils.contains((String) null, 'a'.charAt(0)));
+        System.assertEquals(false, StringUtils.contains('', 99));
+        System.assertEquals(true, StringUtils.contains('abc', 'a'.charAt(0)));
+        System.assertEquals(false, StringUtils.contains('abc', 'z'.charAt(0)));
+    }
 
     @isTest(SeeAllData=false)
     static void defaultStringTest01() {
@@ -83,12 +343,192 @@ private class StringUtilsTest {
     }
 
     @isTest(SeeAllData=false)
+    static void endsWith2args() {
+        System.assertEquals(true, StringUtils.endsWith(null, null));
+        System.assertEquals(false, StringUtils.endsWith(null, 'def'));
+        System.assertEquals(false, StringUtils.endsWith('abcdef', null));
+        System.assertEquals(true, StringUtils.endsWith('abcdef', 'def'));
+        System.assertEquals(false, StringUtils.endsWith('ABCDEF', 'def'));
+        System.assertEquals(false, StringUtils.endsWith('ABCDEF', 'cde'));
+        System.assertEquals(true, StringUtils.endsWith('ABCDEF', ''));
+    }
+
+    @isTest(SeeAllData=false)
+    static void endsWith3args() {
+        System.assertEquals(true, StringUtils.endsWith(null, null, true));
+        System.assertEquals(false, StringUtils.endsWith(null, 'def', true));
+        System.assertEquals(false, StringUtils.endsWith('abcdef', null, true));
+        System.assertEquals(true, StringUtils.endsWith('abcdef', 'def', true));
+        System.assertEquals(true, StringUtils.endsWith('ABCDEF', 'def', true));
+        System.assertEquals(false, StringUtils.endsWith('ABCDEF', 'cde', true));
+        System.assertEquals(true, StringUtils.endsWith('ABCDEF', '', true));
+    }
+
+    @isTest(SeeAllData=false)
+    static void equals2args() {
+        System.assertEquals(true, StringUtils.equals(null, null));
+        System.assertEquals(false, StringUtils.equals(null, 'abc'));
+        System.assertEquals(false, StringUtils.equals('abc', null));
+        System.assertEquals(true, StringUtils.equals('abc', 'abc'));
+        System.assertEquals(false, StringUtils.equals('abc', 'ABC'));
+    }
+    
+    @isTest(SeeAllData=false)
+    static void equalsIgnoreCase2args() {
+        System.assertEquals(true, StringUtils.equalsIgnoreCase(null, null));
+        System.assertEquals(false, StringUtils.equalsIgnoreCase(null, 'abc'));
+        System.assertEquals(false, StringUtils.equalsIgnoreCase('abc', null));
+        System.assertEquals(true, StringUtils.equalsIgnoreCase('abc', 'abc'));
+        System.assertEquals(true, StringUtils.equalsIgnoreCase('abc', 'ABC'));
+    }
+
+    @isTest(SeeAllData=false)
+    static void getDigits() {
+        System.assertEquals(null, StringUtils.getDigits(null));
+        System.assertEquals('', StringUtils.getDigits(''));
+        System.assertEquals('', StringUtils.getDigits('abc'));
+        System.assertEquals('1000', StringUtils.getDigits('1000$'));
+        System.assertEquals('112345', StringUtils.getDigits('1123~45'));
+        System.assertEquals('5417543010', StringUtils.getDigits('(541) 754-3010'));
+        System.assertEquals('\u0967\u0968\u0969', StringUtils.getDigits('\u0967\u0968\u0969'));
+    }
+
+    @isTest(SeeAllData=false)
+    static void indexOf2args() {
+        System.assertEquals(-1, StringUtils.indexOf(null, 5));
+        System.assertEquals(-1, StringUtils.indexOf('USOUSO', 99));
+        System.assertEquals(0, StringUtils.indexOf('', ''));
+        System.assertEquals(-1, StringUtils.indexOf('', 'Z'));
+        System.assertEquals(0, StringUtils.indexOf('aabaabaa', 'a'));
+        System.assertEquals(2, StringUtils.indexOf('aabaabaa', 'b'));
+        System.assertEquals(1, StringUtils.indexOf('aabaabaa', 'ab'));
+        System.assertEquals(0, StringUtils.indexOf('aabaabaa', ''));
+    }    
+
+    @isTest(SeeAllData=false)
+    static void indexOf2args2() {
+        System.assertEquals(-1, StringUtils.indexOf('', 99));
+        System.assertEquals(0, StringUtils.indexOf('aabaabaa', 'a'));
+        System.assertEquals(2, StringUtils.indexOf('aabaabaa', 'b'));
+    }
+    
+    @isTest(SeeAllData=false)
+    static void isAllLowerCase() {
+        System.assertEquals(false, StringUtils.isAllLowerCase(null));
+        System.assertEquals(false, StringUtils.isAllLowerCase(''));
+        System.assertEquals(false, StringUtils.isAllLowerCase('  '));
+        System.assertEquals(true, StringUtils.isAllLowerCase('abc'));
+        System.assertEquals(false, StringUtils.isAllLowerCase('abC'));
+        System.assertEquals(false, StringUtils.isAllLowerCase('ab c'));
+        System.assertEquals(false, StringUtils.isAllLowerCase('ab1c'));
+        System.assertEquals(false, StringUtils.isAllLowerCase('ab/c'));
+    }
+    
+    @isTest(SeeAllData=false)
+    static void isAllUpperCase() {
+        System.assertEquals(false, StringUtils.isAllUpperCase(null));
+        System.assertEquals(false, StringUtils.isAllUpperCase(''));
+        System.assertEquals(false, StringUtils.isAllUpperCase('  '));
+        System.assertEquals(true, StringUtils.isAllUpperCase('ABC'));
+        System.assertEquals(false, StringUtils.isAllUpperCase('aBC'));
+        System.assertEquals(false, StringUtils.isAllUpperCase('A C'));
+        System.assertEquals(false, StringUtils.isAllUpperCase('A1C'));
+        System.assertEquals(false, StringUtils.isAllUpperCase('A/C'));
+    }
+    
+
+    @isTest(SeeAllData=false)
+    static void isAlpha() {
+        System.assertEquals(false, StringUtils.isAlpha(null));
+        System.assertEquals(false, StringUtils.isAlpha(''));
+        System.assertEquals(false, StringUtils.isAlpha('  '));
+        System.assertEquals(true, StringUtils.isAlpha('abc'));
+        System.assertEquals(false, StringUtils.isAlpha('ab2c'));
+        System.assertEquals(false, StringUtils.isAlpha('ab-c'));
+    }
+    
+    @isTest(SeeAllData=false)
+    static void isAlphanumeric() {
+        System.assertEquals(false, StringUtils.isAlphanumeric(null));
+        System.assertEquals(false, StringUtils.isAlphanumeric(''));
+        System.assertEquals(false, StringUtils.isAlphanumeric('  '));
+        System.assertEquals(true, StringUtils.isAlphanumeric('abc'));
+        System.assertEquals(false, StringUtils.isAlphanumeric('ab c'));
+        System.assertEquals(true, StringUtils.isAlphanumeric('ab2c'));
+        System.assertEquals(false, StringUtils.isAlphanumeric('ab-c'));
+    }
+    
+    @isTest(SeeAllData=false)
+    static void isAnyBlankTest() {
+        System.assertEquals(true, StringUtils.isAnyBlank((String) null));
+        //* StringUtils.isAnyBlank((String[]) null)  = false
+        System.assertEquals(true, StringUtils.isAnyBlank(null, 'foo'));
+        System.assertEquals(true, StringUtils.isAnyBlank(null, null));
+        System.assertEquals(true, StringUtils.isAnyBlank('', 'bar'));
+        System.assertEquals(true, StringUtils.isAnyBlank('bob', ''));
+        System.assertEquals(true, StringUtils.isAnyBlank('  bob  ', null));
+        System.assertEquals(true, StringUtils.isAnyBlank(' ', 'bar'));
+        //* StringUtils.isAnyBlank(new String[] {})  = false
+        //* StringUtils.isAnyBlank(new String[]{''}) = true
+        System.assertEquals(false, StringUtils.isAnyBlank('foo', 'bar'));
+     }
+
+    @isTest(SeeAllData=false)
+    static void isAnyEmpty() {
+        System.assertEquals(true, StringUtils.isAnyEmpty((String) null));
+        // 対応を保留 StringUtils.isAnyEmpty((String[]) null)  = false
+        System.assertEquals(true, StringUtils.isAnyEmpty(null, 'foo'));
+        System.assertEquals(true, StringUtils.isAnyEmpty('', 'bar'));
+        System.assertEquals(true, StringUtils.isAnyEmpty('bob', ''));
+        System.assertEquals(true, StringUtils.isAnyEmpty('  bob  ', null));
+        System.assertEquals(false, StringUtils.isAnyEmpty(' ', 'bar'));
+        System.assertEquals(false, StringUtils.isAnyEmpty('foo', 'bar'));
+    }
+ 
+    @isTest(SeeAllData=false)
+    static void isAsciiPrintable() {
+        System.assertEquals(false, StringUtils.isAsciiPrintable(null));
+        System.assertEquals(true, StringUtils.isAsciiPrintable(''));
+        System.assertEquals(true, StringUtils.isAsciiPrintable(' '));
+        System.assertEquals(true, StringUtils.isAsciiPrintable('Ceki'));
+        System.assertEquals(true, StringUtils.isAsciiPrintable('ab2c'));
+        System.assertEquals(true, StringUtils.isAsciiPrintable('!ab-c~'));
+        System.assertEquals(true, StringUtils.isAsciiPrintable('\u0020'));
+        System.assertEquals(true, StringUtils.isAsciiPrintable('\u0021'));
+        System.assertEquals(true, StringUtils.isAsciiPrintable('\u007e'));
+        System.assertEquals(false, StringUtils.isAsciiPrintable('\u007f'));
+        System.assertEquals(false, StringUtils.isAsciiPrintable('Ceki G\u00fclc\u00fc'));
+    }
+
+    @isTest(SeeAllData=false)
     static void isBlankTest01() {
         System.assertEquals(true, StringUtils.isBlank(null));
         System.assertEquals(true, StringUtils.isBlank(''));
         System.assertEquals(true, StringUtils.isBlank(' '));
         System.assertEquals(false, StringUtils.isBlank('bob'));
         System.assertEquals(false, StringUtils.isBlank('  bob  '));
+    }
+
+    @isTest(SeeAllData=false)
+    static void isEmpty() {
+        System.assertEquals(true, StringUtils.isEmpty(null));
+        System.assertEquals(true, StringUtils.isEmpty(''));
+        System.assertEquals(false, StringUtils.isEmpty(' '));
+        System.assertEquals(false, StringUtils.isEmpty('bob'));
+        System.assertEquals(false, StringUtils.isEmpty('  bob  '));
+    }
+
+    @isTest(SeeAllData=false)
+    static void isMixedCase() {
+        System.assertEquals(false, StringUtils.isMixedCase(null));
+        System.assertEquals(false, StringUtils.isMixedCase(''));
+        System.assertEquals(false, StringUtils.isMixedCase('ABC'));
+        System.assertEquals(false, StringUtils.isMixedCase('abc'));
+        System.assertEquals(true, StringUtils.isMixedCase('aBc'));
+        System.assertEquals(true, StringUtils.isMixedCase('A c'));
+        System.assertEquals(true, StringUtils.isMixedCase('A1c'));
+        System.assertEquals(true, StringUtils.isMixedCase('a/C'));
+        System.assertEquals(true, StringUtils.isMixedCase('aC\t'));
     }
 
     @isTest(SeeAllData=false)
@@ -107,18 +547,448 @@ private class StringUtilsTest {
     }
 
     @isTest(SeeAllData=false)
-    static void isAnyBlankTest() {
-        System.assertEquals(true, StringUtils.isAnyBlank((String) null));
-        //* StringUtils.isAnyBlank((String[]) null)  = false
-        System.assertEquals(true, StringUtils.isAnyBlank(null, 'foo'));
-        System.assertEquals(true, StringUtils.isAnyBlank(null, null));
-        System.assertEquals(true, StringUtils.isAnyBlank('', 'bar'));
-        System.assertEquals(true, StringUtils.isAnyBlank('bob', ''));
-        System.assertEquals(true, StringUtils.isAnyBlank('  bob  ', null));
-        System.assertEquals(true, StringUtils.isAnyBlank(' ', 'bar'));
-        //* StringUtils.isAnyBlank(new String[] {})  = false
-        //* StringUtils.isAnyBlank(new String[]{''}) = true
-        System.assertEquals(false, StringUtils.isAnyBlank('foo', 'bar'));
+    static void isNotBlank() {
+        System.assertEquals(false, StringUtils.isNotBlank(null));
+        System.assertEquals(false, StringUtils.isNotBlank(''));
+        System.assertEquals(true, StringUtils.isNotBlank('bob'));
+        System.assertEquals(true, StringUtils.isNotBlank('  bob  '));
     }
 
+
+    @isTest(SeeAllData=false)
+    static void isNotEmpty() {
+        System.assertEquals(false, StringUtils.isNotEmpty(null));
+        System.assertEquals(false, StringUtils.isNotEmpty(''));
+        System.assertEquals(true, StringUtils.isNotEmpty(' '));
+        System.assertEquals(true, StringUtils.isNotEmpty('bob'));
+        System.assertEquals(true, StringUtils.isNotEmpty('  bob  '));
+    }
+
+    @isTest(SeeAllData=false)
+    static void isNumeric() {
+        System.assertEquals(false, StringUtils.isNumeric(null));
+        System.assertEquals(false, StringUtils.isNumeric(''));
+        System.assertEquals(false, StringUtils.isNumeric('  '));
+        System.assertEquals(true, StringUtils.isNumeric('123'));
+        System.assertEquals(true, StringUtils.isNumeric('\u0967\u0968\u0969'));
+        System.assertEquals(false, StringUtils.isNumeric('12 3'));
+        System.assertEquals(false, StringUtils.isNumeric('ab2c'));
+        System.assertEquals(false, StringUtils.isNumeric('12-3'));
+        System.assertEquals(false, StringUtils.isNumeric('12.3'));
+        System.assertEquals(false, StringUtils.isNumeric('-123'));
+        System.assertEquals(false, StringUtils.isNumeric('+123'));
+    }
+
+    @isTest(SeeAllData=false)
+    static void isWhitespace() {
+        System.assertEquals(false, StringUtils.isWhitespace((String) null));
+        System.assertEquals(true, StringUtils.isWhitespace(''));
+        System.assertEquals(true, StringUtils.isWhitespace('  '));
+        System.assertEquals(false, StringUtils.isWhitespace('abc'));
+        System.assertEquals(false, StringUtils.isWhitespace('ab2c'));
+        System.assertEquals(false, StringUtils.isWhitespace('ab-c'));
+    }
+    
+    @isTest(SeeAllData=false)
+    static void lastIndexOf2args1() {
+        System.assertEquals(-1, StringUtils.lastIndexOf(null, 'Z'));
+        System.assertEquals(-1, StringUtils.lastIndexOf('DUMMY', (String) null));
+        System.assertEquals(0, StringUtils.lastIndexOf('', ''));
+        System.assertEquals(7, StringUtils.lastIndexOf('aabaabaa', 'a'));
+        System.assertEquals(5, StringUtils.lastIndexOf('aabaabaa', 'b'));
+        System.assertEquals(4, StringUtils.lastIndexOf('aabaabaa', 'ab'));
+        System.assertEquals(8, StringUtils.lastIndexOf('aabaabaa', ''));
+    }
+    
+
+    @isTest(SeeAllData=false)
+    static void lastIndexOf3args() {
+        System.assertEquals(-1, StringUtils.lastIndexOf((String) null, '9', 99));
+        System.assertEquals(-1, StringUtils.lastIndexOf('DUMMY', null, 99));
+        System.assertEquals(7, StringUtils.lastIndexOf('aabaabaa', 'a', 8));
+        System.assertEquals(5, StringUtils.lastIndexOf('aabaabaa', 'b', 8));
+        System.assertEquals(4, StringUtils.lastIndexOf('aabaabaa', 'ab', 8));
+        System.assertEquals(5, StringUtils.lastIndexOf('aabaabaa', 'b', 9));
+        System.assertEquals(-1, StringUtils.lastIndexOf('aabaabaa', 'b', -1));
+        System.assertEquals(0, StringUtils.lastIndexOf('aabaabaa', 'a', 0));
+        System.assertEquals(-1, StringUtils.lastIndexOf('aabaabaa', 'b', 0));
+        System.assertEquals(-1, StringUtils.lastIndexOf('aabaabaa', 'b', 1));
+        System.assertEquals(2, StringUtils.lastIndexOf('aabaabaa', 'b', 2));
+        System.assertEquals(2, StringUtils.lastIndexOf('aabaabaa', 'ba', 2));
+    }
+
+    @isTest(SeeAllData=false)
+    static void lastIndexOf2args2() {
+        System.assertEquals(-1, StringUtils.lastIndexOf(null, 'a'.charAt(0)));
+        System.assertEquals(-1, StringUtils.lastIndexOf('', 'a'.charAt(0)));
+        System.assertEquals(7, StringUtils.lastIndexOf('aabaabaa', 'a'.charAt(0)));
+        System.assertEquals(5, StringUtils.lastIndexOf('aabaabaa', 'b'.charAt(0)));
+    }
+    
+    @isTest(SeeAllData=false)
+    static void left2args() {
+        System.assertEquals(null, StringUtils.left(null, 99));
+        // 移植断念 StringUtils.left(*, -ve)     = ''
+        System.assertEquals('', StringUtils.left('', 99));
+        System.assertEquals('', StringUtils.left('abc', 0));
+        System.assertEquals('ab', StringUtils.left('abc', 2));
+        System.assertEquals('abc', StringUtils.left('abc', 4));
+    }
+
+    @isTest(SeeAllData=false)
+    static void leftPad2args() {
+        System.assertEquals(null, StringUtils.leftPad(null, 99));
+        System.assertEquals('   ', StringUtils.leftPad('', 3));
+        System.assertEquals('bat', StringUtils.leftPad('bat', 3));
+        System.assertEquals('  bat', StringUtils.leftPad('bat', 5));
+        System.assertEquals('bat', StringUtils.leftPad('bat', 1));
+        System.assertEquals('bat', StringUtils.leftPad('bat', -1));
+    }
+    
+    @isTest(SeeAllData=false)
+    static void leftPad() {
+        System.assertEquals(null, StringUtils.leftPad((String) null, 99, 99));
+        System.assertEquals('zzz', StringUtils.leftPad('', 3, 'z'));
+        System.assertEquals('bat', StringUtils.leftPad('bat', 3, 'z'));
+        System.assertEquals('zzbat', StringUtils.leftPad('bat', 5, 'z'));
+        System.assertEquals('bat', StringUtils.leftPad('bat', 1, 'z'));
+        System.assertEquals('bat', StringUtils.leftPad('bat', -1, 'z'));
+    }
+    
+    @isTest(SeeAllData=false)
+    static void leftPad3args() {
+        System.assertEquals(null, StringUtils.leftPad((String) null, 99, '99'));
+        System.assertEquals('zzz', StringUtils.leftPad('', 3, 'z'));
+        System.assertEquals('bat', StringUtils.leftPad('bat', 3, 'yz'));
+        System.assertEquals('yzbat', StringUtils.leftPad('bat', 5, 'yz'));
+        System.assertEquals('yzyzybat', StringUtils.leftPad('bat', 8, 'yz'));
+        System.assertEquals('bat', StringUtils.leftPad('bat', 1, 'yz'));
+        System.assertEquals('bat', StringUtils.leftPad('bat', -1, 'yz'));
+        System.assertEquals('  bat', StringUtils.leftPad('bat', 5, (String) null));
+        System.assertEquals('  bat', StringUtils.leftPad('bat', 5, ''));   
+    }
+    
+    @isTest(SeeAllData=false)
+    static void length1arg() {
+        System.assertEquals(3, StringUtils.length('abc'));
+    }
+
+
+    @isTest(SeeAllData=false)
+    static void lowerCase() {
+        System.assertEquals(null, StringUtils.lowerCase(null));
+        System.assertEquals('', StringUtils.lowerCase(''));
+        System.assertEquals('abc', StringUtils.lowerCase('aBc'));
+    }
+
+    @isTest(SeeAllData=false)
+    static void mid() {
+        System.assertEquals(null, StringUtils.mid(null, 99, 99));
+        // 移植断念 StringUtils.mid(*, *, -ve)     = ''
+        System.assertEquals('', StringUtils.mid('', 0, 99));
+        System.assertEquals('ab', StringUtils.mid('abc', 0, 2));
+        System.assertEquals('abc', StringUtils.mid('abc', 0, 4));
+        System.assertEquals('c', StringUtils.mid('abc', 2, 4));
+        System.assertEquals('', StringUtils.mid('abc', 4, 2));
+        System.assertEquals('ab', StringUtils.mid('abc', -2, 2));
+    }
+
+    @isTest(SeeAllData=false)
+    static void repeat2args() {
+        System.assertEquals(null, StringUtils.repeat((String) null, 2));
+        System.assertEquals('', StringUtils.repeat('', 0));
+        System.assertEquals('', StringUtils.repeat('', 2));
+        System.assertEquals('aaa', StringUtils.repeat('a', 3));
+        System.assertEquals('abab', StringUtils.repeat('ab', 2));
+        System.assertEquals('', StringUtils.repeat('a', -2));
+    }    
+
+    @isTest(SeeAllData=false)
+    static void right2args() {
+        System.assertEquals(null, StringUtils.right(null, 99));
+        // StringUtils.right(*, -ve)     = ''
+        System.assertEquals('', StringUtils.right('', 99));
+        System.assertEquals('', StringUtils.right('abc', 0));
+        System.assertEquals('bc', StringUtils.right('abc', 2));
+        System.assertEquals('abc', StringUtils.right('abc', 4));
+    }
+
+    @isTest(SeeAllData=false)
+    static void rightPad2args() {
+        System.assertEquals(null, StringUtils.rightPad(null, 99));
+        System.assertEquals('   ', StringUtils.rightPad('', 3));
+        System.assertEquals('bat', StringUtils.rightPad('bat', 3));
+        System.assertEquals('bat  ', StringUtils.rightPad('bat', 5));
+        System.assertEquals('bat', StringUtils.rightPad('bat', 1));
+        System.assertEquals('bat', StringUtils.rightPad('bat', -1));
+    }
+    
+    @isTest(SeeAllData=false)
+    static void rightPad3args() {
+        System.assertEquals(null, StringUtils.rightPad((String) null, 99, 'z'));
+        System.assertEquals('zzz', StringUtils.rightPad('', 3, 'z'));
+        System.assertEquals('bat', StringUtils.rightPad('bat', 3, 'z'));
+        System.assertEquals('batzz', StringUtils.rightPad('bat', 5, 'z'));
+        System.assertEquals('bat', StringUtils.rightPad('bat', 1, 'z'));
+        System.assertEquals('bat', StringUtils.rightPad('bat', -1, 'z'));
+    }
+
+    @isTest(SeeAllData=false)
+    static void rightPad3args2() {
+        System.assertEquals(null, StringUtils.rightPad(null, 99, '99'));
+        System.assertEquals('zzz', StringUtils.rightPad('', 3, 'z'));
+        System.assertEquals('bat', StringUtils.rightPad('bat', 3, 'yz'));
+        System.assertEquals('batyz', StringUtils.rightPad('bat', 5, 'yz'));
+        System.assertEquals('batyzyzy', StringUtils.rightPad('bat', 8, 'yz'));
+        System.assertEquals('bat', StringUtils.rightPad('bat', 1, 'yz'));
+        System.assertEquals('bat', StringUtils.rightPad('bat', -1, 'yz'));
+        System.assertEquals('bat  ', StringUtils.rightPad('bat', 5, (String) null));
+        System.assertEquals('bat  ', StringUtils.rightPad('bat', 5, ''));
+    }
+
+    @isTest(SeeAllData=false)
+    static void rotate2args() {
+        System.assertEquals(null, StringUtils.rotate(null, 99));
+        System.assertEquals('', StringUtils.rotate('', 99));
+        System.assertEquals('abcdefg', StringUtils.rotate('abcdefg', 0));
+        System.assertEquals('fgabcde', StringUtils.rotate('abcdefg', 2));
+        System.assertEquals('cdefgab', StringUtils.rotate('abcdefg', -2));
+        System.assertEquals('abcdefg', StringUtils.rotate('abcdefg', 7));
+        System.assertEquals('abcdefg', StringUtils.rotate('abcdefg', -7));
+        System.assertEquals('fgabcde', StringUtils.rotate('abcdefg', 9));
+        System.assertEquals('cdefgab', StringUtils.rotate('abcdefg', -9));
+    }
+
+    @isTest(SeeAllData=false)
+    static void startsWith2args() {
+        System.assertEquals(true, StringUtils.startsWith(null, null));
+        System.assertEquals(false, StringUtils.startsWith(null, 'abc'));
+        System.assertEquals(false, StringUtils.startsWith('abcdef', null));
+        System.assertEquals(true, StringUtils.startsWith('abcdef', 'abc'));
+        System.assertEquals(false, StringUtils.startsWith('ABCDEF', 'abc'));
+    }
+
+    @isTest(SeeAllData=false)
+    static void startsWith3args() {
+        System.assertEquals(true, StringUtils.startsWith(null, null, true));
+        System.assertEquals(false, StringUtils.startsWith(null, 'abc', true));
+        System.assertEquals(false, StringUtils.startsWith('abcdef', null, true));
+        System.assertEquals(true, StringUtils.startsWith('abcdef', 'abc', true));
+        System.assertEquals(true, StringUtils.startsWith('ABCDEF', 'abc', true));
+    }
+
+    @isTest(SeeAllData=false)
+    static void substring2arg() {
+        System.assertEquals(null, StringUtils.substring(null, 99));
+        System.assertEquals('', StringUtils.substring('', 99));
+        System.assertEquals('abc', StringUtils.substring('abc', 0));
+        System.assertEquals('c', StringUtils.substring('abc', 2));
+        System.assertEquals('', StringUtils.substring('abc', 4));
+        System.assertEquals('bc', StringUtils.substring('abc', -2));
+        System.assertEquals('abc', StringUtils.substring('abc', -4));
+    }
+        
+    @isTest(SeeAllData=false)
+    static void substring3args() {
+        System.assertEquals(null, StringUtils.substring(null, 99, 99));
+        System.assertEquals('', StringUtils.substring('', 99,  99));
+        System.assertEquals('ab', StringUtils.substring('abc', 0, 2));
+        System.assertEquals('', StringUtils.substring('abc', 2, 0));
+        System.assertEquals('c', StringUtils.substring('abc', 2, 4));
+        System.assertEquals('', StringUtils.substring('abc', 4, 6));
+        System.assertEquals('', StringUtils.substring('abc', 2, 2));
+        System.assertEquals('b', StringUtils.substring('abc', -2, -1));
+        System.assertEquals('ab', StringUtils.substring('abc', -4, 2));
+    }
+    
+    @isTest(SeeAllData=false)
+    static void trim() {
+        System.assertEquals(null, StringUtils.trim(null));
+        System.assertEquals('', StringUtils.trim(''));
+        System.assertEquals('', StringUtils.trim('     '));
+        System.assertEquals('abc', StringUtils.trim('abc'));
+        System.assertEquals('abc', StringUtils.trim('    abc    '));
+    }
+
+    @isTest(SeeAllData=false)
+    static void trimToEmpty() {
+        System.assertEquals('', StringUtils.trimToEmpty(null));
+        System.assertEquals('', StringUtils.trimToEmpty(''));
+        System.assertEquals('', StringUtils.trimToEmpty('     '));
+        System.assertEquals('abc', StringUtils.trimToEmpty('abc'));
+        System.assertEquals('abc', StringUtils.trimToEmpty('    abc    '));
+    }
+    
+
+    @isTest(SeeAllData=false)
+    static void trimToNull() {
+        System.assertEquals(null, StringUtils.trimToNull(null));
+        System.assertEquals(null, StringUtils.trimToNull(''));
+        System.assertEquals(null, StringUtils.trimToNull('     '));
+        System.assertEquals('abc', StringUtils.trimToNull('abc'));
+        System.assertEquals('abc', StringUtils.trimToNull('    abc    '));
+    }
+
+    @isTest(SeeAllData=false)
+    static void truncate2args() {
+        System.assertEquals(null, StringUtils.truncate(null, 0));
+        System.assertEquals(null, StringUtils.truncate(null, 2));
+        System.assertEquals('', StringUtils.truncate('', 4));
+        System.assertEquals('abcd', StringUtils.truncate('abcdefg', 4));
+        System.assertEquals('abcdef', StringUtils.truncate('abcdefg', 6));
+        System.assertEquals('abcdefg', StringUtils.truncate('abcdefg', 7));
+        System.assertEquals('abcdefg', StringUtils.truncate('abcdefg', 8));
+        try {
+            StringUtils.truncate('abcdefg', -1);
+            System.assert(false);
+        } catch(IllegalArgumentException ex) {
+            System.assert(true);
+        } 
+    }
+    
+    @isTest(SeeAllData=false)
+    static void truncate3args() {
+        System.assertEquals(null, StringUtils.truncate(null, 0, 0));
+        System.assertEquals(null, StringUtils.truncate(null, 2, 4));
+/*     
+        * StringUtils.truncate('', 0, 10) = ''
+        * StringUtils.truncate('', 2, 10) = ''
+        * StringUtils.truncate('abcdefghij', 0, 3) = 'abc'
+        * StringUtils.truncate('abcdefghij', 5, 6) = 'fghij'
+        * StringUtils.truncate('raspberry peach', 10, 15) = 'peach'
+        * StringUtils.truncate('abcdefghijklmno', 0, 10) = 'abcdefghij'
+        * StringUtils.truncate('abcdefghijklmno', -1, 10) = throws an IllegalArgumentException
+        * StringUtils.truncate('abcdefghijklmno', Integer.MIN_VALUE, 10) = throws an IllegalArgumentException
+        * StringUtils.truncate('abcdefghijklmno', Integer.MIN_VALUE, Integer.MAX_VALUE) = throws an IllegalArgumentException
+        * StringUtils.truncate('abcdefghijklmno', 0, Integer.MAX_VALUE) = 'abcdefghijklmno'
+        * StringUtils.truncate('abcdefghijklmno', 1, 10) = 'bcdefghijk'
+        * StringUtils.truncate('abcdefghijklmno', 2, 10) = 'cdefghijkl'
+        * StringUtils.truncate('abcdefghijklmno', 3, 10) = 'defghijklm'
+        * StringUtils.truncate('abcdefghijklmno', 4, 10) = 'efghijklmn'
+        * StringUtils.truncate('abcdefghijklmno', 5, 10) = 'fghijklmno'
+        * StringUtils.truncate('abcdefghijklmno', 5, 5) = 'fghij'
+        * StringUtils.truncate('abcdefghijklmno', 5, 3) = 'fgh'
+        * StringUtils.truncate('abcdefghijklmno', 10, 3) = 'klm'
+        * StringUtils.truncate('abcdefghijklmno', 10, Integer.MAX_VALUE) = 'klmno'
+        * StringUtils.truncate('abcdefghijklmno', 13, 1) = 'n'
+        * StringUtils.truncate('abcdefghijklmno', 13, Integer.MAX_VALUE) = 'no'
+        * StringUtils.truncate('abcdefghijklmno', 14, 1) = 'o'
+        * StringUtils.truncate('abcdefghijklmno', 14, Integer.MAX_VALUE) = 'o'
+        * StringUtils.truncate('abcdefghijklmno', 15, 1) = ''
+        * StringUtils.truncate('abcdefghijklmno', 15, Integer.MAX_VALUE) = ''
+        * StringUtils.truncate('abcdefghijklmno', Integer.MAX_VALUE, Integer.MAX_VALUE) = ''
+  */    
+        try {
+            StringUtils.truncate('abcdefghij', 3, -1);
+            System.assert(false);
+        } catch(IllegalArgumentException ex) {
+            System.assert(true);
+        }
+        try {
+            StringUtils.truncate('abcdefghij', -2, 4);
+            System.assert(false);
+        } catch(IllegalArgumentException ex) {
+            System.assert(true);
+        }
+    }
+  
+    @isTest(SeeAllData=false)
+    static void unwrap2args1() {
+        System.assertEquals(null, StringUtils.unwrap((String)null, (String)null));
+        System.assertEquals(null, StringUtils.unwrap(null, '\u0000'));
+        System.assertEquals(null, StringUtils.unwrap(null, '1'));
+        System.assertEquals('a', StringUtils.unwrap('a', 'a'));
+        System.assertEquals('', StringUtils.unwrap('aa', 'a'));
+        System.assertEquals('abc', StringUtils.unwrap('\'abc\'', '\''));
+        System.assertEquals('ABabcBA', StringUtils.unwrap('AABabcBAA', 'A'));
+        System.assertEquals('A', StringUtils.unwrap('A', '#'));
+        System.assertEquals('#A', StringUtils.unwrap('#A', '#'));
+        System.assertEquals('A#', StringUtils.unwrap('A#', '#'));
+    }
+
+    @isTest(SeeAllData=false)
+    static void unwrap2args2() {
+        System.assertEquals(null, StringUtils.unwrap((String)null, (String)null));
+        System.assertEquals(null, StringUtils.unwrap(null, ''));
+        System.assertEquals(null, StringUtils.unwrap(null, '1'));
+        System.assertEquals('a', StringUtils.unwrap('a', 'a'));
+        System.assertEquals('', StringUtils.unwrap('aa', 'a'));
+        System.assertEquals('abc', StringUtils.unwrap('\'abc\'', '\''));
+        System.assertEquals('abc', StringUtils.unwrap('\'abc\'', '\''));
+        System.assertEquals('BabcB', StringUtils.unwrap('AABabcBAA', 'AA'));
+        System.assertEquals('A', StringUtils.unwrap('A', '#'));
+        System.assertEquals('#A', StringUtils.unwrap('#A', '#'));
+        System.assertEquals('A#', StringUtils.unwrap('A#', '#'));
+    }
+    
+    @isTest(SeeAllData=false)
+    static void upperCase() {
+        System.assertEquals(null, StringUtils.upperCase(null));
+        System.assertEquals('', StringUtils.upperCase(''));
+        System.assertEquals('ABC', StringUtils.upperCase('aBc'));
+    }
+
+    @isTest(SeeAllData=false)
+    static void valueOf() {
+        // TODO 戻り値チェックが必要
+        StringUtils.valueOf(new Integer[]{1,2,3});
+    }
+    
+    @isTest(SeeAllData=false)
+    static void wrap2args() {
+        System.assertEquals(null, StringUtils.wrap(null, 99));
+        System.assertEquals('', StringUtils.wrap('', 99));
+        // 実装不能と判断 System.assertEquals('ab', StringUtils.wrap('ab', '\u0000'));
+        System.assertEquals('xabx', StringUtils.wrap('ab', 'x'));
+        System.assertEquals('\'ab\'', StringUtils.wrap('ab', '\''));
+        System.assertEquals('\'\'ab\'\'', StringUtils.wrap('\'ab\'', '\''));
+    }
+
+    @isTest(SeeAllData=false)
+    static void wrap2args2() {
+        System.assertEquals(null, StringUtils.wrap(null, 99));
+        System.assertEquals('', StringUtils.wrap('', 99));
+        System.assertEquals('ab', StringUtils.wrap('ab', (Integer) null));
+        System.assertEquals('xabx', StringUtils.wrap('ab', 'x'.charAt(0)));
+        System.assertEquals('\'ab\'', StringUtils.wrap('ab', '\''.charAt(0)));
+        System.assertEquals('\'\'ab\'\'', StringUtils.wrap('\'ab\'', '\''.charAt(0)));
+        System.assertEquals('\'ab\'', StringUtils.wrap('ab', '\''.charAt(0)));
+        System.assertEquals('\'\'abcd\'\'', StringUtils.wrap('\'abcd\'', '\''.charAt(0)));
+        System.assertEquals('\'\'abcd\'\'', StringUtils.wrap('\'abcd\'', '\''.charAt(0)));
+        System.assertEquals('\'\'abcd\'\'', StringUtils.wrap('\'abcd\'', '\''.charAt(0)));
+    }
+    
+    @isTest(SeeAllData=false)
+    static void wrapIfMissing2args() {
+        System.assertEquals(null, StringUtils.wrapIfMissing(null, 999));
+        System.assertEquals('', StringUtils.wrapIfMissing('', 999));
+        // 移植不能と判断 System.assertEquals('ab', StringUtils.wrapIfMissing('ab', '\u0000'));
+        System.assertEquals('xabx', StringUtils.wrapIfMissing('ab', 'x'));
+        System.assertEquals('\'ab\'', StringUtils.wrapIfMissing('ab', '\''));
+        System.assertEquals('\'ab\'', StringUtils.wrapIfMissing('\'ab\'', '\''));
+        System.assertEquals('/', StringUtils.wrapIfMissing('/', '/'));
+        System.assertEquals('/a/b/c/', StringUtils.wrapIfMissing('a/b/c', '/'));
+        System.assertEquals('/a/b/c/', StringUtils.wrapIfMissing('/a/b/c', '/'));
+        System.assertEquals('/a/b/c/', StringUtils.wrapIfMissing('a/b/c/', '/'));
+    }
+
+    @isTest(SeeAllData=false)
+    static void wrapIfMissing() {
+        System.assertEquals(null, StringUtils.wrapIfMissing((String)null, 'Z'.charAt(0)));
+        System.assertEquals('', StringUtils.wrapIfMissing('', '9'.charAt(0)));
+        System.assertEquals('ab', StringUtils.wrapIfMissing('ab', (Integer) null));
+        System.assertEquals('xabx', StringUtils.wrapIfMissing('ab', 'x'.charAt(0)));
+/*  
+     * StringUtils.wrapIfMissing('ab', '\'')      = '\'ab\''
+     * StringUtils.wrapIfMissing('\'ab\'', '\'')  = '\'ab\''
+     * StringUtils.wrapIfMissing('ab', ''')       = ''ab''
+     * StringUtils.wrapIfMissing(''abcd'', ''')   = ''abcd''
+     * StringUtils.wrapIfMissing('\'abcd\'', ''') = ''\'abcd\'''
+     * StringUtils.wrapIfMissing(''abcd'', '\'')  = '\''abcd'\''
+     * StringUtils.wrapIfMissing('/', '/')  = '/'
+     * StringUtils.wrapIfMissing('a/b/c', '/')  = '/a/b/c/'
+     * StringUtils.wrapIfMissing('/a/b/c', '/')  = '/a/b/c/'
+*/
+        System.assertEquals('/a/b/c/', StringUtils.wrapIfMissing('a/b/c/', '/'.charAt(0)));
+    }
 }

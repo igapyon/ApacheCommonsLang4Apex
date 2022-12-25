@@ -100,6 +100,7 @@
  * <p>#ThreadSafe#</p>
  * @see java.lang.String
  * @since 1.0
+ * @author Apex migration by Toshiki Iga.
  */
 //@Immutable
 global class StringUtils {
@@ -845,7 +846,7 @@ global class StringUtils {
      * @since 3.5
      */
     global static Integer compare(final String str1, final String str2, final Boolean nullIsLess) {
-        if (str1 == str2) { // NOSONARLINT this intentionally uses == to allow for both null
+        if (str1 == null && str2 == null && str1 == str2) { // NOSONARLINT this intentionally uses == to allow for both null
             return 0;
         }
         if (str1 == null) {
@@ -938,7 +939,7 @@ global class StringUtils {
      * @since 3.5
      */
     global static Integer compareIgnoreCase(final String str1, final String str2, final Boolean nullIsLess) {
-        if (str1 == str2) { // NOSONARLINT this intentionally uses == to allow for both null
+        if (equals(str1, str2)) { // NOSONARLINT this intentionally uses == to allow for both null
             return 0;
         }
         if (str1 == null) {
@@ -947,9 +948,9 @@ global class StringUtils {
         if (str2 == null) {
             return nullIsLess ? 1 : - 1;
         }
-        str1 = str1.toUpperCase();
-        str2 = str2.toUpperCase();
-        return str1.compareTo(str2);
+        String str1B = str1.toUpperCase();
+        String str2B = str2.toUpperCase();
+        return str1B.compareTo(str2B);
     }
 
     /**
@@ -1686,17 +1687,17 @@ global class StringUtils {
      * @return {@code true} if the CharSequence starts with the prefix or
      *  both {@code null}
      */
+    @TestVisible
     private static Boolean endsWith(final String str, final String suffix, final Boolean ignoreCase) {
         if (str == null || suffix == null) {
-            return str == suffix;
+            return equals(str, suffix);
         }
         if (suffix.length() > str.length()) {
             return false;
         }
         final Integer strOffset = str.length() - suffix.length();
         if (ignoreCase) {
-            str = str.toUpperCase();
-            suffix = suffix.toUpperCase();
+            return str.endsWithIgnoreCase(suffix);
         }
         return str.endsWith(suffix);
     }
@@ -1783,29 +1784,33 @@ global class StringUtils {
      * @see Object#equals(Object)
      * @see #equalsIgnoreCase(CharSequence, CharSequence)
      */
-//    global static Boolean equals(final CharSequence cs1, final CharSequence cs2) {
-//        if (cs1 == cs2) {
-//            return true;
-//        }
-//        if (cs1 == null || cs2 == null) {
-//            return false;
-//        }
-//        if (cs1.length() != cs2.length()) {
-//            return false;
-//        }
-//        if (cs1 instanceof String && cs2 instanceof String) {
-//            return cs1.equals(cs2);
-//        }
-//        // Step-wise comparison
-//        final Integer length = cs1.length();
-//        for (int i = 0; i < length; i++) {
-//            if (cs1.charAt(i) != cs2.charAt(i)) {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
-//
+    global static Boolean equals(final String cs1, final String cs2) {
+        // Apexの文字列比較の特性のため以下はコメント。
+        //if (cs1 == cs2) {
+        //    return true;
+        //}
+        if (cs1 == null && cs2 == null) {
+            return true;
+        }
+        if (cs1 == null || cs2 == null) {
+            return false;
+        }
+        if (cs1.length() != cs2.length()) {
+            return false;
+        }
+        //if (cs1 instanceof String && cs2 instanceof String) {
+        return cs1.equals(cs2);
+        //}
+        // Step-wise comparison
+        //final Integer length = cs1.length();
+        //for (Integer i = 0; i < length; i++) {
+        //    if (cs1.charAt(i) != cs2.charAt(i)) {
+        //        return false;
+        //    }
+        //}
+        //return true;
+    }
+
     /**
      * <p>Compares given {@code string} to a CharSequences vararg of {@code searchStrings},
      * returning {@code true} if the {@code string} is equal to any of the {@code searchStrings}.</p>
@@ -1887,19 +1892,19 @@ global class StringUtils {
      * @since 3.0 Changed signature from equalsIgnoreCase(String, String) to equalsIgnoreCase(CharSequence, CharSequence)
      * @see #equals(CharSequence, CharSequence)
      */
-//    global static Boolean equalsIgnoreCase(final CharSequence cs1, final CharSequence cs2) {
-//        if (cs1 == cs2) {
-//            return true;
-//        }
-//        if (cs1 == null || cs2 == null) {
-//            return false;
-//        }
-//        if (cs1.length() != cs2.length()) {
-//            return false;
-//        }
-//        return CharSequenceUtils.regionMatches(cs1, true, 0, cs2, 0, cs1.length());
-//    }
-//
+    global static Boolean equalsIgnoreCase(final String cs1, final String cs2) {
+        if (cs1 == null && cs2 == null && cs1 == cs2) {
+            return true;
+        }
+        if (cs1 == null || cs2 == null) {
+            return false;
+        }
+        if (cs1.length() != cs2.length()) {
+            return false;
+        }
+        return cs1.equalsIgnoreCase(cs2);
+    }
+
     /**
      * <p>Returns the first value in the array which is not empty (''),
      * {@code null} or whitespace only.</p>
@@ -2082,8 +2087,9 @@ global class StringUtils {
         String strDigits = '';
         for (Integer i = 0; i < sz; i++) {
             final Integer tempChar = str.charAt(i);
-            if (CharUtils.isAsciiNumeric(tempChar)) {
-                strDigits += (tempChar);
+            String look = int2string(tempChar);
+            if (look.isNumeric()) {
+                strDigits += look;
             }
         }
         return strDigits;
@@ -3244,19 +3250,19 @@ global class StringUtils {
      * @since 2.5
      * @since 3.0 Changed signature from isAllLowerCase(String) to isAllLowerCase(CharSequence)
      */
-//    global static Boolean isAllLowerCase(final CharSequence cs) {
-//        if (isEmpty(cs)) {
-//            return false;
-//        }
-//        final Integer sz = cs.length();
-//        for (int i = 0; i < sz; i++) {
-//            if (!Character.isLowerCase(cs.charAt(i))) {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
-//
+    global static Boolean isAllLowerCase(final String cs) {
+        if (isEmpty(cs)) {
+            return false;
+        }
+        final Integer sz = cs.length();
+        for (Integer i = 0; i < sz; i++) {
+            if (!CharUtils.isAsciiAlphaLower(cs.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * <p>Checks if the CharSequence contains only uppercase characters.</p>
      *
@@ -3279,19 +3285,19 @@ global class StringUtils {
      * @since 2.5
      * @since 3.0 Changed signature from isAllUpperCase(String) to isAllUpperCase(CharSequence)
      */
-//    global static Boolean isAllUpperCase(final CharSequence cs) {
-//        if (isEmpty(cs)) {
-//            return false;
-//        }
-//        final Integer sz = cs.length();
-//        for (int i = 0; i < sz; i++) {
-//            if (!Character.isUpperCase(cs.charAt(i))) {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
-//
+    global static Boolean isAllUpperCase(final String cs) {
+        if (isEmpty(cs)) {
+            return false;
+        }
+        final Integer sz = cs.length();
+        for (Integer i = 0; i < sz; i++) {
+            if (!CharUtils.isAsciiAlphaUpper(cs.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * <p>Checks if the CharSequence contains only Unicode letters.</p>
      *
@@ -3318,7 +3324,8 @@ global class StringUtils {
         }
         final Integer sz = cs.length();
         for (Integer i = 0; i < sz; i++) {
-            if (!CharUtils.isAsciiAlpha(cs.charAt(i))) {
+            String look = int2string(cs.charAt(i));
+            if (!look.isAlpha()) {
                 return false;
             }
         }
@@ -3353,7 +3360,8 @@ global class StringUtils {
         }
         final Integer sz = cs.length();
         for (Integer i = 0; i < sz; i++) {
-            if (!CharUtils.isAsciiAlphanumeric(cs.charAt(i))) {
+            String look = int2string(cs.charAt(i));
+            if (!look.isAlphanumeric()) {
                 return false;
             }
         }
@@ -3534,19 +3542,19 @@ global class StringUtils {
      * @since 2.1
      * @since 3.0 Changed signature from isAsciiPrintable(String) to isAsciiPrintable(CharSequence)
      */
-//    global static Boolean isAsciiPrintable(final CharSequence cs) {
-//        if (cs == null) {
-//            return false;
-//        }
-//        final Integer sz = cs.length();
-//        for (int i = 0; i < sz; i++) {
-//            if (!CharUtils.isAsciiPrintable(cs.charAt(i))) {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
-//
+    global static Boolean isAsciiPrintable(final String cs) {
+        if (cs == null) {
+          return false;
+        }
+        final Integer sz = cs.length();
+        for (Integer i = 0; i < sz; i++) {
+            if (!CharUtils.isAsciiPrintable(cs.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * <p>Checks if a CharSequence is empty (''), null or whitespace only.</p>
      *
@@ -3623,24 +3631,24 @@ global class StringUtils {
      * @return {@code true} if the CharSequence contains both uppercase and lowercase characters
      * @since 3.5
      */
-//    global static Boolean isMixedCase(final CharSequence cs) {
-//        if (isEmpty(cs) || cs.length() == 1) {
-//            return false;
-//        }
-//        Boolean containsUppercase = false;
-//        Boolean containsLowercase = false;
-//        final Integer sz = cs.length();
-//        for (int i = 0; i < sz; i++) {
-//            if (containsUppercase && containsLowercase) {
-//                return true;
-//            } else if (Character.isUpperCase(cs.charAt(i))) {
-//                containsUppercase = true;
-//            } else if (Character.isLowerCase(cs.charAt(i))) {
-//                containsLowercase = true;
-//            }
-//        }
-//        return containsUppercase && containsLowercase;
-//    }
+    global static Boolean isMixedCase(final String cs) {
+        if (isEmpty(cs) || cs.length() == 1) {
+            return false;
+        }
+        Boolean containsUppercase = false;
+        Boolean containsLowercase = false;
+        final Integer sz = cs.length();
+        for (Integer i = 0; i < sz; i++) {
+            if (containsUppercase && containsLowercase) {
+                return true;
+            } else if (CharUtils.isAsciiAlphaUpper(cs.charAt(i))) {
+                containsUppercase = true;
+            } else if (CharUtils.isAsciiAlphaLower(cs.charAt(i))) {
+                containsLowercase = true;
+            }
+        }
+        return containsUppercase && containsLowercase;
+    }
 
     /**
      * <p>Checks if none of the CharSequences are empty (''), null or whitespace only.</p>
@@ -3775,7 +3783,8 @@ global class StringUtils {
         }
         final Integer sz = cs.length();
         for (Integer i = 0; i < sz; i++) {
-            if (!CharUtils.isAsciiNumeric(cs.charAt(i))) {
+            String look = int2string(cs.charAt(i));
+            if (!look.isNumeric()) {
                 return false;
             }
         }
@@ -4909,6 +4918,9 @@ global class StringUtils {
         if (seq == null) {
             return INDEX_NOT_FOUND;
         }
+        if (searchSeq == null) {
+            return INDEX_NOT_FOUND;
+        }
         return seq.lastIndexOf(searchSeq, seq.length());
     }
 
@@ -4949,6 +4961,9 @@ global class StringUtils {
      */
     global static Integer lastIndexOf(final String seq, final String searchSeq, final Integer startPos) {
         if (seq == null) {
+            return INDEX_NOT_FOUND;
+        }
+        if (searchSeq == null) {
             return INDEX_NOT_FOUND;
         }
         return seq.lastIndexOf(searchSeq, startPos);
@@ -5393,13 +5408,13 @@ global class StringUtils {
      * @param str  the String to lower case, may be null
      * @return the lower cased String, {@code null} if null String input
      */
-//    global static String lowerCase(final String str) {
-//        if (str == null) {
-//            return null;
-//        }
-//        return str.toLowerCase();
-//    }
-//
+    global static String lowerCase(final String str) {
+        if (str == null) {
+            return null;
+        }
+        return str.toLowerCase();
+    }
+
     /**
      * <p>Converts a String to lower case as per {@link String#toLowerCase(Locale)}.</p>
      *
@@ -7161,19 +7176,19 @@ global class StringUtils {
      * @param len  the length of the required String
      * @return the rightmost characters, {@code null} if null String input
      */
-//    global static String right(final String str, final Integer len) {
-//        if (str == null) {
-//            return null;
-//        }
-//        if (len < 0) {
-//            return EMPTY;
-//        }
-//        if (str.length() <= len) {
-//            return str;
-//        }
-//        return str.substring(str.length() - len);
-//    }
-//
+    global static String right(final String str, final Integer len) {
+        if (str == null) {
+            return null;
+        }
+        if (len < 0) {
+            return EMPTY;
+        }
+        if (str.length() <= len) {
+            return str;
+        }
+        return str.substring(str.length() - len);
+    }
+
     /**
      * <p>Right pad a String with spaces (' ').</p>
      *
@@ -7193,10 +7208,10 @@ global class StringUtils {
      * @return right padded String or original String if no padding is necessary,
      *  {@code null} if null String input
      */
-//    global static String rightPad(final String str, final Integer size) {
-//        return rightPad(str, size, ' ');
-//    }
-//
+    global static String rightPad(final String str, final Integer size) {
+        return rightPad(str, size, ' '.charAt(0));
+    }
+
     /**
      * <p>Right pad a String with a specified character.</p>
      *
@@ -7312,23 +7327,23 @@ global class StringUtils {
      *          or {@code null} if null String input
      * @since 3.5
      */
-//    global static String rotate(final String str, final Integer shift) {
-//        if (str == null) {
-//            return null;
-//        }
-//
-//        final Integer strLen = str.length();
-//        if (shift == 0 || strLen == 0 || shift % strLen == 0) {
-//            return str;
-//        }
-//
-//        final StringBuilder builder = new StringBuilder(strLen);
-//        final Integer offset = - (shift % strLen);
-//        builder.append(substring(str, offset));
-//        builder.append(substring(str, 0, offset));
-//        return builder.toString();
-//    }
-//
+    global static String rotate(final String str, final Integer shift) {
+        if (str == null) {
+            return null;
+        }
+
+        final Integer strLen = str.length();
+        if (shift == 0 || strLen == 0 || Math.mod(shift, strLen) == 0) {
+            return str;
+        }
+
+        String builder = '';
+        final Integer offset = - (Math.mod(shift, strLen));
+        builder += (substring(str, offset));
+        builder += (substring(str, 0, offset));
+        return builder;
+    }
+
     /**
      * <p>Splits the provided text into an array, using whitespace as the
      * separator.
@@ -8068,9 +8083,10 @@ global class StringUtils {
      * @return {@code true} if the CharSequence starts with the prefix or
      *  both {@code null}
      */
+    @TestVisible
     private static Boolean startsWith(final String str, final String prefix, final Boolean ignoreCase) {
         if (str == null || prefix == null) {
-            return str == prefix;
+            return equals(str, prefix);
         }
         // Get length once instead of twice in the unlikely case that it changes.
         final Integer preLen = prefix.length();
@@ -8078,8 +8094,7 @@ global class StringUtils {
             return false;
         }
         if (ignoreCase) {
-            str = str.toUpperCase();
-            prefix = prefix.toUpperCase();
+            return str.startsWithIgnoreCase(prefix);
         }
         return str.startsWith(prefix);
     }
@@ -9503,7 +9518,8 @@ global class StringUtils {
             return str;
         }
 
-        return wrapWith + str + wrapWith;
+        final String wrapWithString = int2string(wrapWith);
+        return wrapWithString + str + wrapWithString;
     }
 
     /**
@@ -9541,7 +9557,7 @@ global class StringUtils {
             return str;
         }
 
-        return wrapWith + str + (wrapWith);
+        return (wrapWith + str + wrapWith);
     }
 
     /**
@@ -9575,6 +9591,7 @@ global class StringUtils {
         if (isEmpty(str) || wrapWith == null) {
             return str;
         }
+        final String wrapWithString = int2string(wrapWith);
         final Boolean wrapStart = str.charAt(0) != wrapWith;
         final Boolean wrapEnd = str.charAt(str.length() - 1) != wrapWith;
         if (!wrapStart && !wrapEnd) {
@@ -9583,11 +9600,11 @@ global class StringUtils {
 
         String builder = '';
         if (wrapStart) {
-            builder += (wrapWith);
+            builder += wrapWithString;
         }
         builder += (str);
         if (wrapEnd) {
-            builder += (wrapWith);
+            builder += wrapWithString;
         }
         return builder;
     }
