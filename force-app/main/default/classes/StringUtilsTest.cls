@@ -670,25 +670,20 @@ private class StringUtilsTest {
     @isTest(SeeAllData=false)
     static void repeat2args() {
         System.assertEquals(null, StringUtils.repeat((String) null, 2));
-/*  
-     * StringUtils.repeat('', 0)   = ''
-     * StringUtils.repeat('', 2)   = ''
-     * StringUtils.repeat('a', 3)  = 'aaa'
-     * StringUtils.repeat('ab', 2) = 'abab'
-     *  = 
-*/
+        System.assertEquals('', StringUtils.repeat('', 0));
+        System.assertEquals('', StringUtils.repeat('', 2));
+        System.assertEquals('aaa', StringUtils.repeat('a', 3));
+        System.assertEquals('abab', StringUtils.repeat('ab', 2));
         System.assertEquals('', StringUtils.repeat('a', -2));
     }    
 
     @isTest(SeeAllData=false)
     static void right2args() {
         System.assertEquals(null, StringUtils.right(null, 99));
-     /*  
-        * StringUtils.right(*, -ve)     = ''
-        * StringUtils.right('', *)      = ''
-        * StringUtils.right('abc', 0)   = ''
-        * StringUtils.right('abc', 2)   = 'bc'
-*/
+        // StringUtils.right(*, -ve)     = ''
+        System.assertEquals('', StringUtils.right('', 99));
+        System.assertEquals('', StringUtils.right('abc', 0));
+        System.assertEquals('bc', StringUtils.right('abc', 2));
         System.assertEquals('abc', StringUtils.right('abc', 4));
     }
 
@@ -750,12 +745,11 @@ private class StringUtilsTest {
     @isTest(SeeAllData=false)
     static void substring2arg() {
         System.assertEquals(null, StringUtils.substring(null, 99));
-/*   * StringUtils.substring('', *)     = ''
-     * StringUtils.substring('abc', 0)  = 'abc'
-     * StringUtils.substring('abc', 2)  = 'c'
-     * StringUtils.substring('abc', 4)  = ''
-     * StringUtils.substring('abc', -2) = 'bc'
-*/  
+        System.assertEquals('', StringUtils.substring('', 99));
+        System.assertEquals('abc', StringUtils.substring('abc', 0));
+        System.assertEquals('c', StringUtils.substring('abc', 2));
+        System.assertEquals('', StringUtils.substring('abc', 4));
+        System.assertEquals('bc', StringUtils.substring('abc', -2));
         System.assertEquals('abc', StringUtils.substring('abc', -4));
     }
         
